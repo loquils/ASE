@@ -14,6 +14,16 @@ script = ExtResource("1_324jq")
 [node name="MainTimer" type="Timer" parent="."]
 autostart = true
 
+[node name="ButtonVendre" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -153.0
+offset_bottom = 31.0
+grow_horizontal = 0
+text = "Vendre Hydrogène"
+
 [node name="BoutonMenu" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 6
@@ -56,7 +66,10 @@ text = "Hydrogene : "
 layout_mode = 2
 text = "0"
 
-[node name="MenuHydrogene" type="Control" parent="."]
+[node name="HydrogeneParSec" type="Label" parent="ParticulesContainer/HBoxContainer2"]
+layout_mode = 2
+
+[node name="MenuAllGame" type="TabContainer" parent="."]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -65,8 +78,12 @@ anchor_bottom = 1.0
 offset_top = -200.0
 grow_horizontal = 2
 grow_vertical = 0
+tab_alignment = 1
 
-[node name="Panel" type="Panel" parent="MenuHydrogene"]
+[node name="MenuHydrogene" type="Control" parent="MenuAllGame"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="MenuAllGame/MenuHydrogene"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -74,7 +91,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="MenuHydrogene/Panel"]
+[node name="Label" type="Label" parent="MenuAllGame/MenuHydrogene/Panel"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -83,25 +100,100 @@ grow_horizontal = 2
 text = "Améliorations Hydrogène"
 horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MenuHydrogene/Panel"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MenuAllGame/MenuHydrogene/Panel"]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -174.0
+offset_top = -143.0
+offset_bottom = 7.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="AmelioForce" type="Button" parent="MenuHydrogene/Panel/HBoxContainer"]
+[node name="AmelioForce" type="Button" parent="MenuAllGame/MenuHydrogene/Panel/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
-text = "Force"
 
-[node name="AmelioVitesse" type="Button" parent="MenuHydrogene/Panel/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuAllGame/MenuHydrogene/Panel/HBoxContainer/AmelioForce"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ForceLabel" type="Label" parent="MenuAllGame/MenuHydrogene/Panel/HBoxContainer/AmelioForce/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 0
+text = "Force"
+horizontal_alignment = 1
+
+[node name="NiveauLabel" type="Label" parent="MenuAllGame/MenuHydrogene/Panel/HBoxContainer/AmelioForce/VBoxContainer"]
+layout_mode = 2
+text = "Niveau"
+horizontal_alignment = 1
+
+[node name="Niveau" type="Label" parent="MenuAllGame/MenuHydrogene/Panel/HBoxContainer/AmelioForce/VBoxContainer"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="PrixLabel" type="Label" parent="MenuAllGame/MenuHydrogene/Panel/HBoxContainer/AmelioForce/VBoxContainer"]
+layout_mode = 2
+text = "Prix"
+horizontal_alignment = 1
+
+[node name="Prix" type="Label" parent="MenuAllGame/MenuHydrogene/Panel/HBoxContainer/AmelioForce/VBoxContainer"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="AmelioVitesse" type="Button" parent="MenuAllGame/MenuHydrogene/Panel/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuAllGame/MenuHydrogene/Panel/HBoxContainer/AmelioVitesse"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VitesseLabel" type="Label" parent="MenuAllGame/MenuHydrogene/Panel/HBoxContainer/AmelioVitesse/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
 text = "Vitesse"
+horizontal_alignment = 1
+
+[node name="NiveauLabel" type="Label" parent="MenuAllGame/MenuHydrogene/Panel/HBoxContainer/AmelioVitesse/VBoxContainer"]
+layout_mode = 2
+text = "Niveau"
+horizontal_alignment = 1
+
+[node name="Niveau" type="Label" parent="MenuAllGame/MenuHydrogene/Panel/HBoxContainer/AmelioVitesse/VBoxContainer"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="PrixLabel" type="Label" parent="MenuAllGame/MenuHydrogene/Panel/HBoxContainer/AmelioVitesse/VBoxContainer"]
+layout_mode = 2
+text = "Prix"
+horizontal_alignment = 1
+
+[node name="Prix" type="Label" parent="MenuAllGame/MenuHydrogene/Panel/HBoxContainer/AmelioVitesse/VBoxContainer"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="MenuRecherche" type="Control" parent="MenuAllGame"]
+visible = false
+layout_mode = 2
 
 [connection signal="timeout" from="MainTimer" to="." method="_on_main_timer_timeout"]
+[connection signal="pressed" from="ButtonVendre" to="." method="_on_button_vendre_pressed"]
 [connection signal="pressed" from="BoutonMenu" to="." method="_on_bouton_menu_pressed"]
 [connection signal="toggled" from="BoutonMenu" to="." method="_on_bouton_menu_toggled"]
-[connection signal="pressed" from="MenuHydrogene/Panel/HBoxContainer/AmelioForce" to="." method="_on_amelio_force_pressed"]
+[connection signal="pressed" from="MenuAllGame/MenuHydrogene/Panel/HBoxContainer/AmelioForce" to="." method="_on_amelio_force_pressed"]
+[connection signal="pressed" from="MenuAllGame/MenuHydrogene/Panel/HBoxContainer/AmelioVitesse" to="." method="_on_amelio_vitesse_pressed"]
