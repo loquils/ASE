@@ -1,7 +1,7 @@
 extends Control
 
 var Coins
-var QuantiteesAtomes = {"Hydrogene" : 1000000000}
+var QuantiteesAtomes = {"Hydrogene" : 0}
 
 #Hydrogene
 var NiveauHydrogene
