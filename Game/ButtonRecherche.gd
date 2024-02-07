@@ -7,3 +7,4 @@ func _set_var(recherche):
 	$VBoxContainer/NomLabel.text = Recherche.Nom
 	$VBoxContainer/DescriptionLabel.text = Recherche.Description
 	$VBoxContainer/PrixLabel.text = str(Recherche.Prix)
+	pressed.connect(RechercheClick.RechercheButtonEventTrigger.bind(Recherche))

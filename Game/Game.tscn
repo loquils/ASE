@@ -15,15 +15,24 @@ script = ExtResource("1_324jq")
 [node name="MainTimer" type="Timer" parent="."]
 autostart = true
 
-[node name="ButtonVendre" type="Button" parent="."]
+[node name="VBoxVente" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -153.0
-offset_bottom = 31.0
+offset_bottom = 40.0
 grow_horizontal = 0
+
+[node name="ButtonVendre" type="Button" parent="VBoxVente"]
+layout_mode = 2
 text = "Vendre Hydrogène"
+
+[node name="ValeurHydrogeneLabel" type="Label" parent="VBoxVente"]
+layout_mode = 2
+
+[node name="ValeurVenteLabel" type="Label" parent="VBoxVente"]
+layout_mode = 2
 
 [node name="BoutonMenu" type="Button" parent="."]
 layout_mode = 1
@@ -95,6 +104,23 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MenuAllGame/MenuRecherche/ScrollContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MenuAllGame/MenuRecherche"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="MenuAllGame/MenuRecherche/HBoxContainer"]
+layout_mode = 2
+text = "Hydrogène augmente pourcent : "
+
+[node name="AugmenteLabel" type="Label" parent="MenuAllGame/MenuRecherche/HBoxContainer"]
 layout_mode = 2
 
 [node name="MenuHydrogene" type="Control" parent="MenuAllGame"]
@@ -206,7 +232,7 @@ text = "0"
 horizontal_alignment = 1
 
 [connection signal="timeout" from="MainTimer" to="." method="_on_main_timer_timeout"]
-[connection signal="pressed" from="ButtonVendre" to="." method="_on_button_vendre_pressed"]
+[connection signal="pressed" from="VBoxVente/ButtonVendre" to="." method="_on_button_vendre_pressed"]
 [connection signal="pressed" from="BoutonMenu" to="." method="_on_bouton_menu_pressed"]
 [connection signal="toggled" from="BoutonMenu" to="." method="_on_bouton_menu_toggled"]
 [connection signal="pressed" from="MenuAllGame/MenuHydrogene/Panel/HBoxContainer/AmelioForce" to="." method="_on_amelio_force_pressed"]
