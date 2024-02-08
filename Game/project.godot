@@ -17,8 +17,8 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-RechercheClick="*res://rechercheClick.gd"
 RessourceManager="*res://RessourceManager.gd"
+RechercheClick="*res://rechercheClick.gd"
 
 [rendering]
 

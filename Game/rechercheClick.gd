@@ -1,6 +1,6 @@
 extends Node
 
-signal button_pressed(recherche)
+signal Research_button_pressed(recherche)
 
 func RechercheButtonEventTrigger(recherche):
-	button_pressed.emit(recherche)
+	Research_button_pressed.emit(recherche)

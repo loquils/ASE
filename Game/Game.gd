@@ -16,7 +16,7 @@ var AugmentationHydroVitesse
 
 
 func _ready():
-	PrixBaseVenteHydrogene = 1
+	PrixBaseVenteHydrogene = 1.0
 	NiveauHydrogene = {"Force" : 0, "Vitesse" : 0}
 	
 	ApportHydrogene = 1
@@ -29,8 +29,7 @@ func _ready():
 	AugmentationHydroForce =  CoefficientsRapportHydrogene["Force"] * NiveauHydrogene["Force"]
 	AugmentationHydroVitesse = CoefficientsRapportHydrogene["Vitesse"] * NiveauHydrogene["Vitesse"]
 
-func recherche_pressed(recherche):
-	print(recherche.Nom)
+
 
 func _process(_delta):
 	$ParticulesContainer/HBoxContainer/Coins.text = str(RessourceManager.Coins)
@@ -78,6 +77,6 @@ func _on_amelio_vitesse_pressed():
 
 
 func _on_button_vendre_pressed():
-	var PrixVenteHydrogene = PrixBaseVenteHydrogene * (1 + $MenuAllGame/MenuRecherche.CurrentBonusesResearches["PrixHydrogenePerCent"])
-	RessourceManager.Coins += round(PrixVenteHydrogene * QuantiteesAtomes["Hydrogene"])
+	var PrixVenteHydrogene = PrixBaseVenteHydrogene * (1.0 + $MenuAllGame/MenuRecherche.CurrentBonusesResearches["PrixHydrogenePerCent"])
+	RessourceManager.Coins += PrixVenteHydrogene * QuantiteesAtomes["Hydrogene"]
 	QuantiteesAtomes["Hydrogene"] = 0

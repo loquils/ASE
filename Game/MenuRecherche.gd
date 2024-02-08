@@ -7,16 +7,17 @@ var CurrentBonusesResearches = {"PrixHydrogenePerCent" : 0}
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	ListeRecherches.append(Recherche.new(0, "Coin1", "Coiiiiiiiiiiiiiiiiiiiiiiiiiiin !!!", 1000, "PrixHydrogenePerCent", 10))
-	ListeRecherches.append(Recherche.new(1, "Coin2", "Coiiiiiiiiiiiiiiiiiiiiiiiiiiin !!!", 1000, "PrixHydrogenePerCent", 100))
-	ListeRecherches.append(Recherche.new(2, "Coin3", "Coiiiiiiiiiiiiiiiiiiiiiiiiiiin !!!", 1000, "PrixHydrogenePerCent", 1000))
-	ListeRecherches.append(Recherche.new(3, "Coin4", "Coiiiiiiiiiiiiiiiiiiiiiiiiiiin !!!", 1000, "PrixHydrogenePerCent", 10000))
-	ListeRecherches.append(Recherche.new(4, "Coin5", "Coiiiiiiiiiiiiiiiiiiiiiiiiiiin !!!", 1000, "PrixHydrogenePerCent", 100000))
-	ListeRecherches.append(Recherche.new(5, "Coin6", "Coiiiiiiiiiiiiiiiiiiiiiiiiiiin !!!", 1000, "PrixHydrogenePerCent", 1000000))
-	ListeRecherches.append(Recherche.new(6, "Coin7", "Coiiiiiiiiiiiiiiiiiiiiiiiiiiin !!!", 1000, "PrixHydrogenePerCent", 10000000))
-	ListeRecherches.append(Recherche.new(7, "Coin8", "Coiiiiiiiiiiiiiiiiiiiiiiiiiiin !!!", 1000, "PrixHydrogenePerCent", 100000000))
-	RechercheClick.connect("button_pressed", AchatRehercheButtonPressed)
+	#ListeRecherches.append(Recherche.new(0, "Coin1", "Améliore le prix de vente de l'hydrogène de 10%.", 1000, "PrixHydrogenePerCent", 10))
+	#ListeRecherches.append(Recherche.new(1, "Coin2", "Améliore le prix de vente de l'hydrogène de 100%.", 5000, "PrixHydrogenePerCent", 100))
+	#ListeRecherches.append(Recherche.new(2, "Coin3", "Améliore le prix de vente de l'hydrogène de 1 000%.", 20000, "PrixHydrogenePerCent", 1000))
+	#ListeRecherches.append(Recherche.new(3, "Coin4", "Améliore le prix de vente de l'hydrogène de 10 000%.", 50000, "PrixHydrogenePerCent", 10000))
+	ListeRecherches.append(Recherche.new(0, "Coin1", "Améliore 50%.", 1000, "PrixHydrogenePerCent", 50))
+	ListeRecherches.append(Recherche.new(1, "Coin2", "Améliore 100%", 5000, "PrixHydrogenePerCent", 100))
+	#ListeRecherches.append(Recherche.new(2, "Coin3", "Améliore 1 000%", 20000, "PrixHydrogenePerCent", 1000))
+	#ListeRecherches.append(Recherche.new(3, "Coin4", "Améliore 10 000%", 50000, "PrixHydrogenePerCent", 10000))
 	
+	#On connecte ici l'appuie du bouton lors de l'achat d'une recherche
+	RechercheClick.connect("Research_button_pressed", AchatRehercheButtonPressed)
 	
 	for recherche in ListeRecherches:
 		var newRecherchebutton = but.instantiate()
@@ -25,13 +26,6 @@ func _ready():
 
 func _process(_delta):
 	$HBoxContainer/AugmenteLabel.text = str(CurrentBonusesResearches["PrixHydrogenePerCent"]) + "%"
-	#TODO: Il faut changer ça pour opti : on peut s'arreter une fois qu'on à trouvé une recherche qu'on a pas (et mettre toutes celles de derière en non clicable ?)
-	for button in $ScrollContainer/HBoxContainer.get_children():
-		if not button.Recherche.Achete:
-			if button.Recherche.Prix > RessourceManager.Coins:
-				button.disabled = true
-			else:
-				button.disabled = false
 	
 	
 #Methode appellee par le signal lors de l'appuie sur un des boutons de recherches
@@ -59,4 +53,5 @@ func MajBonusRecherches():
 		if recherche.Achete:
 			match recherche.Augmentation:
 				"PrixHydrogenePerCent":
-					CurrentBonusesResearches["PrixHydrogenePerCent"] += recherche.AugmentationPercent
+					CurrentBonusesResearches["PrixHydrogenePerCent"] = CurrentBonusesResearches["PrixHydrogenePerCent"] + recherche.AugmentationPercent/100.0
+

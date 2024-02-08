@@ -1,6 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://clfwvscofnwyr"]
+[gd_scene load_steps=5 format=3 uid="uid://clfwvscofnwyr"]
 
 [ext_resource type="Script" path="res://ButtonRecherche.gd" id="1_w4hq0"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_5vj4l"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ynp4h"]
+texture = SubResource("CanvasTexture_5vj4l")
+modulate_color = Color(0, 0.592157, 0.0509804, 1)
+
+[sub_resource type="Theme" id="Theme_8d4nh"]
+Label/styles/normal = SubResource("StyleBoxTexture_ynp4h")
 
 [node name="Button" type="Button"]
 custom_minimum_size = Vector2(200, 100)
@@ -13,7 +22,27 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_w4hq0")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="ResearchBoughtVBoxContainer" type="VBoxContainer" parent="."]
+visible = false
+layout_mode = 2
+offset_right = 200.0
+offset_bottom = 100.0
+
+[node name="NomLabel" type="Label" parent="ResearchBoughtVBoxContainer"]
+layout_mode = 2
+text = "Nom"
+
+[node name="DescriptionLabel" type="Label" parent="ResearchBoughtVBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_8d4nh")
+text = "Description"
+
+[node name="BonusLabel" type="Label" parent="ResearchBoughtVBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+text = "Bonus"
+
+[node name="ResearchToBuyVBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,11 +50,16 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="NomLabel" type="Label" parent="VBoxContainer"]
+[node name="NomLabel" type="Label" parent="ResearchToBuyVBoxContainer"]
 layout_mode = 2
+text = "Nom"
 
-[node name="DescriptionLabel" type="Label" parent="VBoxContainer"]
+[node name="DescriptionLabel" type="Label" parent="ResearchToBuyVBoxContainer"]
 layout_mode = 2
+text = "Description"
+text_overrun_behavior = 2
 
-[node name="PrixLabel" type="Label" parent="VBoxContainer"]
+[node name="PrixLabel" type="Label" parent="ResearchToBuyVBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 6
+text = "Label"
