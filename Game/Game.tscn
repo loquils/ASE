@@ -85,46 +85,12 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -200.0
+offset_top = -280.0
 grow_horizontal = 2
 grow_vertical = 0
 tab_alignment = 1
 
-[node name="MenuRecherche" type="Control" parent="MenuAllGame"]
-custom_minimum_size = Vector2(1152, 169)
-layout_mode = 2
-script = ExtResource("2_e2vmt")
-
-[node name="ScrollContainer" type="ScrollContainer" parent="MenuAllGame/MenuRecherche"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MenuAllGame/MenuRecherche/ScrollContainer"]
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MenuAllGame/MenuRecherche"]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -40.0
-grow_horizontal = 2
-grow_vertical = 0
-
-[node name="Label" type="Label" parent="MenuAllGame/MenuRecherche/HBoxContainer"]
-layout_mode = 2
-text = "Hydrogène augmente pourcent : "
-
-[node name="AugmenteLabel" type="Label" parent="MenuAllGame/MenuRecherche/HBoxContainer"]
-layout_mode = 2
-
 [node name="MenuHydrogene" type="Control" parent="MenuAllGame"]
-visible = false
 layout_mode = 2
 
 [node name="Panel" type="Panel" parent="MenuAllGame/MenuHydrogene"]
@@ -230,6 +196,40 @@ horizontal_alignment = 1
 layout_mode = 2
 text = "0"
 horizontal_alignment = 1
+
+[node name="MenuRecherche" type="Control" parent="MenuAllGame"]
+visible = false
+custom_minimum_size = Vector2(1152, 169)
+layout_mode = 2
+script = ExtResource("2_e2vmt")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MenuAllGame/MenuRecherche"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MenuAllGame/MenuRecherche/ScrollContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MenuAllGame/MenuRecherche"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="MenuAllGame/MenuRecherche/HBoxContainer"]
+layout_mode = 2
+text = "Hydrogène augmente pourcent : "
+
+[node name="AugmenteLabel" type="Label" parent="MenuAllGame/MenuRecherche/HBoxContainer"]
+layout_mode = 2
 
 [connection signal="timeout" from="MainTimer" to="." method="_on_main_timer_timeout"]
 [connection signal="pressed" from="VBoxVente/ButtonVendre" to="." method="_on_button_vendre_pressed"]

@@ -1,0 +1,42 @@
+[gd_resource type="Theme" load_steps=10 format=3 uid="uid://eas28obod65v"]
+
+[ext_resource type="Texture2D" uid="uid://b8fjo580mxr64" path="res://Gimped/ResearchButtonTransparent.png" id="2_yqaja"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_47121"]
+bg_color = Color(0.0901961, 0.0901961, 0.117647, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4dusv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vlelp"]
+bg_color = Color(0.6, 0.6, 0.6, 0.764706)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l80yl"]
+bg_color = Color(0.25098, 0.25098, 0.305882, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_k4e7u"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dkuls"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n75qf"]
+bg_color = Color(0.0901961, 0.388235, 0.219608, 0.384314)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qg7hs"]
+texture = ExtResource("2_yqaja")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+
+[resource]
+Button/styles/disabled = SubResource("StyleBoxFlat_47121")
+Button/styles/focus = SubResource("StyleBoxEmpty_4dusv")
+Button/styles/hover = SubResource("StyleBoxFlat_vlelp")
+Button/styles/normal = SubResource("StyleBoxFlat_l80yl")
+Button/styles/pressed = SubResource("StyleBoxEmpty_k4e7u")
+Label/styles/normal = SubResource("StyleBoxFlat_dkuls")
+MarginContainer/constants/margin_bottom = 2
+MarginContainer/constants/margin_left = 4
+MarginContainer/constants/margin_right = 4
+MarginContainer/constants/margin_top = 2
+Panel/styles/panel = SubResource("StyleBoxFlat_n75qf")
+PanelContainer/styles/panel = SubResource("StyleBoxTexture_qg7hs")

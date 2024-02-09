@@ -1,65 +1,81 @@
 [gd_scene load_steps=5 format=3 uid="uid://clfwvscofnwyr"]
 
 [ext_resource type="Script" path="res://ButtonRecherche.gd" id="1_w4hq0"]
+[ext_resource type="Theme" uid="uid://eas28obod65v" path="res://Design/ThemeRecherches.tres" id="2_oeu12"]
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_5vj4l"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p8c8d"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ynp4h"]
-texture = SubResource("CanvasTexture_5vj4l")
-modulate_color = Color(0, 0.592157, 0.0509804, 1)
-
-[sub_resource type="Theme" id="Theme_8d4nh"]
-Label/styles/normal = SubResource("StyleBoxTexture_ynp4h")
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yetdp"]
 
 [node name="Button" type="Button"]
-custom_minimum_size = Vector2(200, 100)
+custom_minimum_size = Vector2(180, 200)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -952.0
-offset_bottom = -548.0
+offset_top = -50.0
+offset_right = -972.0
+offset_bottom = -498.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_oeu12")
 script = ExtResource("1_w4hq0")
 
-[node name="ResearchBoughtVBoxContainer" type="VBoxContainer" parent="."]
-visible = false
+[node name="PanelContainer" type="PanelContainer" parent="."]
+clip_contents = true
 layout_mode = 2
-offset_right = 200.0
-offset_bottom = 100.0
-
-[node name="NomLabel" type="Label" parent="ResearchBoughtVBoxContainer"]
-layout_mode = 2
-text = "Nom"
-
-[node name="DescriptionLabel" type="Label" parent="ResearchBoughtVBoxContainer"]
-layout_mode = 2
-theme = SubResource("Theme_8d4nh")
-text = "Description"
-
-[node name="BonusLabel" type="Label" parent="ResearchBoughtVBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 6
-text = "Bonus"
-
-[node name="ResearchToBuyVBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+offset_right = 180.0
+offset_bottom = 200.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("2_oeu12")
 
-[node name="NomLabel" type="Label" parent="ResearchToBuyVBoxContainer"]
+[node name="ResearchToBuyVBoxContainer" type="VBoxContainer" parent="PanelContainer"]
 layout_mode = 2
+
+[node name="NomLabel" type="Label" parent="PanelContainer/ResearchToBuyVBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_p8c8d")
 text = "Nom"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="DescriptionLabel" type="Label" parent="ResearchToBuyVBoxContainer"]
+[node name="SeparatorLine2D" type="Line2D" parent="PanelContainer/ResearchToBuyVBoxContainer"]
+points = PackedVector2Array(20, 26, 150, 26)
+width = 3.0
+default_color = Color(0.176471, 0.176471, 0.219608, 0.698039)
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/ResearchToBuyVBoxContainer"]
 layout_mode = 2
+
+[node name="DescriptionLabel" type="Label" parent="PanelContainer/ResearchToBuyVBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+size_flags_vertical = 1
 text = "Description"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
 text_overrun_behavior = 2
 
-[node name="PrixLabel" type="Label" parent="ResearchToBuyVBoxContainer"]
+[node name="Line2D" type="Line2D" parent="PanelContainer/ResearchToBuyVBoxContainer/MarginContainer"]
+points = PackedVector2Array(5, 2, 5, 121, 165, 121, 165, 3, 4, 3)
+width = 3.0
+default_color = Color(0.431373, 0.470588, 0.54902, 1)
+
+[node name="Panel" type="Panel" parent="PanelContainer/ResearchToBuyVBoxContainer/MarginContainer"]
+visible = false
 layout_mode = 2
-size_flags_vertical = 6
+theme = ExtResource("2_oeu12")
+
+[node name="SeparatorLine2D2" type="Line2D" parent="PanelContainer/ResearchToBuyVBoxContainer"]
+points = PackedVector2Array(20, 160, 150, 160)
+width = 3.0
+default_color = Color(0.176471, 0.176471, 0.219608, 0.698039)
+
+[node name="PrixLabel" type="Label" parent="PanelContainer/ResearchToBuyVBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_styles/normal = SubResource("StyleBoxEmpty_yetdp")
 text = "Label"
+horizontal_alignment = 1
