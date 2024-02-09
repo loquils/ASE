@@ -1,0 +1,48 @@
+[gd_scene load_steps=2 format=3 uid="uid://b01t215unt2df"]
+
+[ext_resource type="Script" path="res://ButtonAttribut.gd" id="1_5dflx"]
+
+[node name="ButtonAttribut" type="Button"]
+custom_minimum_size = Vector2(100, 150)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1052.0
+offset_bottom = -498.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5dflx")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NomLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Force"
+horizontal_alignment = 1
+
+[node name="NiveauLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Niveau"
+horizontal_alignment = 1
+
+[node name="Niveau" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="PrixLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Prix"
+horizontal_alignment = 1
+
+[node name="Prix" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
