@@ -95,103 +95,6 @@ tab_alignment = 1
 layout_mode = 2
 script = ExtResource("2_u5aa5")
 
-[node name="Panel" type="Panel" parent="MenuAllGame/MenuAtomes"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MenuAllGame/MenuAtomes/Panel"]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -149.0
-offset_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 0
-
-[node name="AmelioForce" type="Button" parent="MenuAllGame/MenuAtomes/Panel/HBoxContainer"]
-visible = false
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MenuAllGame/MenuAtomes/Panel/HBoxContainer/AmelioForce"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ForceLabel" type="Label" parent="MenuAllGame/MenuAtomes/Panel/HBoxContainer/AmelioForce/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 0
-text = "Force"
-horizontal_alignment = 1
-
-[node name="NiveauLabel" type="Label" parent="MenuAllGame/MenuAtomes/Panel/HBoxContainer/AmelioForce/VBoxContainer"]
-layout_mode = 2
-text = "Niveau"
-horizontal_alignment = 1
-
-[node name="Niveau" type="Label" parent="MenuAllGame/MenuAtomes/Panel/HBoxContainer/AmelioForce/VBoxContainer"]
-layout_mode = 2
-text = "0"
-horizontal_alignment = 1
-
-[node name="PrixLabel" type="Label" parent="MenuAllGame/MenuAtomes/Panel/HBoxContainer/AmelioForce/VBoxContainer"]
-layout_mode = 2
-text = "Prix"
-horizontal_alignment = 1
-
-[node name="Prix" type="Label" parent="MenuAllGame/MenuAtomes/Panel/HBoxContainer/AmelioForce/VBoxContainer"]
-layout_mode = 2
-text = "0"
-horizontal_alignment = 1
-
-[node name="AmelioVitesse" type="Button" parent="MenuAllGame/MenuAtomes/Panel/HBoxContainer"]
-visible = false
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MenuAllGame/MenuAtomes/Panel/HBoxContainer/AmelioVitesse"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VitesseLabel" type="Label" parent="MenuAllGame/MenuAtomes/Panel/HBoxContainer/AmelioVitesse/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 0
-text = "Vitesse"
-horizontal_alignment = 1
-
-[node name="NiveauLabel" type="Label" parent="MenuAllGame/MenuAtomes/Panel/HBoxContainer/AmelioVitesse/VBoxContainer"]
-layout_mode = 2
-text = "Niveau"
-horizontal_alignment = 1
-
-[node name="Niveau" type="Label" parent="MenuAllGame/MenuAtomes/Panel/HBoxContainer/AmelioVitesse/VBoxContainer"]
-layout_mode = 2
-text = "0"
-horizontal_alignment = 1
-
-[node name="PrixLabel" type="Label" parent="MenuAllGame/MenuAtomes/Panel/HBoxContainer/AmelioVitesse/VBoxContainer"]
-layout_mode = 2
-text = "Prix"
-horizontal_alignment = 1
-
-[node name="Prix" type="Label" parent="MenuAllGame/MenuAtomes/Panel/HBoxContainer/AmelioVitesse/VBoxContainer"]
-layout_mode = 2
-text = "0"
-horizontal_alignment = 1
-
 [node name="ScrollContainer" type="ScrollContainer" parent="MenuAllGame/MenuAtomes"]
 layout_mode = 1
 anchors_preset = 15
@@ -243,5 +146,3 @@ layout_mode = 2
 [connection signal="pressed" from="VBoxVente/ButtonVendre" to="." method="_on_button_vendre_pressed"]
 [connection signal="pressed" from="BoutonMenu" to="." method="_on_bouton_menu_pressed"]
 [connection signal="toggled" from="BoutonMenu" to="." method="_on_bouton_menu_toggled"]
-[connection signal="pressed" from="MenuAllGame/MenuAtomes/Panel/HBoxContainer/AmelioForce" to="." method="_on_amelio_force_pressed"]
-[connection signal="pressed" from="MenuAllGame/MenuAtomes/Panel/HBoxContainer/AmelioVitesse" to="." method="_on_amelio_vitesse_pressed"]

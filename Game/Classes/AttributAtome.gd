@@ -1,14 +1,18 @@
 class_name AttributAtome
 
+var Atome
+
 var Nom
 var Niveau
 var CoefficientAchat
-var CoefficientsRapport
+var CoefficientRapport
 var PrixBaseAmelio
 
-func _init(nom, niveau, coefficientAchat, coefficientsRapport, prixBaseAmelio):
+func _init(atome, nom, niveau, coefficientAchat, coefficientRapport, prixBaseAmelio):
+	Atome = atome
 	Nom = nom
 	Niveau = niveau
 	CoefficientAchat = coefficientAchat
-	CoefficientsRapport = coefficientsRapport
+	CoefficientRapport = coefficientRapport
 	PrixBaseAmelio = prixBaseAmelio
+

@@ -1,14 +1,8 @@
 class_name Atome
 
-var AttributForce = AttributAtome.new("Force", 0, 1.2, 1.07, 5)
+var ListeAttribs = []
 
 var Nom
-
-var NiveauxAttributs
-var CoefficientsAchatAttributs
-var CoefficientsRapportAttributs
-
-var PrixBaseAmelioAttributs
 
 var PrixBaseVenteAtome
 
@@ -20,15 +14,24 @@ var AugmentationHydroVitesse
 func _init(nom):
 	Nom = nom
 	
-	NiveauxAttributs = {"Force" : 0, "Vitesse" : 0}
-	CoefficientsAchatAttributs = {"Force" : 1.2, "Vitesse" : 1.5}
-	CoefficientsRapportAttributs = {"Force" : 1.07, "Vitesse" : 1.10}
+	#ListeAttribs = [AttributAtome.new(self, "Force", 0, 1.2, 1.07, 5), AttributAtome.new(self, "Vitesse", 0, 1.5, 1.10, 10)]
 	
-	PrixBaseAmelioAttributs = {"Force" : 5, "Vitesse" : 10}
 	
 	PrixBaseVenteAtome = 1.0
 	
 	ApportAtome = 1.0
-	
-	AugmentationHydroForce =  CoefficientsRapportAttributs["Force"] * NiveauxAttributs["Force"]
-	AugmentationHydroVitesse = CoefficientsRapportAttributs["Vitesse"] * NiveauxAttributs["Vitesse"]
+	#var coin = CoefficientsRapportAttributs["Force"] * NiveauxAttributs["Force"]
+	#var coin2 = CoefficientsRapportAttributs["Vitesse"] * NiveauxAttributs["Vitesse"]
+
+func setAttributs(attributsListe):
+	ListeAttribs = attributsListe.duplicate()
+
+func GetPrixAttribut(attribut):
+	var prix = attribut.PrixBaseAmelio * pow(attribut.CoefficientAchat, attribut.Niveau)
+	return round(prix)
+
+func GetAugmentationsAttributs():
+	var attributsAddition = 0
+	for attribut in ListeAttribs:
+		attributsAddition += attribut.CoefficientRapport * attribut.Niveau
+	return attributsAddition

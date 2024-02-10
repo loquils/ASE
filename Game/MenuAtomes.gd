@@ -9,7 +9,10 @@ func _ready():
 	#On connecte ici l'appuie du bouton lors de l'achat d'un attribut
 	RechercheClick.connect("Attribut_button_pressed", AchatAttributButtonPressed)
 	
-	ListeAtomes = {"Hydrogene" : Atome.new("Hydrogene")}
+	var newAtome = Atome.new("Hydrogene")
+	var ListeAttribsTest = [AttributAtome.new(newAtome, "Force", 0, 1.2, 1.07, 5), AttributAtome.new(newAtome, "Vitesse", 0, 1.5, 1.10, 10), AttributAtome.new(newAtome, "COIIIn", 0, 2, 2, 50)]
+	newAtome.setAttributs(ListeAttribsTest)
+	ListeAtomes = {"Hydrogene" : newAtome}
 	
 	#Il faut générer un canvas de présentation avec Nom, et une liste de boutons
 	for atomeNom in ListeAtomes:
@@ -23,3 +26,14 @@ func _process(delta):
 
 func AchatAttributButtonPressed(attribut):
 	print(attribut.Nom)
+	
+	#if ListeAtomes[posAtome].Achete:
+	#	return
+	
+	if attribut.Atome.GetPrixAttribut(attribut) > RessourceManager.Coins:
+		return
+	
+	attribut.Niveau += 1
+	
+	RessourceManager.Coins -= attribut.Atome.GetPrixAttribut(attribut)
+	print("Attribut " + attribut.Nom + " achetée ! Niveau : " + str(attribut.Niveau))
