@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://jwctjc5cvudy"]
+[gd_scene load_steps=5 format=3 uid="uid://jwctjc5cvudy"]
 
 [ext_resource type="Script" path="res://Game.gd" id="1_324jq"]
 [ext_resource type="Script" path="res://MenuRecherche.gd" id="2_e2vmt"]
+[ext_resource type="Script" path="res://ParticulesContainer.gd" id="2_ffn84"]
 [ext_resource type="Script" path="res://MenuAtomes.gd" id="2_u5aa5"]
 
 [node name="Game" type="Control"]
@@ -12,6 +13,19 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_324jq")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+offset_right = 117.0
+offset_bottom = 26.0
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "Coins : "
+
+[node name="Coins" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "0"
 
 [node name="MainTimer" type="Timer" parent="."]
 autostart = true
@@ -52,19 +66,11 @@ text = "|||
 
 [node name="ParticulesContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="HBoxContainer" type="HBoxContainer" parent="ParticulesContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="ParticulesContainer/HBoxContainer"]
-layout_mode = 2
-text = "Coins : "
-
-[node name="Coins" type="Label" parent="ParticulesContainer/HBoxContainer"]
-layout_mode = 2
-text = "0"
+offset_left = 3.0
+offset_top = 27.0
+offset_right = 120.0
+offset_bottom = 67.0
+script = ExtResource("2_ffn84")
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="ParticulesContainer"]
 layout_mode = 2
@@ -78,6 +84,20 @@ layout_mode = 2
 text = "0"
 
 [node name="HydrogeneParSec" type="Label" parent="ParticulesContainer/HBoxContainer2"]
+layout_mode = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="ParticulesContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ParticulesContainer/HBoxContainer3"]
+layout_mode = 2
+text = "Helium : "
+
+[node name="Helium" type="Label" parent="ParticulesContainer/HBoxContainer3"]
+layout_mode = 2
+text = "0"
+
+[node name="HeliumParSec" type="Label" parent="ParticulesContainer/HBoxContainer3"]
 layout_mode = 2
 
 [node name="MenuAllGame" type="TabContainer" parent="."]

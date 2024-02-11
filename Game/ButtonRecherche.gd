@@ -33,7 +33,5 @@ func ChangeButtonStateToBought():
 	print("Bah ça clique ici :3")
 	if Recherche.Achete:
 		disabled = true
-		#$PanelContainer/ResearchToBuyVBoxContainer.visible = false
-		#$PanelContainer/ResearchBoughtVBoxContainer.visible = true
 		$PanelContainer/ResearchToBuyVBoxContainer/MarginContainer/Panel.visible = true
 		print("Recherche achetée :)")

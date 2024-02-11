@@ -1,0 +1,16 @@
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://dcw22i5c3dse4"]
+
+[ext_resource type="Texture2D" uid="uid://b8fjo580mxr64" path="res://Gimped/ResearchButtonTransparent.png" id="1_0y4k0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_13vrg"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rtemu"]
+texture = ExtResource("1_0y4k0")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+
+[resource]
+Button/styles/focus = SubResource("StyleBoxEmpty_13vrg")
+Button/styles/normal = SubResource("StyleBoxTexture_rtemu")

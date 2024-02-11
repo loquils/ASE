@@ -9,9 +9,14 @@ func _ready():
 
 func _process(_delta):
 	ListeAtomes = $MenuAllGame/MenuAtomes.ListeAtomes
-	$ParticulesContainer/HBoxContainer/Coins.text = str(RessourceManager.Coins)
+	$HBoxContainer/Coins.text = str(RessourceManager.Coins)
 	$ParticulesContainer/HBoxContainer2/Hydrogene.text = str(RessourceManager.QuantiteesAtomes["Hydrogene"])
-	$ParticulesContainer/HBoxContainer2/HydrogeneParSec.text = str(ListeAtomes["Hydrogene"].ApportAtome * (1 + ListeAtomes["Hydrogene"].GetAugmentationsAttributs())) + "/s"
+	$ParticulesContainer/HBoxContainer2/HydrogeneParSec.text = str(ListeAtomes["Hydrogene"].ApportAtome * (1.0 + ListeAtomes["Hydrogene"].GetAugmentationsAttributs())) + "/s"
+	
+	$ParticulesContainer/HBoxContainer3/Helium.text = str(RessourceManager.QuantiteesAtomes["Helium"])
+	if not ListeAtomes["Helium"].isUnlocked:
+		$ParticulesContainer/HBoxContainer3/HeliumParSec.text = "0.00/s"
+	$ParticulesContainer/HBoxContainer3/HeliumParSec.text = str(ListeAtomes["Helium"].ApportAtome * (1.0 + ListeAtomes["Helium"].GetAugmentationsAttributs())) + "/s"
 	
 	#Maj button amelio force
 	#$MenuAllGame/MenuAtomes/Panel/HBoxContainer/AmelioForce/VBoxContainer/Niveau.text = str(coin.NiveauxAttributs["Force"])
@@ -19,9 +24,9 @@ func _process(_delta):
 	#$MenuAllGame/MenuAtomes/Panel/HBoxContainer/AmelioForce/VBoxContainer/Prix.text = str(prix)
 	
 	#Maj Ui vente
-	var PrixVenteHydrogene = ListeAtomes["Hydrogene"].PrixBaseVenteAtome * (1 + $MenuAllGame/MenuRecherche.CurrentBonusesResearches["PrixHydrogenePerCent"])
-	$VBoxVente/ValeurHydrogeneLabel.text = str(ListeAtomes["Hydrogene"].PrixBaseVenteAtome) + "/H"
-	$VBoxVente/ValeurVenteLabel.text = str(ListeAtomes["Hydrogene"].PrixBaseVenteAtome * RessourceManager.QuantiteesAtomes["Hydrogene"]) + "coins !"
+	var PrixVenteHydrogene = ListeAtomes["Hydrogene"].PrixBaseVenteAtome * (1.0 + $MenuAllGame/MenuRecherche.CurrentBonusesResearches["PrixHydrogenePerCent"])
+	$VBoxVente/ValeurHydrogeneLabel.text = str(PrixVenteHydrogene) + "/H"
+	$VBoxVente/ValeurVenteLabel.text = str(PrixVenteHydrogene * RessourceManager.QuantiteesAtomes["Hydrogene"]) + "coins !"
 
 
 func _on_bouton_menu_pressed():
@@ -29,7 +34,9 @@ func _on_bouton_menu_pressed():
 
 
 func _on_main_timer_timeout():
-	RessourceManager.QuantiteesAtomes["Hydrogene"] += round(ListeAtomes["Hydrogene"].ApportAtome * (1 + ListeAtomes["Hydrogene"].GetAugmentationsAttributs()))
+	for atome in ListeAtomes:
+		if ListeAtomes[atome].isUnlocked:
+			RessourceManager.QuantiteesAtomes[atome] += round(ListeAtomes[atome].ApportAtome * (1 + ListeAtomes[atome].GetAugmentationsAttributs()))
 	
 
 

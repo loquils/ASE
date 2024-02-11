@@ -1,14 +1,11 @@
-extends Node
-
-var Coins
-var QuantiteesAtomes = {"Hydrogene" : 0, "Helium" : 0}
+extends VBoxContainer
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	Coins = 1000
+	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _process(delta):
+	pass

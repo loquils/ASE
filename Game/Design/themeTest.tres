@@ -1,4 +1,5 @@
 [gd_resource type="Theme" format=3 uid="uid://c2oksi2eb0sxy"]
 
 [resource]
+Button/styles/normal = null
 VBoxContainer/constants/separation = 32

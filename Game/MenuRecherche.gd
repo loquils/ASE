@@ -3,7 +3,7 @@ extends Control
 var ListeRecherches = []
 var but = preload("res://ButtonRecherche.tscn")
 
-var CurrentBonusesResearches = {"PrixHydrogenePerCent" : 0}
+var CurrentBonusesResearches = {"PrixHydrogenePerCent" : 0.0}
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -54,7 +54,7 @@ func AchatRehercheButtonPressed(recherche):
 #Permet de mettre à jour le dictionnaire des ressources
 #On parcour la liste des ressources, et on ajoute les bonus
 func MajBonusRecherches():
-	CurrentBonusesResearches["PrixHydrogenePerCent"] = 0
+	CurrentBonusesResearches["PrixHydrogenePerCent"] = 0.0
 	for recherche in ListeRecherches:
 		if recherche.Achete:
 			match recherche.Augmentation:
