@@ -1,8 +1,0 @@
-[gd_scene format=3 uid="uid://dvkr4cn3ym5qa"]
-
-[node name="HBoxContainer" type="HBoxContainer"]
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Label" type="Label" parent="."]
-layout_mode = 2

@@ -1,16 +1,12 @@
 extends Control
 
 var ListeRecherches = []
-var but = preload("res://ButtonRecherche.tscn")
+var ButtonRechercheScenePreload = preload("res://Design/Scenes/ButtonRecherche.tscn")
 
 var CurrentBonusesResearches = {"PrixHydrogenePerCent" : 0.0}
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#ListeRecherches.append(Recherche.new(0, "Coin1", "Améliore le prix de vente de l'hydrogène de 10%.", 1000, "PrixHydrogenePerCent", 10))
-	#ListeRecherches.append(Recherche.new(1, "Coin2", "Améliore le prix de vente de l'hydrogène de 100%.", 5000, "PrixHydrogenePerCent", 100))
-	#ListeRecherches.append(Recherche.new(2, "Coin3", "Améliore le prix de vente de l'hydrogène de 1 000%.", 20000, "PrixHydrogenePerCent", 1000))
-	#ListeRecherches.append(Recherche.new(3, "Coin4", "Améliore le prix de vente de l'hydrogène de 10 000%.", 50000, "PrixHydrogenePerCent", 10000))
 	ListeRecherches.append(Recherche.new(0, "Coin1", "Améliore 50%.", 1000, "PrixHydrogenePerCent", 50))
 	ListeRecherches.append(Recherche.new(1, "Coin2", "Améliore 100%", 5000, "PrixHydrogenePerCent", 100))
 	ListeRecherches.append(Recherche.new(2, "Coin3", "Améliore le prix de vente de l'hydrogène de 1 000%.", 20000, "PrixHydrogenePerCent", 1000))
@@ -21,7 +17,7 @@ func _ready():
 	RechercheClick.connect("Research_button_pressed", AchatRehercheButtonPressed)
 	
 	for recherche in ListeRecherches:
-		var newRecherchebutton = but.instantiate()
+		var newRecherchebutton = ButtonRechercheScenePreload.instantiate()
 		newRecherchebutton._set_var(recherche)
 		$ScrollContainer/HBoxContainer.add_child(newRecherchebutton)
 		
@@ -47,7 +43,7 @@ func AchatRehercheButtonPressed(recherche):
 	
 	ListeRecherches[posRecherche].Achete = true
 	RessourceManager.Coins -= ListeRecherches[posRecherche].Prix
-	print("Recherche " + recherche.Nom + " achetée !")
+	print("Recherche " + recherche.Name + " achetée !")
 	MajBonusRecherches()
 
 

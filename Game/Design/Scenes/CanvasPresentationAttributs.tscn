@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://1fe5amq3ksma"]
 
-[ext_resource type="Script" path="res://CanvasPresentationAttributs.gd" id="1_bvg8u"]
-[ext_resource type="Theme" uid="uid://dcw22i5c3dse4" path="res://Design/ThemeAttributs.tres" id="1_h10ox"]
-[ext_resource type="Theme" uid="uid://c2oksi2eb0sxy" path="res://Design/themeTest.tres" id="3_amk2u"]
+[ext_resource type="Theme" uid="uid://dcw22i5c3dse4" path="res://Design/Themes/ThemeAttributs.tres" id="1_cc0yb"]
+[ext_resource type="Script" path="res://Script/CanvasPresentationAttributs.gd" id="2_3kyro"]
+[ext_resource type="Theme" uid="uid://c2oksi2eb0sxy" path="res://Design/Themes/themeTest.tres" id="3_815qv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2do2n"]
 bg_color = Color(0.380392, 0.380392, 0.380392, 1)
@@ -18,17 +18,17 @@ border_width_right = 1
 border_width_bottom = 1
 
 [node name="CanvasPresentationAttributs" type="Control"]
-custom_minimum_size = Vector2(500, 250)
+custom_minimum_size = Vector2(500, 230)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_right = -652.0
-offset_bottom = -398.0
+offset_bottom = -418.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_h10ox")
-script = ExtResource("1_bvg8u")
+theme = ExtResource("1_cc0yb")
+script = ExtResource("2_3kyro")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -65,7 +65,7 @@ size_flags_horizontal = 3
 alignment = 1
 
 [node name="Line2D2" type="Line2D" parent="."]
-points = PackedVector2Array(10, 235, 490, 235)
+points = PackedVector2Array(10, 215, 490, 215)
 width = 3.0
 default_color = Color(0.345098, 0.345098, 0.345098, 1)
 
@@ -108,7 +108,7 @@ grow_vertical = 2
 
 [node name="Button" type="Button" parent="PanelForUnlock/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("3_amk2u")
+theme = ExtResource("3_815qv")
 theme_override_styles/normal = SubResource("StyleBoxFlat_55wg1")
 text = "Unlock"
 

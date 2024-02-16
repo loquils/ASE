@@ -11,7 +11,7 @@ func _set_var(recherche):
 	pressed.connect(RechercheClick.RechercheButtonEventTrigger.bind(Recherche))
 	pressed.connect(ChangeButtonStateToBought)
 	
-	$PanelContainer/ResearchToBuyVBoxContainer/NomLabel.text = Recherche.Nom
+	$PanelContainer/ResearchToBuyVBoxContainer/NomLabel.text = Recherche.Name
 	$PanelContainer/ResearchToBuyVBoxContainer/MarginContainer/DescriptionLabel.text = Recherche.Description
 	$PanelContainer/ResearchToBuyVBoxContainer/PrixLabel.text = "Prix : " + str(Recherche.Prix)
 

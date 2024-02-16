@@ -11,14 +11,14 @@ config_version=5
 [application]
 
 config/name="Atoms Stack Evolution"
-run/main_scene="res://Game.tscn"
+run/main_scene="res://Design/Scenes/Game.tscn"
 config/features=PackedStringArray("4.1", "Mobile")
 config/icon="res://icon.svg"
 
 [autoload]
 
-RessourceManager="*res://RessourceManager.gd"
-RechercheClick="*res://rechercheClick.gd"
+RessourceManager="*res://Script/RessourceManager.gd"
+RechercheClick="*res://Script/rechercheClick.gd"
 
 [rendering]
 

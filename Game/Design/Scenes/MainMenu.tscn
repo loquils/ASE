@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://hot068cge62t"]
 
-[ext_resource type="Script" path="res://MainMenu.gd" id="1_06ffx"]
+[ext_resource type="Script" path="res://Script/MainMenu.gd" id="1_11eds"]
 
 [sub_resource type="SystemFont" id="SystemFont_rah27"]
 font_names = PackedStringArray("Swis721 BdCnOul BT Outline")
@@ -17,7 +17,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_06ffx")
+script = ExtResource("1_11eds")
 
 [node name="NomJeu" type="Label" parent="."]
 layout_mode = 0

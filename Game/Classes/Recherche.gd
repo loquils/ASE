@@ -1,16 +1,16 @@
 class_name Recherche
 
 var Id
-var Nom
+var Name
 var Description
 var Prix
 var Achete = false
 var Augmentation
 var AugmentationPercent
 
-func _init(id, nom, description, prix, augmentation, augmentationPercent):
+func _init(id, name, description, prix, augmentation, augmentationPercent):
 	Id = id
-	Nom = nom
+	Name = name
 	Description = description
 	Prix = prix
 	Augmentation = augmentation

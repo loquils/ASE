@@ -4,7 +4,7 @@ var Attribut
 
 func _set_var(attribut):
 	Attribut = attribut
-	$VBoxContainer/NomLabel.text = Attribut.Nom
+	$VBoxContainer/NomLabel.text = Attribut.Name
 	$VBoxContainer/Niveau.text = "Niv." + str(Attribut.Niveau)
 	$VBoxContainer/Prix.text = str(Attribut.Atome.GetPrixAttribut(Attribut)) + " C"
 

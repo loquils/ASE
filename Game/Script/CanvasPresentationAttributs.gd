@@ -1,12 +1,12 @@
 extends Control
 
 var Atome
-var AttributBoutton = preload("res://ButtonAttribut.tscn")
+var AttributBoutton = preload("res://Design/Scenes/ButtonAttribut.tscn")
 
 func _set_var(atome):
 	Atome = atome
 	
-	$NomAtomeLabel.text = atome.Nom
+	$NomAtomeLabel.text = atome.Name
 	
 	for attribut in atome.ListeAttribs:
 		var newBouton = AttributBoutton.instantiate()
@@ -15,10 +15,10 @@ func _set_var(atome):
 		
 	if Atome.isUnlocked:
 		$PanelForUnlock.visible = false
-	
-	for priceAtome in Atome.priceToUnlock:
-		$PanelForUnlock/VBoxContainer/AtomeLabel.text = priceAtome
-		$PanelForUnlock/VBoxContainer/PrixLabel.text = str(Atome.priceToUnlock[priceAtome])
+	else:
+		for priceAtome in Atome.AtomePriceForUnlocking:
+			$PanelForUnlock/VBoxContainer/AtomeLabel.text = priceAtome
+			$PanelForUnlock/VBoxContainer/PrixLabel.text = str(Atome.AtomePriceForUnlocking[priceAtome])
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -32,8 +32,8 @@ func _process(delta):
 		
 		#On test si le bouton est disabled ou pas : donc si on a assez de tous les atomes qu'on a besoin
 		var testForOk = true
-		for priceAtome in Atome.priceToUnlock:
-			if RessourceManager.QuantiteesAtomes[priceAtome] < Atome.priceToUnlock[priceAtome]:
+		for priceAtome in Atome.AtomePriceForUnlocking:
+			if RessourceManager.QuantiteesAtomes[priceAtome] < Atome.AtomePriceForUnlocking[priceAtome]:
 				testForOk = false
 		
 		if testForOk:
@@ -43,17 +43,17 @@ func _process(delta):
 		
 
 func OnUnlockButtonPressed():
-	print("Bouton achat atome :" + Atome.Nom)
+	print("Bouton achat atome :" + Atome.Name)
 	if Atome.isUnlocked:
 		return
 	
-	for priceAtome in Atome.priceToUnlock:
-		if RessourceManager.QuantiteesAtomes[priceAtome] < Atome.priceToUnlock[priceAtome]:
+	for priceAtome in Atome.AtomePriceForUnlocking:
+		if RessourceManager.QuantiteesAtomes[priceAtome] < Atome.AtomePriceForUnlocking[priceAtome]:
 			return
 	
-	for priceAtome in Atome.priceToUnlock:
-		RessourceManager.QuantiteesAtomes[priceAtome] -= Atome.priceToUnlock[priceAtome]
+	for priceAtome in Atome.AtomePriceForUnlocking:
+		RessourceManager.QuantiteesAtomes[priceAtome] -= Atome.AtomePriceForUnlocking[priceAtome]
 	
 	Atome.isUnlocked = true
 	
-	print("Bouton achat atome :" + Atome.Nom)
+	print("Bouton achat atome :" + Atome.Name)
