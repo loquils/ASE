@@ -42,3 +42,35 @@ func _on_button_vendre_pressed():
 	var PrixVenteHydrogene = RessourceManager.ListeAtomes["Hydrogene"].PrixBaseVenteAtome * (1.0 + $MenuAllGame/MenuRecherche.CurrentBonusesResearches["PrixHydrogenePerCent"])
 	RessourceManager.Coins += PrixVenteHydrogene * RessourceManager.QuantiteesAtomes["Hydrogene"]
 	RessourceManager.QuantiteesAtomes["Hydrogene"] = 0
+
+
+func _on_button_pressed():
+	print("---------------Soustraction--------------------")
+	var number1 = CustomNumber.new(1.56314, 23)
+	number1.prints()
+	var number2 = CustomNumber.new(8.85341, 22)
+	number2.prints()
+	
+	number1.minus(number2);
+	
+	number1.prints()
+	
+	print("---------------Addition--------------------")
+	var number3 = CustomNumber.new(1.25341, 23)
+	number3.prints()
+	var number4 = CustomNumber.new(300.09733, 23)
+	number4.prints()
+	
+	number3.add(number4)
+	
+	number3.prints()
+	
+	print("---------------NombresRandoms--------------------")
+	var number5 = CustomNumber.new(1.25341, 0)
+	number5.prints()
+	
+	var number6 = CustomNumber.new(3.0973, 5)
+	number6.prints()
+	
+	var number7 = CustomNumber.new(3.0973, 6)
+	number7.prints()

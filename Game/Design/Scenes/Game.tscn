@@ -164,7 +164,16 @@ text = "Hydrogène augmente pourcent : "
 [node name="AugmenteLabel" type="Label" parent="MenuAllGame/MenuRecherche/HBoxContainer"]
 layout_mode = 2
 
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 536.0
+offset_top = 163.0
+offset_right = 643.0
+offset_bottom = 194.0
+text = "TestAddition"
+
 [connection signal="timeout" from="MainTimer" to="." method="_on_main_timer_timeout"]
 [connection signal="pressed" from="VBoxVente/ButtonVendre" to="." method="_on_button_vendre_pressed"]
 [connection signal="pressed" from="BoutonMenu" to="." method="_on_bouton_menu_pressed"]
 [connection signal="toggled" from="BoutonMenu" to="." method="_on_bouton_menu_toggled"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
