@@ -7,8 +7,6 @@ func _ready():
 	#On connecte ici l'appuie du bouton lors de l'achat d'un attribut
 	RechercheClick.connect("Attribut_button_pressed", AchatAttributButtonPressed)
 	
-	
-	
 	#Il faut générer un canvas de présentation avec Nom, et une liste de boutons
 	for atomeNom in RessourceManager.ListeAtomes:
 		var newAtomeCanvas = CanvasPresentation.instantiate()
@@ -23,7 +21,10 @@ func _process(delta):
 
 #Trigger lors de l'appuie sur un bouton pour augmenter un attribut d'un atome
 func AchatAttributButtonPressed(attribut):
-	if attribut.Atome.GetPrixAttribut(attribut) <= RessourceManager.Coins:
-		RessourceManager.Coins = RessourceManager.Coins - attribut.Atome.GetPrixAttribut(attribut)
-		attribut.Niveau += 1
-		print("Attribut " + attribut.Name + " achetée ! Niveau : " + str(attribut.Niveau))
+	if attribut.Atome.GetPrixAttribut(attribut).compare(RessourceManager.Coins) <= 0:
+		print("AchatAttributButtonPressed 1")
+		RessourceManager.Coins = RessourceManager.Coins.minus(attribut.Atome.GetPrixAttribut(attribut)) #On a un problème soit sur le minus soit sur le GetPrixAttribut
+		print("AchatAttributButtonPressed 2")
+		attribut.Niveau = attribut.Niveau.add(CustomNumber.new(1.0))
+		print("AchatAttributButtonPressed 3")
+		print("Attribut " + attribut.Name + " achetée ! Niveau : " + attribut.Niveau._to_string())

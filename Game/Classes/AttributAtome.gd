@@ -8,7 +8,7 @@ var CoefficientAchat
 var CoefficientRapport
 var PrixBaseAmelio
 
-func _init(atome, name, niveau, coefficientAchat, coefficientRapport, prixBaseAmelio):
+func _init(atome, name, niveau:CustomNumber, coefficientAchat:CustomNumber, coefficientRapport:CustomNumber, prixBaseAmelio:CustomNumber):
 	Atome = atome
 	Name = name
 	Niveau = niveau

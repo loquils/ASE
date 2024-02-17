@@ -11,14 +11,11 @@ var ApportAtome
 
 var ListeAttribs = []
 
-func _init(name, apportAtome, prixBaseVenteAtome):
+func _init(name, apportAtome:CustomNumber, prixBaseVenteAtome:CustomNumber = CustomNumber.new()):
 	Name = name
 		
 	ApportAtome = apportAtome
 	PrixBaseVenteAtome = prixBaseVenteAtome
-	
-	#var coin = CoefficientsRapportAttributs["Force"] * NiveauxAttributs["Force"]
-	#var coin2 = CoefficientsRapportAttributs["Vitesse"] * NiveauxAttributs["Vitesse"]
 
 #Permet de définir la liste des attributs de l'atome.
 func DefineAtomeAttributs(attributsListe):
@@ -30,18 +27,20 @@ func DefineAtomeUnlockingPrice(atomePriceForUnlocking):
 
 #Retourne le prix de l'amélioration de l'attribut.
 func GetPrixAttribut(attribut):
-	var prix = attribut.PrixBaseAmelio * pow(attribut.CoefficientAchat, attribut.Niveau)
+	var poww = attribut.CoefficientAchat.power(attribut.Niveau)
+	var prix = attribut.PrixBaseAmelio.multiply(poww)
 	return prix
 
 #Retourne le coefficient d'augmentation des attributs.
 func GetAugmentationsAttributs():
-	var attributsAddition = 0.0
+	var attributsAddition = CustomNumber.new()
 	for attribut in ListeAttribs:
-		attributsAddition += attribut.CoefficientRapport * attribut.Niveau
+		attributsAddition = attributsAddition.add(attribut.CoefficientRapport.multiply(attribut.Niveau))
 	return attributsAddition
 
+#Retourne la quantité d'atome par seconde par rapport aux attribut 
 func GetAtomePerSec():
 	if isUnlocked:
-		return ApportAtome * (1.0 + GetAugmentationsAttributs())
+		return ApportAtome.multiply((CustomNumber.new(1.0).add(GetAugmentationsAttributs())))
 	else:
-		return 0.00
+		return CustomNumber.new()

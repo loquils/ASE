@@ -20,7 +20,7 @@ func _set_var(recherche):
 #On met a jour l'UI en bloquant le bouton :)
 func _process(_delta):
 	if not Recherche.Achete:
-		if Recherche.Prix <= RessourceManager.Coins:
+		if Recherche.Prix.compare(RessourceManager.Coins) <= 0:
 			disabled = false
 		else:
 			disabled = true

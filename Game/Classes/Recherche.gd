@@ -8,7 +8,7 @@ var Achete = false
 var Augmentation
 var AugmentationPercent
 
-func _init(id, name, description, prix, augmentation, augmentationPercent):
+func _init(id, name, description, prix:CustomNumber, augmentation, augmentationPercent):
 	Id = id
 	Name = name
 	Description = description
