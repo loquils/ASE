@@ -29,6 +29,7 @@ func DefineAtomeUnlockingPrice(atomePriceForUnlocking):
 func GetPrixAttribut(attribut):
 	var poww = attribut.CoefficientAchat.power(attribut.Niveau)
 	var prix = attribut.PrixBaseAmelio.multiply(poww)
+	#prix.prints()
 	return prix
 
 #Retourne le coefficient d'augmentation des attributs.

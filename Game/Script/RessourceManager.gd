@@ -29,4 +29,4 @@ func _ready():
 	for atome in ListeAtomes:
 		QuantiteesAtomes[atome] = CustomNumber.new()
 		
-	Coins = CustomNumber.new(1.0, 4)
+	Coins = CustomNumber.new(1.4875, 40)

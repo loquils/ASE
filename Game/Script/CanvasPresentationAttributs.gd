@@ -33,8 +33,6 @@ func _process(delta):
 		#On test si le bouton est disabled ou pas : donc si on a assez de tous les atomes qu'on a besoin
 		var testForOk = true
 		for priceAtomeName in Atome.AtomePriceForUnlocking:
-			RessourceManager.QuantiteesAtomes[priceAtomeName].prints()
-			Atome.AtomePriceForUnlocking[priceAtomeName].prints()
 			if RessourceManager.QuantiteesAtomes[priceAtomeName].compare(Atome.AtomePriceForUnlocking[priceAtomeName]) < 0:
 				testForOk = false
 		

@@ -22,9 +22,7 @@ func _process(delta):
 #Trigger lors de l'appuie sur un bouton pour augmenter un attribut d'un atome
 func AchatAttributButtonPressed(attribut):
 	if attribut.Atome.GetPrixAttribut(attribut).compare(RessourceManager.Coins) <= 0:
-		print("AchatAttributButtonPressed 1")
-		RessourceManager.Coins = RessourceManager.Coins.minus(attribut.Atome.GetPrixAttribut(attribut)) #On a un problème soit sur le minus soit sur le GetPrixAttribut
-		print("AchatAttributButtonPressed 2")
+		RessourceManager.Coins = RessourceManager.Coins.minus(attribut.Atome.GetPrixAttribut(attribut))
 		attribut.Niveau = attribut.Niveau.add(CustomNumber.new(1.0))
-		print("AchatAttributButtonPressed 3")
 		print("Attribut " + attribut.Name + " achetée ! Niveau : " + attribut.Niveau._to_string())
+		attribut.Atome.GetPrixAttribut(attribut).prints()

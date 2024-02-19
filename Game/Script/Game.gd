@@ -78,9 +78,9 @@ func _on_button_pressed():
 	number8.multiply(number9).prints()
 
 	print("---------------Power--------------------")
-	var number10 = CustomNumber.new(2.15486, 6)
+	var number10 = CustomNumber.new(3.12, 1048)
 	number10.prints()
-	var number11 = CustomNumber.new(8.46575, 8)
+	var number11 = CustomNumber.new(2.0, 5)
 	number11.prints()
 	
-	number10.power(number11).prints()
+	number10.power2(number11).prints()
