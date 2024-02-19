@@ -19,19 +19,20 @@ func _set_var(recherche):
 
 #On met a jour l'UI en bloquant le bouton :)
 func _process(_delta):
-	if not Recherche.Achete:
+	if not Recherche.IsUnlocked:
 		if Recherche.Prix.compare(RessourceManager.Coins) <= 0:
 			disabled = false
 		else:
 			disabled = true
-
+	else:
+		if not $PanelContainer/ResearchToBuyVBoxContainer/MarginContainer/Panel.visible:
+			ChangeButtonStateToBought()
 
 
 #Methode trigger lors de l'appuie sur ce bouton
 #Si la recherche est bien achetée, il faut changer la stucture du bouton :
 func ChangeButtonStateToBought():
-	print("Bah ça clique ici :3")
-	if Recherche.Achete:
+	if Recherche.IsUnlocked:
 		disabled = true
 		$PanelContainer/ResearchToBuyVBoxContainer/MarginContainer/Panel.visible = true
 		print("Recherche achetée :)")

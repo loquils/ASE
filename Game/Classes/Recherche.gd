@@ -4,7 +4,7 @@ var Id
 var Name
 var Description
 var Prix
-var Achete = false
+var IsUnlocked = false
 var Augmentation
 var AugmentationPercent
 

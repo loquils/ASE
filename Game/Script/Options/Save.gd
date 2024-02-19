@@ -18,7 +18,7 @@ func save_game():
 
 func load_game():
 	if not FileAccess.file_exists(SaveFilePath):
-		return # Error! We don't have a save to load.
+		return null# Error! We don't have a save to load.
 
 	# Load the file line by line and process that dictionary to restore
 	# the object it represents.
