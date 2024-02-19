@@ -10,7 +10,7 @@ var ListeAtomes
 func _ready():
 	#On définit les atomes auxquels on a accès :)
 	var newAtome = Atome.new("Hydrogene", CustomNumber.new(1.0, 0), CustomNumber.new(1.0, 0))
-	var ListeAttribsTest = [AttributAtome.new(newAtome, "Force", CustomNumber.new(), CustomNumber.new(1.15), CustomNumber.new(1.07), CustomNumber.new(10)), AttributAtome.new(newAtome, "Vitesse", CustomNumber.new(), CustomNumber.new(1.40), CustomNumber.new(1.15), CustomNumber.new(15))] #AttributAtome.new(newAtome, "COIIIn", 0, 20, 50, 100)
+	var ListeAttribsTest = [AttributAtome.new(newAtome, "Force", CustomNumber.new(), CustomNumber.new(1.15), CustomNumber.new(1.07), CustomNumber.new(10)), AttributAtome.new(newAtome, "Vitesse", CustomNumber.new(9.99, 3), CustomNumber.new(1.40), CustomNumber.new(1.15), CustomNumber.new(15))] #AttributAtome.new(newAtome, "COIIIn", 0, 20, 50, 100)
 	newAtome.DefineAtomeAttributs(ListeAttribsTest)
 	newAtome.isUnlocked = true
 	
@@ -29,4 +29,4 @@ func _ready():
 	for atome in ListeAtomes:
 		QuantiteesAtomes[atome] = CustomNumber.new()
 		
-	Coins = CustomNumber.new(1.4875, 40)
+	Coins = CustomNumber.new(1.4875, 4000)

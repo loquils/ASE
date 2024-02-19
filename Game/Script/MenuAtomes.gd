@@ -24,5 +24,5 @@ func AchatAttributButtonPressed(attribut):
 	if attribut.Atome.GetPrixAttribut(attribut).compare(RessourceManager.Coins) <= 0:
 		RessourceManager.Coins = RessourceManager.Coins.minus(attribut.Atome.GetPrixAttribut(attribut))
 		attribut.Niveau = attribut.Niveau.add(CustomNumber.new(1.0))
-		print("Attribut " + attribut.Name + " achetée ! Niveau : " + attribut.Niveau._to_string())
+		print("Attribut " + attribut.Name + " achetée ! Niveau : " + str(attribut.Niveau))
 		attribut.Atome.GetPrixAttribut(attribut).prints()
