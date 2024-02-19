@@ -265,3 +265,11 @@ func _to_string():
 #Permet de couper le chiffre à la 5eme décimale
 func RoundFloat5Decimal(number):
 	return float(str(number).substr(0, 7))
+
+
+func ToJsonFormat():
+	return [decimal, expo]
+
+
+static func ToCustomFormat(jsonList:Array):
+	return CustomNumber.new(jsonList[0], jsonList[1])

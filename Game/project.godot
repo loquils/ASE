@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 RessourceManager="*res://Script/RessourceManager.gd"
 RechercheClick="*res://Script/rechercheClick.gd"
+Save="*res://Script/Options/Save.gd"
 
 [rendering]
 
