@@ -1,0 +1,66 @@
+[gd_scene load_steps=2 format=3 uid="uid://c60a8i52thxma"]
+
+[ext_resource type="Script" path="res://Script/Menu/MenuRecherche.gd" id="1_qrou8"]
+
+[node name="MenuRecherche" type="Control"]
+custom_minimum_size = Vector2(1152, 169)
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_qrou8")
+
+[node name="ScrollContainerGlobalMenu" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ResearchLvlVBoxContainer" type="VBoxContainer" parent="ScrollContainerGlobalMenu"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ScrollButtonsContainer" type="ScrollContainer" parent="ScrollContainerGlobalMenu/ResearchLvlVBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="ButtonsHBoxContainer" type="HBoxContainer" parent="ScrollContainerGlobalMenu/ResearchLvlVBoxContainer/ScrollButtonsContainer"]
+layout_mode = 2
+
+[node name="ExpandLvlEasyButton" type="Button" parent="ScrollContainerGlobalMenu/ResearchLvlVBoxContainer/ScrollButtonsContainer/ButtonsHBoxContainer"]
+custom_minimum_size = Vector2(180, 100)
+layout_mode = 2
+text = "Recherches
+Easy"
+
+[node name="ScrollRecherchesContainer" type="ScrollContainer" parent="ScrollContainerGlobalMenu/ResearchLvlVBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Control" type="Control" parent="ScrollContainerGlobalMenu/ResearchLvlVBoxContainer/ScrollRecherchesContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ResearchesEasyHBoxContainer" type="HBoxContainer" parent="ScrollContainerGlobalMenu/ResearchLvlVBoxContainer/ScrollRecherchesContainer/Control"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "Hydrogène augmente pourcent : "
+
+[node name="AugmenteLabel" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+
+[connection signal="pressed" from="ScrollContainerGlobalMenu/ResearchLvlVBoxContainer/ScrollButtonsContainer/ButtonsHBoxContainer/ExpandLvlEasyButton" to="." method="_on_expand_lvl_easy_button_pressed"]

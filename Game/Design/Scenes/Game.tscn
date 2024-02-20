@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://jwctjc5cvudy"]
+[gd_scene load_steps=6 format=3 uid="uid://jwctjc5cvudy"]
 
 [ext_resource type="Script" path="res://Script/Game.gd" id="1_xa3fh"]
 [ext_resource type="Script" path="res://Script/ParticulesContainer.gd" id="2_j2sxo"]
-[ext_resource type="Script" path="res://Script/MenuAtomes.gd" id="3_lr50n"]
-[ext_resource type="Script" path="res://Script/MenuRecherche.gd" id="4_v2ucc"]
+[ext_resource type="Script" path="res://Script/Menu/MenuAllGame.gd" id="3_cr8fd"]
+[ext_resource type="Script" path="res://Script/Menu/MenuAtomes.gd" id="4_l775b"]
+[ext_resource type="PackedScene" uid="uid://c60a8i52thxma" path="res://Design/Scenes/MenuRecherches.tscn" id="5_pwwxi"]
 
 [node name="Game" type="Control"]
 layout_mode = 3
@@ -50,17 +51,11 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="BoutonMenu" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -35.0
-offset_top = -27.0
-offset_bottom = 27.0
-grow_horizontal = 0
-grow_vertical = 2
+layout_mode = 0
+offset_left = 908.0
+offset_top = 2.0
+offset_right = 943.0
+offset_bottom = 56.0
 text = "|||
 |||"
 
@@ -108,14 +103,15 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -280.0
+offset_top = -400.0
 grow_horizontal = 2
 grow_vertical = 0
 tab_alignment = 1
+script = ExtResource("3_cr8fd")
 
 [node name="MenuAtomes" type="Control" parent="MenuAllGame"]
 layout_mode = 2
-script = ExtResource("3_lr50n")
+script = ExtResource("4_l775b")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MenuAllGame/MenuAtomes"]
 layout_mode = 1
@@ -130,46 +126,16 @@ custom_minimum_size = Vector2(1152, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="MenuRecherche" type="Control" parent="MenuAllGame"]
+[node name="MenuRecherche" parent="MenuAllGame" instance=ExtResource("5_pwwxi")]
 visible = false
-custom_minimum_size = Vector2(1152, 169)
-layout_mode = 2
-script = ExtResource("4_v2ucc")
-
-[node name="ScrollContainer" type="ScrollContainer" parent="MenuAllGame/MenuRecherche"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MenuAllGame/MenuRecherche/ScrollContainer"]
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MenuAllGame/MenuRecherche"]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -40.0
-grow_horizontal = 2
-grow_vertical = 0
-
-[node name="Label" type="Label" parent="MenuAllGame/MenuRecherche/HBoxContainer"]
-layout_mode = 2
-text = "Hydrogène augmente pourcent : "
-
-[node name="AugmenteLabel" type="Label" parent="MenuAllGame/MenuRecherche/HBoxContainer"]
 layout_mode = 2
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 0
-offset_left = 536.0
-offset_top = 163.0
-offset_right = 643.0
-offset_bottom = 194.0
+offset_left = 521.0
+offset_top = 57.0
+offset_right = 628.0
+offset_bottom = 88.0
 text = "TestAddition"
 
 [connection signal="timeout" from="MainTimer" to="." method="_on_main_timer_timeout"]
