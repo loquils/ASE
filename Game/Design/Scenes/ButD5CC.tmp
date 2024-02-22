@@ -1,0 +1,62 @@
+[gd_scene load_steps=3 format=3 uid="uid://be6ai8p5ud1bx"]
+
+[ext_resource type="Script" path="res://Script/ButtonAmeliorationHelium.gd" id="1_rcqg6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_moki4"]
+bg_color = Color(0.752941, 0.752941, 0.752941, 1)
+
+[node name="Button" type="Button"]
+clip_contents = true
+custom_minimum_size = Vector2(400, 100)
+offset_right = 300.0
+offset_bottom = 100.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_moki4")
+script = ExtResource("1_rcqg6")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LeftVBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NomLabel" type="Label" parent="HBoxContainer/LeftVBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Nom"
+
+[node name="DescriptionLabel" type="Label" parent="HBoxContainer/LeftVBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Description"
+
+[node name="BonusLabel" type="Label" parent="HBoxContainer/LeftVBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Bonus"
+
+[node name="RightVBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NiveauLabel" type="Label" parent="HBoxContainer/RightVBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Niveau"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PrixLabel" type="Label" parent="HBoxContainer/RightVBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Prix"
+horizontal_alignment = 1
+vertical_alignment = 1
