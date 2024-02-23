@@ -33,6 +33,11 @@ func _process(delta):
 	else:
 		$HBoxContainer/RightVBoxContainer/NiveauLabel.text = "Niv." + str(AmeliorationHelium.Level)
 		$HBoxContainer/RightVBoxContainer/PrixLabel.text = str(AmeliorationHelium.GetPrixAmeliorationHelium()) + "He"
+		
+		if RessourceManager.QuantiteesAtomes["Helium"].compare(AmeliorationHelium.GetPrixAmeliorationHelium()) < 0:
+			disabled = true
+		else : 
+			disabled = false
 
 
 func _on_amelioration_helium_unlock_button_pressed():

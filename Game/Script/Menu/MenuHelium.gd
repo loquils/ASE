@@ -16,9 +16,9 @@ func _ready():
 		newAmeliorationHeliumButton._set_var(ameliorationHelium)
 		match ameliorationHelium.TypeAmeliorationHelium:
 			AmeliorationHelium.TypeAmeliorationHeliumEnum.Pression:
-				$PresentationVBoxContainer/LeftVBoxContainer/ScrollContainer/ListeHeliumUpgradesVBoxContainer.add_child(newAmeliorationHeliumButton)
+				$PresentationVBoxC/LeftVBoxC/ScrollC/ListeHeliumUpgradesVBoxC.add_child(newAmeliorationHeliumButton)
 			AmeliorationHelium.TypeAmeliorationHeliumEnum.Temperature:
-				$PresentationVBoxContainer/RightVBoxContainer/ScrollContainer/ListeHeliumUpgradesVBoxContainer.add_child(newAmeliorationHeliumButton)
+				$PresentationVBoxC/RightVBoxC/ScrollC/ListeHeliumUpgradesVBoxC.add_child(newAmeliorationHeliumButton)
 	
 	for bonusType in BonusTypesAmeliorationHelium:
 		CurrentBonusesAmeliorationHelium[bonusType] = CustomNumber.new()

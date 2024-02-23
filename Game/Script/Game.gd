@@ -5,13 +5,13 @@ func _ready():
 
 
 func _process(_delta):
-	$MarginContainer/MainVBoxC/TopHBoxC/RessourcesVBoxC/CoinsHBoxC/Coins.text = str(RessourceManager.Coins)
+	$WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC/RessourcesVBoxC/CoinsHBoxC/Coins.text = str(RessourceManager.Coins)
 	#var prix = round(coin.PrixBaseAmelioAttributs["Force"] * pow(coin.CoefficientsAchatAttributs["Force"], coin.NiveauxAttributs["Force"]))
 
 	#Maj Ui vente
-	var PrixVenteHydrogene = RessourceManager.ListeAtomes["Hydrogene"].PrixBaseVenteAtome.multiply(CustomNumber.new(1.0 + $MarginContainer/MainVBoxC/MenuAllGame/MenuRecherche.CurrentBonusesResearches["PrixHydrogenePerCent"]))
-	$MarginContainer/MainVBoxC/TopHBoxC/VBoxBoutons/VBoxVente/ValeurHydrogeneLabel.text = str(PrixVenteHydrogene) + "/H"
-	$MarginContainer/MainVBoxC/TopHBoxC/VBoxBoutons/VBoxVente/ValeurVenteLabel.text = str(PrixVenteHydrogene.multiply(RessourceManager.QuantiteesAtomes["Hydrogene"])) + "coins !"
+	var PrixVenteHydrogene = RessourceManager.ListeAtomes["Hydrogene"].PrixBaseVenteAtome.multiply(CustomNumber.new(1.0 + $WindowTopBlackVBoxC/MarginContainer/MainVBoxC/MenuAllGame/MenuRecherche.CurrentBonusesResearches["PrixHydrogenePerCent"]))
+	$WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC/VBoxBoutons/VBoxVente/ValeurHydrogeneLabel.text = str(PrixVenteHydrogene) + "/H"
+	$WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC/VBoxBoutons/VBoxVente/ValeurVenteLabel.text = str(PrixVenteHydrogene.multiply(RessourceManager.QuantiteesAtomes["Hydrogene"])) + "coins !"
 
 
 func GetPrixVenteHydrogene():
@@ -19,7 +19,7 @@ func GetPrixVenteHydrogene():
 
 
 func _on_bouton_menu_pressed():
-	$MarginContainer/MainVBoxC/MenuAllGame.visible = !$MarginContainer/MainVBoxC/MenuAllGame.visible
+	$WindowTopBlackVBoxC/MarginContainer/MainVBoxC/MenuAllGame.visible = !$WindowTopBlackVBoxC/MarginContainer/MainVBoxC/MenuAllGame.visible
 
 
 func _on_main_timer_timeout():
@@ -30,7 +30,7 @@ func _on_main_timer_timeout():
 
 
 func _on_button_vendre_pressed():
-	var PrixVenteHydrogene = RessourceManager.ListeAtomes["Hydrogene"].PrixBaseVenteAtome.multiply(CustomNumber.new(1.0).add(CustomNumber.new($MenuAllGame/MenuRecherche.CurrentBonusesResearches["PrixHydrogenePerCent"])))
+	var PrixVenteHydrogene = RessourceManager.ListeAtomes["Hydrogene"].PrixBaseVenteAtome.multiply(CustomNumber.new(1.0).add(CustomNumber.new($WindowTopBlackVBoxC/MarginContainer/MainVBoxC/MenuAllGame/MenuRecherche.CurrentBonusesResearches["PrixHydrogenePerCent"])))
 	RessourceManager.Coins = RessourceManager.Coins.add(PrixVenteHydrogene.multiply(RessourceManager.QuantiteesAtomes["Hydrogene"]))
 	RessourceManager.QuantiteesAtomes["Hydrogene"] = CustomNumber.new()
 	RessourceManager.Coins.prints()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://jwctjc5cvudy"]
+[gd_scene load_steps=8 format=3 uid="uid://jwctjc5cvudy"]
 
 [ext_resource type="Script" path="res://Script/Game.gd" id="1_xa3fh"]
 [ext_resource type="Script" path="res://Script/ParticulesContainer.gd" id="2_j2sxo"]
@@ -6,6 +6,9 @@
 [ext_resource type="Script" path="res://Script/Menu/MenuAtomes.gd" id="4_l775b"]
 [ext_resource type="PackedScene" uid="uid://c60a8i52thxma" path="res://Design/Scenes/MenuRecherches.tscn" id="5_pwwxi"]
 [ext_resource type="Script" path="res://Script/Menu/MenuHelium.gd" id="6_8pkw6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j7vtp"]
+bg_color = Color(0, 0, 0, 1)
 
 [node name="Game" type="Control"]
 layout_mode = 3
@@ -19,113 +22,123 @@ script = ExtResource("1_xa3fh")
 [node name="MainTimer" type="Timer" parent="."]
 autostart = true
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="WindowTopBlackVBoxC" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="BlackBannerPanel" type="Panel" parent="WindowTopBlackVBoxC"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_j7vtp")
+
+[node name="MarginContainer" type="MarginContainer" parent="WindowTopBlackVBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="MainVBoxC" type="VBoxContainer" parent="MarginContainer"]
+[node name="MainVBoxC" type="VBoxContainer" parent="WindowTopBlackVBoxC/MarginContainer"]
 layout_mode = 2
 
-[node name="TopHBoxC" type="HBoxContainer" parent="MarginContainer/MainVBoxC"]
+[node name="TopHBoxC" type="HBoxContainer" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC"]
 layout_mode = 2
 
-[node name="RessourcesVBoxC" type="VBoxContainer" parent="MarginContainer/MainVBoxC/TopHBoxC"]
+[node name="RessourcesVBoxC" type="VBoxContainer" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="CoinsHBoxC" type="HBoxContainer" parent="MarginContainer/MainVBoxC/TopHBoxC/RessourcesVBoxC"]
+[node name="CoinsHBoxC" type="HBoxContainer" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC/RessourcesVBoxC"]
 layout_mode = 2
 size_flags_vertical = 0
 
-[node name="Label" type="Label" parent="MarginContainer/MainVBoxC/TopHBoxC/RessourcesVBoxC/CoinsHBoxC"]
+[node name="Label" type="Label" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC/RessourcesVBoxC/CoinsHBoxC"]
 layout_mode = 2
 text = "Coins : "
 
-[node name="Coins" type="Label" parent="MarginContainer/MainVBoxC/TopHBoxC/RessourcesVBoxC/CoinsHBoxC"]
+[node name="Coins" type="Label" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC/RessourcesVBoxC/CoinsHBoxC"]
 layout_mode = 2
 text = "0"
 
-[node name="ParticulesVBoxC" type="VBoxContainer" parent="MarginContainer/MainVBoxC/TopHBoxC/RessourcesVBoxC"]
+[node name="ParticulesVBoxC" type="VBoxContainer" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC/RessourcesVBoxC"]
 layout_mode = 2
 script = ExtResource("2_j2sxo")
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/MainVBoxC/TopHBoxC/RessourcesVBoxC/ParticulesVBoxC"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC/RessourcesVBoxC/ParticulesVBoxC"]
 visible = false
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/MainVBoxC/TopHBoxC/RessourcesVBoxC/ParticulesVBoxC/HBoxContainer2"]
+[node name="Label" type="Label" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC/RessourcesVBoxC/ParticulesVBoxC/HBoxContainer2"]
 layout_mode = 2
 text = "Hydrogene : "
 
-[node name="Hydrogene" type="Label" parent="MarginContainer/MainVBoxC/TopHBoxC/RessourcesVBoxC/ParticulesVBoxC/HBoxContainer2"]
+[node name="Hydrogene" type="Label" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC/RessourcesVBoxC/ParticulesVBoxC/HBoxContainer2"]
 layout_mode = 2
 text = "0"
 
-[node name="HydrogeneParSec" type="Label" parent="MarginContainer/MainVBoxC/TopHBoxC/RessourcesVBoxC/ParticulesVBoxC/HBoxContainer2"]
+[node name="HydrogeneParSec" type="Label" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC/RessourcesVBoxC/ParticulesVBoxC/HBoxContainer2"]
 layout_mode = 2
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/MainVBoxC/TopHBoxC/RessourcesVBoxC/ParticulesVBoxC"]
+[node name="HBoxContainer3" type="HBoxContainer" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC/RessourcesVBoxC/ParticulesVBoxC"]
 visible = false
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/MainVBoxC/TopHBoxC/RessourcesVBoxC/ParticulesVBoxC/HBoxContainer3"]
+[node name="Label" type="Label" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC/RessourcesVBoxC/ParticulesVBoxC/HBoxContainer3"]
 layout_mode = 2
 text = "Helium : "
 
-[node name="Helium" type="Label" parent="MarginContainer/MainVBoxC/TopHBoxC/RessourcesVBoxC/ParticulesVBoxC/HBoxContainer3"]
+[node name="Helium" type="Label" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC/RessourcesVBoxC/ParticulesVBoxC/HBoxContainer3"]
 layout_mode = 2
 text = "0"
 
-[node name="HeliumParSec" type="Label" parent="MarginContainer/MainVBoxC/TopHBoxC/RessourcesVBoxC/ParticulesVBoxC/HBoxContainer3"]
+[node name="HeliumParSec" type="Label" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC/RessourcesVBoxC/ParticulesVBoxC/HBoxContainer3"]
 layout_mode = 2
 
-[node name="BoutonMenu" type="Button" parent="MarginContainer/MainVBoxC/TopHBoxC"]
+[node name="BoutonMenu" type="Button" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC"]
 layout_mode = 2
 size_flags_vertical = 0
 text = "|||
 |||"
 
-[node name="VBoxBoutons" type="VBoxContainer" parent="MarginContainer/MainVBoxC/TopHBoxC"]
+[node name="VBoxBoutons" type="VBoxContainer" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC"]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="MarginContainer/MainVBoxC/TopHBoxC/VBoxBoutons"]
+[node name="Button" type="Button" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC/VBoxBoutons"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "TestAddition"
 
-[node name="VBoxVente" type="VBoxContainer" parent="MarginContainer/MainVBoxC/TopHBoxC/VBoxBoutons"]
+[node name="VBoxVente" type="VBoxContainer" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC/VBoxBoutons"]
 layout_mode = 2
 
-[node name="ButtonVendre" type="Button" parent="MarginContainer/MainVBoxC/TopHBoxC/VBoxBoutons/VBoxVente"]
+[node name="ButtonVendre" type="Button" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC/VBoxBoutons/VBoxVente"]
 layout_mode = 2
 text = "Vendre H"
 
-[node name="ValeurHydrogeneLabel" type="Label" parent="MarginContainer/MainVBoxC/TopHBoxC/VBoxBoutons/VBoxVente"]
+[node name="ValeurHydrogeneLabel" type="Label" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC/VBoxBoutons/VBoxVente"]
 layout_mode = 2
 
-[node name="ValeurVenteLabel" type="Label" parent="MarginContainer/MainVBoxC/TopHBoxC/VBoxBoutons/VBoxVente"]
+[node name="ValeurVenteLabel" type="Label" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC/VBoxBoutons/VBoxVente"]
 layout_mode = 2
 
-[node name="MenuAllGame" type="TabContainer" parent="MarginContainer/MainVBoxC"]
+[node name="MenuAllGame" type="TabContainer" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC"]
 layout_mode = 2
 size_flags_vertical = 3
 tab_alignment = 1
 script = ExtResource("3_cr8fd")
 
-[node name="MenuAtomes" type="Control" parent="MarginContainer/MainVBoxC/MenuAllGame"]
+[node name="MenuAtomes" type="Control" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/MenuAllGame"]
 layout_mode = 2
 script = ExtResource("4_l775b")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/MainVBoxC/MenuAllGame/MenuAtomes"]
+[node name="ScrollContainer" type="ScrollContainer" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/MenuAllGame/MenuAtomes"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -134,25 +147,25 @@ grow_horizontal = 2
 grow_vertical = 2
 follow_focus = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MainVBoxC/MenuAllGame/MenuAtomes/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/MenuAllGame/MenuAtomes/ScrollContainer"]
 layout_mode = 2
 
-[node name="MenuRecherche" parent="MarginContainer/MainVBoxC/MenuAllGame" instance=ExtResource("5_pwwxi")]
+[node name="MenuRecherche" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/MenuAllGame" instance=ExtResource("5_pwwxi")]
 visible = false
 layout_mode = 2
 
-[node name="MenuHelium" type="Control" parent="MarginContainer/MainVBoxC/MenuAllGame"]
+[node name="MenuHelium" type="Control" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/MenuAllGame"]
 visible = false
 custom_minimum_size = Vector2(360, 500)
 layout_mode = 2
 script = ExtResource("6_8pkw6")
 
-[node name="DebugLabel" type="Label" parent="MarginContainer/MainVBoxC/MenuAllGame/MenuHelium"]
+[node name="DebugLabel" type="Label" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/MenuAllGame/MenuHelium"]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 
-[node name="PresentationVBoxContainer" type="VBoxContainer" parent="MarginContainer/MainVBoxC/MenuAllGame/MenuHelium"]
+[node name="PresentationVBoxC" type="VBoxContainer" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/MenuAllGame/MenuHelium"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -160,50 +173,50 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="LeftVBoxContainer" type="VBoxContainer" parent="MarginContainer/MainVBoxC/MenuAllGame/MenuHelium/PresentationVBoxContainer"]
+[node name="LeftVBoxC" type="VBoxContainer" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/MenuAllGame/MenuHelium/PresentationVBoxC"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 1
 
-[node name="Label" type="Label" parent="MarginContainer/MainVBoxC/MenuAllGame/MenuHelium/PresentationVBoxContainer/LeftVBoxContainer"]
+[node name="Label" type="Label" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/MenuAllGame/MenuHelium/PresentationVBoxC/LeftVBoxC"]
 layout_mode = 2
 text = "Pression"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/MainVBoxC/MenuAllGame/MenuHelium/PresentationVBoxContainer/LeftVBoxContainer"]
+[node name="ScrollC" type="ScrollContainer" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/MenuAllGame/MenuHelium/PresentationVBoxC/LeftVBoxC"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="ListeHeliumUpgradesVBoxContainer" type="VBoxContainer" parent="MarginContainer/MainVBoxC/MenuAllGame/MenuHelium/PresentationVBoxContainer/LeftVBoxContainer/ScrollContainer"]
+[node name="ListeHeliumUpgradesVBoxC" type="VBoxContainer" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/MenuAllGame/MenuHelium/PresentationVBoxC/LeftVBoxC/ScrollC"]
 clip_contents = true
 layout_mode = 2
 size_flags_horizontal = 6
 
-[node name="RightVBoxContainer" type="VBoxContainer" parent="MarginContainer/MainVBoxC/MenuAllGame/MenuHelium/PresentationVBoxContainer"]
+[node name="RightVBoxC" type="VBoxContainer" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/MenuAllGame/MenuHelium/PresentationVBoxC"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 1
 
-[node name="Label" type="Label" parent="MarginContainer/MainVBoxC/MenuAllGame/MenuHelium/PresentationVBoxContainer/RightVBoxContainer"]
+[node name="Label" type="Label" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/MenuAllGame/MenuHelium/PresentationVBoxC/RightVBoxC"]
 layout_mode = 2
 text = "Température"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/MainVBoxC/MenuAllGame/MenuHelium/PresentationVBoxContainer/RightVBoxContainer"]
+[node name="ScrollC" type="ScrollContainer" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/MenuAllGame/MenuHelium/PresentationVBoxC/RightVBoxC"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="ListeHeliumUpgradesVBoxContainer" type="VBoxContainer" parent="MarginContainer/MainVBoxC/MenuAllGame/MenuHelium/PresentationVBoxContainer/RightVBoxContainer/ScrollContainer"]
+[node name="ListeHeliumUpgradesVBoxC" type="VBoxContainer" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/MenuAllGame/MenuHelium/PresentationVBoxC/RightVBoxC/ScrollC"]
 clip_contents = true
 layout_mode = 2
 size_flags_horizontal = 6
 
 [connection signal="timeout" from="MainTimer" to="." method="_on_main_timer_timeout"]
-[connection signal="pressed" from="MarginContainer/MainVBoxC/TopHBoxC/BoutonMenu" to="." method="_on_bouton_menu_pressed"]
-[connection signal="toggled" from="MarginContainer/MainVBoxC/TopHBoxC/BoutonMenu" to="." method="_on_bouton_menu_toggled"]
-[connection signal="pressed" from="MarginContainer/MainVBoxC/TopHBoxC/VBoxBoutons/Button" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="MarginContainer/MainVBoxC/TopHBoxC/VBoxBoutons/VBoxVente/ButtonVendre" to="." method="_on_button_vendre_pressed"]
+[connection signal="pressed" from="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC/BoutonMenu" to="." method="_on_bouton_menu_pressed"]
+[connection signal="toggled" from="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC/BoutonMenu" to="." method="_on_bouton_menu_toggled"]
+[connection signal="pressed" from="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC/VBoxBoutons/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC/VBoxBoutons/VBoxVente/ButtonVendre" to="." method="_on_button_vendre_pressed"]

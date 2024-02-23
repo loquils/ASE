@@ -23,8 +23,8 @@ Save="*res://Script/Options/Save.gd"
 
 [display]
 
-window/size/viewport_width=360
-window/size/viewport_height=640
+window/size/viewport_width=720
+window/size/viewport_height=1280
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 window/handheld/orientation=1
