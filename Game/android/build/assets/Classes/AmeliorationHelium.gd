@@ -37,4 +37,8 @@ func DefineAtomeUnlockingPrice(atomePriceForUnlocking):
 
 #Récupère le prix d'une amélioration, pour l'instant c'est x10 puissance niveau
 func GetPrixAmeliorationHelium():
-	return PrixBase.multiply(CustomNumber.new(1.0, 1).power(Level))
+	match TypeAmeliorationHelium:
+		TypeAmeliorationHeliumEnum.Pression:
+			return PrixBase.multiply(CustomNumber.new(1.0, 1).power(Level))
+		TypeAmeliorationHeliumEnum.Temperature:
+			return PrixBase.multiply(CustomNumber.new(5.0, 0).power(Level))

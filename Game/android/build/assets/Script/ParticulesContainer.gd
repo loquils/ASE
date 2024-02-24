@@ -1,6 +1,6 @@
 extends VBoxContainer
 
-var AffichageRessourceSceneLoad = preload("res://Design/Scenes/testaffichageressource.tscn")
+var AffichageRessourceSceneLoad = preload("res://gui_margin_c.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

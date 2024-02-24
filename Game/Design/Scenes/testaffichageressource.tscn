@@ -3,12 +3,11 @@
 [ext_resource type="Script" path="res://Script/TestAffichageRessource.gd" id="1_dr26g"]
 
 [node name="HBoxContainer" type="HBoxContainer"]
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -902.0
-offset_bottom = -622.0
+offset_right = -554.0
+offset_bottom = -1254.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_dr26g")

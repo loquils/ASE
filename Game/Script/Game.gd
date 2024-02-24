@@ -1,11 +1,14 @@
 extends Control
 
+
+@onready var CoinsQuantityLabel = $WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC/RessourcesVBoxC/BackGroundCoins/MarginC/HBoxC/CoinsLabel
+
 func _ready():
 	pass
 
 
 func _process(_delta):
-	$WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC/RessourcesVBoxC/CoinsHBoxC/Coins.text = str(RessourceManager.Coins)
+	CoinsQuantityLabel.text = str(RessourceManager.Coins)
 	#var prix = round(coin.PrixBaseAmelioAttributs["Force"] * pow(coin.CoefficientsAchatAttributs["Force"], coin.NiveauxAttributs["Force"]))
 
 	#Maj Ui vente
@@ -20,7 +23,11 @@ func GetPrixVenteHydrogene():
 
 func _on_bouton_menu_pressed():
 	$WindowTopBlackVBoxC/MarginContainer/MainVBoxC/MenuAllGame.visible = !$WindowTopBlackVBoxC/MarginContainer/MainVBoxC/MenuAllGame.visible
-
+	if $WindowTopBlackVBoxC/MarginContainer/MainVBoxC/MenuAllGame.visible:
+		$AnimatedSprite2D.hide()
+	else:
+		$AnimatedSprite2D.show()
+		
 
 func _on_main_timer_timeout():
 	for atome in RessourceManager.ListeAtomes:
