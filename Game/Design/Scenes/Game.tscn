@@ -1,56 +1,17 @@
-[gd_scene load_steps=24 format=3 uid="uid://jwctjc5cvudy"]
+[gd_scene load_steps=16 format=3 uid="uid://jwctjc5cvudy"]
 
 [ext_resource type="Script" path="res://Script/Game.gd" id="1_xa3fh"]
 [ext_resource type="Script" path="res://Script/ParticulesContainer.gd" id="2_j2sxo"]
 [ext_resource type="SystemFont" uid="uid://d2tc25vdki2hk" path="res://Design/Themes/SystemFontForQantities.tres" id="3_2a2og"]
-[ext_resource type="Script" path="res://Script/Menu/MenuAllGame.gd" id="3_cr8fd"]
 [ext_resource type="Texture2D" uid="uid://bjgpka04uikbp" path="res://Gimped/testBordureRessources.png" id="3_vqb8y"]
 [ext_resource type="Script" path="res://Script/Menu/MenuAtomes.gd" id="4_l775b"]
 [ext_resource type="PackedScene" uid="uid://c60a8i52thxma" path="res://Design/Scenes/MenuRecherches.tscn" id="5_pwwxi"]
 [ext_resource type="Script" path="res://Script/Menu/MenuHelium.gd" id="6_8pkw6"]
-[ext_resource type="Texture2D" uid="uid://0bbg5883b101" path="res://Gimped/Sprites/sprite1.png" id="9_tqt1v"]
-[ext_resource type="Texture2D" uid="uid://y27tfl3k1fl6" path="res://Gimped/Sprites/sprite2.png" id="10_hlpqk"]
-[ext_resource type="Texture2D" uid="uid://co0la4fkhsdhc" path="res://Gimped/Sprites/sprite3.png" id="11_t6f2g"]
-[ext_resource type="Texture2D" uid="uid://d02n1woy1rd30" path="res://Gimped/Sprites/sprite4.png" id="12_sxb52"]
-[ext_resource type="Texture2D" uid="uid://do816ha7aordr" path="res://Gimped/Sprites/sprite5.png" id="13_6tugd"]
-[ext_resource type="Texture2D" uid="uid://dn4f7tagfgmg3" path="res://Gimped/Sprites/sprite6.png" id="14_e7ofy"]
-[ext_resource type="Texture2D" uid="uid://cv5xxdfeuq3v1" path="res://Gimped/Sprites/sprite7.png" id="15_qyyio"]
-[ext_resource type="Texture2D" uid="uid://c1oqg2xfgw12a" path="res://Gimped/Sprites/sprite8.png" id="16_fioty"]
 [ext_resource type="Texture2D" uid="uid://c31eyto1jlpql" path="res://Gimped/TestElectron.png" id="17_1p05m"]
 [ext_resource type="Script" path="res://Design/Scenes/Sprite2DTestAnimation.gd" id="18_vft3y"]
 [ext_resource type="Texture2D" uid="uid://1drh7volhffd" path="res://Gimped/Proton.png" id="19_8v33v"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_dq7y5"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("9_tqt1v")
-}, {
-"duration": 1.0,
-"texture": ExtResource("10_hlpqk")
-}, {
-"duration": 1.0,
-"texture": ExtResource("11_t6f2g")
-}, {
-"duration": 1.0,
-"texture": ExtResource("12_sxb52")
-}, {
-"duration": 1.0,
-"texture": ExtResource("13_6tugd")
-}, {
-"duration": 1.0,
-"texture": ExtResource("14_e7ofy")
-}, {
-"duration": 1.0,
-"texture": ExtResource("15_qyyio")
-}, {
-"duration": 1.0,
-"texture": ExtResource("16_fioty")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
+[ext_resource type="Theme" uid="uid://b1lmffes80p5v" path="res://Design/Themes/NewMainMenuTheme.tres" id="20_qbngu"]
+[ext_resource type="Script" path="res://Design/Scenes/NewMenuMainControl.gd" id="21_gy4s4"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j7vtp"]
 bg_color = Color(0, 0, 0, 1)
@@ -71,14 +32,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_xa3fh")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-visible = false
-position = Vector2(369, 474)
-sprite_frames = SubResource("SpriteFrames_dq7y5")
-autoplay = "default"
-frame = 7
-frame_progress = 1.0
 
 [node name="Atom" type="Node2D" parent="."]
 position = Vector2(360, 640)
@@ -196,30 +149,8 @@ visible = false
 layout_mode = 2
 size_flags_vertical = 3
 tab_alignment = 1
-script = ExtResource("3_cr8fd")
-
-[node name="MenuAtomes" type="Control" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/MenuAllGame"]
-layout_mode = 2
-script = ExtResource("4_l775b")
-
-[node name="ScrollContainer" type="ScrollContainer" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/MenuAllGame/MenuAtomes"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-follow_focus = true
-
-[node name="VBoxContainer" type="VBoxContainer" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/MenuAllGame/MenuAtomes/ScrollContainer"]
-layout_mode = 2
-
-[node name="MenuRecherche" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/MenuAllGame" instance=ExtResource("5_pwwxi")]
-visible = false
-layout_mode = 2
 
 [node name="MenuHelium" type="Control" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/MenuAllGame"]
-visible = false
 custom_minimum_size = Vector2(360, 500)
 layout_mode = 2
 script = ExtResource("6_8pkw6")
@@ -279,8 +210,92 @@ clip_contents = true
 layout_mode = 2
 size_flags_horizontal = 6
 
+[node name="NewMenuMainControl" type="Control" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("20_qbngu")
+script = ExtResource("21_gy4s4")
+
+[node name="MenuPresentationVBoxC" type="VBoxContainer" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 2
+
+[node name="AllMenus" type="Control" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC"]
+custom_minimum_size = Vector2(0, 500)
+layout_mode = 2
+size_flags_vertical = 10
+
+[node name="MenuAtomes" type="Control" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/AllMenus"]
+visible = false
+custom_minimum_size = Vector2(0, 500)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 10
+script = ExtResource("4_l775b")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/AllMenus/MenuAtomes"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+follow_focus = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/AllMenus/MenuAtomes/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+alignment = 1
+
+[node name="MenuRecherche" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/AllMenus" instance=ExtResource("5_pwwxi")]
+visible = false
+layout_mode = 1
+
+[node name="MenuBarBottomPanelC" type="PanelContainer" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC"]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="MarginC" type="MarginContainer" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/MenuBarBottomPanelC"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 10
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
+
+[node name="MenuBarHBoxC" type="HBoxContainer" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/MenuBarBottomPanelC/MarginC"]
+layout_mode = 2
+size_flags_vertical = 4
+alignment = 1
+
+[node name="ButtonMenuAtome" type="Button" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/MenuBarBottomPanelC/MarginC/MenuBarHBoxC"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 1
+theme_override_fonts/font = ExtResource("3_2a2og")
+theme_override_font_sizes/font_size = 32
+text = "Atomes"
+
+[node name="ButtonMenuRecherche" type="Button" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/MenuBarBottomPanelC/MarginC/MenuBarHBoxC"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_2a2og")
+theme_override_font_sizes/font_size = 32
+text = "Recherches"
+
 [connection signal="timeout" from="MainTimer" to="." method="_on_main_timer_timeout"]
 [connection signal="pressed" from="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC/BoutonMenu" to="." method="_on_bouton_menu_pressed"]
 [connection signal="toggled" from="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC/BoutonMenu" to="." method="_on_bouton_menu_toggled"]
 [connection signal="pressed" from="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC/VBoxBoutons/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC/VBoxBoutons/VBoxVente/ButtonVendre" to="." method="_on_button_vendre_pressed"]
+[connection signal="pressed" from="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/MenuBarBottomPanelC/MarginC/MenuBarHBoxC/ButtonMenuAtome" to="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl" method="_on_button_menu_atome_pressed"]
+[connection signal="pressed" from="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/MenuBarBottomPanelC/MarginC/MenuBarHBoxC/ButtonMenuRecherche" to="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl" method="_on_button_menu_recherche_pressed"]

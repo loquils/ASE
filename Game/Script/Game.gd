@@ -12,7 +12,7 @@ func _process(_delta):
 	#var prix = round(coin.PrixBaseAmelioAttributs["Force"] * pow(coin.CoefficientsAchatAttributs["Force"], coin.NiveauxAttributs["Force"]))
 
 	#Maj Ui vente
-	var PrixVenteHydrogene = RessourceManager.ListeAtomes["Hydrogene"].PrixBaseVenteAtome.multiply(CustomNumber.new(1.0 + $WindowTopBlackVBoxC/MarginContainer/MainVBoxC/MenuAllGame/MenuRecherche.CurrentBonusesResearches["PrixHydrogenePerCent"]))
+	var PrixVenteHydrogene = RessourceManager.ListeAtomes["Hydrogene"].PrixBaseVenteAtome.multiply(CustomNumber.new(1.0 + $WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/AllMenus/MenuRecherche.CurrentBonusesResearches["PrixHydrogenePerCent"]))
 	$WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC/VBoxBoutons/VBoxVente/ValeurHydrogeneLabel.text = str(PrixVenteHydrogene) + "/H"
 	$WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC/VBoxBoutons/VBoxVente/ValeurVenteLabel.text = str(PrixVenteHydrogene.multiply(RessourceManager.QuantiteesAtomes["Hydrogene"])) + "coins !"
 
