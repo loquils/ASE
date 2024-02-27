@@ -1,7 +1,5 @@
 extends Control 
 
-@onready var ButtonMenuAtome = $VBoxContainer/PanelContainer/MarginContainer/TestButtonMenuHBoxC/ButtonMenuAtome
-
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -27,9 +25,15 @@ func _on_button_menu_recherche_pressed():
 		hideAllMenus()
 		$MenuPresentationVBoxC/AllMenus/MenuRecherche.visible = true
 
+func _on_button_menu_amelioration_pressed():
+	if $MenuPresentationVBoxC/AllMenus/MenuAmelioration.visible:
+		$MenuPresentationVBoxC/AllMenus/MenuAmelioration.visible = false
+	else:
+		hideAllMenus()
+		$MenuPresentationVBoxC/AllMenus/MenuAmelioration.visible = true
+
+
+
 func hideAllMenus():
 	for menu in $MenuPresentationVBoxC/AllMenus.get_children():
 		menu.visible = false
-
-
-

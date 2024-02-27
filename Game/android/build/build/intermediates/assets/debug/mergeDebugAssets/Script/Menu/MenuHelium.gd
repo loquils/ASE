@@ -16,9 +16,9 @@ func _ready():
 		newAmeliorationHeliumButton._set_var(ameliorationHelium)
 		match ameliorationHelium.TypeAmeliorationHelium:
 			AmeliorationHelium.TypeAmeliorationHeliumEnum.Pression:
-				$PresentationVBoxC/LeftVBoxC/ScrollC/ListeHeliumUpgradesVBoxC.add_child(newAmeliorationHeliumButton)
+				$PresentationVBoxC/VBoxCTop/ScrollC/ListeHeliumUpgradesVBoxC.add_child(newAmeliorationHeliumButton)
 			AmeliorationHelium.TypeAmeliorationHeliumEnum.Temperature:
-				$PresentationVBoxC/RightVBoxC/ScrollC/ListeHeliumUpgradesVBoxC.add_child(newAmeliorationHeliumButton)
+				$PresentationVBoxC/VBoxCBot/ScrollC/ListeHeliumUpgradesVBoxC.add_child(newAmeliorationHeliumButton)
 	
 	for bonusType in BonusTypesAmeliorationHelium:
 		CurrentBonusesAmeliorationHelium[bonusType] = CustomNumber.new()
@@ -29,8 +29,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-		$DebugLabel.text = str(CurrentBonusesAmeliorationHelium[BonusTypesAmeliorationHelium[0]])
-
+		#$DebugLabel.text = str(CurrentBonusesAmeliorationHelium[BonusTypesAmeliorationHelium[0]])
+	pass
 
 func MajBonusAmeliorationHelium():
 	for CurrentBonus in CurrentBonusesAmeliorationHelium:
@@ -59,3 +59,7 @@ func AchatAmeliorationHeliumButtonPressed(ameliorationHelium):
 		ameliorationHelium.Level = ameliorationHelium.Level.add(CustomNumber.new(1.0))
 		print("Amélioration Helium " + ameliorationHelium.Name + " achetée ! Niveau : " + str(ameliorationHelium.Level))
 		MajBonusAmeliorationHelium()
+
+
+func _on_button_exit_pressed():
+	hide()

@@ -39,3 +39,12 @@ func load_game():
 		var node_data = json.get_data()
 
 		return node_data
+
+func hard_reset():
+	if not FileAccess.file_exists(SaveFilePath):
+		return null
+	
+	var save_game = FileAccess.open(SaveFilePath, FileAccess.WRITE)
+	save_game.store_line("")
+	
+	get_tree().quit()
