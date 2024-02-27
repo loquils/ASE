@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://jwctjc5cvudy"]
+[gd_scene load_steps=24 format=3 uid="uid://jwctjc5cvudy"]
 
 [ext_resource type="Script" path="res://Script/Game.gd" id="1_xa3fh"]
 [ext_resource type="Script" path="res://Script/ParticulesContainer.gd" id="2_j2sxo"]
@@ -16,6 +16,9 @@
 [ext_resource type="Texture2D" uid="uid://dn4f7tagfgmg3" path="res://Gimped/Sprites/sprite6.png" id="14_e7ofy"]
 [ext_resource type="Texture2D" uid="uid://cv5xxdfeuq3v1" path="res://Gimped/Sprites/sprite7.png" id="15_qyyio"]
 [ext_resource type="Texture2D" uid="uid://c1oqg2xfgw12a" path="res://Gimped/Sprites/sprite8.png" id="16_fioty"]
+[ext_resource type="Texture2D" uid="uid://c31eyto1jlpql" path="res://Gimped/TestElectron.png" id="17_1p05m"]
+[ext_resource type="Script" path="res://Design/Scenes/Sprite2DTestAnimation.gd" id="18_vft3y"]
+[ext_resource type="Texture2D" uid="uid://1drh7volhffd" path="res://Gimped/Proton.png" id="19_8v33v"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_dq7y5"]
 animations = [{
@@ -76,6 +79,16 @@ sprite_frames = SubResource("SpriteFrames_dq7y5")
 autoplay = "default"
 frame = 7
 frame_progress = 1.0
+
+[node name="Atom" type="Node2D" parent="."]
+position = Vector2(360, 640)
+
+[node name="Sprite2D" type="Sprite2D" parent="Atom"]
+texture = ExtResource("17_1p05m")
+script = ExtResource("18_vft3y")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Atom"]
+texture = ExtResource("19_8v33v")
 
 [node name="MainTimer" type="Timer" parent="."]
 autostart = true
@@ -179,6 +192,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="MenuAllGame" type="TabContainer" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 tab_alignment = 1

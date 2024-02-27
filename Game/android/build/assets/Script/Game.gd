@@ -24,9 +24,9 @@ func GetPrixVenteHydrogene():
 func _on_bouton_menu_pressed():
 	$WindowTopBlackVBoxC/MarginContainer/MainVBoxC/MenuAllGame.visible = !$WindowTopBlackVBoxC/MarginContainer/MainVBoxC/MenuAllGame.visible
 	if $WindowTopBlackVBoxC/MarginContainer/MainVBoxC/MenuAllGame.visible:
-		$AnimatedSprite2D.hide()
+		$Atom.hide()
 	else:
-		$AnimatedSprite2D.show()
+		$Atom.show()
 		
 
 func _on_main_timer_timeout():
