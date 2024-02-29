@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://Script/Game.gd" id="1_xa3fh"]
 [ext_resource type="Script" path="res://Script/ParticulesContainer.gd" id="2_j2sxo"]
 [ext_resource type="SystemFont" uid="uid://d2tc25vdki2hk" path="res://Design/Themes/SystemFontForQantities.tres" id="3_2a2og"]
-[ext_resource type="Texture2D" uid="uid://bjgpka04uikbp" path="res://Gimped/testBordureRessources.png" id="3_vqb8y"]
 [ext_resource type="Script" path="res://Script/Menu/MenuAtomes.gd" id="4_l775b"]
+[ext_resource type="Texture2D" uid="uid://dvmkwqaksx4io" path="res://Design/Borders/QuantityAtomesBorders.png" id="5_erys6"]
 [ext_resource type="PackedScene" uid="uid://c60a8i52thxma" path="res://Design/Scenes/MenuRecherches.tscn" id="5_pwwxi"]
 [ext_resource type="Script" path="res://Script/Menu/MenuHelium.gd" id="12_f46xy"]
 [ext_resource type="Texture2D" uid="uid://c31eyto1jlpql" path="res://Gimped/TestElectron.png" id="17_1p05m"]
@@ -85,7 +85,7 @@ size_flags_vertical = 3
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
+theme_override_constants/margin_bottom = 0
 
 [node name="MainVBoxC" type="VBoxContainer" parent="WindowTopBlackVBoxC/MarginContainer"]
 layout_mode = 2
@@ -101,7 +101,7 @@ size_flags_horizontal = 3
 custom_minimum_size = Vector2(300, 40)
 layout_mode = 2
 size_flags_horizontal = 0
-texture = ExtResource("3_vqb8y")
+texture = ExtResource("5_erys6")
 
 [node name="MarginC" type="MarginContainer" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC/RessourcesVBoxC/BackGroundCoins"]
 layout_mode = 1
@@ -367,6 +367,12 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 1
+
+[node name="BlackBannerPanel2" type="Panel" parent="WindowTopBlackVBoxC"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_styles/panel = SubResource("StyleBoxFlat_j7vtp")
 
 [connection signal="timeout" from="SaveTimer" to="." method="_on_save_timer_timeout"]
 [connection signal="timeout" from="MainTimer" to="." method="_on_main_timer_timeout"]

@@ -1,6 +1,7 @@
-[gd_resource type="Theme" load_steps=6 format=3 uid="uid://dcw22i5c3dse4"]
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://dcw22i5c3dse4"]
 
-[ext_resource type="Texture2D" uid="uid://b8fjo580mxr64" path="res://Gimped/ResearchButtonTransparent.png" id="1_0y4k0"]
+[ext_resource type="Texture2D" uid="uid://gnxf818hsdm0" path="res://Design/Borders/AttributButtonDisableBorders.png" id="1_ddi4e"]
+[ext_resource type="SystemFont" uid="uid://d2tc25vdki2hk" path="res://Design/Themes/SystemFontForQantities.tres" id="1_nqtll"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_13vrg"]
 
@@ -11,15 +12,16 @@ bg_color = Color(0.6, 0.6, 0.6, 0.0705882)
 bg_color = Color(0.25098, 0.25098, 0.305882, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nh7bt"]
-texture = ExtResource("1_0y4k0")
-texture_margin_left = 4.0
-texture_margin_top = 4.0
-texture_margin_right = 4.0
-texture_margin_bottom = 4.0
+texture = ExtResource("1_ddi4e")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
 
 [resource]
 Button/colors/font_disabled_color = Color(0.113725, 0.113725, 0.113725, 0.501961)
 Button/styles/focus = SubResource("StyleBoxEmpty_13vrg")
 Button/styles/hover = SubResource("StyleBoxFlat_vc1nt")
 Button/styles/normal = SubResource("StyleBoxFlat_x1ig6")
+Label/fonts/font = ExtResource("1_nqtll")
 PanelContainer/styles/panel = SubResource("StyleBoxTexture_nh7bt")

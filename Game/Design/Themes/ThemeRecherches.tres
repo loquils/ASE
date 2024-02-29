@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=10 format=3 uid="uid://eas28obod65v"]
 
-[ext_resource type="Texture2D" uid="uid://b8fjo580mxr64" path="res://Gimped/ResearchButtonTransparent.png" id="2_yqaja"]
+[ext_resource type="Texture2D" uid="uid://gnxf818hsdm0" path="res://Design/Borders/AttributButtonDisableBorders.png" id="1_ashq3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_47121"]
 bg_color = Color(0.0901961, 0.0901961, 0.117647, 1)
@@ -21,11 +21,11 @@ bg_color = Color(0.25098, 0.25098, 0.305882, 1)
 bg_color = Color(0.0901961, 0.388235, 0.219608, 0.384314)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qg7hs"]
-texture = ExtResource("2_yqaja")
-texture_margin_left = 5.0
-texture_margin_top = 5.0
-texture_margin_right = 5.0
-texture_margin_bottom = 5.0
+texture = ExtResource("1_ashq3")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
 
 [resource]
 Button/styles/disabled = SubResource("StyleBoxFlat_47121")
