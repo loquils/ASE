@@ -1,0 +1,19 @@
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://olf2vadss1p0"]
+
+[ext_resource type="SystemFont" uid="uid://d2tc25vdki2hk" path="res://Design/Themes/SystemFontForQantities.tres" id="1_jgyv8"]
+[ext_resource type="Texture2D" uid="uid://bco5oa4jcx17" path="res://Design/Borders/SellButtonBorders.png" id="2_6thne"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mbp4l"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mvdux"]
+bg_color = Color(0.372549, 0.372549, 0.372549, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4wur1"]
+texture = ExtResource("2_6thne")
+
+[resource]
+Button/styles/focus = SubResource("StyleBoxEmpty_mbp4l")
+Button/styles/normal = SubResource("StyleBoxFlat_mvdux")
+Label/font_sizes/font_size = 24
+Label/fonts/font = ExtResource("1_jgyv8")
+PanelContainer/styles/panel = SubResource("StyleBoxTexture_4wur1")

@@ -1,0 +1,61 @@
+[gd_scene load_steps=5 format=3 uid="uid://b2fng8la1dmc6"]
+
+[ext_resource type="Theme" uid="uid://olf2vadss1p0" path="res://Design/Themes/ThemeButtonSell.tres" id="1_a4k5k"]
+[ext_resource type="Script" path="res://Script/ButtonSellHydrogen.gd" id="2_kdxhw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gxlav"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qirw3"]
+bg_color = Color(0.45098, 0.45098, 0.45098, 1)
+
+[node name="SellHydrogenButton" type="Button"]
+custom_minimum_size = Vector2(130, 120)
+offset_right = 8.0
+offset_bottom = 8.0
+theme = ExtResource("1_a4k5k")
+script = ExtResource("2_kdxhw")
+
+[node name="PanelC" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="PresentationVBoxC" type="VBoxContainer" parent="PanelC"]
+layout_mode = 2
+alignment = 1
+
+[node name="SellLabel" type="Label" parent="PanelC/PresentationVBoxC"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Vendre
+Hydrogène"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginC" type="MarginContainer" parent="PanelC/PresentationVBoxC"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_right = 8
+
+[node name="Panel" type="Panel" parent="PanelC/PresentationVBoxC/MarginC"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_gxlav")
+
+[node name="MarginC2" type="MarginContainer" parent="PanelC/PresentationVBoxC"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_right = 8
+
+[node name="PriceLabel" type="Label" parent="PanelC/PresentationVBoxC/MarginC2"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_qirw3")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

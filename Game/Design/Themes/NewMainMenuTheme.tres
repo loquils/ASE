@@ -1,7 +1,11 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://b1lmffes80p5v"]
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://b1lmffes80p5v"]
+
+[ext_resource type="SystemFont" uid="uid://d2tc25vdki2hk" path="res://Design/Themes/SystemFontForQantities.tres" id="1_vvnpe"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xhdo8"]
 bg_color = Color(0, 0.470588, 0.729412, 1)
 
 [resource]
+default_font = ExtResource("1_vvnpe")
+default_font_size = 24
 Button/styles/focus = SubResource("StyleBoxFlat_xhdo8")

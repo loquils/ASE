@@ -265,7 +265,10 @@ func prints():
 #Override pour le print
 func _to_string():
 	if expo < 6:
-		return str(decimal * (10**expo))
+		var toReturn = decimal * (10**expo)
+		if toReturn > 1000:
+			toReturn = round(toReturn)
+		return str(toReturn)
 	else:
 		return str(decimal).substr(0, 4) + "e" + str(expo)
 

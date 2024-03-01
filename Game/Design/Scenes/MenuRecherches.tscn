@@ -1,14 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://c60a8i52thxma"]
+[gd_scene load_steps=4 format=3 uid="uid://c60a8i52thxma"]
 
 [ext_resource type="Script" path="res://Script/Menu/MenuRecherche.gd" id="1_qrou8"]
+[ext_resource type="Theme" uid="uid://du67orp76vnub" path="res://Design/Themes/ThemeRechercheExpandButton.tres" id="1_u48s0"]
+[ext_resource type="Texture2D" uid="uid://qfo0rlivbp6y" path="res://Gimped/TestFlaskNulle.png" id="3_y3h05"]
 
 [node name="MenuRecherche" type="Control"]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 0
+offset_right = 710.0
+offset_bottom = 500.0
+theme = ExtResource("1_u48s0")
 script = ExtResource("1_qrou8")
 
 [node name="ScrollContainerGlobalMenu" type="ScrollContainer" parent="."]
@@ -32,10 +33,32 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="ExpandLvlEasyButton" type="Button" parent="ScrollContainerGlobalMenu/ResearchLvlVBoxContainer/ScrollButtonsContainer/ButtonsHBoxContainer"]
-custom_minimum_size = Vector2(150, 100)
+custom_minimum_size = Vector2(200, 100)
 layout_mode = 2
-text = "Recherches
-Easy"
+
+[node name="PanelC" type="PanelContainer" parent="ScrollContainerGlobalMenu/ResearchLvlVBoxContainer/ScrollButtonsContainer/ButtonsHBoxContainer/ExpandLvlEasyButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainerGlobalMenu/ResearchLvlVBoxContainer/ScrollButtonsContainer/ButtonsHBoxContainer/ExpandLvlEasyButton/PanelC"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ScrollContainerGlobalMenu/ResearchLvlVBoxContainer/ScrollButtonsContainer/ButtonsHBoxContainer/ExpandLvlEasyButton/PanelC/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("3_y3h05")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="ScrollContainerGlobalMenu/ResearchLvlVBoxContainer/ScrollButtonsContainer/ButtonsHBoxContainer/ExpandLvlEasyButton/PanelC/HBoxContainer"]
+layout_mode = 2
+text = "Easy"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="ScrollRecherchesContainer" type="ScrollContainer" parent="ScrollContainerGlobalMenu/ResearchLvlVBoxContainer"]
 layout_mode = 2
@@ -43,6 +66,8 @@ size_flags_vertical = 3
 
 [node name="ResearchesEasyHBoxContainer" type="HBoxContainer" parent="ScrollContainerGlobalMenu/ResearchLvlVBoxContainer/ScrollRecherchesContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
@@ -56,6 +81,7 @@ grow_vertical = 0
 
 [node name="Label" type="Label" parent="HBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 18
 text = "Hydrogène augmente pourcent : "
 
 [node name="AugmenteLabel" type="Label" parent="HBoxContainer"]

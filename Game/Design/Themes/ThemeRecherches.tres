@@ -1,6 +1,7 @@
-[gd_resource type="Theme" load_steps=10 format=3 uid="uid://eas28obod65v"]
+[gd_resource type="Theme" load_steps=11 format=3 uid="uid://eas28obod65v"]
 
 [ext_resource type="Texture2D" uid="uid://gnxf818hsdm0" path="res://Design/Borders/AttributButtonDisableBorders.png" id="1_ashq3"]
+[ext_resource type="SystemFont" uid="uid://d2tc25vdki2hk" path="res://Design/Themes/SystemFontForQantities.tres" id="1_sg8tu"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_47121"]
 bg_color = Color(0.0901961, 0.0901961, 0.117647, 1)
@@ -33,6 +34,8 @@ Button/styles/focus = SubResource("StyleBoxEmpty_4dusv")
 Button/styles/hover = SubResource("StyleBoxFlat_vlelp")
 Button/styles/normal = SubResource("StyleBoxFlat_l80yl")
 Button/styles/pressed = SubResource("StyleBoxEmpty_k4e7u")
+Label/font_sizes/font_size = 18
+Label/fonts/font = ExtResource("1_sg8tu")
 Label/styles/normal = SubResource("StyleBoxFlat_dkuls")
 MarginContainer/constants/margin_bottom = 2
 MarginContainer/constants/margin_left = 4

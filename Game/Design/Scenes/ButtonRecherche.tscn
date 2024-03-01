@@ -9,13 +9,8 @@
 
 [node name="Button" type="Button"]
 custom_minimum_size = Vector2(180, 200)
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = -540.0
-offset_bottom = -1080.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_right = 180.0
+offset_bottom = 200.0
 theme = ExtResource("1_qiuuy")
 script = ExtResource("2_i5jlq")
 

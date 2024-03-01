@@ -1,11 +1,12 @@
-[gd_scene load_steps=20 format=3 uid="uid://jwctjc5cvudy"]
+[gd_scene load_steps=22 format=3 uid="uid://jwctjc5cvudy"]
 
 [ext_resource type="Script" path="res://Script/Game.gd" id="1_xa3fh"]
 [ext_resource type="Script" path="res://Script/ParticulesContainer.gd" id="2_j2sxo"]
 [ext_resource type="SystemFont" uid="uid://d2tc25vdki2hk" path="res://Design/Themes/SystemFontForQantities.tres" id="3_2a2og"]
 [ext_resource type="Script" path="res://Script/Menu/MenuAtomes.gd" id="4_l775b"]
-[ext_resource type="Texture2D" uid="uid://dvmkwqaksx4io" path="res://Design/Borders/QuantityAtomesBorders.png" id="5_erys6"]
 [ext_resource type="PackedScene" uid="uid://c60a8i52thxma" path="res://Design/Scenes/MenuRecherches.tscn" id="5_pwwxi"]
+[ext_resource type="Texture2D" uid="uid://dbud7benyerv0" path="res://Design/Borders/Gimp/QuantityAtomesBorders.png" id="5_ruh6y"]
+[ext_resource type="PackedScene" uid="uid://b2fng8la1dmc6" path="res://Design/Scenes/ButtonSellHydrogen.tscn" id="8_8mhas"]
 [ext_resource type="Script" path="res://Script/Menu/MenuHelium.gd" id="12_f46xy"]
 [ext_resource type="Texture2D" uid="uid://c31eyto1jlpql" path="res://Gimped/TestElectron.png" id="17_1p05m"]
 [ext_resource type="Script" path="res://Design/Scenes/Sprite2DTestAnimation.gd" id="18_vft3y"]
@@ -23,6 +24,9 @@ font_size = 24
 [sub_resource type="LabelSettings" id="LabelSettings_owup1"]
 font = ExtResource("3_2a2og")
 font_size = 22
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gkhu4"]
+bg_color = Color(0.372549, 0.372549, 0.372549, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_tgkd5"]
 font = ExtResource("3_2a2og")
@@ -101,7 +105,7 @@ size_flags_horizontal = 3
 custom_minimum_size = Vector2(300, 40)
 layout_mode = 2
 size_flags_horizontal = 0
-texture = ExtResource("5_erys6")
+texture = ExtResource("5_ruh6y")
 
 [node name="MarginC" type="MarginContainer" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC/RessourcesVBoxC/BackGroundCoins"]
 layout_mode = 1
@@ -142,24 +146,16 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-text = "TestAddition"
+text = "ForceReset"
 
 [node name="ButtonGiveMoney" type="Button" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC/VBoxBoutons"]
 layout_mode = 2
 text = "FreeMoney"
 
-[node name="VBoxVente" type="VBoxContainer" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC/VBoxBoutons"]
+[node name="SellHydrogenButton" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC" node_paths=PackedStringArray("MenuRecherche") instance=ExtResource("8_8mhas")]
 layout_mode = 2
-
-[node name="ButtonVendre" type="Button" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC/VBoxBoutons/VBoxVente"]
-layout_mode = 2
-text = "Vendre H"
-
-[node name="ValeurHydrogeneLabel" type="Label" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC/VBoxBoutons/VBoxVente"]
-layout_mode = 2
-
-[node name="ValeurVenteLabel" type="Label" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC/VBoxBoutons/VBoxVente"]
-layout_mode = 2
+size_flags_vertical = 0
+MenuRecherche = NodePath("../../NewMenuMainControl/MenuPresentationVBoxC/AllMenus/MenuRecherche")
 
 [node name="NewMenuMainControl" type="Control" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC"]
 custom_minimum_size = Vector2(0, 50)
@@ -209,7 +205,6 @@ size_flags_horizontal = 6
 alignment = 1
 
 [node name="MenuRecherche" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/AllMenus" instance=ExtResource("5_pwwxi")]
-visible = false
 layout_mode = 1
 
 [node name="MenuAmelioration" type="Control" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/AllMenus"]
@@ -219,6 +214,15 @@ layout_mode = 1
 anchor_top = -1.0
 anchor_right = 1.0
 anchor_bottom = -1.0
+
+[node name="Background" type="Panel" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/AllMenus/MenuAmelioration"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_gkhu4")
 
 [node name="GridContainer" type="GridContainer" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/AllMenus/MenuAmelioration"]
 layout_mode = 1
@@ -231,10 +235,10 @@ columns = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/AllMenus/MenuAmelioration/GridContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 2
-theme_override_constants/margin_top = 2
-theme_override_constants/margin_right = 2
-theme_override_constants/margin_bottom = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
 
 [node name="ButtonAmeliorationHelium" type="Button" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/AllMenus/MenuAmelioration/GridContainer/MarginContainer"]
 custom_minimum_size = Vector2(300, 300)
@@ -242,6 +246,89 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/AllMenus/MenuAmelioration/GridContainer/MarginContainer/ButtonAmeliorationHelium"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "HELIUM"
+label_settings = SubResource("LabelSettings_tgkd5")
+
+[node name="MarginContainer2" type="MarginContainer" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/AllMenus/MenuAmelioration/GridContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="ButtonAmeliorationHelium" type="Button" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/AllMenus/MenuAmelioration/GridContainer/MarginContainer2"]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/AllMenus/MenuAmelioration/GridContainer/MarginContainer2/ButtonAmeliorationHelium"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "HELIUM"
+label_settings = SubResource("LabelSettings_tgkd5")
+
+[node name="MarginContainer3" type="MarginContainer" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/AllMenus/MenuAmelioration/GridContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="ButtonAmeliorationHelium" type="Button" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/AllMenus/MenuAmelioration/GridContainer/MarginContainer3"]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/AllMenus/MenuAmelioration/GridContainer/MarginContainer3/ButtonAmeliorationHelium"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "HELIUM"
+label_settings = SubResource("LabelSettings_tgkd5")
+
+[node name="MarginContainer4" type="MarginContainer" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/AllMenus/MenuAmelioration/GridContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="ButtonAmeliorationHelium" type="Button" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/AllMenus/MenuAmelioration/GridContainer/MarginContainer4"]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/AllMenus/MenuAmelioration/GridContainer/MarginContainer4/ButtonAmeliorationHelium"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -378,8 +465,10 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_j7vtp")
 [connection signal="timeout" from="MainTimer" to="." method="_on_main_timer_timeout"]
 [connection signal="pressed" from="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC/VBoxBoutons/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC/VBoxBoutons/ButtonGiveMoney" to="." method="_on_button_give_money_pressed"]
-[connection signal="pressed" from="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC/VBoxBoutons/VBoxVente/ButtonVendre" to="." method="_on_button_vendre_pressed"]
 [connection signal="pressed" from="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/AllMenus/MenuAmelioration/GridContainer/MarginContainer/ButtonAmeliorationHelium" to="." method="_on_button_amelioration_helium_pressed"]
+[connection signal="pressed" from="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/AllMenus/MenuAmelioration/GridContainer/MarginContainer2/ButtonAmeliorationHelium" to="." method="_on_button_amelioration_helium_pressed"]
+[connection signal="pressed" from="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/AllMenus/MenuAmelioration/GridContainer/MarginContainer3/ButtonAmeliorationHelium" to="." method="_on_button_amelioration_helium_pressed"]
+[connection signal="pressed" from="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/AllMenus/MenuAmelioration/GridContainer/MarginContainer4/ButtonAmeliorationHelium" to="." method="_on_button_amelioration_helium_pressed"]
 [connection signal="pressed" from="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/MenuBarBottomPanelC/MarginC/MenuBarHBoxC/ButtonMenuAtome" to="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl" method="_on_button_menu_atome_pressed"]
 [connection signal="pressed" from="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/MenuBarBottomPanelC/MarginC/MenuBarHBoxC/ButtonMenuRecherche" to="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl" method="_on_button_menu_recherche_pressed"]
 [connection signal="pressed" from="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/MenuBarBottomPanelC/MarginC/MenuBarHBoxC/ButtonMenuAmelioration" to="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl" method="_on_button_menu_amelioration_pressed"]
