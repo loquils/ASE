@@ -1,18 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://be6ai8p5ud1bx"]
+[gd_scene load_steps=7 format=3 uid="uid://be6ai8p5ud1bx"]
 
+[ext_resource type="Theme" uid="uid://c8qb6obuwxyjl" path="res://Design/Themes/AmeliorationHelium/ThemeBase.tres" id="1_2eipa"]
 [ext_resource type="Script" path="res://Script/ButtonAmeliorationHelium.gd" id="1_rcqg6"]
 [ext_resource type="Theme" uid="uid://c2oksi2eb0sxy" path="res://Design/Themes/themeTest.tres" id="2_yu6jg"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_moki4"]
-bg_color = Color(0.752941, 0.752941, 0.752941, 1)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y7xr5"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3kiut"]
-bg_color = Color(0.266667, 0.266667, 0.266667, 1)
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6u0ki"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_oidvf"]
-font_size = 12
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hgdw1"]
+bg_color = Color(0.345098, 0.345098, 0.345098, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3dfc3"]
 bg_color = Color(0.611765, 0.611765, 0.611765, 1)
@@ -22,62 +17,78 @@ border_width_right = 1
 border_width_bottom = 1
 
 [node name="Button" type="Button"]
-custom_minimum_size = Vector2(300, 100)
+custom_minimum_size = Vector2(600, 125)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -420.0
-offset_bottom = -1180.0
+offset_right = -120.0
+offset_bottom = -1155.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_moki4")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_3kiut")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_6u0ki")
+theme = ExtResource("1_2eipa")
 disabled = true
 script = ExtResource("1_rcqg6")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="PanelC" type="PanelContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_y7xr5")
 
-[node name="LeftVBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
-custom_minimum_size = Vector2(200, 0)
+[node name="MarginC" type="MarginContainer" parent="PanelC"]
+layout_mode = 2
+
+[node name="HBoxC" type="HBoxContainer" parent="PanelC/MarginC"]
+layout_mode = 2
+alignment = 1
+
+[node name="LeftVBoxC" type="VBoxContainer" parent="PanelC/MarginC/HBoxC"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="NomLabel" type="Label" parent="HBoxContainer/LeftVBoxContainer"]
+[node name="NomLabel" type="Label" parent="PanelC/MarginC/HBoxC/LeftVBoxC"]
 layout_mode = 2
 size_flags_vertical = 1
+theme_override_font_sizes/font_size = 28
 text = "Nom"
 
-[node name="DescriptionLabel" type="Label" parent="HBoxContainer/LeftVBoxContainer"]
+[node name="DescriptionLabel" type="Label" parent="PanelC/MarginC/HBoxC/LeftVBoxC"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_font_sizes/font_size = 14
 text = "Description"
-label_settings = SubResource("LabelSettings_oidvf")
 autowrap_mode = 3
 
-[node name="BonusLabel" type="Label" parent="HBoxContainer/LeftVBoxContainer"]
+[node name="BonusLabel" type="Label" parent="PanelC/MarginC/HBoxC/LeftVBoxC"]
 layout_mode = 2
 size_flags_vertical = 1
+theme_override_font_sizes/font_size = 20
 text = "Bonus"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="RightVBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+[node name="Panel" type="Panel" parent="PanelC/MarginC/HBoxC"]
+custom_minimum_size = Vector2(2, 0)
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 8
+theme_override_styles/panel = SubResource("StyleBoxFlat_hgdw1")
 
-[node name="NiveauLabel" type="Label" parent="HBoxContainer/RightVBoxContainer"]
+[node name="RightVBoxC" type="VBoxContainer" parent="PanelC/MarginC/HBoxC"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="NiveauLabel" type="Label" parent="PanelC/MarginC/HBoxC/RightVBoxC"]
 layout_mode = 2
 size_flags_vertical = 3
 text = "Niveau"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PrixLabel" type="Label" parent="HBoxContainer/RightVBoxContainer"]
+[node name="PrixLabel" type="Label" parent="PanelC/MarginC/HBoxC/RightVBoxC"]
 layout_mode = 2
 size_flags_vertical = 3
 text = "Prix"

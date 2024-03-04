@@ -1,0 +1,13 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://c8qb6obuwxyjl"]
+
+[ext_resource type="SystemFont" uid="uid://d2tc25vdki2hk" path="res://Design/Themes/SystemFontForQantities.tres" id="1_rkx3t"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i8d1c"]
+
+[resource]
+Button/styles/focus = SubResource("StyleBoxEmpty_i8d1c")
+Label/fonts/font = ExtResource("1_rkx3t")
+MarginContainer/constants/margin_bottom = 5
+MarginContainer/constants/margin_left = 20
+MarginContainer/constants/margin_right = 20
+MarginContainer/constants/margin_top = 5

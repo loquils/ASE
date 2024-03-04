@@ -61,7 +61,7 @@ func _ready():
 	newAtome3.DefineAtomeAttributs(ListeAttribsTest3)
 	newAtome3.DefineAtomeUnlockingPrice({"Helium" : CustomNumber.new(1.0, 2)})
 	
-	listeAtomesInitializeGame.append(newAtome3)
+	#listeAtomesInitializeGame.append(newAtome3)
 	
 	#Pour chaque atome dans la liste du jeu
 	for atomeInitialized in listeAtomesInitializeGame:

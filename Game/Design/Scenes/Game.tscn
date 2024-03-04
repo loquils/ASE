@@ -205,6 +205,7 @@ size_flags_horizontal = 6
 alignment = 1
 
 [node name="MenuRecherche" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/AllMenus" instance=ExtResource("5_pwwxi")]
+visible = false
 layout_mode = 1
 
 [node name="MenuAmelioration" type="Control" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/AllMenus"]
@@ -431,7 +432,7 @@ size_flags_vertical = 3
 
 [node name="ListeHeliumUpgradesVBoxC" type="VBoxContainer" parent="WindowTopBlackVBoxC/MarginContainer/AmeliorationHeliumControl/PresentationVBoxC/VBoxCTop/ScrollC"]
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 6
 size_flags_vertical = 3
 alignment = 1
 
@@ -451,7 +452,7 @@ size_flags_vertical = 3
 
 [node name="ListeHeliumUpgradesVBoxC" type="VBoxContainer" parent="WindowTopBlackVBoxC/MarginContainer/AmeliorationHeliumControl/PresentationVBoxC/VBoxCBot/ScrollC"]
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 6
 size_flags_vertical = 3
 alignment = 1
 

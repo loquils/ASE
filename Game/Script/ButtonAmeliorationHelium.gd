@@ -2,17 +2,28 @@ extends Button
 
 var AmeliorationHelium
 
+@onready var AmeliorationHeliumUnlockButton = $PanelForUnlock/VBoxContainer/AmeliorationHeliumUnlockButton
+
 func _set_var(ameliorationHelium:AmeliorationHelium):
 	AmeliorationHelium = ameliorationHelium
-	$HBoxContainer/LeftVBoxContainer/NomLabel.text = AmeliorationHelium.Name
-	$HBoxContainer/LeftVBoxContainer/DescriptionLabel.text = AmeliorationHelium.Description
-	$HBoxContainer/LeftVBoxContainer/BonusLabel.text = "bonus !"
-	$HBoxContainer/RightVBoxContainer/NiveauLabel.text = "Niv." + str(AmeliorationHelium.Level)
-	$HBoxContainer/RightVBoxContainer/PrixLabel.text = str(AmeliorationHelium.GetPrixAmeliorationHelium())
+	$PanelC/MarginC/HBoxC/LeftVBoxC/NomLabel.text = AmeliorationHelium.Name
+	$PanelC/MarginC/HBoxC/LeftVBoxC/DescriptionLabel.text = AmeliorationHelium.Description
+	$PanelC/MarginC/HBoxC/LeftVBoxC/BonusLabel.text = "bonus !"
+	$PanelC/MarginC/HBoxC/RightVBoxC/NiveauLabel.text = "Niv." + str(AmeliorationHelium.Level)
+	$PanelC/MarginC/HBoxC/RightVBoxC/PrixLabel.text = str(AmeliorationHelium.GetPrixAmeliorationHelium())
 	
 	$PanelForUnlock/VBoxContainer/AtomeLabel.text = "Coins"
 	$PanelForUnlock/VBoxContainer/PrixLabel.text = str(AmeliorationHelium.AtomePriceForUnlocking["Coins"])
 	
+	match AmeliorationHelium.TypeAmeliorationHelium:
+		AmeliorationHelium.TypeAmeliorationHeliumEnum.Pression:
+			add_theme_stylebox_override("normal", preload("res://Design/Themes/AmeliorationHelium/PressionNormalFlat.tres"))
+			add_theme_stylebox_override("disabled", preload("res://Design/Themes/AmeliorationHelium/PressionDisabledFlat.tres"))
+		AmeliorationHelium.TypeAmeliorationHeliumEnum.Temperature:
+			add_theme_stylebox_override("normal", preload("res://Design/Themes/AmeliorationHelium/TemperatureNormalFlat.tres"))
+			add_theme_stylebox_override("disabled", preload("res://Design/Themes/AmeliorationHelium/TemperatureDisabledFlat.tres"))
+
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -27,12 +38,12 @@ func _process(delta):
 		
 		#On test si le bouton est disabled ou pas
 		if RessourceManager.Coins.compare(AmeliorationHelium.AtomePriceForUnlocking["Coins"]) < 0:
-			$PanelForUnlock/VBoxContainer/AmeliorationHeliumUnlockButton.disabled = true
+			AmeliorationHeliumUnlockButton.disabled = true
 		else:
-			$PanelForUnlock/VBoxContainer/AmeliorationHeliumUnlockButton.disabled = false
+			AmeliorationHeliumUnlockButton.disabled = false
 	else:
-		$HBoxContainer/RightVBoxContainer/NiveauLabel.text = "Niv." + str(AmeliorationHelium.Level)
-		$HBoxContainer/RightVBoxContainer/PrixLabel.text = str(AmeliorationHelium.GetPrixAmeliorationHelium()) + "He"
+		$PanelC/MarginC/HBoxC/RightVBoxC/NiveauLabel.text = "Niv." + str(AmeliorationHelium.Level)
+		$PanelC/MarginC/HBoxC/RightVBoxC/PrixLabel.text = str(AmeliorationHelium.GetPrixAmeliorationHelium()) + " He"
 		
 		if RessourceManager.QuantiteesAtomes["Helium"].compare(AmeliorationHelium.GetPrixAmeliorationHelium()) < 0:
 			disabled = true

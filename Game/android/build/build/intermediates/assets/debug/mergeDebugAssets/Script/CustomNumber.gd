@@ -266,7 +266,7 @@ func prints():
 func _to_string():
 	if expo < 6:
 		var toReturn = decimal * (10**expo)
-		if expo > 3:
+		if toReturn > 1000:
 			toReturn = round(toReturn)
 		return str(toReturn)
 	else:
