@@ -1,0 +1,158 @@
+[gd_scene load_steps=12 format=3 uid="uid://kg8xjpenka38"]
+
+[ext_resource type="Script" path="res://Script/Menu/MenuHelium.gd" id="1_0ask8"]
+[ext_resource type="SystemFont" uid="uid://d2tc25vdki2hk" path="res://Design/Themes/SystemFontForQantities.tres" id="2_ds4yq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4t707"]
+bg_color = Color(0.192157, 0.192157, 0.192157, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ksirb"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 0.152941, 0.317647, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bbomk"]
+bg_color = Color(0.270588, 0.611765, 1, 0.321569)
+
+[sub_resource type="LabelSettings" id="LabelSettings_enjdv"]
+font = ExtResource("2_ds4yq")
+font_size = 32
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bs4e0"]
+bg_color = Color(0, 0.152941, 0.317647, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4jduw"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.427451, 0, 0.0666667, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4lcek"]
+bg_color = Color(1, 0.184314, 0.231373, 0.321569)
+
+[sub_resource type="LabelSettings" id="LabelSettings_1sl1a"]
+font = ExtResource("2_ds4yq")
+font_size = 30
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ew1hp"]
+bg_color = Color(0.427451, 0, 0.0666667, 1)
+
+[node name="AmeliorationHeliumControl" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_0ask8")
+
+[node name="PanelBackGround" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4t707")
+
+[node name="PresentationVBoxC" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TopHBoxC" type="HBoxContainer" parent="PresentationVBoxC"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="ButtonExit" type="Button" parent="PresentationVBoxC/TopHBoxC"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_fonts/font = ExtResource("2_ds4yq")
+theme_override_font_sizes/font_size = 24
+text = "Exit >"
+
+[node name="PressionPanelC" type="PanelContainer" parent="PresentationVBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ksirb")
+
+[node name="PanelBack" type="Panel" parent="PresentationVBoxC/PressionPanelC"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bbomk")
+
+[node name="PressionVBoxC" type="VBoxContainer" parent="PresentationVBoxC/PressionPanelC"]
+layout_mode = 2
+
+[node name="PressionLabel" type="Label" parent="PresentationVBoxC/PressionPanelC/PressionVBoxC"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Pression"
+label_settings = SubResource("LabelSettings_enjdv")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LineMarginC" type="MarginContainer" parent="PresentationVBoxC/PressionPanelC/PressionVBoxC"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_right = 30
+
+[node name="Panel" type="Panel" parent="PresentationVBoxC/PressionPanelC/PressionVBoxC/LineMarginC"]
+custom_minimum_size = Vector2(0, 3)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bs4e0")
+
+[node name="ScrollC" type="ScrollContainer" parent="PresentationVBoxC/PressionPanelC/PressionVBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ListeHeliumUpgradesVBoxC" type="VBoxContainer" parent="PresentationVBoxC/PressionPanelC/PressionVBoxC/ScrollC"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 3
+alignment = 1
+
+[node name="TemperaturePanelC" type="PanelContainer" parent="PresentationVBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4jduw")
+
+[node name="PanelBack" type="Panel" parent="PresentationVBoxC/TemperaturePanelC"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4lcek")
+
+[node name="TemperatureVBoxC" type="VBoxContainer" parent="PresentationVBoxC/TemperaturePanelC"]
+layout_mode = 2
+
+[node name="TemperatureLabel" type="Label" parent="PresentationVBoxC/TemperaturePanelC/TemperatureVBoxC"]
+layout_mode = 2
+text = "Température"
+label_settings = SubResource("LabelSettings_1sl1a")
+horizontal_alignment = 1
+
+[node name="LineMarginC" type="MarginContainer" parent="PresentationVBoxC/TemperaturePanelC/TemperatureVBoxC"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_right = 30
+
+[node name="Panel" type="Panel" parent="PresentationVBoxC/TemperaturePanelC/TemperatureVBoxC/LineMarginC"]
+custom_minimum_size = Vector2(0, 3)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ew1hp")
+
+[node name="ScrollC" type="ScrollContainer" parent="PresentationVBoxC/TemperaturePanelC/TemperatureVBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ListeHeliumUpgradesVBoxC" type="VBoxContainer" parent="PresentationVBoxC/TemperaturePanelC/TemperatureVBoxC/ScrollC"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 3
+alignment = 1
+
+[connection signal="pressed" from="PresentationVBoxC/TopHBoxC/ButtonExit" to="." method="_on_button_exit_pressed"]

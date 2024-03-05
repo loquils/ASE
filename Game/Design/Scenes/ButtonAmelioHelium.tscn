@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://be6ai8p5ud1bx"]
 
 [ext_resource type="Theme" uid="uid://c8qb6obuwxyjl" path="res://Design/Themes/AmeliorationHelium/ThemeBase.tres" id="1_2eipa"]
-[ext_resource type="Script" path="res://Script/ButtonAmeliorationHelium.gd" id="1_rcqg6"]
+[ext_resource type="Script" path="res://Script/ButtonAmeliorationHelium.gd" id="2_ej8al"]
 [ext_resource type="Theme" uid="uid://c2oksi2eb0sxy" path="res://Design/Themes/themeTest.tres" id="2_yu6jg"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y7xr5"]
@@ -27,7 +27,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_2eipa")
 disabled = true
-script = ExtResource("1_rcqg6")
+script = ExtResource("2_ej8al")
 
 [node name="PanelC" type="PanelContainer" parent="."]
 layout_mode = 1
