@@ -17,29 +17,30 @@ func save_game():
 
 
 func load_game():
+	#Si on a pas de fichier de sauvgarde
 	if not FileAccess.file_exists(SaveFilePath):
-		return null# Error! We don't have a save to load.
+		return null
 
-	# Load the file line by line and process that dictionary to restore
-	# the object it represents.
+	# Récupère l'obj json
 	var save_game = FileAccess.open(SaveFilePath, FileAccess.READ)
 	while save_game.get_position() < save_game.get_length():
 		var json_string = save_game.get_line()
 
-		# Creates the helper class to interact with JSON
 		var json = JSON.new()
 
-		# Check if there is any error while parsing the JSON string, skip in case of failure
+		# Parse le Json
 		var parse_result = json.parse(json_string)
-		if not parse_result == OK:
-			print("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ", json.get_error_line())
-			continue
 
-		# Get the data from the JSON object
-		var node_data = json.get_data()
+		# Récupère les éléments du Json
+		var ressourceLoadingGame = json.get_data()
+		
+		return ressourceLoadingGame
 
-		return node_data
 
+
+
+
+#Pour hard reset on écrit rien dans la sauvegarde et on quitte l'application
 func hard_reset():
 	if not FileAccess.file_exists(SaveFilePath):
 		return null

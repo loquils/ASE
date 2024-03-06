@@ -3,9 +3,7 @@ extends Control
 
 var CustomButtonAmeliorationHelium = preload("res://Design/Scenes/ButtonAmelioHelium.tscn")
 
-#Amélioration de l'helium
-var BonusTypesAmeliorationHelium = ["HydrogeneRendementMultiply", "HydrogeneAttributsCoefficientAdd"]
-var CurrentBonusesAmeliorationHelium = {}
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -20,36 +18,13 @@ func _ready():
 			AmeliorationHelium.TypeAmeliorationHeliumEnum.Temperature:
 				$PresentationVBoxC/TemperaturePanelC/TemperatureVBoxC/ScrollC/ListeHeliumUpgradesVBoxC.add_child(newAmeliorationHeliumButton)
 	
-	for bonusType in BonusTypesAmeliorationHelium:
-		CurrentBonusesAmeliorationHelium[bonusType] = CustomNumber.new()
-	
-	MajBonusAmeliorationHelium()
-
+	BonusManager.MajBonusAmeliorationHelium()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 		#$DebugLabel.text = str(CurrentBonusesAmeliorationHelium[BonusTypesAmeliorationHelium[0]])
 	pass
-
-func MajBonusAmeliorationHelium():
-	for CurrentBonus in CurrentBonusesAmeliorationHelium:
-		CurrentBonusesAmeliorationHelium[CurrentBonus] = CustomNumber.new()
-	
-	for ameliorationHelium in RessourceManager.ListeAmeliorationsHelium:
-		if ameliorationHelium.IsUnlocked:
-			CurrentBonusesAmeliorationHelium[ameliorationHelium.BonusTypeAmeliorationHelium] = CurrentBonusesAmeliorationHelium[ameliorationHelium.BonusTypeAmeliorationHelium].add(ameliorationHelium.BonusAmeliorationHelium.multiply(ameliorationHelium.Level), true)
-			
-	for CurrentBonus in CurrentBonusesAmeliorationHelium:
-		match CurrentBonus:
-			"HydrogeneRendementMultiply":
-				if CurrentBonusesAmeliorationHelium[CurrentBonus].compare(CustomNumber.new()) == 0:
-					RessourceManager.ListeAtomes["Hydrogene"].ApportAtome = RessourceManager.ListeAtomes["Hydrogene"].ApportAtomeBase
-				else:
-					RessourceManager.ListeAtomes["Hydrogene"].ApportAtome = RessourceManager.ListeAtomes["Hydrogene"].ApportAtomeBase.multiply(CurrentBonusesAmeliorationHelium[CurrentBonus])
-			"HydrogeneAttributsCoefficientAdd":
-				for attributHydrogene in RessourceManager.ListeAtomes["Hydrogene"].ListeAttribs:
-					attributHydrogene.CoefficientRapport = attributHydrogene.CoefficientBaseRapport.add(CurrentBonusesAmeliorationHelium[CurrentBonus])
 
 
 #Trigger lors de l'appuie sur un bouton pour augmenter une amélioration de l'helium
@@ -58,7 +33,7 @@ func AchatAmeliorationHeliumButtonPressed(ameliorationHelium):
 		RessourceManager.QuantiteesAtomes["Helium"] = RessourceManager.QuantiteesAtomes["Helium"].minus(ameliorationHelium.GetPrixAmeliorationHelium())
 		ameliorationHelium.Level = ameliorationHelium.Level.add(CustomNumber.new(1.0))
 		print("Amélioration Helium " + ameliorationHelium.Name + " achetée ! Niveau : " + str(ameliorationHelium.Level))
-		MajBonusAmeliorationHelium()
+		BonusManager.MajBonusAmeliorationHelium()
 
 
 func _on_button_exit_pressed():

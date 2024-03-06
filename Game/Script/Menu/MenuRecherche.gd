@@ -2,8 +2,6 @@ extends Control
 
 var ButtonRechercheScenePreload = preload("res://Design/Scenes/ButtonRecherche.tscn")
 
-var CurrentBonusesResearches = {"PrixHydrogenePerCent" : 0.0}
-
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -17,11 +15,11 @@ func _ready():
 			Recherche.ResearchLevelEnum.EASY:
 				$ScrollContainerGlobalMenu/ResearchLvlVBoxContainer/ScrollRecherchesContainer/ResearchesEasyHBoxContainer.add_child(newRecherchebutton)
 		
-	MajBonusRecherches()
+	BonusManager.MajBonusRecherches()
 
 
 func _process(_delta):
-	$HBoxContainer/AugmenteLabel.text = str(CurrentBonusesResearches["PrixHydrogenePerCent"]) + "%"
+	$HBoxContainer/AugmenteLabel.text = str(BonusManager.CurrentBonusesResearches["PrixHydrogeneAugmentation"]) + "%"
 
 
 #Methode appellee par le signal lors de l'appuie sur un des boutons de recherches
@@ -37,18 +35,7 @@ func AchatRehercheButtonPressed(recherche):
 	RessourceManager.ListeRecherches[recherche.Id].IsUnlocked = true
 	RessourceManager.Coins = RessourceManager.Coins.minus(RessourceManager.ListeRecherches[recherche.Id].Prix)
 	print("Recherche " + recherche.Name + " achetée !")
-	MajBonusRecherches()
-
-
-#Permet de mettre à jour le dictionnaire des ressources
-#On parcour la liste des ressources, et on ajoute les bonus
-func MajBonusRecherches():
-	CurrentBonusesResearches["PrixHydrogenePerCent"] = 0.0
-	for recherche in RessourceManager.ListeRecherches:
-		if recherche.IsUnlocked:
-			match recherche.Augmentation:
-				"PrixHydrogenePerCent":
-					CurrentBonusesResearches["PrixHydrogenePerCent"] = CurrentBonusesResearches["PrixHydrogenePerCent"] + recherche.AugmentationPercent/100.0
+	BonusManager.MajBonusRecherches()
 
 
 var isEasyButtonExpanded = true

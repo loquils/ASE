@@ -101,10 +101,10 @@ func _ready():
 #Permet de charger la liste des recherches
 func loadResearch(listeRecherchesInSaving):
 	var listeRechercheInitializeGame = []
-	var easyResearchEnum = Recherche.ResearchLevelEnum.EASY
-	listeRechercheInitializeGame.append(Recherche.new(0, "Coin1", "Améliore 50%.", CustomNumber.new(1.0, 3), "PrixHydrogenePerCent", 50, easyResearchEnum))
-	listeRechercheInitializeGame.append(Recherche.new(1, "Coin2", "Améliore 100%", CustomNumber.new(5.0, 3), "PrixHydrogenePerCent", 100, easyResearchEnum))
-	listeRechercheInitializeGame.append(Recherche.new(2, "Coin3", "Améliore le prix de vente de l'hydrogène de 1 000%.", CustomNumber.new(2.0, 4), "PrixHydrogenePerCent", 1000, easyResearchEnum))
+	var easyResearch = Recherche.ResearchLevelEnum.EASY
+	listeRechercheInitializeGame.append(Recherche.new(0, "Prix Hydrogène", "Augmentation du prix de l'hydrogène de 50%.", CustomNumber.new(1.0, 3), "PrixHydrogeneAugmentation", CustomNumber.new(0.5, 0), easyResearch))
+	listeRechercheInitializeGame.append(Recherche.new(1, "Prix Hydrogène", "Augmentation du prix de l'hydrogène de 100%.", CustomNumber.new(5.0, 3), "PrixHydrogeneAugmentation", CustomNumber.new(1.0, 0), easyResearch))
+	listeRechercheInitializeGame.append(Recherche.new(2, "Prix Hydrogène", "Augmentation du prix de l'hydrogène de 1 000%.", CustomNumber.new(2.0, 4), "PrixHydrogeneAugmentation", CustomNumber.new(1.0, 1), easyResearch))
 	#ListeRecherches.append(Recherche.new(2, "Coin3", "Améliore 1 000%", 20000, "PrixHydrogenePerCent", 1000))
 	#ListeRecherches.append(Recherche.new(3, "Coin4", "Améliore 10 000%", 50000, "PrixHydrogenePerCent", 10000))
 	
@@ -116,6 +116,7 @@ func loadResearch(listeRecherchesInSaving):
 			
 	for recherche in listeRechercheInitializeGame:
 		ListeRecherches.append(recherche)
+
 
 #Permet de charger la liste des recherches
 func loadAmeliorationHelium(listeAmeliorationsHeliumInSaving):

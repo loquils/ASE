@@ -141,10 +141,9 @@ text = "ForceReset"
 layout_mode = 2
 text = "FreeMoney"
 
-[node name="SellHydrogenButton" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC" node_paths=PackedStringArray("MenuRecherche") instance=ExtResource("8_8mhas")]
+[node name="SellHydrogenButton" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC" instance=ExtResource("8_8mhas")]
 layout_mode = 2
 size_flags_vertical = 0
-MenuRecherche = NodePath("../../NewMenuMainControl/MenuPresentationVBoxC/AllMenus/MenuRecherche")
 
 [node name="NewMenuMainControl" type="Control" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC"]
 custom_minimum_size = Vector2(0, 50)
