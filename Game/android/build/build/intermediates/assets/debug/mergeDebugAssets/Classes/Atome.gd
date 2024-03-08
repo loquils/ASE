@@ -12,6 +12,8 @@ var ApportAtome
 
 var ListeAttribs = []
 
+var GlobalMultiplicator = CustomNumber.new(1.0)
+
 func _init(name, apportAtomeBase:CustomNumber, prixBaseVenteAtome:CustomNumber = CustomNumber.new()):
 	Name = name
 		
@@ -49,6 +51,6 @@ func GetAugmentationsAttributs():
 #Retourne la quantité d'atome par seconde par rapport aux attribut 
 func GetAtomePerSec():
 	if isUnlocked:
-		return ApportAtome.multiply((CustomNumber.new(1.0).add(GetAugmentationsAttributs())))
+		return ApportAtome.multiply((CustomNumber.new(1.0).add(GetAugmentationsAttributs()))).multiply(GlobalMultiplicator)
 	else:
 		return CustomNumber.new()

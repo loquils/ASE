@@ -1,4 +1,4 @@
-#Mon Mar 04 17:05:30 CET 2024
+#Wed Mar 06 16:02:58 CET 2024
 base.2=C\:\\Users\\thernand\\Documents\\GitHub\\ASE\\Game\\android\\build\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\6\\classes.dex
 path.2=6/classes.dex
 base.1=C\:\\Users\\thernand\\Documents\\GitHub\\ASE\\Game\\android\\build\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
