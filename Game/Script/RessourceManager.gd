@@ -40,6 +40,18 @@ func _ready():
 		Coins = CustomNumber.new(0, 0)
 	
 	
+
+	
+	#for atome in ListeAtomes:
+	#	QuantiteesAtomes[atome] = CustomNumber.new()
+	loadAtomes(quantiteesAtomesInSaving, listeAtomesInSaving)
+	loadResearch(listeRecherchesInSaving)
+	loadAmeliorationHelium(listeAmeliorationsHeliumInSaving)
+
+
+
+#Permet de charger la liste des atomes, et des quantitees possedees
+func loadAtomes(quantiteesAtomesInSaving, listeAtomesInSaving):
 	var listeAtomesInitializeGame = []
 	#On définit les atomes auxquels on a accès :)
 	var newAtome = Atome.new("Hydrogene", CustomNumber.new(1.0, 0), CustomNumber.new(1.0, 0))
@@ -90,12 +102,6 @@ func _ready():
 	
 	for initializedAtome in listeAtomesInitializeGame:
 		ListeAtomes[initializedAtome.Name] = initializedAtome
-	
-	#for atome in ListeAtomes:
-	#	QuantiteesAtomes[atome] = CustomNumber.new()
-	
-	loadResearch(listeRecherchesInSaving)
-	loadAmeliorationHelium(listeAmeliorationsHeliumInSaving)
 
 
 #Permet de charger la liste des recherches
