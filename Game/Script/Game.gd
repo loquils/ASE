@@ -8,8 +8,9 @@ func _ready():
 
 
 func _process(_delta):
+		#var prix = round(coin.PrixBaseAmelioAttributs["Force"] * pow(coin.CoefficientsAchatAttributs["Force"], coin.NiveauxAttributs["Force"]))
 	CoinsQuantityLabel.text = str(RessourceManager.Coins)
-	#var prix = round(coin.PrixBaseAmelioAttributs["Force"] * pow(coin.CoefficientsAchatAttributs["Force"], coin.NiveauxAttributs["Force"]))
+
 
 
 func GetPrixVenteHydrogene():
@@ -32,6 +33,9 @@ func _on_button_amelioration_helium_pressed():
 	$WindowTopBlackVBoxC/MarginContainer/AmeliorationHeliumControl.visible = true
 
 
+func _on_button_menu_prestige_pressed():
+	$WindowTopBlackVBoxC/MarginContainer/AmeliorationDarkMatterControl.visible = true
+
 #Permet de save toutes les minutes
 func _on_save_timer_timeout():
 	Save.save_game()
@@ -47,3 +51,8 @@ func _notification(what):
 #Give give money
 func _on_button_give_money_pressed():
 	RessourceManager.Coins = RessourceManager.Coins.add(CustomNumber.new(1.0, 10))
+
+
+func _on_max_hydro_timer_timeout():
+	if RessourceManager.HydrogeneMax.compare(RessourceManager.QuantiteesAtomes["Hydrogene"]) < 0:
+		RessourceManager.HydrogeneMax = RessourceManager.QuantiteesAtomes["Hydrogene"]

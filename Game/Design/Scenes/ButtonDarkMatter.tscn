@@ -11,10 +11,12 @@
 custom_minimum_size = Vector2(180, 200)
 offset_right = 8.0
 offset_bottom = 8.0
+theme = ExtResource("1_r48hp")
 script = ExtResource("1_ob042")
 
 [node name="PanelC" type="PanelContainer" parent="."]
 clip_contents = true
+layout_mode = 0
 offset_right = 180.0
 offset_bottom = 200.0
 grow_horizontal = 2

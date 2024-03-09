@@ -10,9 +10,9 @@ func _set_var(ameliorationDarkMatter):
 	pressed.connect(RechercheClick.AmeliorationDarkMatterButtonEventTrigger.bind(AmeliorationDarkMatter))
 	pressed.connect(ChangeButtonStateToBought)
 	
-	$PanelContainer/ResearchToBuyVBoxContainer/NomLabel.text = AmeliorationDarkMatter.Name
-	$PanelContainer/ResearchToBuyVBoxContainer/MarginContainer/DescriptionLabel.text = AmeliorationDarkMatter.Description
-	$PanelContainer/ResearchToBuyVBoxContainer/PrixLabel.text = "Prix : " + str(AmeliorationDarkMatter.Prix)
+	$PanelC/PresentationVBoxC/NomLabel.text = AmeliorationDarkMatter.Name
+	$PanelC/PresentationVBoxC/MarginC/DescriptionLabel.text = AmeliorationDarkMatter.Description
+	$PanelC/PresentationVBoxC/PrixLabel.text = "Prix : " + str(AmeliorationDarkMatter.Prix)
 
 
 #On met a jour l'UI en bloquant le bouton :)
@@ -32,5 +32,5 @@ func _process(_delta):
 func ChangeButtonStateToBought():
 	if AmeliorationDarkMatter.IsUnlocked:
 		disabled = true
-		$PanelC/PresentationVBoxContainer/MarginC/Panel.visible = true
+		$PanelC/PresentationVBoxC/MarginC/Panel.visible = true
 		print("Recherche achetée :)")

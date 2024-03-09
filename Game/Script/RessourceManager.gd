@@ -15,6 +15,11 @@ var ListeRecherches = []
 var ListeAmeliorationsHelium = []
 
 
+#Liste de toutes les améliorations de la dark matter
+var ListeAmeliorationsDarkMatter = []
+var DarkMatter: CustomNumber = CustomNumber.new()
+var HydrogeneMax: CustomNumber = CustomNumber.new()
+
 # Called when the n*ode enters the scene tree for the first time.
 func _ready():
 	#Il faut load la sauvegarde si elle existe :)
@@ -47,6 +52,7 @@ func _ready():
 	loadAtomes(quantiteesAtomesInSaving, listeAtomesInSaving)
 	loadResearch(listeRecherchesInSaving)
 	loadAmeliorationHelium(listeAmeliorationsHeliumInSaving)
+	loadDarkMatter()
 
 
 
@@ -147,6 +153,13 @@ func loadAmeliorationHelium(listeAmeliorationsHeliumInSaving):
 	
 	for ameliorationHelium in listeAmeliorationsHeliumInitializeGame:
 		ListeAmeliorationsHelium.append(ameliorationHelium)
+
+
+func loadDarkMatter():
+	var darkMatter1 = AmeliorationDarkMatter.new(0, "Evolution Hydrogène", "Double l'apport d'hydrogène par seconde.", CustomNumber.new(1.0, 3), CustomNumber.new(0.5, 0))
+	ListeAmeliorationsDarkMatter.append(darkMatter1)
+
+
 
 
 func save():

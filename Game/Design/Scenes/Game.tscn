@@ -62,6 +62,10 @@ autostart = true
 [node name="MainTimer" type="Timer" parent="."]
 autostart = true
 
+[node name="MaxHydroTimer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
 [node name="WindowTopBlackVBoxC" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -304,6 +308,7 @@ visible = false
 layout_mode = 2
 
 [node name="AmeliorationDarkMatterControl" type="Control" parent="WindowTopBlackVBoxC/MarginContainer"]
+visible = false
 layout_mode = 2
 script = ExtResource("14_fhqsv")
 
@@ -339,29 +344,36 @@ text = "Exit >"
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="WindowTopBlackVBoxC/MarginContainer/AmeliorationDarkMatterControl/PresentationVBoxC/MarginC"]
+[node name="VBoxC" type="VBoxContainer" parent="WindowTopBlackVBoxC/MarginContainer/AmeliorationDarkMatterControl/PresentationVBoxC/MarginC"]
 layout_mode = 2
 
-[node name="PrestigeBonusesScrollC" type="ScrollContainer" parent="WindowTopBlackVBoxC/MarginContainer/AmeliorationDarkMatterControl/PresentationVBoxC/MarginC/VBoxContainer"]
+[node name="PrestigeBonusesScrollC" type="ScrollContainer" parent="WindowTopBlackVBoxC/MarginContainer/AmeliorationDarkMatterControl/PresentationVBoxC/MarginC/VBoxC"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="ListeVBoxC" type="VBoxContainer" parent="WindowTopBlackVBoxC/MarginContainer/AmeliorationDarkMatterControl/PresentationVBoxC/MarginC/VBoxContainer/PrestigeBonusesScrollC"]
+[node name="ListeVBoxC" type="VBoxContainer" parent="WindowTopBlackVBoxC/MarginContainer/AmeliorationDarkMatterControl/PresentationVBoxC/MarginC/VBoxC/PrestigeBonusesScrollC"]
 layout_mode = 2
 
-[node name="PrestigeButton" type="Button" parent="WindowTopBlackVBoxC/MarginContainer/AmeliorationDarkMatterControl/PresentationVBoxC/MarginC/VBoxContainer"]
+[node name="Label" type="Label" parent="WindowTopBlackVBoxC/MarginContainer/AmeliorationDarkMatterControl/PresentationVBoxC/MarginC/VBoxC"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+
+[node name="PrestigeButton" type="Button" parent="WindowTopBlackVBoxC/MarginContainer/AmeliorationDarkMatterControl/PresentationVBoxC/MarginC/VBoxC"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_2a2og")
 theme_override_font_sizes/font_size = 22
 text = "LETS GO RESEEEEEEEEEEEEEEEEET
 !!!!!!!!!!!!!!!!"
 
-[node name="PrestigeAmeliorationScrollC" type="ScrollContainer" parent="WindowTopBlackVBoxC/MarginContainer/AmeliorationDarkMatterControl/PresentationVBoxC/MarginC/VBoxContainer"]
+[node name="PrestigeAmeliorationScrollC" type="ScrollContainer" parent="WindowTopBlackVBoxC/MarginContainer/AmeliorationDarkMatterControl/PresentationVBoxC/MarginC/VBoxC"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="PrestigeGridC" type="GridContainer" parent="WindowTopBlackVBoxC/MarginContainer/AmeliorationDarkMatterControl/PresentationVBoxC/MarginC/VBoxContainer/PrestigeAmeliorationScrollC"]
+[node name="PrestigeGridC" type="GridContainer" parent="WindowTopBlackVBoxC/MarginContainer/AmeliorationDarkMatterControl/PresentationVBoxC/MarginC/VBoxC/PrestigeAmeliorationScrollC"]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 3
 
 [node name="BlackBannerPanel2" type="Panel" parent="WindowTopBlackVBoxC"]
 custom_minimum_size = Vector2(0, 20)
@@ -371,11 +383,13 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_j7vtp")
 
 [connection signal="timeout" from="SaveTimer" to="." method="_on_save_timer_timeout"]
 [connection signal="timeout" from="MainTimer" to="." method="_on_main_timer_timeout"]
+[connection signal="timeout" from="MaxHydroTimer" to="." method="_on_max_hydro_timer_timeout"]
 [connection signal="pressed" from="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC/VBoxBoutons/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC/VBoxBoutons/ButtonGiveMoney" to="." method="_on_button_give_money_pressed"]
 [connection signal="pressed" from="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/AllMenus/MenuAmelioration/GridContainer/MarginContainer/ButtonAmeliorationHelium" to="." method="_on_button_amelioration_helium_pressed"]
 [connection signal="pressed" from="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/MenuBarBottomPanelC/MarginC/MenuBarHBoxC/ButtonMenuAtome" to="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl" method="_on_button_menu_atome_pressed"]
 [connection signal="pressed" from="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/MenuBarBottomPanelC/MarginC/MenuBarHBoxC/ButtonMenuRecherche" to="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl" method="_on_button_menu_recherche_pressed"]
 [connection signal="pressed" from="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/MenuBarBottomPanelC/MarginC/MenuBarHBoxC/ButtonMenuAmelioration" to="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl" method="_on_button_menu_amelioration_pressed"]
-[connection signal="pressed" from="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/MenuBarBottomPanelC/MarginC/MenuBarHBoxC/ButtonMenuPrestige" to="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl" method="_on_button_menu_prestige_pressed"]
+[connection signal="pressed" from="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/MenuBarBottomPanelC/MarginC/MenuBarHBoxC/ButtonMenuPrestige" to="." method="_on_button_menu_prestige_pressed"]
 [connection signal="pressed" from="WindowTopBlackVBoxC/MarginContainer/AmeliorationDarkMatterControl/PresentationVBoxC/TopHBoxC/ButtonExit" to="WindowTopBlackVBoxC/MarginContainer/AmeliorationDarkMatterControl" method="_on_button_exit_pressed"]
+[connection signal="pressed" from="WindowTopBlackVBoxC/MarginContainer/AmeliorationDarkMatterControl/PresentationVBoxC/MarginC/VBoxC/PrestigeButton" to="WindowTopBlackVBoxC/MarginContainer/AmeliorationDarkMatterControl" method="_on_prestige_button_pressed"]
