@@ -28,4 +28,4 @@ func AmeliorationHeliumButtonEventTrigger(ameliorationHelium):
 
 #Appuie sur un bouton d'amélioration Helium.
 func AmeliorationDarkMatterButtonEventTrigger(ameliorationDarkMatter):
-	AmeliorationHelium_button_pressed.emit(ameliorationDarkMatter)
+	AmeliorationDarkMatter_button_pressed.emit(ameliorationDarkMatter)

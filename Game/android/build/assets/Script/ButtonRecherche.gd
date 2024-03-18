@@ -1,7 +1,5 @@
 extends Button
 
-var ResearchToBuycontainer
-
 var Recherche
 
 #Définition de l'UI du bouton personnalisé.
@@ -11,21 +9,21 @@ func _set_var(recherche):
 	pressed.connect(RechercheClick.RechercheButtonEventTrigger.bind(Recherche))
 	pressed.connect(ChangeButtonStateToBought)
 	
-	$PanelContainer/ResearchToBuyVBoxContainer/NomLabel.text = Recherche.Name
-	$PanelContainer/ResearchToBuyVBoxContainer/MarginContainer/DescriptionLabel.text = Recherche.Description
-	$PanelContainer/ResearchToBuyVBoxContainer/PrixLabel.text = "Prix : " + str(Recherche.Prix)
+	$PanelC/PresentationVBoxC/NomLabel.text = Recherche.Name
+	$PanelC/PresentationVBoxC/MarginC/DescriptionLabel.text = Recherche.Description
+	$PanelC/PresentationVBoxC/PrixLabel.text = "Prix : " + str(Recherche.Prix)
 
 
 
 #On met a jour l'UI en bloquant le bouton :)
 func _process(_delta):
 	if not Recherche.IsUnlocked:
-		if Recherche.Prix.compare(RessourceManager.Coins) <= 0:
-			disabled = false
-		else:
+		if Recherche.Prix.isGreaterThan(RessourceManager.Coins):
 			disabled = true
+		else:
+			disabled = false
 	else:
-		if not $PanelContainer/ResearchToBuyVBoxContainer/MarginContainer/Panel.visible:
+		if not $PanelC/PresentationVBoxC/MarginC/Panel.visible:
 			ChangeButtonStateToBought()
 
 
@@ -34,5 +32,5 @@ func _process(_delta):
 func ChangeButtonStateToBought():
 	if Recherche.IsUnlocked:
 		disabled = true
-		$PanelContainer/ResearchToBuyVBoxContainer/MarginContainer/Panel.visible = true
+		$PanelC/PresentationVBoxC/MarginC/Panel.visible = true
 		print("Recherche achetée :)")

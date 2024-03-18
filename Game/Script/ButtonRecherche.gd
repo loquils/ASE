@@ -18,10 +18,10 @@ func _set_var(recherche):
 #On met a jour l'UI en bloquant le bouton :)
 func _process(_delta):
 	if not Recherche.IsUnlocked:
-		if Recherche.Prix.compare(RessourceManager.Coins) <= 0:
-			disabled = false
-		else:
+		if Recherche.Prix.isGreaterThan(RessourceManager.Coins):
 			disabled = true
+		else:
+			disabled = false
 	else:
 		if not $PanelC/PresentationVBoxC/MarginC/Panel.visible:
 			ChangeButtonStateToBought()
@@ -32,5 +32,5 @@ func _process(_delta):
 func ChangeButtonStateToBought():
 	if Recherche.IsUnlocked:
 		disabled = true
-		$PanelC/PresentationVBoxContainer/MarginC/Panel.visible = true
+		$PanelC/PresentationVBoxC/MarginC/Panel.visible = true
 		print("Recherche achetée :)")

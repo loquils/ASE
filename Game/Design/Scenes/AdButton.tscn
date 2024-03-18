@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://ds211h4rrwgqh"]
+
+[ext_resource type="Script" path="res://Script/AdButton.gd" id="1_1kvi1"]
+
+[node name="AdButton" type="Button"]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "AD !"
+script = ExtResource("1_1kvi1")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

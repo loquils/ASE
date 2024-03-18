@@ -4,12 +4,12 @@ var Id
 var Name
 var Description
 
-var AtomePriceForUnlocking = {"Coins" : CustomNumber.new(1.0, 2)}
+var AtomePriceForUnlocking = {"Coins" : Big.new(1.0, 2)}
 var IsUnlocked = false
 
-var Level
+var Level: Big
 
-var PrixBase = CustomNumber.new(1.0,3)
+var PrixBase = Big.new(1.0, 3)
 var ApportBase
 
 enum TypeAmeliorationHeliumEnum {Pression, Temperature} #Pression on / les prix, Temperature on augmente les rendements (genre les coefs)
@@ -20,7 +20,7 @@ var BonusTypeAmeliorationHelium
 var BonusAmeliorationHelium
 
 #func _init(id, name, description, prix:CustomNumber, augmentation, augmentationPercent, researchLevel):
-func _init(id, name, description, typeAmeliorationHelium:TypeAmeliorationHeliumEnum, bonusTypeAmeliorationHelium,bonusAmeliorationHelium:CustomNumber, level:CustomNumber = CustomNumber.new()):
+func _init(id, name, description, typeAmeliorationHelium:TypeAmeliorationHeliumEnum, bonusTypeAmeliorationHelium,bonusAmeliorationHelium:Big, level:Big = Big.new(0.0)):
 	Id = id
 	Name = name
 	Description = description
@@ -39,6 +39,8 @@ func DefineAtomeUnlockingPrice(atomePriceForUnlocking):
 func GetPrixAmeliorationHelium():
 	match TypeAmeliorationHelium:
 		TypeAmeliorationHeliumEnum.Pression:
-			return PrixBase.multiply(CustomNumber.new(1.0, 1).power(Level))
+			return Big.multiply(PrixBase, Big.power(Big.new(1.0, 1), Level))
+			#return PrixBase.multiply(Big.new(1.0, 1).power(Level))
 		TypeAmeliorationHeliumEnum.Temperature:
-			return PrixBase.multiply(CustomNumber.new(5.0, 0).power(Level))
+			return Big.multiply(PrixBase, Big.power(Big.new(5.0, 0), Level))
+			#return PrixBase.multiply(Big.new(5.0, 0).power(Level))

@@ -16,7 +16,7 @@ func _process(delta):
 	$PanelContainer/VBoxContainer/Niveau.text = "Niv." + str(Attribut.Niveau)
 	$PanelContainer/VBoxContainer/Prix.text = str(Attribut.Atome.GetPrixAttribut(Attribut)) + " C"
 	
-	if Attribut.Atome.GetPrixAttribut(Attribut).compare(RessourceManager.Coins) > 0:
+	if Attribut.Atome.GetPrixAttribut(Attribut).isGreaterThan(RessourceManager.Coins):
 		disabled = true
 	else:
 		disabled = false

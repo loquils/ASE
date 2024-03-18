@@ -29,10 +29,9 @@ func _process(delta):
 
 #Trigger lors de l'appuie sur un bouton pour augmenter une amélioration de l'helium
 func AchatAmeliorationHeliumButtonPressed(ameliorationHelium):
-	if ameliorationHelium.GetPrixAmeliorationHelium().compare(RessourceManager.QuantiteesAtomes["Helium"]) <= 0:
-		RessourceManager.QuantiteesAtomes["Helium"] = RessourceManager.QuantiteesAtomes["Helium"].minus(ameliorationHelium.GetPrixAmeliorationHelium())
-		ameliorationHelium.Level = ameliorationHelium.Level.add(CustomNumber.new(1.0))
-		print("Amélioration Helium " + ameliorationHelium.Name + " achetée ! Niveau : " + str(ameliorationHelium.Level))
+	if ameliorationHelium.GetPrixAmeliorationHelium().isLessThanOrEqualTo(RessourceManager.QuantiteesAtomes["Helium"]):
+		RessourceManager.QuantiteesAtomes["Helium"] = Big.subtractAbove0(RessourceManager.QuantiteesAtomes["Helium"], ameliorationHelium.GetPrixAmeliorationHelium())
+		ameliorationHelium.Level = Big.add(ameliorationHelium.Level, Big.new(1.0))
 		BonusManager.MajBonusAmeliorationHelium()
 
 

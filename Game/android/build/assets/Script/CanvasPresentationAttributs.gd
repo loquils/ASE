@@ -18,7 +18,7 @@ func _set_var(atome):
 	else:
 		for priceAtome in Atome.AtomePriceForUnlocking:
 			$PanelForUnlock/VBoxContainer/AtomeLabel.text = priceAtome
-			$PanelForUnlock/VBoxContainer/PrixLabel.text = str(Atome.AtomePriceForUnlocking[priceAtome]._to_string())
+			$PanelForUnlock/VBoxContainer/PrixLabel.text = str(Atome.AtomePriceForUnlocking[priceAtome])
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -33,7 +33,7 @@ func _process(delta):
 		#On test si le bouton est disabled ou pas : donc si on a assez de tous les atomes qu'on a besoin
 		var testForOk = true
 		for priceAtomeName in Atome.AtomePriceForUnlocking:
-			if RessourceManager.QuantiteesAtomes[priceAtomeName].compare(Atome.AtomePriceForUnlocking[priceAtomeName]) < 0:
+			if RessourceManager.QuantiteesAtomes[priceAtomeName].isLessThan(Atome.AtomePriceForUnlocking[priceAtomeName]):
 				testForOk = false
 		
 		if testForOk:
@@ -48,11 +48,11 @@ func OnUnlockButtonPressed():
 		return
 	
 	for priceAtomeName in Atome.AtomePriceForUnlocking:
-		if RessourceManager.QuantiteesAtomes[priceAtomeName].compare(Atome.AtomePriceForUnlocking[priceAtomeName]) < 0:
+		if RessourceManager.QuantiteesAtomes[priceAtomeName].isLessThan(Atome.AtomePriceForUnlocking[priceAtomeName]):
 			return
 	
 	for priceAtomeName in Atome.AtomePriceForUnlocking:
-		RessourceManager.QuantiteesAtomes[priceAtomeName] = RessourceManager.QuantiteesAtomes[priceAtomeName].minus(Atome.AtomePriceForUnlocking[priceAtomeName])
+		RessourceManager.QuantiteesAtomes[priceAtomeName] = Big.subtractAbove0(RessourceManager.QuantiteesAtomes[priceAtomeName], Atome.AtomePriceForUnlocking[priceAtomeName])
 	
 	Atome.isUnlocked = true
 	

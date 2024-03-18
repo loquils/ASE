@@ -21,8 +21,6 @@ func _process(delta):
 
 #Trigger lors de l'appuie sur un bouton pour augmenter un attribut d'un atome
 func AchatAttributButtonPressed(attribut):
-	if attribut.Atome.GetPrixAttribut(attribut).compare(RessourceManager.Coins) < 0 and attribut.Atome.GetPrixAttribut(attribut).compare(CustomNumber.new()) > 0:
-		RessourceManager.Coins = RessourceManager.Coins.minus(attribut.Atome.GetPrixAttribut(attribut))
-		attribut.Niveau = attribut.Niveau.add(CustomNumber.new(1.0))
-		print("Attribut " + attribut.Name + " achetée ! Niveau : " + str(attribut.Niveau))
-		attribut.Atome.GetPrixAttribut(attribut).prints()
+	if attribut.Atome.GetPrixAttribut(attribut).isLessThan(RessourceManager.Coins):#and attribut.Atome.GetPrixAttribut(attribut).isGreaterThan(Big.new(0.0)):
+		RessourceManager.Coins = Big.subtractAbove0(RessourceManager.Coins, attribut.Atome.GetPrixAttribut(attribut))
+		attribut.Niveau = Big.add(attribut.Niveau, Big.new(1.0))

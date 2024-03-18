@@ -66,6 +66,10 @@ autostart = true
 wait_time = 5.0
 autostart = true
 
+[node name="AdTimer" type="Timer" parent="."]
+wait_time = 300.0
+autostart = true
+
 [node name="WindowTopBlackVBoxC" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -384,6 +388,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_j7vtp")
 [connection signal="timeout" from="SaveTimer" to="." method="_on_save_timer_timeout"]
 [connection signal="timeout" from="MainTimer" to="." method="_on_main_timer_timeout"]
 [connection signal="timeout" from="MaxHydroTimer" to="." method="_on_max_hydro_timer_timeout"]
+[connection signal="timeout" from="AdTimer" to="." method="_on_ad_timer_timeout"]
 [connection signal="pressed" from="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC/VBoxBoutons/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC/VBoxBoutons/ButtonGiveMoney" to="." method="_on_button_give_money_pressed"]
 [connection signal="pressed" from="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/AllMenus/MenuAmelioration/GridContainer/MarginContainer/ButtonAmeliorationHelium" to="." method="_on_button_amelioration_helium_pressed"]

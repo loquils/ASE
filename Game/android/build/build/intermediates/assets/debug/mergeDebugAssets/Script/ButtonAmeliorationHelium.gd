@@ -37,7 +37,7 @@ func _process(delta):
 			$PanelForUnlock.visible = false
 		
 		#On test si le bouton est disabled ou pas
-		if RessourceManager.Coins.compare(AmeliorationHelium.AtomePriceForUnlocking["Coins"]) < 0:
+		if RessourceManager.Coins.isLessThan(AmeliorationHelium.AtomePriceForUnlocking["Coins"]):
 			AmeliorationHeliumUnlockButton.disabled = true
 		else:
 			AmeliorationHeliumUnlockButton.disabled = false
@@ -45,7 +45,7 @@ func _process(delta):
 		$PanelC/MarginC/HBoxC/RightVBoxC/NiveauLabel.text = "Niv." + str(AmeliorationHelium.Level)
 		$PanelC/MarginC/HBoxC/RightVBoxC/PrixLabel.text = str(AmeliorationHelium.GetPrixAmeliorationHelium()) + " He"
 		
-		if RessourceManager.QuantiteesAtomes["Helium"].compare(AmeliorationHelium.GetPrixAmeliorationHelium()) < 0:
+		if RessourceManager.QuantiteesAtomes["Helium"].isLessThan(AmeliorationHelium.GetPrixAmeliorationHelium()):
 			disabled = true
 		else : 
 			disabled = false
@@ -56,10 +56,9 @@ func _on_amelioration_helium_unlock_button_pressed():
 	if AmeliorationHelium.IsUnlocked:
 		return
 	
-	if RessourceManager.Coins.compare(AmeliorationHelium.AtomePriceForUnlocking["Coins"]) < 0:
+	if RessourceManager.Coins.isLessThan(AmeliorationHelium.AtomePriceForUnlocking["Coins"]):
 		return
 	
-	RessourceManager.Coins = RessourceManager.Coins.minus(AmeliorationHelium.AtomePriceForUnlocking["Coins"])
+	RessourceManager.Coins = Big.subtractAbove0(RessourceManager.Coins, AmeliorationHelium.AtomePriceForUnlocking["Coins"])
 	
 	AmeliorationHelium.IsUnlocked = true
-	

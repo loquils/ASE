@@ -3,15 +3,15 @@ class_name AttributAtome
 var Atome
 
 var Name
-var Niveau
-var CoefficientAchat
+var Niveau: Big
+var CoefficientAchat: Big
 
-var CoefficientBaseRapport
+var CoefficientBaseRapport: Big
 var CoefficientRapport
 
-var PrixBaseAmelio
+var PrixBaseAmelio: Big
 
-func _init(atome, name, niveau:CustomNumber, coefficientAchat:CustomNumber, coefficientBaseRapport:CustomNumber, prixBaseAmelio:CustomNumber):
+func _init(atome, name, niveau:Big, coefficientAchat:Big, coefficientBaseRapport:Big, prixBaseAmelio:Big):
 	Atome = atome
 	Name = name
 	Niveau = niveau
@@ -19,4 +19,3 @@ func _init(atome, name, niveau:CustomNumber, coefficientAchat:CustomNumber, coef
 	CoefficientBaseRapport = coefficientBaseRapport
 	CoefficientRapport = CoefficientBaseRapport
 	PrixBaseAmelio = prixBaseAmelio
-

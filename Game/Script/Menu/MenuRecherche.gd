@@ -25,16 +25,15 @@ func _process(_delta):
 #Methode appellee par le signal lors de l'appuie sur un des boutons de recherches
 #On vérifie si on peut acheter la recherche, et on l'achete.	
 func AchatRehercheButtonPressed(recherche):
-	print("Bouton préssé :)")
 	if RessourceManager.ListeRecherches[recherche.Id].IsUnlocked:
 		return
 	
-	if RessourceManager.ListeRecherches[recherche.Id].Prix.compare(RessourceManager.Coins) > 0:
+	if RessourceManager.ListeRecherches[recherche.Id].Prix.isGreaterThan(RessourceManager.Coins):
 		return
 	
 	RessourceManager.ListeRecherches[recherche.Id].IsUnlocked = true
-	RessourceManager.Coins = RessourceManager.Coins.minus(RessourceManager.ListeRecherches[recherche.Id].Prix)
-	print("Recherche " + recherche.Name + " achetée !")
+	RessourceManager.Coins = Big.subtractAbove0(RessourceManager.Coins, RessourceManager.ListeRecherches[recherche.Id].Prix)
+
 	BonusManager.MajBonusRecherches()
 
 

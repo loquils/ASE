@@ -33,7 +33,6 @@ func _on_button_menu_amelioration_pressed():
 		$MenuPresentationVBoxC/AllMenus/MenuAmelioration.visible = true
 
 
-
 func hideAllMenus():
 	for menu in $MenuPresentationVBoxC/AllMenus.get_children():
 		menu.visible = false

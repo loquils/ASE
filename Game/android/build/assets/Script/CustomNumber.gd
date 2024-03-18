@@ -1,4 +1,4 @@
-class_name CustomNumber
+class_name CustomNumberT
 
 var decimal
 var expo
@@ -28,7 +28,7 @@ func _init(deci:float = 0.0, ex:int = 0):
 
 
 #Permet d'additionner deux chiffre en notation comme on a
-func add(numberToAdd:CustomNumber, debug:bool = false):
+func add(numberToAdd:CustomNumberT, debug:bool = false):
 	var numMax
 	var numMin
 	var newDecimal
@@ -72,11 +72,11 @@ func add(numberToAdd:CustomNumber, debug:bool = false):
 			newDecimal = RoundFloat5Decimal(newDecimal / (10 ** (str(newDecimal).length() - 1)))
 		
 		
-	return CustomNumber.new(newDecimal, newExpo)
+	return CustomNumberT.new(newDecimal, newExpo)
 
 
 #Permet de soustraire deux chiffre en notation comme on a
-func minus(numberToMinus:CustomNumber):
+func minus(numberToMinus:CustomNumberT):
 	var newDecimal = decimal
 	var newExpo = expo
 	if expo - numberToMinus.expo <= 5:
@@ -88,11 +88,11 @@ func minus(numberToMinus:CustomNumber):
 			newDecimal = RoundFloat5Decimal(newDecimal * 10)
 			newExpo -= 1
 			
-	return CustomNumber.new(newDecimal, newExpo)
+	return CustomNumberT.new(newDecimal, newExpo)
 
 
-#Permet de multiplier deux CustomNumber
-func multiply(numberMultiply:CustomNumber):
+#Permet de multiplier deux CustomNumberT
+func multiply(numberMultiply:CustomNumberT):
 	var newDeci = decimal * numberMultiply.decimal
 	var newExpo = expo + numberMultiply.expo
 	
@@ -102,26 +102,26 @@ func multiply(numberMultiply:CustomNumber):
 		newDeci = RoundFloat5Decimal(newDeci / (10 ** (posDot - 1)))
 		newExpo += posDot - 1
 		
-	return CustomNumber.new(newDeci, newExpo)
+	return CustomNumberT.new(newDeci, newExpo)
 
 
 #Permet de faire la puissance, correcte jusqu'a puissance 1 000 000, après c'est approximatif xD
-func power(numberPower:CustomNumber):
+func power(numberPower:CustomNumberT):
 	var yDeci = 1.0
 	var yExpo = 0
 	
 	var newDeci = decimal
 	var newExpo = expo
 
-	if numberPower.compare(CustomNumber.new()) == 0:
-		return CustomNumber.new(1.0)
+	if numberPower.compare(CustomNumberT.new()) == 0:
+		return CustomNumberT.new(1.0)
 		
 		
-	if numberPower.compare(CustomNumber.new(1.0, 5)) == 0:
+	if numberPower.compare(CustomNumberT.new(1.0, 5)) == 0:
 		debug = true
 	
 	if numberPower.expo <= 5:
-		while numberPower.compare(CustomNumber.new(1.0)) > 0:
+		while numberPower.compare(CustomNumberT.new(1.0)) > 0:
 			if int(numberPower.decimal * (10**numberPower.expo)) % 2 == 0:
 				newExpo *= 2
 				newDeci **= 2
@@ -131,7 +131,7 @@ func power(numberPower:CustomNumber):
 				yExpo = newExpo + yExpo
 				newExpo *= 2
 				newDeci **= 2
-				numberPower = numberPower.minus(CustomNumber.new(1.0)).divideByTwoToParsed()
+				numberPower = numberPower.minus(CustomNumberT.new(1.0)).divideByTwoToParsed()
 
 			#Si on a plus de 1 chiffre avant la virgule, on re-arrange
 			var posDot = str(newDeci).find(".")
@@ -154,7 +154,7 @@ func power(numberPower:CustomNumber):
 				yDeci = RoundFloat5Decimal(yDeci / (10 ** (str(yDeci).length() - 1)))
 
 	else:
-		while numberPower.compare(CustomNumber.new(1.0)) > 0:
+		while numberPower.compare(CustomNumberT.new(1.0)) > 0:
 			var newValueForCalcul
 			if numberPower.expo > 5:
 				newValueForCalcul = numberPower.decimal * (10**3)
@@ -170,7 +170,7 @@ func power(numberPower:CustomNumber):
 				yExpo = newExpo + yExpo
 				newExpo *= 2
 				newDeci **= 2
-				numberPower = numberPower.minus(CustomNumber.new(1.0)).divideByTwoToParsed()
+				numberPower = numberPower.minus(CustomNumberT.new(1.0)).divideByTwoToParsed()
 				
 			#Si on a plus de 1 chiffre avant la virgule, on re-arrange
 			var posDot = str(newDeci).find(".")
@@ -205,7 +205,7 @@ func power(numberPower:CustomNumber):
 		newExpo += str(newDeci).length() - 1
 		newDeci = RoundFloat5Decimal(newDeci / (10 ** (str(newDeci).length() - 1)))
 	
-	return CustomNumber.new(newDeci, newExpo)
+	return CustomNumberT.new(newDeci, newExpo)
 
 
 #Permet de diviser par 2 un custom number
@@ -213,11 +213,11 @@ func divideByTwoToParsed():
 	var newDeci = decimal
 	var newExpo = expo
 	
-	if self.compare(CustomNumber.new()) == 0:
-		return CustomNumber.new()
+	if self.compare(CustomNumberT.new()) == 0:
+		return CustomNumberT.new()
 		
-	if self.compare(CustomNumber.new(1.0)) == 0:
-		return CustomNumber.new()
+	if self.compare(CustomNumberT.new(1.0)) == 0:
+		return CustomNumberT.new()
 	
 	newDeci = newDeci/2.0
 	#Si on a des 0 avant la virgule, il faut les virer
@@ -229,16 +229,16 @@ func divideByTwoToParsed():
 	if expo <= 3:
 		var number = int(newDeci * (10**newExpo))
 		if number == 0:
-			return CustomNumber.new()
+			return CustomNumberT.new()
 
 		newExpo = str(number).length() - 1
 		newDeci = RoundFloat5Decimal(number / (10.0 ** float((str(number).length() - 1.0))))
 
-	return CustomNumber.new(newDeci, newExpo)
+	return CustomNumberT.new(newDeci, newExpo)
 
 
-#Compare un customnumber avec un autre, retourne -1 si il est plus petit, 0 si égale, 1 si plus grand
-func compare(numberToCompare:CustomNumber):
+#Compare un CustomNumberT avec un autre, retourne -1 si il est plus petit, 0 si égale, 1 si plus grand
+func compare(numberToCompare:CustomNumberT):
 	if expo > numberToCompare.expo:
 		return 1
 	elif expo < numberToCompare.expo:
@@ -283,4 +283,4 @@ func ToJsonFormat():
 
 
 static func ToCustomFormat(jsonList:Array):
-	return CustomNumber.new(jsonList[0], jsonList[1])
+	return CustomNumberT.new(jsonList[0], jsonList[1])

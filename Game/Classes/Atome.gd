@@ -5,16 +5,16 @@ var AtomePriceForUnlocking
 
 var Name
 
-var PrixBaseVenteAtome
+var PrixBaseVenteAtome: Big
 
 var ApportAtomeBase
 var ApportAtome
 
 var ListeAttribs = []
 
-var GlobalMultiplicator = CustomNumber.new(1.0)
+var GlobalMultiplicator = Big.new()
 
-func _init(name, apportAtomeBase:CustomNumber, prixBaseVenteAtome:CustomNumber = CustomNumber.new()):
+func _init(name, apportAtomeBase:Big, prixBaseVenteAtome:Big = Big.new(0.0)):
 	Name = name
 		
 	ApportAtomeBase = apportAtomeBase
@@ -35,22 +35,26 @@ func DefineAtomeUnlockingPrice(atomePriceForUnlocking):
 
 #Retourne le prix de l'amélioration de l'attribut.
 func GetPrixAttribut(attribut):
-	var poww = attribut.CoefficientAchat.power(attribut.Niveau)
-	var prix = attribut.PrixBaseAmelio.multiply(poww)
+	#var poww = attribut.CoefficientAchat.power(attribut.Niveau)
+	#var prix = attribut.PrixBaseAmelio.multiply(poww)
+	var poww = Big.power(attribut.CoefficientAchat, attribut.Niveau)
+	var prix = Big.multiply(attribut.PrixBaseAmelio, poww)
 	return prix
 
 
 #Retourne le coefficient d'augmentation des attributs.
 func GetAugmentationsAttributs():
-	var attributsAddition = CustomNumber.new()
+	var attributsAddition = Big.new(0.0)
 	for attribut in ListeAttribs:
-		attributsAddition = attributsAddition.add(attribut.CoefficientRapport.multiply(attribut.Niveau))
+		#attributsAddition = attributsAddition.add(attribut.CoefficientRapport.multiply(attribut.Niveau))
+		attributsAddition = Big.add(attributsAddition, Big.multiply(attribut.CoefficientRapport, attribut.Niveau))
 	return attributsAddition
 
 
 #Retourne la quantité d'atome par seconde par rapport aux attribut 
 func GetAtomePerSec():
 	if isUnlocked:
-		return ApportAtome.multiply((CustomNumber.new(1.0).add(GetAugmentationsAttributs()))).multiply(GlobalMultiplicator)
+		#return ApportAtome.multiply((CustomNumber.new(1.0).add(GetAugmentationsAttributs()))).multiply(GlobalMultiplicator)
+		return Big.multiply(Big.multiply(ApportAtome, Big.add(Big.new(1.0), GetAugmentationsAttributs())), BonusManager.GetGlobalMultiplicator(Name))
 	else:
-		return CustomNumber.new()
+		return Big.new(0.0)

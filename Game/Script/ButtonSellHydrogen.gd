@@ -2,11 +2,11 @@ extends Button
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	var PrixVenteHydrogene = RessourceManager.ListeAtomes["Hydrogene"].PrixBaseVenteAtome.multiply(CustomNumber.new(1.0).add(BonusManager.CurrentBonusesResearches["PrixHydrogeneAugmentation"]))
-	$PanelC/PresentationVBoxC/MarginC2/PriceLabel.text = str(PrixVenteHydrogene.multiply(RessourceManager.QuantiteesAtomes["Hydrogene"])) + " C"
+	var PrixVenteHydrogene = Big.multiply(RessourceManager.ListeAtomes["Hydrogene"].PrixBaseVenteAtome, Big.add(Big.new(1.0), BonusManager.CurrentBonusesResearches["PrixHydrogeneAugmentation"]))
+	$PanelC/PresentationVBoxC/MarginC2/PriceLabel.text = str(Big.multiply(PrixVenteHydrogene, RessourceManager.QuantiteesAtomes["Hydrogene"])) + " C"
 
 
 func _on_pressed():
-	var PrixVenteHydrogene = RessourceManager.ListeAtomes["Hydrogene"].PrixBaseVenteAtome.multiply(CustomNumber.new(1.0).add(BonusManager.CurrentBonusesResearches["PrixHydrogeneAugmentation"]))
-	RessourceManager.Coins = RessourceManager.Coins.add(PrixVenteHydrogene.multiply(RessourceManager.QuantiteesAtomes["Hydrogene"]))
-	RessourceManager.QuantiteesAtomes["Hydrogene"] = CustomNumber.new()
+	var PrixVenteHydrogene = Big.multiply(RessourceManager.ListeAtomes["Hydrogene"].PrixBaseVenteAtome, Big.add(Big.new(1.0), BonusManager.CurrentBonusesResearches["PrixHydrogeneAugmentation"]))
+	RessourceManager.Coins = Big.add(RessourceManager.Coins, Big.multiply(PrixVenteHydrogene, RessourceManager.QuantiteesAtomes["Hydrogene"]))
+	RessourceManager.QuantiteesAtomes["Hydrogene"] = Big.new(0.0)
