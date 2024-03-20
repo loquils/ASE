@@ -17,9 +17,7 @@ func _process(_delta):
 
 
 func _on_main_timer_timeout():
-	for atome in RessourceManager.ListeAtomes:
-		if RessourceManager.ListeAtomes[atome].isUnlocked:
-			RessourceManager.QuantiteesAtomes[atome] = Big.add(RessourceManager.QuantiteesAtomes[atome], RessourceManager.ListeAtomes[atome].GetAtomePerSec())
+	RessourceManager.CalculateQuantityAtomes(1)
 
 
 #Bouton pour hard_reset
@@ -58,10 +56,8 @@ func _on_max_hydro_timer_timeout():
 		RessourceManager.HydrogeneMax = RessourceManager.QuantiteesAtomes["Hydrogene"]
 
 
-
-
 func _on_ad_timer_timeout():
-	if get_node("WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC/VBoxBoutons/AdButton") == null:
+	if not has_node("WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC/VBoxBoutons/AdButton"):
 		var buttonAd = AdButtonScene.instantiate()
 		$WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC/VBoxBoutons.add_child(buttonAd)
 	else:

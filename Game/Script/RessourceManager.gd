@@ -159,6 +159,22 @@ func loadDarkMatter():
 	ListeAmeliorationsDarkMatter.append(darkMatter1)
 
 
+
+
+
+func CalculateQuantityAtomes(timeInSeconde:int = 1):
+	for atome in ListeAtomes:
+		if ListeAtomes[atome].isUnlocked:
+			QuantiteesAtomes[atome] = Big.multiply(Big.add(QuantiteesAtomes[atome], ListeAtomes[atome].GetAtomePerSec()), Big.new(timeInSeconde))
+
+
+
+
+
+
+
+
+
 func save():
 	#Pour les quantitées
 	var quantityDictionnary = {}

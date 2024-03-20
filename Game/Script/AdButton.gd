@@ -1,5 +1,7 @@
 extends Button
 
+@export var AdTimerTest : Timer
+
 var _full_screen_content_callback := FullScreenContentCallback.new()
 var on_user_earned_reward_listener := OnUserEarnedRewardListener.new()
 var _rewarded_ad : RewardedAd
@@ -12,13 +14,17 @@ func _ready():
 		print("on_ad_dismissed_full_screen_content")
 	_full_screen_content_callback.on_ad_failed_to_show_full_screen_content = func(ad_error : AdError) -> void:
 		print("on_ad_failed_to_show_full_screen_content")
+		AdTimerTest.start()
 	_full_screen_content_callback.on_ad_impression = func() -> void:
 		print("on_ad_impression")
 	_full_screen_content_callback.on_ad_showed_full_screen_content = func() -> void:
 		print("on_ad_showed_full_screen_content")
 	on_user_earned_reward_listener.on_user_earned_reward = func(rewarded_item : RewardedItem):
 		print("on_user_earned_reward, rewarded_item: rewarded", rewarded_item.amount, rewarded_item.type)
-	
+		RessourceManager.CalculateQuantityAtomes(3*60) #A changer avec le temps
+		queue_free()
+		AdTimerTest.start()
+		
 	if _rewarded_ad:
 		_rewarded_ad.destroy()
 		_rewarded_ad = null
@@ -26,6 +32,7 @@ func _ready():
 	var unit_id : String
 	if OS.get_name() == "Android":
 		unit_id = "ca-app-pub-3940256099942544/5224354917"
+		#unit_id ="ca-app-pub-4095654602209013/6246748450"
 	elif OS.get_name() == "iOS":
 		unit_id = "ca-app-pub-3940256099942544/1712485313"
 
