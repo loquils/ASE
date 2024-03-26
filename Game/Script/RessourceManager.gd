@@ -29,18 +29,18 @@ func _ready():
 	var listeAtomesInSaving
 	var listeRecherchesInSaving
 	var listeAmeliorationsHeliumInSaving
-	
+
 	if ressourceLoadingGame != null:
 		if ressourceLoadingGame.has("Coins"):
 			Coins = Big.ToCustomFormat(ressourceLoadingGame["Coins"])
-		if ressourceLoadingGame.has("QuantiteesAtomes"):
-			quantiteesAtomesInSaving = ressourceLoadingGame["QuantiteesAtomes"]
-		if ressourceLoadingGame.has("ListeAtomes"):
-			listeAtomesInSaving = ressourceLoadingGame["ListeAtomes"]
-		if ressourceLoadingGame.has("ListeRecherches"):
-			listeRecherchesInSaving = ressourceLoadingGame["ListeRecherches"]
-		if ressourceLoadingGame.has("ListeAmeliorationsHelium"):
-			listeAmeliorationsHeliumInSaving = ressourceLoadingGame["ListeAmeliorationsHelium"]
+		if ressourceLoadingGame.has("AtomsQuantity"):
+			quantiteesAtomesInSaving = ressourceLoadingGame["AtomsQuantity"]
+		if ressourceLoadingGame.has("AtomsList"):
+			listeAtomesInSaving = ressourceLoadingGame["AtomsList"]
+		if ressourceLoadingGame.has("ResearchesList"):
+			listeRecherchesInSaving = ressourceLoadingGame["ResearchesList"]
+		if ressourceLoadingGame.has("HeliumUpgradesList"):
+			listeAmeliorationsHeliumInSaving = ressourceLoadingGame["HeliumUpgradesList"]
 	else:
 		Coins = Big.new(0, 0)
 
@@ -58,25 +58,28 @@ func _ready():
 #Permet de charger la liste des atomes, et des quantitees possedees
 func loadAtomes(quantiteesAtomesInSaving, listeAtomesInSaving):
 	var listeAtomesInitializeGame = []
+	
 	#On définit les atomes auxquels on a accès :)
-	var newAtome = Atome.new("Hydrogene", Big.new(1.0, 0), Big.new(1.0, 0))
-	var ListeAttribsTest = [AttributAtome.new(newAtome, "Force", Big.new(0.0), Big.new(1.13), Big.new(1.07), Big.new(15)), AttributAtome.new(newAtome, "Vitesse", Big.new(0.0), Big.new(1.38), Big.new(1.15), Big.new(30))] #AttributAtome.new(newAtome, "COIIIn", 0, 20, 50, 100)
-	newAtome.DefineAtomeAttributs(ListeAttribsTest)
-	newAtome.isUnlocked = true
+	var hydrogeneAtom = Atome.new("Hydrogene", Big.new(1.0, 0), Big.new(1.0, 0))
+	var ListeAttribsTest = [AttributAtome.new(hydrogeneAtom, "Force", Big.new(0.0), Big.new(1.13), Big.new(1.07), Big.new(15)), AttributAtome.new(hydrogeneAtom, "Vitesse", Big.new(0.0), Big.new(1.38), Big.new(1.15), Big.new(30))] #AttributAtome.new(newAtome, "COIIIn", 0, 20, 50, 100)
+	hydrogeneAtom.DefineAtomeAttributs(ListeAttribsTest)
+	hydrogeneAtom.isUnlocked = true
 	
-	listeAtomesInitializeGame.append(newAtome)
+	listeAtomesInitializeGame.append(hydrogeneAtom)
 	
-	var newAtome2 = Atome.new("Helium", Big.new(0.25, 0))
-	var ListeAttribsTest2 = [AttributAtome.new(newAtome2, "Spin", Big.new(1.0, 5), Big.new(1.32), Big.new(1.12), Big.new(50)), AttributAtome.new(newAtome2, "Angle", Big.new(0.0), Big.new(1.40), Big.new(1.2), Big.new(50)), AttributAtome.new(newAtome2, "Complexity", Big.new(0.0), Big.new(1.6), Big.new(1.5), Big.new(100))]
-	newAtome2.DefineAtomeAttributs(ListeAttribsTest2)
-	newAtome2.DefineAtomeUnlockingPrice({"Hydrogene" : Big.new(1.0, 2)})
+	var heliumAtom = Atome.new("Helium", Big.new(0.25, 0))
+	var ListeAttribsTest2 = [AttributAtome.new(heliumAtom, "Spin", Big.new(1.0, 5), Big.new(1.32), Big.new(1.12), Big.new(50)), AttributAtome.new(heliumAtom, "Angle", Big.new(0.0), Big.new(1.40), Big.new(1.2), Big.new(50)), AttributAtome.new(heliumAtom, "Complexity", Big.new(0.0), Big.new(1.6), Big.new(1.5), Big.new(100))]
+	heliumAtom.DefineAtomeAttributs(ListeAttribsTest2)
+	heliumAtom.DefineAtomeUnlockingPrice({"Hydrogene" : Big.new(1.0, 2)})
 	
-	listeAtomesInitializeGame.append(newAtome2)
+	listeAtomesInitializeGame.append(heliumAtom)
 	
-	var newAtome3 = Atome.new("Fer", Big.new(0.25, 0))
-	var ListeAttribsTest3 = [AttributAtome.new(newAtome3, "Tourette", Big.new(0.0), Big.new(1.0, 1), Big.new(5.0, 1), Big.new(5.0))]
+	
+	var newAtome3 = Atome.new("Unbinilium", Big.new(0.25, 0))
+	var ListeAttribsTest3 = [AttributAtome.new(newAtome3, "What", Big.new(0.0), Big.new(1.0, 1), Big.new(5.0, 1), Big.new(5.0)), AttributAtome.new(newAtome3, "The", Big.new(0.0), Big.new(1.0, 1), Big.new(5.0, 1), Big.new(5.0)), AttributAtome.new(newAtome3, "Fuck", Big.new(0.0), Big.new(1.0, 1), Big.new(5.0, 1), Big.new(5.0))]
 	newAtome3.DefineAtomeAttributs(ListeAttribsTest3)
-	newAtome3.DefineAtomeUnlockingPrice({"Helium" : Big.new(1.0, 2)})
+	newAtome3.DefineAtomeUnlockingPrice({"Hydrogene" : Big.new(1.0, 1)})
+	newAtome3.isUnlocked = true
 	
 	#listeAtomesInitializeGame.append(newAtome3)
 	
@@ -155,7 +158,7 @@ func loadAmeliorationHelium(listeAmeliorationsHeliumInSaving):
 
 
 func loadDarkMatter():
-	var darkMatter1 = AmeliorationDarkMatter.new(0, "Evolution Hydrogène", "Double l'apport d'hydrogène par seconde.", Big.new(1.0, 3), Big.new(0.5, 0))
+	var darkMatter1 = AmeliorationDarkMatter.new(0, "Evolution Hydrogène", "Double l'apport d'hydrogène par seconde.", Big.new(20.0, 0), Big.new(2.0, 0))
 	ListeAmeliorationsDarkMatter.append(darkMatter1)
 
 
@@ -177,34 +180,34 @@ func CalculateQuantityAtomes(timeInSeconde:int = 1):
 
 func save():
 	#Pour les quantitées
-	var quantityDictionnary = {}
-	for quantiteeName in QuantiteesAtomes:
-		quantityDictionnary[quantiteeName] = QuantiteesAtomes[quantiteeName].ToJsonFormat()
+	var atomsQuantityDictionnary = {}
+	for atomName in QuantiteesAtomes:
+		atomsQuantityDictionnary[atomName] = QuantiteesAtomes[atomName].ToJsonFormat()
 	
 	#Pour les atomes
-	var atomesDictionnary = {}
+	var atomsDictionnary = {}
 	for atomeName in ListeAtomes:
 		var attributsDictionnary = {}
 		for attributs in ListeAtomes[atomeName].ListeAttribs:
 			attributsDictionnary[attributs.Name] = attributs.Niveau.ToJsonFormat()
-		atomesDictionnary[atomeName] = {"Attributs" : attributsDictionnary, "Unlock" : ListeAtomes[atomeName].isUnlocked}
+		atomsDictionnary[atomeName] = {"Attributs" : attributsDictionnary, "Unlock" : ListeAtomes[atomeName].isUnlocked}
 		
 	#Pour les recherches
-	var rechercheListe = []
-	for recherche in ListeRecherches:
-		rechercheListe.append({"Id" : recherche.Id, "IsUnlocked" : recherche.IsUnlocked})
+	var researchesList = []
+	for research in ListeRecherches:
+		researchesList.append({"Id" : research.Id, "IsUnlocked" : research.IsUnlocked})
 	
 	#Pour les améliorations de l'helium
-	var ameliorationsHeliumListe = []
-	for ameliorationHelium in ListeAmeliorationsHelium:
-		ameliorationsHeliumListe.append({"Id" : ameliorationHelium.Id, "IsUnlocked" : ameliorationHelium.IsUnlocked, "Level" : ameliorationHelium.Level.ToJsonFormat()})
+	var heliumUpgradesList = []
+	for upgradeHelium in ListeAmeliorationsHelium:
+		heliumUpgradesList.append({"Id" : upgradeHelium.Id, "IsUnlocked" : upgradeHelium.IsUnlocked, "Level" : upgradeHelium.Level.ToJsonFormat()})
 		
 	var save_dict = {
 		"Coins" : Coins.ToJsonFormat(),
-		"QuantiteesAtomes" : quantityDictionnary,
-		"ListeAtomes" : atomesDictionnary,
-		"ListeRecherches" : rechercheListe,
-		"ListeAmeliorationsHelium" : ameliorationsHeliumListe
+		"AtomsQuantity" : atomsQuantityDictionnary,
+		"AtomsList" : atomsDictionnary,
+		"ResearchesList" : researchesList,
+		"HeliumUpgradesList" : heliumUpgradesList
 	}
 	
 	return save_dict

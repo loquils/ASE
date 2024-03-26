@@ -21,7 +21,7 @@ func GetDeltaDarkMatter():
 	if RessourceManager.HydrogeneMax.isLessThan(Big.new(1.0,5)):
 		return Big.new(0.0)
 		
-	return Big.root(RessourceManager.HydrogeneMax)
+	return Big.power(Big.subtractAbove0(RessourceManager.HydrogeneMax, Big.new(1.0,5)), 0.25)
 
 
 func _on_button_exit_pressed():

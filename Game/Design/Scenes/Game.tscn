@@ -381,7 +381,7 @@ size_flags_vertical = 3
 columns = 3
 
 [node name="BlackBannerPanel2" type="Panel" parent="WindowTopBlackVBoxC"]
-custom_minimum_size = Vector2(0, 20)
+custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 size_flags_vertical = 8
 theme_override_styles/panel = SubResource("StyleBoxFlat_j7vtp")

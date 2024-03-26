@@ -18,7 +18,7 @@ func _set_var(ameliorationDarkMatter):
 #On met a jour l'UI en bloquant le bouton :)
 func _process(_delta):
 	if not AmeliorationDarkMatter.IsUnlocked:
-		if AmeliorationDarkMatter.Prix.isGreaterThan(RessourceManager.Coins):
+		if AmeliorationDarkMatter.Prix.isGreaterThan(RessourceManager.DarkMatter):
 			disabled = true
 		else:
 			disabled = false
