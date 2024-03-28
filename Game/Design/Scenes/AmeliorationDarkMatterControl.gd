@@ -31,3 +31,7 @@ func _on_button_exit_pressed():
 func _on_prestige_button_pressed():
 	#Faut tout reset, Et ajouter la money :)
 	RessourceManager.DarkMatter = Big.add(RessourceManager.DarkMatter, GetDeltaDarkMatter())
+	DarkMatterReset()
+
+func DarkMatterReset():
+	pass

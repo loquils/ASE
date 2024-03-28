@@ -16,7 +16,7 @@ func _process(delta):
 	if visible == true:
 		RessourceQuantity = RessourceManager.QuantiteesAtomes[RessourceName]
 		$BackGround/MarginC/HBoxC/QuantityLabel.text = str(RessourceQuantity)
-		$BackGround/MarginC/HBoxC/PerSecLabel.text = str(RessourceManager.ListeAtomes[RessourceName].GetAtomePerSec()) + "/s"
+		$BackGround/MarginC/HBoxC/PerSecLabel.text = str(RessourceManager.AtomsList[RessourceName].GetAtomePerSec()) + "/s"
 	else:
-		if RessourceManager.ListeAtomes[RessourceName].isUnlocked:
+		if RessourceManager.AtomsList[RessourceName].isUnlocked:
 			show()

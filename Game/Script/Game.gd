@@ -13,7 +13,7 @@ func _process(_delta):
 
 
 #func GetPrixVenteHydrogene():
-#	var newPrix = Big.multiply(RessourceManager.ListeAtomes["Hydrogene"].PrixBaseVenteAtome, RessourceManager.CurrentBonusesAmeliorationHelium["HydrogeneRendementMultiply"])
+#	var newPrix = Big.multiply(RessourceManager.AtomsList["Hydrogene"].PrixBaseVenteAtome, RessourceManager.CurrentBonusesAmeliorationHelium["HydrogeneRendementMultiply"])
 
 
 func _on_main_timer_timeout():
