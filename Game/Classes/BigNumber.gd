@@ -264,7 +264,7 @@ static func modulo(x, y) -> Big:
 	Big.divide(result, y)
 	Big.roundDown(result)
 	Big.multiply(result, y)
-	Big.subtract(result, big)
+	Big.subtractT(result, big)
 	result.mantissa = abs(result.mantissa)
 	return result
 
@@ -315,12 +315,12 @@ func plusEquals(n) -> Big:
 
 ## Equivalent of [code]Big - n[/code]
 func minus(n) -> Big:
-	return Big.subtract(self, n)
+	return Big.subtractT(self, n)
 
 
 ## Equivalent of [code]Big -= n[/code]
 func minusEquals(n) -> Big:
-	var new_value: Big = Big.subtract(self, n)
+	var new_value: Big = Big.subtractT(self, n)
 	mantissa = new_value.mantissa
 	exponent = new_value.exponent
 	return self
