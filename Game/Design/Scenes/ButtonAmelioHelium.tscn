@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://be6ai8p5ud1bx"]
+[gd_scene load_steps=8 format=3 uid="uid://be6ai8p5ud1bx"]
 
 [ext_resource type="Theme" uid="uid://c8qb6obuwxyjl" path="res://Design/Themes/AmeliorationHelium/ThemeBase.tres" id="1_2eipa"]
 [ext_resource type="Script" path="res://Script/ButtonAmeliorationHelium.gd" id="2_ej8al"]
@@ -8,6 +8,9 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hgdw1"]
 bg_color = Color(0.345098, 0.345098, 0.345098, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_22dwo"]
+bg_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3dfc3"]
 bg_color = Color(0.611765, 0.611765, 0.611765, 1)
@@ -102,6 +105,21 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="PanelForUnlock"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -60.0
+offset_right = 50.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_22dwo")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelForUnlock"]
 layout_mode = 1

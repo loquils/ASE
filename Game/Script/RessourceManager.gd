@@ -34,6 +34,8 @@ func _ready():
 	var listeAmeliorationsHeliumInSaving
 
 	if ressourceLoadingGame != null:
+		if ressourceLoadingGame.has("Langue"):
+			LangueManager.maj_langue(ressourceLoadingGame["Langue"])
 		if ressourceLoadingGame.has("Coins"):
 			Coins = Big.ToCustomFormat(ressourceLoadingGame["Coins"])
 		if ressourceLoadingGame.has("AtomsQuantity"):
@@ -163,9 +165,9 @@ func DefineAtomsListInitializingGame():
 func DefineResearchListInitializingGame():
 	var easyResearch = Recherche.ResearchLevelEnum.EASY
 	
-	listeRechercheInitializeGame.append(Recherche.new(0, "Prix Hydrogène", "Augmentation du prix de l'hydrogène de 50%.", Big.new(1.0, 3), "PrixHydrogeneAugmentation", Big.new(0.5, 0), easyResearch))
-	listeRechercheInitializeGame.append(Recherche.new(1, "Prix Hydrogène", "Augmentation du prix de l'hydrogène de 100%.", Big.new(5.0, 3), "PrixHydrogeneAugmentation", Big.new(1.0, 0), easyResearch))
-	listeRechercheInitializeGame.append(Recherche.new(2, "Prix Hydrogène", "Augmentation du prix de l'hydrogène de 1 000%.", Big.new(2.0, 4), "PrixHydrogeneAugmentation", Big.new(1.0, 1), easyResearch))
+	listeRechercheInitializeGame.append(Recherche.new(0, "PRIXHYDROGENE1", "UPPRIXHYDROGENE1", Big.new(1.0, 3), "PrixHydrogeneAugmentation", Big.new(0.5, 0), easyResearch))
+	listeRechercheInitializeGame.append(Recherche.new(1, "PRIXHYDROGENE2", "UPPRIXHYDROGENE2", Big.new(5.0, 3), "PrixHydrogeneAugmentation", Big.new(1.0, 0), easyResearch))
+	listeRechercheInitializeGame.append(Recherche.new(2, "PRIXHYDROGENE3", "UPPRIXHYDROGENE3", Big.new(2.0, 4), "PrixHydrogeneAugmentation", Big.new(1.0, 1), easyResearch))
 	#ListeRecherches.append(Recherche.new(2, "Coin3", "Améliore 1 000%", 20000, "PrixHydrogenePerCent", 1000))
 	#ListeRecherches.append(Recherche.new(3, "Coin4", "Améliore 10 000%", 50000, "PrixHydrogenePerCent", 10000))
 
@@ -195,6 +197,7 @@ func save():
 		heliumUpgradesList.append({"Id" : upgradeHelium.Id, "IsUnlocked" : upgradeHelium.IsUnlocked, "Level" : upgradeHelium.Level.ToJsonFormat()})
 		
 	var save_dict = {
+		"Langue" : LangueManager.languageCourrant,
 		"Coins" : Coins.ToJsonFormat(),
 		"AtomsQuantity" : atomsQuantityDictionnary,
 		"AtomsList" : atomsDictionnary,

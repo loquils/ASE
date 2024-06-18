@@ -14,10 +14,6 @@ func _ready():
 		$ScrollContainer/VBoxContainer.add_child(newAtomeCanvas)
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
 
 #Trigger lors de l'appuie sur un bouton pour augmenter un attribut d'un atome
 func AchatAttributButtonPressed(attribut):

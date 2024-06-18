@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://jwctjc5cvudy"]
+[gd_scene load_steps=22 format=3 uid="uid://jwctjc5cvudy"]
 
 [ext_resource type="Script" path="res://Script/Game.gd" id="1_xa3fh"]
 [ext_resource type="Script" path="res://Script/AtomQuantityContainer.gd" id="2_j2sxo"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://Script/Menu/MenuAtomes.gd" id="4_l775b"]
 [ext_resource type="PackedScene" uid="uid://c60a8i52thxma" path="res://Design/Scenes/MenuRecherches.tscn" id="5_pwwxi"]
 [ext_resource type="Texture2D" uid="uid://dbud7benyerv0" path="res://Design/Borders/Gimp/QuantityAtomesBorders.png" id="5_ruh6y"]
+[ext_resource type="Script" path="res://Script/TestTranslate/ChangementLangueButton.gd" id="7_oskx7"]
 [ext_resource type="PackedScene" uid="uid://b2fng8la1dmc6" path="res://Design/Scenes/ButtonSellHydrogen.tscn" id="8_8mhas"]
 [ext_resource type="PackedScene" uid="uid://kg8xjpenka38" path="res://Design/Scenes/Ameliorations/AmeliorationHelium.tscn" id="13_awkfr"]
 [ext_resource type="Script" path="res://Design/Scenes/AmeliorationDarkMatterControl.gd" id="14_fhqsv"]
@@ -143,6 +144,11 @@ script = ExtResource("2_j2sxo")
 
 [node name="VBoxBoutons" type="VBoxContainer" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC"]
 layout_mode = 2
+
+[node name="ChangementLangueButton" type="Button" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC/VBoxBoutons"]
+layout_mode = 2
+text = "Change"
+script = ExtResource("7_oskx7")
 
 [node name="Button" type="Button" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC/VBoxBoutons"]
 layout_mode = 2
@@ -285,31 +291,30 @@ size_flags_horizontal = 3
 theme_override_constants/h_separation = 1
 theme_override_fonts/font = ExtResource("3_2a2og")
 theme_override_font_sizes/font_size = 22
-text = "Atomes"
+text = "ATOMES"
 
 [node name="ButtonMenuRecherche" type="Button" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/MenuBarBottomPanelC/MarginC/MenuBarHBoxC"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("3_2a2og")
 theme_override_font_sizes/font_size = 22
-text = "Recherches"
+text = "RECHERCHES"
 
 [node name="ButtonMenuAmelioration" type="Button" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/MenuBarBottomPanelC/MarginC/MenuBarHBoxC"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("3_2a2og")
 theme_override_font_sizes/font_size = 22
-text = "Améliorations"
+text = "AMELIORATIONS"
 
 [node name="ButtonMenuPrestige" type="Button" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/MenuBarBottomPanelC/MarginC/MenuBarHBoxC"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("3_2a2og")
 theme_override_font_sizes/font_size = 22
-text = "Prestige"
+text = "PRESTIGE"
 
 [node name="AmeliorationHeliumControl" parent="WindowTopBlackVBoxC/MarginContainer" instance=ExtResource("13_awkfr")]
-visible = false
 layout_mode = 2
 
 [node name="AmeliorationDarkMatterControl" type="Control" parent="WindowTopBlackVBoxC/MarginContainer"]
@@ -390,6 +395,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_j7vtp")
 [connection signal="timeout" from="MainTimer" to="." method="_on_main_timer_timeout"]
 [connection signal="timeout" from="MaxHydroTimer" to="." method="_on_max_hydro_timer_timeout"]
 [connection signal="timeout" from="AdTimer" to="." method="_on_ad_timer_timeout"]
+[connection signal="pressed" from="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC/VBoxBoutons/ChangementLangueButton" to="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC/VBoxBoutons/ChangementLangueButton" method="_on_pressed"]
 [connection signal="pressed" from="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC/VBoxBoutons/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC/VBoxBoutons/ButtonGiveMoney" to="." method="_on_button_give_money_pressed"]
 [connection signal="pressed" from="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/AllMenus/MenuAmelioration/GridContainer/MarginContainer/ButtonAmeliorationHelium" to="." method="_on_button_amelioration_helium_pressed"]

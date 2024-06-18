@@ -37,9 +37,6 @@ func load_game():
 		return ressourceLoadingGame
 
 
-
-
-
 #Pour hard reset on écrit rien dans la sauvegarde et on quitte l'application
 func hard_reset():
 	if not FileAccess.file_exists(SaveFilePath):

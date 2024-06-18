@@ -5,10 +5,12 @@ var AttributBoutton = preload("res://Design/Scenes/ButtonAttribut.tscn")
 
 func _set_var(atome):
 	Atome = atome
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	$NomAtomeLabel.text = tr(Atome.Name)
 	
-	$NomAtomeLabel.text = atome.Name
-	
-	for attribut in atome.ListeAttribs:
+	for attribut in Atome.ListeAttribs:
 		var newBouton = AttributBoutton.instantiate()
 		newBouton._set_var(attribut)
 		$HBoxContainer.add_child(newBouton)
@@ -20,12 +22,9 @@ func _set_var(atome):
 			$PanelForUnlock/VBoxContainer/AtomeLabel.text = priceAtome
 			$PanelForUnlock/VBoxContainer/PrixLabel.text = str(Atome.AtomePriceForUnlocking[priceAtome])
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	$NomAtomeLabel.text = tr(Atome.Name)
 	if $PanelForUnlock.visible:
 		if Atome.isUnlocked:
 			$PanelForUnlock.visible = false

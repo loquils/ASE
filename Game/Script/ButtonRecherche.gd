@@ -8,15 +8,14 @@ func _set_var(recherche):
 	
 	pressed.connect(RechercheClick.RechercheButtonEventTrigger.bind(Recherche))
 	pressed.connect(ChangeButtonStateToBought)
-	
-	$PanelC/PresentationVBoxC/NomLabel.text = Recherche.Name
-	$PanelC/PresentationVBoxC/MarginC/DescriptionLabel.text = Recherche.Description
-	$PanelC/PresentationVBoxC/PrixLabel.text = "Prix : " + str(Recherche.Prix)
-
 
 
 #On met a jour l'UI en bloquant le bouton :)
 func _process(_delta):
+	$PanelC/PresentationVBoxC/NomLabel.text = tr(Recherche.Name)
+	$PanelC/PresentationVBoxC/MarginC/DescriptionLabel.text = tr(Recherche.Description)
+	$PanelC/PresentationVBoxC/PrixLabel.text = tr("Prix : ") + str(Recherche.Prix)
+	
 	if not Recherche.IsUnlocked:
 		if Recherche.Prix.isGreaterThan(RessourceManager.Coins):
 			disabled = true

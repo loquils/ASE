@@ -11,7 +11,7 @@ func _process(_delta):
 		#var prix = round(coin.PrixBaseAmelioAttributs["Force"] * pow(coin.CoefficientsAchatAttributs["Force"], coin.NiveauxAttributs["Force"]))
 	CoinsQuantityLabel.text = str(RessourceManager.Coins)
 
-
+	
 #func GetPrixVenteHydrogene():
 #	var newPrix = Big.multiply(RessourceManager.AtomsList["Hydrogene"].PrixBaseVenteAtome, RessourceManager.CurrentBonusesAmeliorationHelium["HydrogeneRendementMultiply"])
 
@@ -29,7 +29,7 @@ func _on_button_pressed():
 func _on_button_amelioration_helium_pressed():
 	$WindowTopBlackVBoxC/MarginContainer/AmeliorationHeliumControl.visible = true
 
-
+#Trigger lors de l'appuie sur le bouton pour ouvrir la page de prestige 
 func _on_button_menu_prestige_pressed():
 	$WindowTopBlackVBoxC/MarginContainer/AmeliorationDarkMatterControl.visible = true
 

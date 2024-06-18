@@ -21,6 +21,7 @@ RessourceManager="*res://Script/RessourceManager.gd"
 RechercheClick="*res://Script/rechercheClick.gd"
 Save="*res://Script/Options/Save.gd"
 BonusManager="*res://Script/Autoload/BonusManager.gd"
+LangueManager="*res://Script/Options/Langues.gd"
 
 [display]
 
@@ -33,6 +34,10 @@ window/handheld/orientation=1
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/admob/plugin.cfg")
+
+[internationalization]
+
+locale/translations=PackedStringArray("res://Script/Options/Langues.en.translation", "res://Script/Options/Langues.fr.translation")
 
 [rendering]
 

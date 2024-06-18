@@ -7,7 +7,7 @@ var RessourceQuantity
 func _set_var(ressourceName, ressourceQuantity):
 	RessourceName = ressourceName
 	RessourceQuantity = ressourceQuantity
-	$BackGround/MarginC/HBoxC/NameLabel.text = RessourceName
+	$BackGround/MarginC/HBoxC/NameLabel.text = tr(RessourceName)
 	$BackGround/MarginC/HBoxC/QuantityLabel.text = str(RessourceQuantity)
 
 
@@ -15,6 +15,7 @@ func _set_var(ressourceName, ressourceQuantity):
 func _process(delta):
 	if visible == true:
 		RessourceQuantity = RessourceManager.QuantiteesAtomes[RessourceName]
+		$BackGround/MarginC/HBoxC/NameLabel.text = tr(RessourceName)
 		$BackGround/MarginC/HBoxC/QuantityLabel.text = str(RessourceQuantity)
 		$BackGround/MarginC/HBoxC/PerSecLabel.text = str(RessourceManager.AtomsList[RessourceName].GetAtomePerSec()) + "/s"
 	else:
