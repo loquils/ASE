@@ -89,6 +89,7 @@ func AtomsLoading(quantiteesAtomesInSaving, atomsListInSaving):
 		AtomsList[initializedAtome.Name] = initializedAtome
 
 
+
 #Permet de charger la liste des recherches
 func loadResearch(listeRecherchesInSaving):
 	#On définit la liste de base des recherches
@@ -96,12 +97,13 @@ func loadResearch(listeRecherchesInSaving):
 	
 	if not listeRecherchesInSaving == null:
 		for initializedRecherche in listeRechercheInitializeGame:
-			if not listeRecherchesInSaving[initializedRecherche.Id] == null:
+			if initializedRecherche.Id < len(listeRecherchesInSaving) and not listeRecherchesInSaving[initializedRecherche.Id] == null:
 				if listeRecherchesInSaving[initializedRecherche.Id]["IsUnlocked"]:
 					initializedRecherche.IsUnlocked = true
 			
 	for recherche in listeRechercheInitializeGame:
 		ListeRecherches.append(recherche)
+
 
 
 #Permet de charger la liste des recherches
@@ -129,33 +131,31 @@ func loadAmeliorationHelium(listeAmeliorationsHeliumInSaving):
 		ListeAmeliorationsHelium.append(ameliorationHelium)
 
 
+
 func loadDarkMatter():
 	var darkMatter1 = AmeliorationDarkMatter.new(0, "Evolution Hydrogène", "Double l'apport d'hydrogène par seconde.", Big.new(20.0, 0), Big.new(2.0, 0))
 	ListeAmeliorationsDarkMatter.append(darkMatter1)
 
 
-
-
-
+#Calcul et ajoute la quantité d'atome à la quantité d'atome
 func CalculateQuantityAtomes(timeInSeconde:int = 1):
 	for atome in AtomsList:
 		if AtomsList[atome].isUnlocked:
-			QuantiteesAtomes[atome] = Big.multiply(Big.add(QuantiteesAtomes[atome], AtomsList[atome].GetAtomePerSec()), Big.new(timeInSeconde))
-
+				QuantiteesAtomes[atome] = Big.multiply(Big.add(QuantiteesAtomes[atome], AtomsList[atome].GetAtomePerSec()), Big.new(timeInSeconde))
 
 
 #Permet d'initialiser la liste des atomes dans le jeu
 func DefineAtomsListInitializingGame():
 		#On définit les atomes auxquels on a accès :)
 	var hydrogeneAtom = Atome.new("Hydrogene", Big.new(1.0, 0), Big.new(1.0, 0))
-	var hydrogenAttributsList = [AttributAtome.new(hydrogeneAtom, "Force", Big.new(0.0), Big.new(1.13), Big.new(1.07), Big.new(15)), AttributAtome.new(hydrogeneAtom, "Vitesse", Big.new(0.0), Big.new(1.38), Big.new(1.15), Big.new(30))] #AttributAtome.new(newAtome, "COIIIn", 0, 20, 50, 100)
+	var hydrogenAttributsList = [AttributAtome.new(hydrogeneAtom, "Force", Big.new(0.0), Big.new(1.13), Big.new(0.07), Big.new(15)), AttributAtome.new(hydrogeneAtom, "Vitesse", Big.new(0.0), Big.new(1.38), Big.new(0.15), Big.new(30))] #AttributAtome.new(newAtome, "COIIIn", 0, 20, 50, 100)
 	hydrogeneAtom.DefineAtomeAttributs(hydrogenAttributsList)
 	hydrogeneAtom.isUnlocked = true
 	
 	AtomsListInitializingGame.append(hydrogeneAtom)
 	
 	var heliumAtom = Atome.new("Helium", Big.new(0.25, 0))
-	var heliumAttributsList = [AttributAtome.new(heliumAtom, "Spin", Big.new(1.0, 5), Big.new(1.32), Big.new(1.12), Big.new(50)), AttributAtome.new(heliumAtom, "Angle", Big.new(0.0), Big.new(1.40), Big.new(1.2), Big.new(50)), AttributAtome.new(heliumAtom, "Complexity", Big.new(0.0), Big.new(1.6), Big.new(1.5), Big.new(100))]
+	var heliumAttributsList = [AttributAtome.new(heliumAtom, "Spin", Big.new(1.0, 5), Big.new(1.32), Big.new(0.12), Big.new(50)), AttributAtome.new(heliumAtom, "Angle", Big.new(0.0), Big.new(1.40), Big.new(0.2), Big.new(50)), AttributAtome.new(heliumAtom, "Complexity", Big.new(0.0), Big.new(1.6), Big.new(0.5), Big.new(100))]
 	heliumAtom.DefineAtomeAttributs(heliumAttributsList)
 	heliumAtom.DefineAtomeUnlockingPrice({"Hydrogene" : Big.new(1.0, 2)})
 	
@@ -168,6 +168,8 @@ func DefineResearchListInitializingGame():
 	listeRechercheInitializeGame.append(Recherche.new(0, "PRIXHYDROGENE1", "UPPRIXHYDROGENE1", Big.new(1.0, 3), "PrixHydrogeneAugmentation", Big.new(0.5, 0), easyResearch))
 	listeRechercheInitializeGame.append(Recherche.new(1, "PRIXHYDROGENE2", "UPPRIXHYDROGENE2", Big.new(5.0, 3), "PrixHydrogeneAugmentation", Big.new(1.0, 0), easyResearch))
 	listeRechercheInitializeGame.append(Recherche.new(2, "PRIXHYDROGENE3", "UPPRIXHYDROGENE3", Big.new(2.0, 4), "PrixHydrogeneAugmentation", Big.new(1.0, 1), easyResearch))
+	listeRechercheInitializeGame.append(Recherche.new(3, "Test Multi", "On test le multi du rapport", Big.new(2.0, 4), "HydrogeneCoeffMultiplicateurRapport", Big.new(2.0), easyResearch))
+	
 	#ListeRecherches.append(Recherche.new(2, "Coin3", "Améliore 1 000%", 20000, "PrixHydrogenePerCent", 1000))
 	#ListeRecherches.append(Recherche.new(3, "Coin4", "Améliore 10 000%", 50000, "PrixHydrogenePerCent", 10000))
 

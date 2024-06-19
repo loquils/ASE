@@ -5,10 +5,10 @@ var Recherche
 #Définition de l'UI du bouton personnalisé.
 func _set_var(recherche):
 	Recherche = recherche
-	
+
+func _ready():
 	pressed.connect(RechercheClick.RechercheButtonEventTrigger.bind(Recherche))
 	pressed.connect(ChangeButtonStateToBought)
-
 
 #On met a jour l'UI en bloquant le bouton :)
 func _process(_delta):

@@ -315,6 +315,7 @@ theme_override_font_sizes/font_size = 22
 text = "PRESTIGE"
 
 [node name="AmeliorationHeliumControl" parent="WindowTopBlackVBoxC/MarginContainer" instance=ExtResource("13_awkfr")]
+visible = false
 layout_mode = 2
 
 [node name="AmeliorationDarkMatterControl" type="Control" parent="WindowTopBlackVBoxC/MarginContainer"]
