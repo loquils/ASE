@@ -47,7 +47,7 @@ func GetAugmentationsAttributs():
 	var attributsAddition = Big.new(0.0)
 	
 	for attribut in ListeAttribs:
-		attributsAddition = Big.add(attributsAddition, Big.multiply(attribut.CoefficientBaseRapport, attribut.Niveau))
+		attributsAddition = Big.add(attributsAddition, Big.multiply(attribut.CoefficientRapport, attribut.Niveau))
 	
 	attributsAddition = Big.add(Big.new(1.0), attributsAddition)
 

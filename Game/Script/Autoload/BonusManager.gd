@@ -30,7 +30,7 @@ func MajBonusAmeliorationHelium():
 	RessourceManager.AtomsList["Hydrogene"].GlobalMultiplicator = Big.new(1.0)
 	
 	for CurrentBonus in CurrentBonusesAmeliorationHelium:
-		CurrentBonusesAmeliorationHelium[CurrentBonus] = Big.new(1.0)
+		CurrentBonusesAmeliorationHelium[CurrentBonus] = Big.new(0.0)
 	
 	for ameliorationHelium in RessourceManager.ListeAmeliorationsHelium:
 		if ameliorationHelium.IsUnlocked:
