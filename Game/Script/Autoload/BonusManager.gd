@@ -63,8 +63,6 @@ func GetGlobalMultiplicator(Name):
 		if CurrentBonus.contains(Name) and CurrentBonus.contains("RendementMultiply"):
 			heliumMultiplicator = Big.add(heliumMultiplicator, CurrentBonusesAmeliorationHelium[CurrentBonus])
 	
-	print("recherches " + str(recherchesMultiplicator) + "helium " + str(heliumMultiplicator))
-	
 	var globalMultiplicator = Big.add(recherchesMultiplicator, heliumMultiplicator)
 	
 	if(globalMultiplicator.isEqualTo(Big.new(0.0))):

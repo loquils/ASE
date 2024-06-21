@@ -3,18 +3,23 @@ extends Button
 var AmeliorationHelium
 
 @onready var AmeliorationHeliumUnlockButton = $PanelForUnlock/VBoxContainer/AmeliorationHeliumUnlockButton
+@onready var NomLabel = $PanelC/MarginC/HBoxC/LeftVBoxC/NomLabel
+@onready var DescriptionLabel = $PanelC/MarginC/HBoxC/LeftVBoxC/DescriptionLabel
+@onready var NiveauLabel = $PanelC/MarginC/HBoxC/RightVBoxC/NiveauLabel
+
+@onready var UnlockAtomLabel = $PanelForUnlock/VBoxContainer/AtomeLabel
 
 func _set_var(ameliorationHelium:AmeliorationHelium):
 	AmeliorationHelium = ameliorationHelium
-	$PanelC/MarginC/HBoxC/LeftVBoxC/NomLabel.text = AmeliorationHelium.Name
-	$PanelC/MarginC/HBoxC/LeftVBoxC/DescriptionLabel.text = AmeliorationHelium.Description
+	
 	$PanelC/MarginC/HBoxC/LeftVBoxC/BonusLabel.text = "bonus !"
-	$PanelC/MarginC/HBoxC/RightVBoxC/NiveauLabel.text = "Niv." + str(AmeliorationHelium.Level)
 	$PanelC/MarginC/HBoxC/RightVBoxC/PrixLabel.text = str(AmeliorationHelium.GetPrixAmeliorationHelium())
 	
-	$PanelForUnlock/VBoxContainer/AtomeLabel.text = "Coins"
-	$PanelForUnlock/VBoxContainer/PrixLabel.text = str(AmeliorationHelium.AtomePriceForUnlocking["Coins"])
-	
+	if(AmeliorationHelium.AtomePriceForUnlocking.has("Coins")):
+		$PanelForUnlock/VBoxContainer/PrixLabel.text = str(AmeliorationHelium.AtomePriceForUnlocking["Coins"])
+	else:
+		$PanelForUnlock/VBoxContainer/PrixLabel.text = str(AmeliorationHelium.AtomePriceForUnlocking.values()[0])
+
 	match AmeliorationHelium.TypeAmeliorationHelium:
 		AmeliorationHelium.TypeAmeliorationHeliumEnum.Pression:
 			add_theme_stylebox_override("normal", preload("res://Design/Themes/AmeliorationHelium/PressionNormalFlat.tres"))
@@ -24,25 +29,35 @@ func _set_var(ameliorationHelium:AmeliorationHelium):
 			add_theme_stylebox_override("disabled", preload("res://Design/Themes/AmeliorationHelium/TemperatureDisabledFlat.tres"))
 
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pressed.connect(RechercheClick.AmeliorationHeliumButtonEventTrigger.bind(AmeliorationHelium))
 
 
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	NomLabel.text = tr(AmeliorationHelium.Name)
+	DescriptionLabel.text = tr(AmeliorationHelium.Description)
+	
 	if $PanelForUnlock.visible:
+		UnlockAtomLabel.text = tr(AmeliorationHelium.AtomePriceForUnlocking.keys()[0])
+		
 		if AmeliorationHelium.IsUnlocked:
 			$PanelForUnlock.visible = false
 		
-		#On test si le bouton est disabled ou pas
-		if RessourceManager.Coins.isLessThan(AmeliorationHelium.AtomePriceForUnlocking["Coins"]):
+		#On vérifie si le bouton est disabled ou pas : si on a asser de ressources pour le débloqué ou pas
+		if AmeliorationHelium.AtomePriceForUnlocking.has("Coins"):
+			if RessourceManager.Coins.isLessThan(AmeliorationHelium.AtomePriceForUnlocking["Coins"]):
+				AmeliorationHeliumUnlockButton.disabled = true
+			else:
+				AmeliorationHeliumUnlockButton.disabled = false
+		elif RessourceManager.QuantiteesAtomes[AmeliorationHelium.AtomePriceForUnlocking.keys()[0]].isLessThan(AmeliorationHelium.AtomePriceForUnlocking.values()[0]):
 			AmeliorationHeliumUnlockButton.disabled = true
 		else:
 			AmeliorationHeliumUnlockButton.disabled = false
 	else:
-		$PanelC/MarginC/HBoxC/RightVBoxC/NiveauLabel.text = "Niv." + str(AmeliorationHelium.Level)
+		NiveauLabel.text = tr("Niv.") + str(AmeliorationHelium.Level)
 		$PanelC/MarginC/HBoxC/RightVBoxC/PrixLabel.text = str(AmeliorationHelium.GetPrixAmeliorationHelium()) + " He"
 		
 		if RessourceManager.QuantiteesAtomes["Helium"].isLessThan(AmeliorationHelium.GetPrixAmeliorationHelium()):
@@ -56,9 +71,15 @@ func _on_amelioration_helium_unlock_button_pressed():
 	if AmeliorationHelium.IsUnlocked:
 		return
 	
-	if RessourceManager.Coins.isLessThan(AmeliorationHelium.AtomePriceForUnlocking["Coins"]):
-		return
-	
-	RessourceManager.Coins = Big.subtractAbove0(RessourceManager.Coins, AmeliorationHelium.AtomePriceForUnlocking["Coins"])
-	
+	if AmeliorationHelium.AtomePriceForUnlocking.has("Coins"):
+		if RessourceManager.Coins.isLessThan(AmeliorationHelium.AtomePriceForUnlocking["Coins"]):
+			return
+			
+		RessourceManager.Coins = Big.subtractAbove0(RessourceManager.Coins, AmeliorationHelium.AtomePriceForUnlocking["Coins"])
+	else:
+		if RessourceManager.QuantiteesAtomes[AmeliorationHelium.AtomePriceForUnlocking.keys()[0]].isLessThan(AmeliorationHelium.AtomePriceForUnlocking.values()[0]):
+			return
+			
+		RessourceManager.QuantiteesAtomes[AmeliorationHelium.AtomePriceForUnlocking.keys()[0]] = Big.subtractAbove0(RessourceManager.QuantiteesAtomes[AmeliorationHelium.AtomePriceForUnlocking.keys()[0]], AmeliorationHelium.AtomePriceForUnlocking.values()[0])
+		
 	AmeliorationHelium.IsUnlocked = true
