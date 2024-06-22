@@ -6,14 +6,15 @@ var QuantiteesAtomes = {}
 #Liste des atomes du jeu 
 var AtomsListInitializingGame = []
 #Dictionnaire de tous les atomes avec les états actuels (les clés sont les noms des atomes)
-var AtomsList = {}
+var ListeAtomes = {}
 
-
-var listeRechercheInitializeGame = []
+#Liste des recherches en initialisation
+var ListeRechercheInitializeGame = []
 #Liste de toutes les recherches
 var ListeRecherches = []
 
-
+#Liste des recherches en initialisation
+var ListeAmeliorationsHeliumInitializeGame = []
 #Liste de toutes les améliorations de l'helium 
 var ListeAmeliorationsHelium = []
 
@@ -40,17 +41,16 @@ func _ready():
 			Coins = Big.ToCustomFormat(ressourceLoadingGame["Coins"])
 		if ressourceLoadingGame.has("AtomsQuantity"):
 			quantiteesAtomesInSaving = ressourceLoadingGame["AtomsQuantity"]
-		if ressourceLoadingGame.has("AtomsList"):
-			atomsListInSaving = ressourceLoadingGame["AtomsList"]
+		if ressourceLoadingGame.has("ListeAtomes"):
+			atomsListInSaving = ressourceLoadingGame["ListeAtomes"]
 		if ressourceLoadingGame.has("ResearchesList"):
 			listeRecherchesInSaving = ressourceLoadingGame["ResearchesList"]
 		if ressourceLoadingGame.has("HeliumUpgradesList"):
 			listeAmeliorationsHeliumInSaving = ressourceLoadingGame["HeliumUpgradesList"]
-
 	
 	AtomsLoading(quantiteesAtomesInSaving, atomsListInSaving)
-	loadResearch(listeRecherchesInSaving)
-	loadAmeliorationHelium(listeAmeliorationsHeliumInSaving)
+	LoadResearch(listeRecherchesInSaving)
+	LoadAmeliorationHelium(listeAmeliorationsHeliumInSaving)
 	loadDarkMatter()
 
 
@@ -86,63 +86,55 @@ func AtomsLoading(quantiteesAtomesInSaving, atomsListInSaving):
 			QuantiteesAtomes[initializedAtom.Name] = Big.new(0.0)
 	
 	for initializedAtome in AtomsListInitializingGame:
-		AtomsList[initializedAtome.Name] = initializedAtome
+		ListeAtomes[initializedAtome.Name] = initializedAtome
 
 
 
 #Permet de charger la liste des recherches
-func loadResearch(listeRecherchesInSaving):
+func LoadResearch(listeRecherchesInSaving):
 	#On définit la liste de base des recherches
 	DefineResearchListInitializingGame()
 	
 	if not listeRecherchesInSaving == null:
-		for initializedRecherche in listeRechercheInitializeGame:
+		for initializedRecherche in ListeRechercheInitializeGame:
 			if initializedRecherche.Id < len(listeRecherchesInSaving) and not listeRecherchesInSaving[initializedRecherche.Id] == null:
 				if listeRecherchesInSaving[initializedRecherche.Id]["IsUnlocked"]:
 					initializedRecherche.IsUnlocked = true
 			
-	for recherche in listeRechercheInitializeGame:
+	for recherche in ListeRechercheInitializeGame:
 		ListeRecherches.append(recherche)
 
 
 
 #Permet de charger la liste des recherches
-func loadAmeliorationHelium(listeAmeliorationsHeliumInSaving):
-	var listeAmeliorationsHeliumInitializeGame = []
-	var ameliorationHelium1 = AmeliorationHelium.new(0, "AMELIORATIONHELIUMPRESSION1", "AMELIORATIONHELIUMPRESSIONDESCRIPTION1", AmeliorationHelium.TypeAmeliorationHeliumEnum.Pression, "HydrogeneRendementMultiply", Big.new(2.0, 0))
-	ameliorationHelium1.DefineAtomeUnlockingPrice( {"Coins" : Big.new(5.0, 3)})
-	listeAmeliorationsHeliumInitializeGame.append(ameliorationHelium1)
-	
-	var amelio2 = AmeliorationHelium.new(1, "AMELIORATIONHELIUMTEMPERATURE1", "AMELIORATIONHELIUMTEMPERATUREDESCRIPTION1", AmeliorationHelium.TypeAmeliorationHeliumEnum.Temperature, "HydrogeneAttributsCoefficientAdd", Big.new(0.01, 0))
-	amelio2.DefineAtomeUnlockingPrice( {"Hydrogene" : Big.new(2.5, 2)})
-	#amelio2.IsUnlocked = true
-	listeAmeliorationsHeliumInitializeGame.append(amelio2)
-	#listeAmeliorationsHeliumInitializeGame.append(AmeliorationHelium.new(1, "Coin2", "Améliore d'autre trucs.", AmeliorationHelium.TypeAmeliorationHeliumEnum.Pression, "HydrogeneRendementMultiply", CustomNumber.new(2.0, 0)))
-	#listeAmeliorationsHeliumInitializeGame.append(AmeliorationHelium.new(3, "Coin4", "Améliore d'autre trucs des autres.", AmeliorationHelium.TypeAmeliorationHeliumEnum.Temperature, "HydrogeneRendementMultiply", CustomNumber.new(2.0, 0)))
+func LoadAmeliorationHelium(listeAmeliorationsHeliumInSaving):
+	DefineAmeliorationHeliumListInitializingGame()
 	
 	if not listeAmeliorationsHeliumInSaving == null:
-		for initializedAmeliorationHelium in listeAmeliorationsHeliumInitializeGame:
+		for initializedAmeliorationHelium in ListeAmeliorationsHeliumInitializeGame:
 			if not listeAmeliorationsHeliumInSaving[initializedAmeliorationHelium.Id] == null:
 				if listeAmeliorationsHeliumInSaving[initializedAmeliorationHelium.Id]["IsUnlocked"]:
 					initializedAmeliorationHelium.IsUnlocked = true
 					initializedAmeliorationHelium.Level = Big.ToCustomFormat(listeAmeliorationsHeliumInSaving[initializedAmeliorationHelium.Id]["Level"])
 	
-	for ameliorationHelium in listeAmeliorationsHeliumInitializeGame:
+	for ameliorationHelium in ListeAmeliorationsHeliumInitializeGame:
 		ListeAmeliorationsHelium.append(ameliorationHelium)
 
 
 
 func loadDarkMatter():
-	var darkMatter1 = AmeliorationDarkMatter.new(0, "Evolution Hydrogène", "Double l'apport d'hydrogène par seconde.", Big.new(20.0, 0), Big.new(2.0, 0))
+	var darkMatter1 = AmeliorationDarkMatter.new(0, "Découverte H²", "Double l'apport d'hydrogène par seconde.", Big.new(20.0, 0), Big.new(2.0, 0))
 	ListeAmeliorationsDarkMatter.append(darkMatter1)
 
 
 #Calcul et ajoute la quantité d'atome à la quantité d'atome
 func CalculateQuantityAtomes(timeInSeconde:int = 1):
-	for atome in AtomsList:
-		if AtomsList[atome].isUnlocked:
-				QuantiteesAtomes[atome] = Big.multiply(Big.add(QuantiteesAtomes[atome], AtomsList[atome].GetAtomePerSec()), Big.new(timeInSeconde))
+	for atome in ListeAtomes:
+		if ListeAtomes[atome].isUnlocked:
+				QuantiteesAtomes[atome] = Big.multiply(Big.add(QuantiteesAtomes[atome], ListeAtomes[atome].GetAtomePerSec()), Big.new(timeInSeconde))
 
+
+#---------------------------------Define all elements of the game !----------------------------------#
 
 #Permet d'initialiser la liste des atomes dans le jeu
 func DefineAtomsListInitializingGame():
@@ -161,17 +153,57 @@ func DefineAtomsListInitializingGame():
 	
 	AtomsListInitializingGame.append(heliumAtom)
 
-
+#Permet d'initialiser la liste des recherches dans le jeu
 func DefineResearchListInitializingGame():
 	var easyResearch = Recherche.ResearchLevelEnum.EASY
 	
-	listeRechercheInitializeGame.append(Recherche.new(0, "RECHERCHE1", "RECHERCHEDESCRIPTION1", Big.new(1.0, 3), "PrixHydrogeneAugmentation", Big.new(0.5, 0), easyResearch))
-	listeRechercheInitializeGame.append(Recherche.new(1, "RECHERCHE2", "RECHERCHEDESCRIPTION2", Big.new(5.0, 3), "PrixHydrogeneAugmentation", Big.new(1.0, 0), easyResearch))
-	listeRechercheInitializeGame.append(Recherche.new(2, "RECHERCHE3", "RECHERCHEDESCRIPTION3", Big.new(2.0, 4), "HydrogeneCoeffMultiplicateurRapport", Big.new(2.0), easyResearch))
-	listeRechercheInitializeGame.append(Recherche.new(3, "RECHERCHE4", "RECHERCHEDESCRIPTION4", Big.new(7.5, 4), "PrixHydrogeneAugmentation", Big.new(5.0), easyResearch))
-	listeRechercheInitializeGame.append(Recherche.new(4, "RECHERCHE5", "RECHERCHEDESCRIPTION5", Big.new(5.0, 5), "HeliumCoeffMultiplicateurRapport", Big.new(2.0), easyResearch))
-	#ListeRecherches.append(Recherche.new(2, "Coin3", "Améliore 1 000%", 20000, "PrixHydrogenePerCent", 1000))
-	#ListeRecherches.append(Recherche.new(3, "Coin4", "Améliore 10 000%", 50000, "PrixHydrogenePerCent", 10000))
+	ListeRechercheInitializeGame.append(Recherche.new(0, "RECHERCHE1", "RECHERCHEDESCRIPTION1", Big.new(1.0, 3), "PrixHydrogeneAugmentation", Big.new(0.5, 0), easyResearch))
+	ListeRechercheInitializeGame.append(Recherche.new(1, "RECHERCHE2", "RECHERCHEDESCRIPTION2", Big.new(5.0, 3), "PrixHydrogeneAugmentation", Big.new(1.0, 0), easyResearch))
+	ListeRechercheInitializeGame.append(Recherche.new(2, "RECHERCHE3", "RECHERCHEDESCRIPTION3", Big.new(2.0, 4), "HydrogeneCoeffMultiplicateurRapport", Big.new(2.0), easyResearch))
+	ListeRechercheInitializeGame.append(Recherche.new(3, "RECHERCHE4", "RECHERCHEDESCRIPTION4", Big.new(7.5, 4), "PrixHydrogeneAugmentation", Big.new(5.0), easyResearch))
+	ListeRechercheInitializeGame.append(Recherche.new(4, "RECHERCHE5", "RECHERCHEDESCRIPTION5", Big.new(5.0, 5), "HeliumCoeffMultiplicateurRapport", Big.new(2.0), easyResearch))
+
+
+#Permet d'initialiser la liste des amélioration de l'hélium dans le jeu
+func DefineAmeliorationHeliumListInitializingGame():
+	var ameliorationHelium1 = AmeliorationHelium.new(0, "AMELIORATIONHELIUMPRESSION1", "AMELIORATIONHELIUMPRESSIONDESCRIPTION1", AmeliorationHelium.TypeAmeliorationHeliumEnum.Pression, "HydrogeneRendementMultiply", Big.new(2.0, 0))
+	ameliorationHelium1.DefineAtomeUnlockingPrice( {"Coins" : Big.new(5.0, 3)})
+	ListeAmeliorationsHeliumInitializeGame.append(ameliorationHelium1)
+	
+	var amelio2 = AmeliorationHelium.new(1, "AMELIORATIONHELIUMTEMPERATURE1", "AMELIORATIONHELIUMTEMPERATUREDESCRIPTION1", AmeliorationHelium.TypeAmeliorationHeliumEnum.Temperature, "HydrogeneAttributsCoefficientAdd", Big.new(0.01, 0))
+	amelio2.DefineAtomeUnlockingPrice( {"Hydrogene" : Big.new(2.5, 2)})
+	ListeAmeliorationsHeliumInitializeGame.append(amelio2)
+
+
+
+#------------------------------------------------------------------------------------------------------#
+
+func ResetAtomes():
+	for atome in ListeAtomes:
+		for attribut in ListeAtomes[atome].ListeAttribs:
+			attribut.Niveau = Big.new(0.0)
+	
+		if not atome == "Hydrogene":
+			ListeAtomes[atome].isUnlocked = false
+
+
+func ResetRessources():
+	Coins = Big.new(0.0)
+	for quantiteeNom in QuantiteesAtomes:
+		QuantiteesAtomes[quantiteeNom] =  Big.new(0.0)
+	QuantiteesAtomes = {"Hydrogene": Big.new(0.0)}
+
+func ResetRecherches():
+	for recherche in ListeRecherches:
+		recherche.IsUnlocked = false
+	BonusManager.MajBonusRecherches()
+
+func ResetAmeliorationsHelium():
+	for ameliorationHelium in ListeAmeliorationsHelium:
+		ameliorationHelium.Level = Big.new(0.0)
+		ameliorationHelium.IsUnlocked = false
+	BonusManager.MajBonusAmeliorationHelium()
+
 
 
 func save():
@@ -182,11 +214,11 @@ func save():
 	
 	#Pour les atomes
 	var atomsDictionnary = {}
-	for atomeName in AtomsList:
+	for atomeName in ListeAtomes:
 		var attributsDictionnary = {}
-		for attributs in AtomsList[atomeName].ListeAttribs:
+		for attributs in ListeAtomes[atomeName].ListeAttribs:
 			attributsDictionnary[attributs.Name] = attributs.Niveau.ToJsonFormat()
-		atomsDictionnary[atomeName] = {"Attributs" : attributsDictionnary, "Unlock" : AtomsList[atomeName].isUnlocked}
+		atomsDictionnary[atomeName] = {"Attributs" : attributsDictionnary, "Unlock" : ListeAtomes[atomeName].isUnlocked}
 		
 	#Pour les recherches
 	var researchesList = []
@@ -202,7 +234,7 @@ func save():
 		"Langue" : LangueManager.languageCourrant,
 		"Coins" : Coins.ToJsonFormat(),
 		"AtomsQuantity" : atomsQuantityDictionnary,
-		"AtomsList" : atomsDictionnary,
+		"ListeAtomes" : atomsDictionnary,
 		"ResearchesList" : researchesList,
 		"HeliumUpgradesList" : heliumUpgradesList
 	}

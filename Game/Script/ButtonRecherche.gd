@@ -17,6 +17,10 @@ func _process(_delta):
 	$PanelC/PresentationVBoxC/PrixLabel.text = tr("Prix : ") + str(Recherche.Prix)
 	
 	if not Recherche.IsUnlocked:
+		if $PanelC/PresentationVBoxC/MarginC/Panel.visible:
+			disabled = false
+			$PanelC/PresentationVBoxC/MarginC/Panel.visible = false
+			
 		if Recherche.Prix.isGreaterThan(RessourceManager.Coins):
 			disabled = true
 		else:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://jwctjc5cvudy"]
+[gd_scene load_steps=24 format=3 uid="uid://jwctjc5cvudy"]
 
 [ext_resource type="Script" path="res://Script/Game.gd" id="1_xa3fh"]
 [ext_resource type="Script" path="res://Script/AtomQuantityContainer.gd" id="2_j2sxo"]
@@ -36,6 +36,20 @@ font_size = 50
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3u10t"]
 bg_color = Color(0.192157, 0.192157, 0.192157, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dpyax"]
+bg_color = Color(0.192157, 0.192157, 0.192157, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+
+[sub_resource type="LabelSettings" id="LabelSettings_pme07"]
+font = ExtResource("3_2a2og")
 
 [node name="Game" type="Control"]
 layout_mode = 3
@@ -386,6 +400,78 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 columns = 3
 
+[node name="FondValidationPrestigePanel" type="Panel" parent="WindowTopBlackVBoxC/MarginContainer/AmeliorationDarkMatterControl"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BoxValidationPrestigePanel" type="Panel" parent="WindowTopBlackVBoxC/MarginContainer/AmeliorationDarkMatterControl/FondValidationPrestigePanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -100.0
+offset_right = 250.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_dpyax")
+
+[node name="MarginContainer" type="MarginContainer" parent="WindowTopBlackVBoxC/MarginContainer/AmeliorationDarkMatterControl/FondValidationPrestigePanel/BoxValidationPrestigePanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="PresentationVBoxC" type="VBoxContainer" parent="WindowTopBlackVBoxC/MarginContainer/AmeliorationDarkMatterControl/FondValidationPrestigePanel/BoxValidationPrestigePanel/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="NomValidationPrestigeLabel" type="Label" parent="WindowTopBlackVBoxC/MarginContainer/AmeliorationDarkMatterControl/FondValidationPrestigePanel/BoxValidationPrestigePanel/MarginContainer/PresentationVBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "NOMVALIDATIONPRESTIGELABEL"
+label_settings = SubResource("LabelSettings_pme07")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InformationsValidationPrestigeLabel" type="Label" parent="WindowTopBlackVBoxC/MarginContainer/AmeliorationDarkMatterControl/FondValidationPrestigePanel/BoxValidationPrestigePanel/MarginContainer/PresentationVBoxC"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_vertical = 3
+text = "INFORMATIONVALIDATIONPRESTIGELABEL"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ButonsHBoxC" type="HBoxContainer" parent="WindowTopBlackVBoxC/MarginContainer/AmeliorationDarkMatterControl/FondValidationPrestigePanel/BoxValidationPrestigePanel/MarginContainer/PresentationVBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="OuiButton" type="Button" parent="WindowTopBlackVBoxC/MarginContainer/AmeliorationDarkMatterControl/FondValidationPrestigePanel/BoxValidationPrestigePanel/MarginContainer/PresentationVBoxC/ButonsHBoxC"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "OUI"
+
+[node name="AnnulerButton" type="Button" parent="WindowTopBlackVBoxC/MarginContainer/AmeliorationDarkMatterControl/FondValidationPrestigePanel/BoxValidationPrestigePanel/MarginContainer/PresentationVBoxC/ButonsHBoxC"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "ANNULER"
+
 [node name="BlackBannerPanel2" type="Panel" parent="WindowTopBlackVBoxC"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
@@ -406,3 +492,5 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_j7vtp")
 [connection signal="pressed" from="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/MenuBarBottomPanelC/MarginC/MenuBarHBoxC/ButtonMenuPrestige" to="." method="_on_button_menu_prestige_pressed"]
 [connection signal="pressed" from="WindowTopBlackVBoxC/MarginContainer/AmeliorationDarkMatterControl/PresentationVBoxC/TopHBoxC/ButtonExit" to="WindowTopBlackVBoxC/MarginContainer/AmeliorationDarkMatterControl" method="_on_button_exit_pressed"]
 [connection signal="pressed" from="WindowTopBlackVBoxC/MarginContainer/AmeliorationDarkMatterControl/PresentationVBoxC/MarginC/VBoxC/PrestigeButton" to="WindowTopBlackVBoxC/MarginContainer/AmeliorationDarkMatterControl" method="_on_prestige_button_pressed"]
+[connection signal="pressed" from="WindowTopBlackVBoxC/MarginContainer/AmeliorationDarkMatterControl/FondValidationPrestigePanel/BoxValidationPrestigePanel/MarginContainer/PresentationVBoxC/ButonsHBoxC/OuiButton" to="WindowTopBlackVBoxC/MarginContainer/AmeliorationDarkMatterControl" method="_on_validation_prestige_button_pressed"]
+[connection signal="pressed" from="WindowTopBlackVBoxC/MarginContainer/AmeliorationDarkMatterControl/FondValidationPrestigePanel/BoxValidationPrestigePanel/MarginContainer/PresentationVBoxC/ButonsHBoxC/AnnulerButton" to="WindowTopBlackVBoxC/MarginContainer/AmeliorationDarkMatterControl" method="_on_annuler_prestige_button_pressed"]

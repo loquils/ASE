@@ -6,7 +6,6 @@ var AdButtonScene = preload("res://Design/Scenes/AdButton.tscn")
 func _ready():
 	MobileAds.initialize()
 
-
 func _process(_delta):
 		#var prix = round(coin.PrixBaseAmelioAttributs["Force"] * pow(coin.CoefficientsAchatAttributs["Force"], coin.NiveauxAttributs["Force"]))
 	CoinsQuantityLabel.text = str(RessourceManager.Coins)
