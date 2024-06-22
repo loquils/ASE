@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.godot.game-mergeDebugResources-20:/values-en-rIN/values-en-rIN.xml",
+            "outputFile": "com.godot.game-mergeDebugResources-26:/values-en-rIN/values-en-rIN.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\thernand\\.gradle\\caches\\transforms-3\\35f4a948deebfe6e56a5492680c1f66f\\transformed\\core-1.8.0\\res\\values-en-rIN\\values-en-rIN.xml",
+                    "source": "C:\\Users\\dosck\\.gradle\\caches\\transforms-3\\245f1aa0863a677574781ac0a1900f6e\\transformed\\core-1.8.0\\res\\values-en-rIN\\values-en-rIN.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -21,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\thernand\\.gradle\\caches\\transforms-3\\164e1ff50f0a8aa760aa5dde073f2f68\\transformed\\browser-1.4.0\\res\\values-en-rIN\\values-en-rIN.xml",
+                    "source": "C:\\Users\\dosck\\.gradle\\caches\\transforms-3\\70c0019c2b4a30302a35a78a6e9a7ca3\\transformed\\browser-1.4.0\\res\\values-en-rIN\\values-en-rIN.xml",
                     "from": {
                         "startLines": "2,3,4,5",
                         "startColumns": "4,4,4,4",

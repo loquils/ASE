@@ -203,6 +203,7 @@ id progressTimeRemaining
 id progress_bar
 id progress_bar_frame
 id progress_text
+id report_drawn
 id resumeOverCellular
 id right_icon
 id right_side
@@ -230,6 +231,7 @@ id time
 id time_remaining
 id title
 id view_tree_lifecycle_owner
+id view_tree_on_back_pressed_dispatcher_owner
 id view_tree_saved_state_registry_owner
 id view_tree_view_model_store_owner
 id visible_removing_fragment_view_tag

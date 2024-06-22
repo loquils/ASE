@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.godot.game"
     android:versionCode="1"
     android:versionName="1.0"
     android:installLocation="auto" >
@@ -26,16 +25,16 @@
         android:requestLegacyExternalStorage="false"
         tools:ignore="GoogleAppIndexingWarning" >
 
-        <!-- Records the version of the Godot editor used for building -->
+
         <meta-data
-            android:name="org.godotengine.editor.version"
-            android:value="${godotEditorVersion}" />
+			android:name="com.google.android.gms.ads.APPLICATION_ID"
+			android:value="ca-app-pub-4095654602209013~4785337441"/>
 
         <activity
             android:name=".GodotApp"
             android:label="@string/godot_project_name_string"
             android:theme="@style/GodotAppSplashTheme"
-            android:launchMode="singleInstance"
+            android:launchMode="singleInstancePerTask"
             android:excludeFromRecents="false"
             android:exported="true"
             android:screenOrientation="landscape"
@@ -45,13 +44,10 @@
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-		<meta-data
-			android:name="com.google.android.gms.ads.APPLICATION_ID"
-			android:value="ca-app-pub-4095654602209013~4785337441"/>
 
     </application>
 

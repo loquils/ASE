@@ -1,44 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.godot.game-mergeDebugResources-20:/values-zu/values-zu.xml",
+            "outputFile": "com.godot.game-mergeDebugResources-26:/values-zu/values-zu.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\thernand\\.gradle\\caches\\transforms-3\\35f4a948deebfe6e56a5492680c1f66f\\transformed\\core-1.8.0\\res\\values-zu\\values-zu.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "100",
-                        "endOffsets": "151"
-                    },
-                    "to": {
-                        "startLines": "44",
-                        "startColumns": "4",
-                        "startOffsets": "4244",
-                        "endColumns": "100",
-                        "endOffsets": "4340"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\thernand\\.gradle\\caches\\transforms-3\\164e1ff50f0a8aa760aa5dde073f2f68\\transformed\\browser-1.4.0\\res\\values-zu\\values-zu.xml",
-                    "from": {
-                        "startLines": "2,3,4,5",
-                        "startColumns": "4,4,4,4",
-                        "startOffsets": "55,167,275,387",
-                        "endColumns": "111,107,111,111",
-                        "endOffsets": "162,270,382,494"
-                    },
-                    "to": {
-                        "startLines": "20,21,22,23",
-                        "startColumns": "4,4,4,4",
-                        "startOffsets": "2340,2452,2560,2672",
-                        "endColumns": "111,107,111,111",
-                        "endOffsets": "2447,2555,2667,2779"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\thernand\\.gradle\\caches\\transforms-3\\0e628cf47af6527003ab8a0aef8cdcd5\\transformed\\jetified-play-services-base-18.0.0\\res\\values-zu\\values.xml",
+                    "source": "C:\\Users\\dosck\\.gradle\\caches\\transforms-3\\7e0c4c596f13c9f42b4e0674f1af95db\\transformed\\jetified-play-services-base-18.0.0\\res\\values-zu\\values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
                         "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
@@ -55,24 +21,41 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\thernand\\.gradle\\caches\\transforms-3\\4b1271ea82deb3a856a6d71030563e6d\\transformed\\jetified-play-services-basement-18.0.0\\res\\values-zu\\values.xml",
+                    "source": "C:\\Users\\dosck\\.gradle\\caches\\transforms-3\\245f1aa0863a677574781ac0a1900f6e\\transformed\\core-1.8.0\\res\\values-zu\\values-zu.xml",
                     "from": {
-                        "startLines": "4",
-                        "startColumns": "0",
-                        "startOffsets": "195",
-                        "endColumns": "127",
-                        "endOffsets": "322"
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
                     },
                     "to": {
-                        "startLines": "10",
+                        "startLines": "44",
                         "startColumns": "4",
-                        "startOffsets": "1112",
-                        "endColumns": "131",
-                        "endOffsets": "1239"
+                        "startOffsets": "4244",
+                        "endColumns": "100",
+                        "endOffsets": "4340"
                     }
                 },
                 {
-                    "source": "C:\\Users\\thernand\\.gradle\\caches\\transforms-3\\1b6f782786c87f060d8d6d962a966693\\transformed\\jetified-play-services-ads-22.4.0\\res\\values-zu\\values.xml",
+                    "source": "C:\\Users\\dosck\\.gradle\\caches\\transforms-3\\70c0019c2b4a30302a35a78a6e9a7ca3\\transformed\\browser-1.4.0\\res\\values-zu\\values-zu.xml",
+                    "from": {
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,167,275,387",
+                        "endColumns": "111,107,111,111",
+                        "endOffsets": "162,270,382,494"
+                    },
+                    "to": {
+                        "startLines": "20,21,22,23",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "2340,2452,2560,2672",
+                        "endColumns": "111,107,111,111",
+                        "endOffsets": "2447,2555,2667,2779"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\dosck\\.gradle\\caches\\transforms-3\\bcdc18e85fcebf2c50eb5143d58535f1\\transformed\\jetified-play-services-ads-22.4.0\\res\\values-zu\\values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24",
                         "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
@@ -86,6 +69,23 @@
                         "startOffsets": "2784,2832,2888,2953,3021,3093,3194,3279,3398,3459,3572,3638,3751,3841,3892,3983,4023,4062,4117,4195,4345",
                         "endColumns": "47,55,64,67,71,100,84,118,60,112,65,112,89,50,90,39,38,54,77,48,61",
                         "endOffsets": "2827,2883,2948,3016,3088,3189,3274,3393,3454,3567,3633,3746,3836,3887,3978,4018,4057,4112,4190,4239,4402"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\dosck\\.gradle\\caches\\transforms-3\\04f600bea88e9f46131f1931534747c1\\transformed\\jetified-play-services-basement-18.0.0\\res\\values-zu\\values.xml",
+                    "from": {
+                        "startLines": "4",
+                        "startColumns": "0",
+                        "startOffsets": "195",
+                        "endColumns": "127",
+                        "endOffsets": "322"
+                    },
+                    "to": {
+                        "startLines": "10",
+                        "startColumns": "4",
+                        "startOffsets": "1112",
+                        "endColumns": "131",
+                        "endOffsets": "1239"
                     }
                 }
             ]

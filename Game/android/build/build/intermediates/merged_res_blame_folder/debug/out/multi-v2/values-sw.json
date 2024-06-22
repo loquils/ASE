@@ -1,44 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.godot.game-mergeDebugResources-20:/values-sw/values-sw.xml",
+            "outputFile": "com.godot.game-mergeDebugResources-26:/values-sw/values-sw.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\thernand\\.gradle\\caches\\transforms-3\\35f4a948deebfe6e56a5492680c1f66f\\transformed\\core-1.8.0\\res\\values-sw\\values-sw.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "100",
-                        "endOffsets": "151"
-                    },
-                    "to": {
-                        "startLines": "44",
-                        "startColumns": "4",
-                        "startOffsets": "4184",
-                        "endColumns": "100",
-                        "endOffsets": "4280"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\thernand\\.gradle\\caches\\transforms-3\\1b6f782786c87f060d8d6d962a966693\\transformed\\jetified-play-services-ads-22.4.0\\res\\values-sw\\values.xml",
-                    "from": {
-                        "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24",
-                        "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
-                        "startOffsets": "199,241,288,351,415,482,581,656,761,813,915,969,1091,1174,1215,1311,1345,1378,1427,1506,1552",
-                        "endColumns": "41,46,62,63,66,98,74,104,51,101,53,121,82,40,95,33,32,48,78,45,55",
-                        "endOffsets": "240,287,350,414,481,580,655,760,812,914,968,1090,1173,1214,1310,1344,1377,1426,1505,1551,1607"
-                    },
-                    "to": {
-                        "startLines": "24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,45",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "2751,2797,2848,2915,2983,3054,3157,3236,3345,3401,3507,3565,3691,3778,3823,3923,3961,3998,4051,4134,4285",
-                        "endColumns": "45,50,66,67,70,102,78,108,55,105,57,125,86,44,99,37,36,52,82,49,59",
-                        "endOffsets": "2792,2843,2910,2978,3049,3152,3231,3340,3396,3502,3560,3686,3773,3818,3918,3956,3993,4046,4129,4179,4340"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\thernand\\.gradle\\caches\\transforms-3\\0e628cf47af6527003ab8a0aef8cdcd5\\transformed\\jetified-play-services-base-18.0.0\\res\\values-sw\\values.xml",
+                    "source": "C:\\Users\\dosck\\.gradle\\caches\\transforms-3\\7e0c4c596f13c9f42b4e0674f1af95db\\transformed\\jetified-play-services-base-18.0.0\\res\\values-sw\\values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
                         "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
@@ -55,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\thernand\\.gradle\\caches\\transforms-3\\4b1271ea82deb3a856a6d71030563e6d\\transformed\\jetified-play-services-basement-18.0.0\\res\\values-sw\\values.xml",
+                    "source": "C:\\Users\\dosck\\.gradle\\caches\\transforms-3\\04f600bea88e9f46131f1931534747c1\\transformed\\jetified-play-services-basement-18.0.0\\res\\values-sw\\values.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "0",
@@ -72,7 +38,24 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\thernand\\.gradle\\caches\\transforms-3\\164e1ff50f0a8aa760aa5dde073f2f68\\transformed\\browser-1.4.0\\res\\values-sw\\values-sw.xml",
+                    "source": "C:\\Users\\dosck\\.gradle\\caches\\transforms-3\\bcdc18e85fcebf2c50eb5143d58535f1\\transformed\\jetified-play-services-ads-22.4.0\\res\\values-sw\\values.xml",
+                    "from": {
+                        "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24",
+                        "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
+                        "startOffsets": "199,241,288,351,415,482,581,656,761,813,915,969,1091,1174,1215,1311,1345,1378,1427,1506,1552",
+                        "endColumns": "41,46,62,63,66,98,74,104,51,101,53,121,82,40,95,33,32,48,78,45,55",
+                        "endOffsets": "240,287,350,414,481,580,655,760,812,914,968,1090,1173,1214,1310,1344,1377,1426,1505,1551,1607"
+                    },
+                    "to": {
+                        "startLines": "24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,45",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "2751,2797,2848,2915,2983,3054,3157,3236,3345,3401,3507,3565,3691,3778,3823,3923,3961,3998,4051,4134,4285",
+                        "endColumns": "45,50,66,67,70,102,78,108,55,105,57,125,86,44,99,37,36,52,82,49,59",
+                        "endOffsets": "2792,2843,2910,2978,3049,3152,3231,3340,3396,3502,3560,3686,3773,3818,3918,3956,3993,4046,4129,4179,4340"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\dosck\\.gradle\\caches\\transforms-3\\70c0019c2b4a30302a35a78a6e9a7ca3\\transformed\\browser-1.4.0\\res\\values-sw\\values-sw.xml",
                     "from": {
                         "startLines": "2,3,4,5",
                         "startColumns": "4,4,4,4",
@@ -86,6 +69,23 @@
                         "startOffsets": "2316,2430,2531,2648",
                         "endColumns": "113,100,116,102",
                         "endOffsets": "2425,2526,2643,2746"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\dosck\\.gradle\\caches\\transforms-3\\245f1aa0863a677574781ac0a1900f6e\\transformed\\core-1.8.0\\res\\values-sw\\values-sw.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "44",
+                        "startColumns": "4",
+                        "startOffsets": "4184",
+                        "endColumns": "100",
+                        "endOffsets": "4280"
                     }
                 }
             ]
