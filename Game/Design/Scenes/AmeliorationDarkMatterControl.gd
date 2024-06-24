@@ -1,28 +1,49 @@
 extends Control
 
-var AmeliorationDarkMatter = preload("res://Design/Scenes/ButtonDarkMatter.tscn")
+var BoutonRechercheDarkMatter = preload("res://Design/Scenes/ButtonDarkMatter.tscn")
 @onready var PanelValidationPrestige = $FondValidationPrestigePanel
+@onready var MatiereNoireQuantiteeLabel = $PresentationVBoxC/TopMarginC/TopHBoxC/BackGroundDarkMatter/MarginC/HBoxC/MetiereNoireLabel
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	for ameliorationDarkMatterInList in RessourceManager.ListeAmeliorationsDarkMatter:
-		var newButtonAmeliorationDarkMatter = AmeliorationDarkMatter.instantiate()
-		newButtonAmeliorationDarkMatter._set_var(ameliorationDarkMatterInList)
+	#On connecte ici l'appuie du bouton lors de l'achat d'une recherche
+	RechercheClick.connect("RechercheDarkMatter_button_pressed", AchatRehercheMatiereNoireButtonPressed)
+	
+	for rechercheDarkMatterInList in RessourceManager.ListeRecherchesMatiereNoire:
+		var newButtonAmeliorationDarkMatter = BoutonRechercheDarkMatter.instantiate()
+		newButtonAmeliorationDarkMatter._set_var(rechercheDarkMatterInList)
 		$PresentationVBoxC/MarginC/VBoxC/PrestigeAmeliorationScrollC/PrestigeGridC.add_child(newButtonAmeliorationDarkMatter)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if visible:
+		MatiereNoireQuantiteeLabel.text = str(RessourceManager.DarkMatter)
 		$PresentationVBoxC/MarginC/VBoxC/Label.text = str(GetDeltaDarkMatter())
 
 
-#Pour l'instant on utilise ça, c'est pas bien :3
+#Pour l'instant on utilise ça, c'est pas bien :3, faut changer l'hydrogène max
 func GetDeltaDarkMatter():
 	if RessourceManager.HydrogeneMax.isLessThan(Big.new(1.0,5)):
-		return Big.new(0.0)
+		return Big.new(20.0)
 		
 	return Big.power(Big.subtractAbove0(RessourceManager.HydrogeneMax, Big.new(1.0,5)), 0.12)
+
+
+#Methode appellee par le signal lors de l'appuie sur un des boutons de recherches
+#On vérifie si on peut acheter la recherche, et on l'achete.	
+func AchatRehercheMatiereNoireButtonPressed(recherche):
+	if RessourceManager.ListeRecherchesMatiereNoire[recherche.Id].IsUnlocked:
+		return
+	
+	if RessourceManager.ListeRecherchesMatiereNoire[recherche.Id].Prix.isGreaterThan(RessourceManager.DarkMatter):
+		return
+	
+	RessourceManager.ListeRecherchesMatiereNoire[recherche.Id].IsUnlocked = true
+	RessourceManager.DarkMatter = Big.subtractAbove0(RessourceManager.DarkMatter, RessourceManager.ListeRecherchesMatiereNoire[recherche.Id].Prix)
+
+	BonusManager.MajBonusRecherchesMatiereNoire()
 
 
 #Trigger lors de l'appuie sur le bouton exit

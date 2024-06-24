@@ -8,6 +8,8 @@ var BonusTypesRecherches = ["PrixHydrogeneAugmentation", "HydrogeneCoeffMultipli
 var BonusTypesAmeliorationHelium = ["HydrogeneRendementMultiply", "HydrogeneAttributsCoefficientAdd"]
 var CurrentBonusesAmeliorationHelium = {}
 
+var BonusTypesRecherchesMatiereNoire = ["HydrogeneCoeffMultiplicateurRapport", "HeliumCoeffMultiplicateurRapport"]
+var CurrentBonusesRecherchesMatiereNoire = {"HydrogeneCoeffMultiplicateurRapport" : Big.new(0.0), "HeliumCoeffMultiplicateurRapport" : Big.new(0.0)}
 
 func _ready():
 	for bonusType in BonusTypesAmeliorationHelium:
@@ -49,6 +51,15 @@ func MajBonusAmeliorationHelium():
 					attributHydrogene.CoefficientRapport = Big.add(attributHydrogene.CoefficientBaseRapport, BonusManager.CurrentBonusesAmeliorationHelium[CurrentBonus])
 
 
+#Mise à jour des bonus des recherches de matière noire
+func MajBonusRecherchesMatiereNoire():
+	CurrentBonusesResearches["HydrogeneCoeffMultiplicateurRapport"] = Big.new(0.0)
+	CurrentBonusesResearches["HeliumCoeffMultiplicateurRapport"] = Big.new(0.0)
+
+	for rechercheMatiereNoire in RessourceManager.ListeRecherchesMatiereNoire:
+		if rechercheMatiereNoire.IsUnlocked:
+			CurrentBonusesRecherchesMatiereNoire[rechercheMatiereNoire.Augmentation] = Big.add(CurrentBonusesRecherchesMatiereNoire[rechercheMatiereNoire.Augmentation], rechercheMatiereNoire.AugmentationPercent)
+
 
 #Permet de récupérer le multiplicateur global du rendu des atomes (prend en compte les recherches et les amélioration Helium
 func GetGlobalMultiplicator(Name):
@@ -68,4 +79,12 @@ func GetGlobalMultiplicator(Name):
 	if(globalMultiplicator.isEqualTo(Big.new(0.0))):
 		globalMultiplicator = Big.new(1.0)
 	
-	return globalMultiplicator
+	var matiereNoireMultiplicateur = Big.new(1.0)
+	for CurrentRechercheMatiereNoireBonus in CurrentBonusesRecherchesMatiereNoire:
+		if CurrentRechercheMatiereNoireBonus.contains(Name) and CurrentRechercheMatiereNoireBonus.contains("CoeffMultiplicateurRapport"):
+			matiereNoireMultiplicateur = Big.multiply(matiereNoireMultiplicateur, CurrentBonusesRecherchesMatiereNoire[CurrentRechercheMatiereNoireBonus])
+	
+	if matiereNoireMultiplicateur.isEqualTo(Big.new(0.0)):
+		matiereNoireMultiplicateur = Big.new(1.0)
+	
+	return Big.multiply(globalMultiplicator, matiereNoireMultiplicateur)

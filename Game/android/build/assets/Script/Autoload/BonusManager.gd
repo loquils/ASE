@@ -27,7 +27,7 @@ func MajBonusRecherches():
 
 #Mise à jour des bonus des améliorations de l'Helium
 func MajBonusAmeliorationHelium():
-	RessourceManager.AtomsList["Hydrogene"].GlobalMultiplicator = Big.new(1.0)
+	RessourceManager.ListeAtomes["Hydrogene"].GlobalMultiplicator = Big.new(1.0)
 	
 	for CurrentBonus in CurrentBonusesAmeliorationHelium:
 		CurrentBonusesAmeliorationHelium[CurrentBonus] = Big.new(0.0)
@@ -40,12 +40,12 @@ func MajBonusAmeliorationHelium():
 		match CurrentBonus:
 			"HydrogeneRendementMultiply":
 				if CurrentBonusesAmeliorationHelium[CurrentBonus].isEqualTo(Big.new(0.0)):
-					RessourceManager.AtomsList["Hydrogene"].ApportAtome = RessourceManager.AtomsList["Hydrogene"].ApportAtomeBase
+					RessourceManager.ListeAtomes["Hydrogene"].ApportAtome = RessourceManager.ListeAtomes["Hydrogene"].ApportAtomeBase
 				else:
-					RessourceManager.AtomsList["Hydrogene"].GlobalMultiplicator = Big.multiply(RessourceManager.AtomsList["Hydrogene"].GlobalMultiplicator, CurrentBonusesAmeliorationHelium[CurrentBonus])
+					RessourceManager.ListeAtomes["Hydrogene"].GlobalMultiplicator = Big.multiply(RessourceManager.ListeAtomes["Hydrogene"].GlobalMultiplicator, CurrentBonusesAmeliorationHelium[CurrentBonus])
 
 			"HydrogeneAttributsCoefficientAdd":
-				for attributHydrogene in RessourceManager.AtomsList["Hydrogene"].ListeAttribs:
+				for attributHydrogene in RessourceManager.ListeAtomes["Hydrogene"].ListeAttribs:
 					attributHydrogene.CoefficientRapport = Big.add(attributHydrogene.CoefficientBaseRapport, BonusManager.CurrentBonusesAmeliorationHelium[CurrentBonus])
 
 

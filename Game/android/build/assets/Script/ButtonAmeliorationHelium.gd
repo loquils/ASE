@@ -57,13 +57,18 @@ func _process(delta):
 		else:
 			AmeliorationHeliumUnlockButton.disabled = false
 	else:
+		if not AmeliorationHelium.IsUnlocked:
+			$PanelForUnlock.visible = true
+			return
+		
 		NiveauLabel.text = tr("Niv.") + str(AmeliorationHelium.Level)
 		$PanelC/MarginC/HBoxC/RightVBoxC/PrixLabel.text = str(AmeliorationHelium.GetPrixAmeliorationHelium()) + " He"
 		
-		if RessourceManager.QuantiteesAtomes["Helium"].isLessThan(AmeliorationHelium.GetPrixAmeliorationHelium()):
-			disabled = true
-		else : 
-			disabled = false
+		if RessourceManager.QuantiteesAtomes.has("Helium"):
+			if RessourceManager.QuantiteesAtomes["Helium"].isLessThan(AmeliorationHelium.GetPrixAmeliorationHelium()):
+				disabled = true
+			else : 
+				disabled = false
 
 
 func _on_amelioration_helium_unlock_button_pressed():

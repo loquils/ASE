@@ -1,24 +1,28 @@
 extends Button
 
-var AmeliorationDarkMatter
+var RechercheDarkMatter
+
+@onready var NomAmeliorationLabel = $PanelC/PresentationVBoxC/NomLabel
+@onready var DescriptionAmeliorationLabel = $PanelC/PresentationVBoxC/MarginC/DescriptionLabel
+@onready var PrixAmeliorationLabel = $PanelC/PresentationVBoxC/PrixLabel
 
 
 #Définition de l'UI du bouton personnalisé.
-func _set_var(ameliorationDarkMatter):
-	AmeliorationDarkMatter = ameliorationDarkMatter
+func _set_var(rechercheDarkMatter):
+	RechercheDarkMatter = rechercheDarkMatter
 	
-	pressed.connect(RechercheClick.AmeliorationDarkMatterButtonEventTrigger.bind(AmeliorationDarkMatter))
+	pressed.connect(RechercheClick.RechercheDarkMatterButtonEventTrigger.bind(RechercheDarkMatter))
 	pressed.connect(ChangeButtonStateToBought)
-	
-	$PanelC/PresentationVBoxC/NomLabel.text = AmeliorationDarkMatter.Name
-	$PanelC/PresentationVBoxC/MarginC/DescriptionLabel.text = AmeliorationDarkMatter.Description
-	$PanelC/PresentationVBoxC/PrixLabel.text = "Prix : " + str(AmeliorationDarkMatter.Prix)
 
 
 #On met a jour l'UI en bloquant le bouton :)
 func _process(_delta):
-	if not AmeliorationDarkMatter.IsUnlocked:
-		if AmeliorationDarkMatter.Prix.isGreaterThan(RessourceManager.DarkMatter):
+	NomAmeliorationLabel.text = RechercheDarkMatter.Name
+	DescriptionAmeliorationLabel.text = RechercheDarkMatter.Description
+	PrixAmeliorationLabel.text = tr("Prix : ") + str(RechercheDarkMatter.Prix)
+	
+	if not RechercheDarkMatter.IsUnlocked:
+		if RechercheDarkMatter.Prix.isGreaterThan(RessourceManager.DarkMatter):
 			disabled = true
 		else:
 			disabled = false
@@ -30,7 +34,7 @@ func _process(_delta):
 #Methode trigger lors de l'appuie sur ce bouton
 #Si la recherche est bien achetée, il faut changer la stucture du bouton :
 func ChangeButtonStateToBought():
-	if AmeliorationDarkMatter.IsUnlocked:
+	if RechercheDarkMatter.IsUnlocked:
 		disabled = true
 		$PanelC/PresentationVBoxC/MarginC/Panel.visible = true
-		print("Recherche achetée :)")
+		print("Recherche Dark Matter achetée :)")

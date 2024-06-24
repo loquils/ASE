@@ -174,6 +174,10 @@ text = "ForceReset"
 layout_mode = 2
 text = "FreeMoney"
 
+[node name="ButtonSave" type="Button" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC/VBoxBoutons"]
+layout_mode = 2
+text = "Save"
+
 [node name="SellHydrogenButton" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC" instance=ExtResource("8_8mhas")]
 layout_mode = 2
 size_flags_vertical = 0
@@ -354,11 +358,52 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TopHBoxC" type="HBoxContainer" parent="WindowTopBlackVBoxC/MarginContainer/AmeliorationDarkMatterControl/PresentationVBoxC"]
+[node name="TopMarginC" type="MarginContainer" parent="WindowTopBlackVBoxC/MarginContainer/AmeliorationDarkMatterControl/PresentationVBoxC"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="TopHBoxC" type="HBoxContainer" parent="WindowTopBlackVBoxC/MarginContainer/AmeliorationDarkMatterControl/PresentationVBoxC/TopMarginC"]
 layout_mode = 2
 size_flags_vertical = 0
 
-[node name="ButtonExit" type="Button" parent="WindowTopBlackVBoxC/MarginContainer/AmeliorationDarkMatterControl/PresentationVBoxC/TopHBoxC"]
+[node name="BackGroundDarkMatter" type="NinePatchRect" parent="WindowTopBlackVBoxC/MarginContainer/AmeliorationDarkMatterControl/PresentationVBoxC/TopMarginC/TopHBoxC"]
+custom_minimum_size = Vector2(300, 40)
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("5_ruh6y")
+
+[node name="MarginC" type="MarginContainer" parent="WindowTopBlackVBoxC/MarginContainer/AmeliorationDarkMatterControl/PresentationVBoxC/TopMarginC/TopHBoxC/BackGroundDarkMatter"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_right = 10
+
+[node name="HBoxC" type="HBoxContainer" parent="WindowTopBlackVBoxC/MarginContainer/AmeliorationDarkMatterControl/PresentationVBoxC/TopMarginC/TopHBoxC/BackGroundDarkMatter/MarginC"]
+layout_mode = 2
+
+[node name="NameLabel" type="Label" parent="WindowTopBlackVBoxC/MarginContainer/AmeliorationDarkMatterControl/PresentationVBoxC/TopMarginC/TopHBoxC/BackGroundDarkMatter/MarginC/HBoxC"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "ARGENTPRESTIGE"
+label_settings = SubResource("LabelSettings_kmpp2")
+vertical_alignment = 1
+
+[node name="MetiereNoireLabel" type="Label" parent="WindowTopBlackVBoxC/MarginContainer/AmeliorationDarkMatterControl/PresentationVBoxC/TopMarginC/TopHBoxC/BackGroundDarkMatter/MarginC/HBoxC"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Quantity"
+label_settings = SubResource("LabelSettings_owup1")
+vertical_alignment = 1
+
+[node name="ButtonExit" type="Button" parent="WindowTopBlackVBoxC/MarginContainer/AmeliorationDarkMatterControl/PresentationVBoxC/TopMarginC/TopHBoxC"]
 layout_mode = 2
 size_flags_horizontal = 10
 theme_override_fonts/font = ExtResource("3_2a2og")
@@ -485,12 +530,13 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_j7vtp")
 [connection signal="pressed" from="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC/VBoxBoutons/ChangementLangueButton" to="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC/VBoxBoutons/ChangementLangueButton" method="_on_pressed"]
 [connection signal="pressed" from="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC/VBoxBoutons/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC/VBoxBoutons/ButtonGiveMoney" to="." method="_on_button_give_money_pressed"]
+[connection signal="pressed" from="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC/VBoxBoutons/ButtonSave" to="." method="_on_button_save_pressed"]
 [connection signal="pressed" from="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/AllMenus/MenuAmelioration/GridContainer/MarginContainer/ButtonAmeliorationHelium" to="." method="_on_button_amelioration_helium_pressed"]
 [connection signal="pressed" from="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/MenuBarBottomPanelC/MarginC/MenuBarHBoxC/ButtonMenuAtome" to="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl" method="_on_button_menu_atome_pressed"]
 [connection signal="pressed" from="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/MenuBarBottomPanelC/MarginC/MenuBarHBoxC/ButtonMenuRecherche" to="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl" method="_on_button_menu_recherche_pressed"]
 [connection signal="pressed" from="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/MenuBarBottomPanelC/MarginC/MenuBarHBoxC/ButtonMenuAmelioration" to="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl" method="_on_button_menu_amelioration_pressed"]
 [connection signal="pressed" from="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/MenuBarBottomPanelC/MarginC/MenuBarHBoxC/ButtonMenuPrestige" to="." method="_on_button_menu_prestige_pressed"]
-[connection signal="pressed" from="WindowTopBlackVBoxC/MarginContainer/AmeliorationDarkMatterControl/PresentationVBoxC/TopHBoxC/ButtonExit" to="WindowTopBlackVBoxC/MarginContainer/AmeliorationDarkMatterControl" method="_on_button_exit_pressed"]
+[connection signal="pressed" from="WindowTopBlackVBoxC/MarginContainer/AmeliorationDarkMatterControl/PresentationVBoxC/TopMarginC/TopHBoxC/ButtonExit" to="WindowTopBlackVBoxC/MarginContainer/AmeliorationDarkMatterControl" method="_on_button_exit_pressed"]
 [connection signal="pressed" from="WindowTopBlackVBoxC/MarginContainer/AmeliorationDarkMatterControl/PresentationVBoxC/MarginC/VBoxC/PrestigeButton" to="WindowTopBlackVBoxC/MarginContainer/AmeliorationDarkMatterControl" method="_on_prestige_button_pressed"]
 [connection signal="pressed" from="WindowTopBlackVBoxC/MarginContainer/AmeliorationDarkMatterControl/FondValidationPrestigePanel/BoxValidationPrestigePanel/MarginContainer/PresentationVBoxC/ButonsHBoxC/OuiButton" to="WindowTopBlackVBoxC/MarginContainer/AmeliorationDarkMatterControl" method="_on_validation_prestige_button_pressed"]
 [connection signal="pressed" from="WindowTopBlackVBoxC/MarginContainer/AmeliorationDarkMatterControl/FondValidationPrestigePanel/BoxValidationPrestigePanel/MarginContainer/PresentationVBoxC/ButonsHBoxC/AnnulerButton" to="WindowTopBlackVBoxC/MarginContainer/AmeliorationDarkMatterControl" method="_on_annuler_prestige_button_pressed"]

@@ -25,6 +25,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	$NomAtomeLabel.text = tr(Atome.Name)
+	
 	if $PanelForUnlock.visible:
 		if Atome.isUnlocked:
 			$PanelForUnlock.visible = false
@@ -35,11 +36,12 @@ func _process(delta):
 			if RessourceManager.QuantiteesAtomes[priceAtomeName].isLessThan(Atome.AtomePriceForUnlocking[priceAtomeName]):
 				testForOk = false
 		
-		if testForOk:
-			$PanelForUnlock/VBoxContainer/Button.disabled = false
-		else:
-			$PanelForUnlock/VBoxContainer/Button.disabled = true
-		
+		$PanelForUnlock/VBoxContainer/Button.disabled = not testForOk
+	
+	else:
+		if not Atome.isUnlocked:
+			$PanelForUnlock.visible = true
+
 
 func OnUnlockButtonPressed():
 	print("Bouton achat atome :" + Atome.Name)

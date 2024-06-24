@@ -14,10 +14,10 @@ func _set_var(ressourceName, ressourceQuantity):
 # On met à jour l'UI + on affiche la ressource si elle est bloquée
 func _process(delta):
 	if visible == true:
-		if not RessourceManager.QuantiteesAtomes.has(RessourceName):
+		if (not RessourceManager.QuantiteesAtomes.has(RessourceName)) or not RessourceManager.ListeAtomes[RessourceName].isUnlocked:
 			hide()
 			return
-			
+		
 		RessourceQuantity = RessourceManager.QuantiteesAtomes[RessourceName]
 		$BackGround/MarginC/HBoxC/NameLabel.text = tr(RessourceName)
 		$BackGround/MarginC/HBoxC/QuantityLabel.text = str(RessourceQuantity)

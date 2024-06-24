@@ -3,14 +3,16 @@ extends Control
 @onready var CoinsQuantityLabel = $WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC/RessourcesVBoxC/BackGroundCoins/MarginC/HBoxC/CoinsLabel
 var AdButtonScene = preload("res://Design/Scenes/AdButton.tscn")
 
+
 func _ready():
 	MobileAds.initialize()
+
 
 func _process(_delta):
 		#var prix = round(coin.PrixBaseAmelioAttributs["Force"] * pow(coin.CoefficientsAchatAttributs["Force"], coin.NiveauxAttributs["Force"]))
 	CoinsQuantityLabel.text = str(RessourceManager.Coins)
 
-	
+
 #func GetPrixVenteHydrogene():
 #	var newPrix = Big.multiply(RessourceManager.AtomsList["Hydrogene"].PrixBaseVenteAtome, RessourceManager.CurrentBonusesAmeliorationHelium["HydrogeneRendementMultiply"])
 
@@ -59,5 +61,7 @@ func _on_ad_timer_timeout():
 	if not has_node("WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC/VBoxBoutons/AdButton"):
 		var buttonAd = AdButtonScene.instantiate()
 		$WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC/VBoxBoutons.add_child(buttonAd)
-	else:
-		print("coiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiin")
+
+
+func _on_button_save_pressed():
+	Save.save_game()

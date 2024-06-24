@@ -8,9 +8,9 @@ func _ready():
 	RechercheClick.connect("Attribut_button_pressed", AchatAttributButtonPressed)
 	
 	#Il faut générer un canvas de présentation avec Nom, et une liste de boutons
-	for atomeNom in RessourceManager.AtomsList:
+	for atomeNom in RessourceManager.ListeAtomes:
 		var newAtomeCanvas = CanvasPresentation.instantiate()
-		newAtomeCanvas._set_var(RessourceManager.AtomsList[atomeNom])
+		newAtomeCanvas._set_var(RessourceManager.ListeAtomes[atomeNom])
 		$ScrollContainer/VBoxContainer.add_child(newAtomeCanvas)
 
 

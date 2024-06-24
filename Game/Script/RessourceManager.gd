@@ -18,9 +18,10 @@ var ListeAmeliorationsHeliumInitializeGame = []
 #Liste de toutes les améliorations de l'helium 
 var ListeAmeliorationsHelium = []
 
-
+#Liste des recherches de matière noire en initialisation
+var ListeRecherchesMatiereNoireInitializeGame = []
 #Liste de toutes les améliorations de la dark matter
-var ListeAmeliorationsDarkMatter = []
+var ListeRecherchesMatiereNoire = []
 var DarkMatter: Big = Big.new(0.0)
 var HydrogeneMax: Big = Big.new(0.0)
 
@@ -33,6 +34,7 @@ func _ready():
 	var atomsListInSaving
 	var listeRecherchesInSaving
 	var listeAmeliorationsHeliumInSaving
+	var listeRecherchesMatiereNoireInSaving
 
 	if ressourceLoadingGame != null:
 		if ressourceLoadingGame.has("Langue"):
@@ -47,12 +49,15 @@ func _ready():
 			listeRecherchesInSaving = ressourceLoadingGame["ResearchesList"]
 		if ressourceLoadingGame.has("HeliumUpgradesList"):
 			listeAmeliorationsHeliumInSaving = ressourceLoadingGame["HeliumUpgradesList"]
+		if ressourceLoadingGame.has("DarkMatter"):
+			DarkMatter = Big.ToCustomFormat(ressourceLoadingGame["DarkMatter"])
+		if ressourceLoadingGame.has("RecherchesMatiereNoire"):
+			listeRecherchesMatiereNoireInSaving = ressourceLoadingGame["RecherchesMatiereNoire"]
 	
 	AtomsLoading(quantiteesAtomesInSaving, atomsListInSaving)
 	LoadResearch(listeRecherchesInSaving)
 	LoadAmeliorationHelium(listeAmeliorationsHeliumInSaving)
-	loadDarkMatter()
-
+	LoadDarkMatter(listeRecherchesMatiereNoireInSaving)
 
 
 #Permet de charger la liste des atomes, et des quantitees possedees
@@ -63,7 +68,7 @@ func AtomsLoading(quantiteesAtomesInSaving, atomsListInSaving):
 	#Pour chaque atome dans la liste du jeu
 	for initializedAtom in AtomsListInitializingGame:
 		#Si on a recupérer une liste d'atomes dans la sauvegarde et que l'atome existe dans la sauvegarde
-		if atomsListInSaving != null and atomsListInSaving[initializedAtom.Name] != null:
+		if atomsListInSaving != null and atomsListInSaving.has(initializedAtom.Name) and atomsListInSaving[initializedAtom.Name] != null:
 			
 			#Faut qu'on definnisse le niveau pour tous les attributs de l'atome
 			for attributInitialized in initializedAtom.ListeAttribs:
@@ -80,14 +85,13 @@ func AtomsLoading(quantiteesAtomesInSaving, atomsListInSaving):
 					initializedAtom.isUnlocked = true
 		
 		#On récupère la quantité de l'atome aussi
-		if quantiteesAtomesInSaving != null and quantiteesAtomesInSaving[initializedAtom.Name] != null:
+		if quantiteesAtomesInSaving != null and quantiteesAtomesInSaving.has(initializedAtom.Name) and quantiteesAtomesInSaving[initializedAtom.Name] != null:
 			QuantiteesAtomes[initializedAtom.Name] = Big.ToCustomFormat(quantiteesAtomesInSaving[initializedAtom.Name])
 		else:
 			QuantiteesAtomes[initializedAtom.Name] = Big.new(0.0)
 	
 	for initializedAtome in AtomsListInitializingGame:
 		ListeAtomes[initializedAtome.Name] = initializedAtome
-
 
 
 #Permet de charger la liste des recherches
@@ -105,7 +109,6 @@ func LoadResearch(listeRecherchesInSaving):
 		ListeRecherches.append(recherche)
 
 
-
 #Permet de charger la liste des recherches
 func LoadAmeliorationHelium(listeAmeliorationsHeliumInSaving):
 	DefineAmeliorationHeliumListInitializingGame()
@@ -120,11 +123,18 @@ func LoadAmeliorationHelium(listeAmeliorationsHeliumInSaving):
 	for ameliorationHelium in ListeAmeliorationsHeliumInitializeGame:
 		ListeAmeliorationsHelium.append(ameliorationHelium)
 
-
-
-func loadDarkMatter():
-	var darkMatter1 = AmeliorationDarkMatter.new(0, "Découverte H²", "Double l'apport d'hydrogène par seconde.", Big.new(20.0, 0), Big.new(2.0, 0))
-	ListeAmeliorationsDarkMatter.append(darkMatter1)
+#Permet de charger la liste des recherches de matière noire
+func LoadDarkMatter(listeRecherchesMatiereNoireInSaving):
+	DefineRechercheMatiereNoireListInitializingGame()
+	
+	if not listeRecherchesMatiereNoireInSaving == null:
+		for initializedRechercheMatiereNoire in ListeRecherchesMatiereNoireInitializeGame:
+			if initializedRechercheMatiereNoire.Id < len(listeRecherchesMatiereNoireInSaving) and not listeRecherchesMatiereNoireInSaving[initializedRechercheMatiereNoire.Id] == null:
+				if listeRecherchesMatiereNoireInSaving[initializedRechercheMatiereNoire.Id]["IsUnlocked"]:
+					initializedRechercheMatiereNoire.IsUnlocked = true
+	
+	for rechercheMatiereNoire in ListeRecherchesMatiereNoireInitializeGame:
+		ListeRecherchesMatiereNoire.append(rechercheMatiereNoire)
 
 
 #Calcul et ajoute la quantité d'atome à la quantité d'atome
@@ -138,7 +148,7 @@ func CalculateQuantityAtomes(timeInSeconde:int = 1):
 
 #Permet d'initialiser la liste des atomes dans le jeu
 func DefineAtomsListInitializingGame():
-		#On définit les atomes auxquels on a accès :)
+	#On définit les atomes auxquels on a accès :)
 	var hydrogeneAtom = Atome.new("Hydrogene", Big.new(1.0, 0), Big.new(1.0, 0))
 	var hydrogenAttributsList = [AttributAtome.new(hydrogeneAtom, "Force", Big.new(0.0), Big.new(1.13), Big.new(0.07), Big.new(15)), AttributAtome.new(hydrogeneAtom, "Vitesse", Big.new(0.0), Big.new(1.38), Big.new(0.15), Big.new(30))] #AttributAtome.new(newAtome, "COIIIn", 0, 20, 50, 100)
 	hydrogeneAtom.DefineAtomeAttributs(hydrogenAttributsList)
@@ -175,9 +185,14 @@ func DefineAmeliorationHeliumListInitializingGame():
 	ListeAmeliorationsHeliumInitializeGame.append(amelio2)
 
 
+#Permet d'initialiser la liste des recherches de matière noire dans le jeu
+func DefineRechercheMatiereNoireListInitializingGame():
+		ListeRecherchesMatiereNoireInitializeGame.append(RechercheDarkMatter.new(0, "Découverte H²", "Double l'apport d'hydrogène par seconde.", Big.new(20.0, 0), "HydrogeneCoeffMultiplicateurRapport", Big.new(2.0, 0)))
+
 
 #------------------------------------------------------------------------------------------------------#
 
+#Permet de remettre les atomes à zero
 func ResetAtomes():
 	for atome in ListeAtomes:
 		for attribut in ListeAtomes[atome].ListeAttribs:
@@ -187,17 +202,21 @@ func ResetAtomes():
 			ListeAtomes[atome].isUnlocked = false
 
 
+#Permet de remettre la quantitée des atomes à zero
 func ResetRessources():
 	Coins = Big.new(0.0)
-	for quantiteeNom in QuantiteesAtomes:
-		QuantiteesAtomes[quantiteeNom] =  Big.new(0.0)
-	QuantiteesAtomes = {"Hydrogene": Big.new(0.0)}
+	for atomeNom in ListeAtomes:
+		QuantiteesAtomes[atomeNom] = Big.new(0.0)
 
+
+#Permet de remettre les recherches à zeros
 func ResetRecherches():
 	for recherche in ListeRecherches:
 		recherche.IsUnlocked = false
 	BonusManager.MajBonusRecherches()
 
+
+#Permet de remettre les améliorations Helium à zeros
 func ResetAmeliorationsHelium():
 	for ameliorationHelium in ListeAmeliorationsHelium:
 		ameliorationHelium.Level = Big.new(0.0)
@@ -221,22 +240,28 @@ func save():
 		atomsDictionnary[atomeName] = {"Attributs" : attributsDictionnary, "Unlock" : ListeAtomes[atomeName].isUnlocked}
 		
 	#Pour les recherches
-	var researchesList = []
-	for research in ListeRecherches:
-		researchesList.append({"Id" : research.Id, "IsUnlocked" : research.IsUnlocked})
+	var recherchesListe = []
+	for recherche in ListeRecherches:
+		recherchesListe.append({"Id" : recherche.Id, "IsUnlocked" : recherche.IsUnlocked})
 	
 	#Pour les améliorations de l'helium
-	var heliumUpgradesList = []
-	for upgradeHelium in ListeAmeliorationsHelium:
-		heliumUpgradesList.append({"Id" : upgradeHelium.Id, "IsUnlocked" : upgradeHelium.IsUnlocked, "Level" : upgradeHelium.Level.ToJsonFormat()})
-		
+	var ameliorationHeliumList = []
+	for ameliorationHelium in ListeAmeliorationsHelium:
+		ameliorationHeliumList.append({"Id" : ameliorationHelium.Id, "IsUnlocked" : ameliorationHelium.IsUnlocked, "Level" : ameliorationHelium.Level.ToJsonFormat()})
+	
+	var recherchesMatiereNoireListe = []
+	for rechercheMatiereNoire in ListeRecherchesMatiereNoire:
+		recherchesMatiereNoireListe.append({"Id" : rechercheMatiereNoire.Id, "IsUnlocked" : rechercheMatiereNoire.IsUnlocked})
+	
 	var save_dict = {
 		"Langue" : LangueManager.languageCourrant,
 		"Coins" : Coins.ToJsonFormat(),
 		"AtomsQuantity" : atomsQuantityDictionnary,
 		"ListeAtomes" : atomsDictionnary,
-		"ResearchesList" : researchesList,
-		"HeliumUpgradesList" : heliumUpgradesList
+		"ResearchesList" : recherchesListe,
+		"HeliumUpgradesList" : ameliorationHeliumList,
+		"DarkMatter" : DarkMatter.ToJsonFormat(),
+		"RecherchesMatiereNoire" : recherchesMatiereNoireListe
 	}
 	
 	return save_dict
