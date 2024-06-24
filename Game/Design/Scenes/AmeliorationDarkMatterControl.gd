@@ -2,7 +2,7 @@ extends Control
 
 var BoutonRechercheDarkMatter = preload("res://Design/Scenes/ButtonDarkMatter.tscn")
 @onready var PanelValidationPrestige = $FondValidationPrestigePanel
-@onready var MatiereNoireQuantiteeLabel = $PresentationVBoxC/TopMarginC/TopHBoxC/BackGroundDarkMatter/MarginC/HBoxC/MetiereNoireLabel
+@onready var MatiereNoireQuantiteeLabel = $PresentationVBoxC/TopMarginC/TopHBoxC/BackGroundDarkMatter/MarginC/HBoxC/MatiereNoireLabel
 
 
 # Called when the node enters the scene tree for the first time.
@@ -46,6 +46,15 @@ func AchatRehercheMatiereNoireButtonPressed(recherche):
 	BonusManager.MajBonusRecherchesMatiereNoire()
 
 
+#Reset prestige, remet tout à zero, et ajoute la matière noire
+func DarkMatterReset():
+	RessourceManager.DarkMatter = Big.add(RessourceManager.DarkMatter, GetDeltaDarkMatter())
+	RessourceManager.ResetAtomes()
+	RessourceManager.ResetAmeliorationsHelium()
+	RessourceManager.ResetRecherches()
+	RessourceManager.ResetRessources()
+
+
 #Trigger lors de l'appuie sur le bouton exit
 func _on_button_exit_pressed():
 	hide()
@@ -65,12 +74,3 @@ func _on_validation_prestige_button_pressed():
 #Trigger lors de l'appuie sur le bouton d'annulation du prestige
 func _on_annuler_prestige_button_pressed():
 	PanelValidationPrestige.hide()
-
-
-#Reset prestige, remet tout à zero, et ajoute la matière noire
-func DarkMatterReset():
-	RessourceManager.DarkMatter = Big.add(RessourceManager.DarkMatter, GetDeltaDarkMatter())
-	RessourceManager.ResetAtomes()
-	RessourceManager.ResetAmeliorationsHelium()
-	RessourceManager.ResetRecherches()
-	RessourceManager.ResetRessources()

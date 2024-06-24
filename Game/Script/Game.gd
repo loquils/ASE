@@ -1,6 +1,9 @@
 extends Control
 
 @onready var CoinsQuantityLabel = $WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC/RessourcesVBoxC/BackGroundCoins/MarginC/HBoxC/CoinsLabel
+@onready var AmeliorationHeliumControl = $WindowTopBlackVBoxC/MarginContainer/AmeliorationHeliumControl
+@onready var MatiereNoireControl = $WindowTopBlackVBoxC/MarginContainer/MatiereNoireControl
+
 var AdButtonScene = preload("res://Design/Scenes/AdButton.tscn")
 
 
@@ -28,11 +31,11 @@ func _on_button_pressed():
 
 #Trigger lors de l'appuie sur le bouton pour ouvrir la page d'améliorations de l'helium 
 func _on_button_amelioration_helium_pressed():
-	$WindowTopBlackVBoxC/MarginContainer/AmeliorationHeliumControl.visible = true
+	AmeliorationHeliumControl.visible = true
 
 #Trigger lors de l'appuie sur le bouton pour ouvrir la page de prestige 
 func _on_button_menu_prestige_pressed():
-	$WindowTopBlackVBoxC/MarginContainer/AmeliorationDarkMatterControl.visible = true
+	MatiereNoireControl.visible = true
 
 
 #Permet de save toutes les minutes

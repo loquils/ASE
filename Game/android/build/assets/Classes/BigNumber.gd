@@ -715,6 +715,8 @@ func subTest(numberToMinus:Big):
 
 #Moins, et round 
 static func subtractAbove0(x, y) -> Big:
+	if x.isEqualTo(y):
+		return Big.new(0.0)
 	var negated_y := Big.new(-y.mantissa, y.exponent)
 	var result = add(x, negated_y)
 	#Si on a des 0 avant la virgule, il faut les virer

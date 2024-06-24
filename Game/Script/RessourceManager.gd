@@ -150,7 +150,7 @@ func CalculateQuantityAtomes(timeInSeconde:int = 1):
 func DefineAtomsListInitializingGame():
 	#On définit les atomes auxquels on a accès :)
 	var hydrogeneAtom = Atome.new("Hydrogene", Big.new(1.0, 0), Big.new(1.0, 0))
-	var hydrogenAttributsList = [AttributAtome.new(hydrogeneAtom, "Force", Big.new(0.0), Big.new(1.13), Big.new(0.07), Big.new(15)), AttributAtome.new(hydrogeneAtom, "Vitesse", Big.new(0.0), Big.new(1.38), Big.new(0.15), Big.new(30))] #AttributAtome.new(newAtome, "COIIIn", 0, 20, 50, 100)
+	var hydrogenAttributsList = [AttributAtome.new(hydrogeneAtom, "Force", Big.new(1.0, 10), Big.new(1.13), Big.new(0.07), Big.new(15)), AttributAtome.new(hydrogeneAtom, "Vitesse", Big.new(0.0), Big.new(1.38), Big.new(0.15), Big.new(30))] #AttributAtome.new(newAtome, "COIIIn", 0, 20, 50, 100)
 	hydrogeneAtom.DefineAtomeAttributs(hydrogenAttributsList)
 	hydrogeneAtom.isUnlocked = true
 	
@@ -187,7 +187,7 @@ func DefineAmeliorationHeliumListInitializingGame():
 
 #Permet d'initialiser la liste des recherches de matière noire dans le jeu
 func DefineRechercheMatiereNoireListInitializingGame():
-		ListeRecherchesMatiereNoireInitializeGame.append(RechercheDarkMatter.new(0, "Découverte H²", "Double l'apport d'hydrogène par seconde.", Big.new(20.0, 0), "HydrogeneCoeffMultiplicateurRapport", Big.new(2.0, 0)))
+		ListeRecherchesMatiereNoireInitializeGame.append(RechercheDarkMatter.new(0, "RECHERCHEMATIERENOIRE1", "RECHERCHEMATIERENOIRE1DESCRIPTION", Big.new(20.0, 0), "HydrogeneCoeffMultiplicateurRapport", Big.new(2.0, 0)))
 
 
 #------------------------------------------------------------------------------------------------------#

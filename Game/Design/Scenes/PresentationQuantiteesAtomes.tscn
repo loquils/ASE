@@ -16,7 +16,6 @@ font = ExtResource("4_1mjuu")
 font = ExtResource("4_1mjuu")
 
 [node name="GUIMarginC" type="MarginContainer"]
-visible = false
 custom_minimum_size = Vector2(300, 40)
 offset_right = 250.0
 offset_bottom = 30.0
@@ -53,8 +52,10 @@ vertical_alignment = 1
 
 [node name="QuantityLabel" type="Label" parent="BackGround/MarginC/HBoxC"]
 layout_mode = 2
+size_flags_horizontal = 3
 text = "Quantity"
 label_settings = SubResource("LabelSettings_kf0p6")
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="PerSecLabel" type="Label" parent="BackGround/MarginC/HBoxC"]

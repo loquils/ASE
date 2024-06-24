@@ -9,11 +9,14 @@ var BonusTypesAmeliorationHelium = ["HydrogeneRendementMultiply", "HydrogeneAttr
 var CurrentBonusesAmeliorationHelium = {}
 
 var BonusTypesRecherchesMatiereNoire = ["HydrogeneCoeffMultiplicateurRapport", "HeliumCoeffMultiplicateurRapport"]
-var CurrentBonusesRecherchesMatiereNoire = {"HydrogeneCoeffMultiplicateurRapport" : Big.new(0.0), "HeliumCoeffMultiplicateurRapport" : Big.new(0.0)}
+var CurrentBonusesRecherchesMatiereNoire = {}
 
 func _ready():
 	for bonusType in BonusTypesAmeliorationHelium:
 		CurrentBonusesAmeliorationHelium[bonusType] = Big.new(0.0)
+	
+	for bonusTypeRecherchesMatiereNoire in BonusTypesRecherchesMatiereNoire:
+		CurrentBonusesRecherchesMatiereNoire[bonusTypeRecherchesMatiereNoire] = Big.new(0.0)
 
 
 #Permet de mettre à jour le dictionnaire des ressources
@@ -53,8 +56,8 @@ func MajBonusAmeliorationHelium():
 
 #Mise à jour des bonus des recherches de matière noire
 func MajBonusRecherchesMatiereNoire():
-	CurrentBonusesResearches["HydrogeneCoeffMultiplicateurRapport"] = Big.new(0.0)
-	CurrentBonusesResearches["HeliumCoeffMultiplicateurRapport"] = Big.new(0.0)
+	for bonusTypeRecherchesMatiereNoire in BonusTypesRecherchesMatiereNoire:
+		CurrentBonusesRecherchesMatiereNoire[bonusTypeRecherchesMatiereNoire] = Big.new(0.0)
 
 	for rechercheMatiereNoire in RessourceManager.ListeRecherchesMatiereNoire:
 		if rechercheMatiereNoire.IsUnlocked:

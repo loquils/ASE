@@ -1,0 +1,378 @@
+[gd_scene load_steps=16 format=3 uid="uid://dwlpff2poyavf"]
+
+[ext_resource type="Script" path="res://Design/Scenes/AmeliorationDarkMatterControl.gd" id="1_riemm"]
+[ext_resource type="Texture2D" uid="uid://dbud7benyerv0" path="res://Design/Borders/Gimp/QuantityAtomesBorders.png" id="2_f5isj"]
+[ext_resource type="SystemFont" uid="uid://d2tc25vdki2hk" path="res://Design/Themes/SystemFontForQantities.tres" id="3_wtfo6"]
+[ext_resource type="StyleBox" uid="uid://c3chktlureqv4" path="res://Design/Themes/RecherchesMatiereNoire/BoutonPrestigeNormalFlat.tres" id="4_njnl8"]
+[ext_resource type="Script" path="res://Design/Scenes/MatiereNoire/PrestigeBonusPanel.gd" id="4_qvk2o"]
+[ext_resource type="StyleBox" uid="uid://x6itlg2mjh5o" path="res://Design/Themes/RecherchesMatiereNoire/BoutonPrestigeHoverFlat.tres" id="5_leuvx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3u10t"]
+bg_color = Color(0.192157, 0.192157, 0.192157, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_detail = 1
+
+[sub_resource type="LabelSettings" id="LabelSettings_kmpp2"]
+font = ExtResource("3_wtfo6")
+font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_owup1"]
+font = ExtResource("3_wtfo6")
+font_size = 22
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k3cri"]
+bg_color = Color(0.192157, 0.192157, 0.192157, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cqyir"]
+bg_color = Color(0.129558, 0.129559, 0.129558, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vdjhx"]
+bg_color = Color(0.187176, 0.187176, 0.187176, 1)
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dpyax"]
+bg_color = Color(0.192157, 0.192157, 0.192157, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+
+[sub_resource type="LabelSettings" id="LabelSettings_pme07"]
+font = ExtResource("3_wtfo6")
+font_size = 18
+
+[sub_resource type="LabelSettings" id="LabelSettings_ysc1h"]
+font_size = 18
+
+[node name="MatiereNoireControl" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_riemm")
+
+[node name="PanelBackGround" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3u10t")
+
+[node name="PresentationVBoxC" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TopMarginC" type="MarginContainer" parent="PresentationVBoxC"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="TopHBoxC" type="HBoxContainer" parent="PresentationVBoxC/TopMarginC"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="BackGroundDarkMatter" type="NinePatchRect" parent="PresentationVBoxC/TopMarginC/TopHBoxC"]
+custom_minimum_size = Vector2(300, 40)
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("2_f5isj")
+
+[node name="MarginC" type="MarginContainer" parent="PresentationVBoxC/TopMarginC/TopHBoxC/BackGroundDarkMatter"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_right = 10
+
+[node name="HBoxC" type="HBoxContainer" parent="PresentationVBoxC/TopMarginC/TopHBoxC/BackGroundDarkMatter/MarginC"]
+layout_mode = 2
+
+[node name="NameLabel" type="Label" parent="PresentationVBoxC/TopMarginC/TopHBoxC/BackGroundDarkMatter/MarginC/HBoxC"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "ARGENTPRESTIGE"
+label_settings = SubResource("LabelSettings_kmpp2")
+vertical_alignment = 1
+
+[node name="MatiereNoireLabel" type="Label" parent="PresentationVBoxC/TopMarginC/TopHBoxC/BackGroundDarkMatter/MarginC/HBoxC"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Quantity"
+label_settings = SubResource("LabelSettings_owup1")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonExit" type="Button" parent="PresentationVBoxC/TopMarginC/TopHBoxC"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_fonts/font = ExtResource("3_wtfo6")
+theme_override_font_sizes/font_size = 24
+text = "Exit >"
+
+[node name="MarginC" type="MarginContainer" parent="PresentationVBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxC" type="VBoxContainer" parent="PresentationVBoxC/MarginC"]
+layout_mode = 2
+
+[node name="PrestigeBonusMarginC" type="MarginContainer" parent="PresentationVBoxC/MarginC/VBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="PrestigeBonusPanel" type="Panel" parent="PresentationVBoxC/MarginC/VBoxC/PrestigeBonusMarginC"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_k3cri")
+script = ExtResource("4_qvk2o")
+
+[node name="PrestigeBonusScrollC" type="ScrollContainer" parent="PresentationVBoxC/MarginC/VBoxC/PrestigeBonusMarginC/PrestigeBonusPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+
+[node name="ListeVBoxC" type="VBoxContainer" parent="PresentationVBoxC/MarginC/VBoxC/PrestigeBonusMarginC/PrestigeBonusPanel/PrestigeBonusScrollC"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Bonus1MarginC" type="MarginContainer" parent="PresentationVBoxC/MarginC/VBoxC/PrestigeBonusMarginC/PrestigeBonusPanel/PrestigeBonusScrollC/ListeVBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="BonusRecherchesRecapPanel" type="Panel" parent="PresentationVBoxC/MarginC/VBoxC/PrestigeBonusMarginC/PrestigeBonusPanel/PrestigeBonusScrollC/ListeVBoxC/Bonus1MarginC"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_cqyir")
+
+[node name="BonusEtQuantiteHBoxC" type="HBoxContainer" parent="PresentationVBoxC/MarginC/VBoxC/PrestigeBonusMarginC/PrestigeBonusPanel/PrestigeBonusScrollC/ListeVBoxC/Bonus1MarginC/BonusRecherchesRecapPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="NomBonusLabel" type="Label" parent="PresentationVBoxC/MarginC/VBoxC/PrestigeBonusMarginC/PrestigeBonusPanel/PrestigeBonusScrollC/ListeVBoxC/Bonus1MarginC/BonusRecherchesRecapPanel/BonusEtQuantiteHBoxC"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "BONUS1MATIERENOIRE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FondBonusQuantPanel" type="Panel" parent="PresentationVBoxC/MarginC/VBoxC/PrestigeBonusMarginC/PrestigeBonusPanel/PrestigeBonusScrollC/ListeVBoxC/Bonus1MarginC/BonusRecherchesRecapPanel/BonusEtQuantiteHBoxC"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_vdjhx")
+
+[node name="BonusLabel" type="Label" parent="PresentationVBoxC/MarginC/VBoxC/PrestigeBonusMarginC/PrestigeBonusPanel/PrestigeBonusScrollC/ListeVBoxC/Bonus1MarginC/BonusRecherchesRecapPanel/BonusEtQuantiteHBoxC/FondBonusQuantPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Bonus2MarginC" type="MarginContainer" parent="PresentationVBoxC/MarginC/VBoxC/PrestigeBonusMarginC/PrestigeBonusPanel/PrestigeBonusScrollC/ListeVBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="BonusRecherchesRecapPanel" type="Panel" parent="PresentationVBoxC/MarginC/VBoxC/PrestigeBonusMarginC/PrestigeBonusPanel/PrestigeBonusScrollC/ListeVBoxC/Bonus2MarginC"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_cqyir")
+
+[node name="BonusEtQuantiteHBoxC" type="HBoxContainer" parent="PresentationVBoxC/MarginC/VBoxC/PrestigeBonusMarginC/PrestigeBonusPanel/PrestigeBonusScrollC/ListeVBoxC/Bonus2MarginC/BonusRecherchesRecapPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="NomBonusLabel" type="Label" parent="PresentationVBoxC/MarginC/VBoxC/PrestigeBonusMarginC/PrestigeBonusPanel/PrestigeBonusScrollC/ListeVBoxC/Bonus2MarginC/BonusRecherchesRecapPanel/BonusEtQuantiteHBoxC"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Coin"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FondBonusQuantPanel" type="Panel" parent="PresentationVBoxC/MarginC/VBoxC/PrestigeBonusMarginC/PrestigeBonusPanel/PrestigeBonusScrollC/ListeVBoxC/Bonus2MarginC/BonusRecherchesRecapPanel/BonusEtQuantiteHBoxC"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_vdjhx")
+
+[node name="BonusLabel" type="Label" parent="PresentationVBoxC/MarginC/VBoxC/PrestigeBonusMarginC/PrestigeBonusPanel/PrestigeBonusScrollC/ListeVBoxC/Bonus2MarginC/BonusRecherchesRecapPanel/BonusEtQuantiteHBoxC/FondBonusQuantPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "COIIIIN"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="PresentationVBoxC/MarginC/VBoxC"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+
+[node name="PrestigeButton" type="Button" parent="PresentationVBoxC/MarginC/VBoxC"]
+custom_minimum_size = Vector2(600, 120)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("3_wtfo6")
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = ExtResource("4_njnl8")
+theme_override_styles/hover = ExtResource("5_leuvx")
+text = "PRESTIGEBOUTON"
+
+[node name="PrestigeAmeliorationScrollC" type="ScrollContainer" parent="PresentationVBoxC/MarginC/VBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PrestigeGridC" type="GridContainer" parent="PresentationVBoxC/MarginC/VBoxC/PrestigeAmeliorationScrollC"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 3
+
+[node name="FondValidationPrestigePanel" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BoxValidationPrestigePanel" type="Panel" parent="FondValidationPrestigePanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -120.0
+offset_right = 300.0
+offset_bottom = 120.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_dpyax")
+
+[node name="MarginContainer" type="MarginContainer" parent="FondValidationPrestigePanel/BoxValidationPrestigePanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="PresentationVBoxC" type="VBoxContainer" parent="FondValidationPrestigePanel/BoxValidationPrestigePanel/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="NomValidationPrestigeLabel" type="Label" parent="FondValidationPrestigePanel/BoxValidationPrestigePanel/MarginContainer/PresentationVBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "NOMVALIDATIONPRESTIGELABEL"
+label_settings = SubResource("LabelSettings_pme07")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InformationsValidationPrestigeLabel" type="Label" parent="FondValidationPrestigePanel/BoxValidationPrestigePanel/MarginContainer/PresentationVBoxC"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_vertical = 3
+text = "INFORMATIONVALIDATIONPRESTIGELABEL"
+label_settings = SubResource("LabelSettings_ysc1h")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ButonsHBoxC" type="HBoxContainer" parent="FondValidationPrestigePanel/BoxValidationPrestigePanel/MarginContainer/PresentationVBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="OuiButton" type="Button" parent="FondValidationPrestigePanel/BoxValidationPrestigePanel/MarginContainer/PresentationVBoxC/ButonsHBoxC"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "OUI"
+
+[node name="AnnulerButton" type="Button" parent="FondValidationPrestigePanel/BoxValidationPrestigePanel/MarginContainer/PresentationVBoxC/ButonsHBoxC"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "ANNULER"
+
+[connection signal="pressed" from="PresentationVBoxC/TopMarginC/TopHBoxC/ButtonExit" to="." method="_on_button_exit_pressed"]
+[connection signal="pressed" from="PresentationVBoxC/MarginC/VBoxC/PrestigeButton" to="." method="_on_prestige_button_pressed"]
+[connection signal="pressed" from="FondValidationPrestigePanel/BoxValidationPrestigePanel/MarginContainer/PresentationVBoxC/ButonsHBoxC/OuiButton" to="." method="_on_validation_prestige_button_pressed"]
+[connection signal="pressed" from="FondValidationPrestigePanel/BoxValidationPrestigePanel/MarginContainer/PresentationVBoxC/ButonsHBoxC/AnnulerButton" to="." method="_on_annuler_prestige_button_pressed"]
