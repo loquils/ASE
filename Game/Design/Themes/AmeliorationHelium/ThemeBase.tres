@@ -5,7 +5,9 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i8d1c"]
 
 [resource]
+Button/font_sizes/font_size = 20
 Button/styles/focus = SubResource("StyleBoxEmpty_i8d1c")
+Label/font_sizes/font_size = 20
 Label/fonts/font = ExtResource("1_rkx3t")
 MarginContainer/constants/margin_bottom = 5
 MarginContainer/constants/margin_left = 20

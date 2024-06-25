@@ -1,5 +1,6 @@
-[gd_scene load_steps=21 format=3 uid="uid://jwctjc5cvudy"]
+[gd_scene load_steps=22 format=3 uid="uid://jwctjc5cvudy"]
 
+[ext_resource type="Theme" uid="uid://cbk6urwquxgkm" path="res://Design/Themes/Global/ThemeGlobal.tres" id="1_rwuoq"]
 [ext_resource type="Script" path="res://Script/Game.gd" id="1_xa3fh"]
 [ext_resource type="Script" path="res://Script/AtomQuantityContainer.gd" id="2_j2sxo"]
 [ext_resource type="SystemFont" uid="uid://d2tc25vdki2hk" path="res://Design/Themes/SystemFontForQantities.tres" id="3_2a2og"]
@@ -41,6 +42,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_rwuoq")
 script = ExtResource("1_xa3fh")
 
 [node name="Atom" type="Node2D" parent="."]

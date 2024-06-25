@@ -159,7 +159,7 @@ func DefineAtomsListInitializingGame():
 	var heliumAtom = Atome.new("Helium", Big.new(0.25, 0))
 	var heliumAttributsList = [AttributAtome.new(heliumAtom, "Spin", Big.new(1.0, 5), Big.new(1.32), Big.new(0.12), Big.new(50)), AttributAtome.new(heliumAtom, "Angle", Big.new(0.0), Big.new(1.40), Big.new(0.2), Big.new(50)), AttributAtome.new(heliumAtom, "Complexity", Big.new(0.0), Big.new(1.6), Big.new(0.5), Big.new(100))]
 	heliumAtom.DefineAtomeAttributs(heliumAttributsList)
-	heliumAtom.DefineAtomeUnlockingPrice({"Hydrogene" : Big.new(1.0, 2)})
+	heliumAtom.DefineAtomeUnlockingPrice({"Hydrogene" : Big.new(1.5, 3)})
 	
 	AtomsListInitializingGame.append(heliumAtom)
 

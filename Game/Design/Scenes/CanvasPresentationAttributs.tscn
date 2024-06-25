@@ -18,7 +18,7 @@ border_width_right = 1
 border_width_bottom = 1
 
 [node name="CanvasPresentationAttributs" type="Control"]
-custom_minimum_size = Vector2(500, 230)
+custom_minimum_size = Vector2(520, 250)
 layout_mode = 3
 anchors_preset = 0
 offset_right = 500.0
@@ -63,7 +63,7 @@ size_flags_horizontal = 3
 alignment = 1
 
 [node name="Line2D2" type="Line2D" parent="."]
-points = PackedVector2Array(10, 215, 490, 215)
+points = PackedVector2Array(10, 235, 490, 235)
 width = 3.0
 default_color = Color(0.345098, 0.345098, 0.345098, 1)
 
@@ -76,6 +76,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Panel" type="Panel" parent="PanelForUnlock"]
+custom_minimum_size = Vector2(250, 180)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

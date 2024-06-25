@@ -2,9 +2,9 @@ extends Button
 
 var RechercheDarkMatter
 
-@onready var NomAmeliorationLabel = $PanelC/PresentationVBoxC/NomLabel
+@onready var NomAmeliorationLabel = $PanelC/PresentationVBoxC/NomMarginC/NomLabel
 @onready var DescriptionAmeliorationLabel = $PanelC/PresentationVBoxC/MarginC/DescriptionLabel
-@onready var PrixAmeliorationLabel = $PanelC/PresentationVBoxC/PrixLabel
+@onready var PrixAmeliorationLabel = $PanelC/PresentationVBoxC/PrixMarginC/PrixLabel
 
 
 #Définition de l'UI du bouton personnalisé.

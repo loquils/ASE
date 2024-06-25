@@ -1,19 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://cg8ujfkwr68r6"]
+[gd_scene load_steps=4 format=3 uid="uid://cg8ujfkwr68r6"]
 
 [ext_resource type="Theme" uid="uid://dwsl353owcnwl" path="res://Design/Themes/ThemeAtomeQuantitee.tres" id="1_vyu26"]
 [ext_resource type="Script" path="res://Script/PresentationQuantiteesAtomes.gd" id="2_cko2h"]
 [ext_resource type="Texture2D" uid="uid://bjgpka04uikbp" path="res://Gimped/testBordureRessources.png" id="3_oish4"]
-[ext_resource type="SystemFont" uid="uid://d2tc25vdki2hk" path="res://Design/Themes/SystemFontForQantities.tres" id="4_1mjuu"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_62xuy"]
-font = ExtResource("4_1mjuu")
-font_size = 22
-
-[sub_resource type="LabelSettings" id="LabelSettings_kf0p6"]
-font = ExtResource("4_1mjuu")
-
-[sub_resource type="LabelSettings" id="LabelSettings_aiw1w"]
-font = ExtResource("4_1mjuu")
 
 [node name="GUIMarginC" type="MarginContainer"]
 custom_minimum_size = Vector2(300, 40)
@@ -47,14 +36,12 @@ layout_mode = 2
 [node name="NameLabel" type="Label" parent="BackGround/MarginC/HBoxC"]
 layout_mode = 2
 text = "Nom"
-label_settings = SubResource("LabelSettings_62xuy")
 vertical_alignment = 1
 
 [node name="QuantityLabel" type="Label" parent="BackGround/MarginC/HBoxC"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Quantity"
-label_settings = SubResource("LabelSettings_kf0p6")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -63,5 +50,4 @@ layout_mode = 2
 size_flags_horizontal = 10
 size_flags_vertical = 1
 text = "PerSec"
-label_settings = SubResource("LabelSettings_aiw1w")
 vertical_alignment = 1

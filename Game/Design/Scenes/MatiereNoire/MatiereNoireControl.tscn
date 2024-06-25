@@ -1,10 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://dwlpff2poyavf"]
+[gd_scene load_steps=18 format=3 uid="uid://dwlpff2poyavf"]
 
-[ext_resource type="Script" path="res://Design/Scenes/AmeliorationDarkMatterControl.gd" id="1_riemm"]
+[ext_resource type="Script" path="res://Script/MatiereNoire/AmeliorationDarkMatterControl.gd" id="1_fkydw"]
+[ext_resource type="Theme" uid="uid://cbk6urwquxgkm" path="res://Design/Themes/Global/ThemeGlobal.tres" id="1_wti7w"]
 [ext_resource type="Texture2D" uid="uid://dbud7benyerv0" path="res://Design/Borders/Gimp/QuantityAtomesBorders.png" id="2_f5isj"]
 [ext_resource type="SystemFont" uid="uid://d2tc25vdki2hk" path="res://Design/Themes/SystemFontForQantities.tres" id="3_wtfo6"]
+[ext_resource type="Script" path="res://Script/MatiereNoire/PrestigeBonusPanel.gd" id="4_3m2ry"]
 [ext_resource type="StyleBox" uid="uid://c3chktlureqv4" path="res://Design/Themes/RecherchesMatiereNoire/BoutonPrestigeNormalFlat.tres" id="4_njnl8"]
-[ext_resource type="Script" path="res://Design/Scenes/MatiereNoire/PrestigeBonusPanel.gd" id="4_qvk2o"]
 [ext_resource type="StyleBox" uid="uid://x6itlg2mjh5o" path="res://Design/Themes/RecherchesMatiereNoire/BoutonPrestigeHoverFlat.tres" id="5_leuvx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3u10t"]
@@ -25,12 +26,16 @@ font = ExtResource("3_wtfo6")
 font_size = 22
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k3cri"]
-bg_color = Color(0.192157, 0.192157, 0.192157, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
+bg_color = Color(0.237539, 0.237539, 0.237539, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
 border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cqyir"]
 bg_color = Color(0.129558, 0.129559, 0.129558, 1)
@@ -52,6 +57,19 @@ border_width_bottom = 2
 border_color = Color(0, 0, 0, 1)
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o2hme"]
+bg_color = Color(0, 0, 0, 1)
+draw_center = false
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dpyax"]
 bg_color = Color(0.192157, 0.192157, 0.192157, 1)
@@ -78,7 +96,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_riemm")
+theme = ExtResource("1_wti7w")
+script = ExtResource("1_fkydw")
 
 [node name="PanelBackGround" type="Panel" parent="."]
 layout_mode = 1
@@ -157,9 +176,15 @@ size_flags_vertical = 3
 [node name="VBoxC" type="VBoxContainer" parent="PresentationVBoxC/MarginC"]
 layout_mode = 2
 
-[node name="PrestigeBonusMarginC" type="MarginContainer" parent="PresentationVBoxC/MarginC/VBoxC"]
+[node name="SectionRecapBonusLabel" type="Label" parent="PresentationVBoxC/MarginC/VBoxC"]
 layout_mode = 2
-size_flags_vertical = 3
+text = "BONUSNOMTOPCONTENEUR"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PrestigeBonusMarginC" type="MarginContainer" parent="PresentationVBoxC/MarginC/VBoxC"]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
@@ -168,7 +193,7 @@ theme_override_constants/margin_bottom = 5
 [node name="PrestigeBonusPanel" type="Panel" parent="PresentationVBoxC/MarginC/VBoxC/PrestigeBonusMarginC"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_k3cri")
-script = ExtResource("4_qvk2o")
+script = ExtResource("4_3m2ry")
 
 [node name="PrestigeBonusScrollC" type="ScrollContainer" parent="PresentationVBoxC/MarginC/VBoxC/PrestigeBonusMarginC/PrestigeBonusPanel"]
 layout_mode = 1
@@ -255,7 +280,7 @@ alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
-text = "Coin"
+text = "BONUS2MATIERENOIRE"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -271,29 +296,58 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "COIIIIN"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label" type="Label" parent="PresentationVBoxC/MarginC/VBoxC"]
+[node name="QuantiteeAGagnerHBoxC" type="HBoxContainer" parent="PresentationVBoxC/MarginC/VBoxC"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 35
+alignment = 1
+
+[node name="TexteQuantiteeLabel" type="Label" parent="PresentationVBoxC/MarginC/VBoxC/QuantiteeAGagnerHBoxC"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "TEXTEQUANTITEEMATIERENOIRE"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="QuantiteeLabel" type="Label" parent="PresentationVBoxC/MarginC/VBoxC/QuantiteeAGagnerHBoxC"]
+layout_mode = 2
+size_flags_vertical = 1
 
 [node name="PrestigeButton" type="Button" parent="PresentationVBoxC/MarginC/VBoxC"]
 custom_minimum_size = Vector2(600, 120)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("3_wtfo6")
-theme_override_font_sizes/font_size = 22
+theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = ExtResource("4_njnl8")
 theme_override_styles/hover = ExtResource("5_leuvx")
 text = "PRESTIGEBOUTON"
 
-[node name="PrestigeAmeliorationScrollC" type="ScrollContainer" parent="PresentationVBoxC/MarginC/VBoxC"]
+[node name="RecherchesMarginC" type="MarginContainer" parent="PresentationVBoxC/MarginC/VBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="FondRechechesPanel" type="Panel" parent="PresentationVBoxC/MarginC/VBoxC/RecherchesMarginC"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_o2hme")
+
+[node name="InterneRecherchesMarginC" type="MarginContainer" parent="PresentationVBoxC/MarginC/VBoxC/RecherchesMarginC"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="PrestigeAmeliorationScrollC" type="ScrollContainer" parent="PresentationVBoxC/MarginC/VBoxC/RecherchesMarginC/InterneRecherchesMarginC"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="PrestigeGridC" type="GridContainer" parent="PresentationVBoxC/MarginC/VBoxC/PrestigeAmeliorationScrollC"]
+[node name="PrestigeGridC" type="GridContainer" parent="PresentationVBoxC/MarginC/VBoxC/RecherchesMarginC/InterneRecherchesMarginC/PrestigeAmeliorationScrollC"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3

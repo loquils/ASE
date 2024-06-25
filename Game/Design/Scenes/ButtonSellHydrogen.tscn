@@ -11,7 +11,7 @@ bg_color = Color(0.45098, 0.45098, 0.45098, 1)
 
 [node name="SellHydrogenButton" type="Button"]
 clip_contents = true
-custom_minimum_size = Vector2(130, 120)
+custom_minimum_size = Vector2(150, 140)
 offset_right = 8.0
 offset_bottom = 8.0
 theme = ExtResource("1_a4k5k")

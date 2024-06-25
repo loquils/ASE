@@ -6,13 +6,13 @@ var AmeliorationHelium
 @onready var NomLabel = $PanelC/MarginC/HBoxC/LeftVBoxC/NomLabel
 @onready var DescriptionLabel = $PanelC/MarginC/HBoxC/LeftVBoxC/DescriptionLabel
 @onready var NiveauLabel = $PanelC/MarginC/HBoxC/RightVBoxC/NiveauLabel
-
+@onready var UnlockPanel = $PanelForUnlock
 @onready var UnlockAtomLabel = $PanelForUnlock/VBoxContainer/AtomeLabel
+
 
 func _set_var(ameliorationHelium:AmeliorationHelium):
 	AmeliorationHelium = ameliorationHelium
 	
-	$PanelC/MarginC/HBoxC/LeftVBoxC/BonusLabel.text = "bonus !"
 	$PanelC/MarginC/HBoxC/RightVBoxC/PrixLabel.text = str(AmeliorationHelium.GetPrixAmeliorationHelium())
 	
 	if(AmeliorationHelium.AtomePriceForUnlocking.has("Coins")):
@@ -40,11 +40,11 @@ func _process(delta):
 	NomLabel.text = tr(AmeliorationHelium.Name)
 	DescriptionLabel.text = tr(AmeliorationHelium.Description)
 	
-	if $PanelForUnlock.visible:
+	if UnlockPanel.visible:
 		UnlockAtomLabel.text = tr(AmeliorationHelium.AtomePriceForUnlocking.keys()[0])
 		
 		if AmeliorationHelium.IsUnlocked:
-			$PanelForUnlock.visible = false
+			UnlockPanel.visible = false
 		
 		#On vérifie si le bouton est disabled ou pas : si on a asser de ressources pour le débloqué ou pas
 		if AmeliorationHelium.AtomePriceForUnlocking.has("Coins"):
@@ -58,7 +58,7 @@ func _process(delta):
 			AmeliorationHeliumUnlockButton.disabled = false
 	else:
 		if not AmeliorationHelium.IsUnlocked:
-			$PanelForUnlock.visible = true
+			UnlockPanel.visible = true
 			return
 		
 		NiveauLabel.text = tr("Niv.") + str(AmeliorationHelium.Level)

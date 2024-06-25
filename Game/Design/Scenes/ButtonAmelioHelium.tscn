@@ -58,15 +58,20 @@ layout_mode = 2
 size_flags_vertical = 1
 theme_override_font_sizes/font_size = 28
 text = "Nom"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="DescriptionLabel" type="Label" parent="PanelC/MarginC/HBoxC/LeftVBoxC"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_font_sizes/font_size = 14
+theme_override_font_sizes/font_size = 18
 text = "Description"
+horizontal_alignment = 1
+vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="BonusLabel" type="Label" parent="PanelC/MarginC/HBoxC/LeftVBoxC"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 1
 theme_override_font_sizes/font_size = 20
@@ -107,6 +112,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Panel" type="Panel" parent="PanelForUnlock"]
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

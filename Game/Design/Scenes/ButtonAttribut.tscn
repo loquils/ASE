@@ -7,7 +7,7 @@
 bg_color = Color(0.345098, 0.345098, 0.345098, 1)
 
 [node name="ButtonAttribut" type="Button"]
-custom_minimum_size = Vector2(120, 150)
+custom_minimum_size = Vector2(140, 170)
 offset_right = 120.0
 offset_bottom = 159.0
 theme = ExtResource("1_ecbpn")

@@ -13,9 +13,12 @@ RECHERCHEMATIERENOIRE1, "Découverte H²", "H² discovery"
 RECHERCHEMATIERENOIRE1DESCRIPTION, "Double l'apport d'hydrogène par seconde.", "Double hydrogen output per seconde."
 BONUS1MATIERENOIRE, "Hydrogène par seconde : ", "Hydrogen per seconde : "
 BONUS2MATIERENOIRE, "Hélium par seconde : ", "Helium per seconde : "
+
+BONUSNOMTOPCONTENEUR, "Bonus de matière noire :", "Dark Mater bonuses"
 PRESTIGEBOUTON, "Prestige !\n Retours vers un nouveau commencement !", "Prestige !\n Back to a new beginning !"
 NOMVALIDATIONPRESTIGELABEL, "Êtes vous sûr que voulez lancer un prestige ?", "Are you sure you want to prestige ?"
 INFORMATIONVALIDATIONPRESTIGELABEL, "Tous vos atomes, vos coins, vos recherches et vos améliorations seront remis à zeros. Seul les amélioration de la matière noire seront gardées !", "All of your atoms, coins, researches and upgrades will be lost. Only dark matter upgrades will be kept."
+TEXTEQUANTITEEMATIERENOIRE, "Matière Noire gagnée aprés prestige : ", "Dark Mater won after prestige :"
 
 Hydrogene, "Hydrogène", "Hydrogen"
 Hydrogène, "Hydrogène", "Hydrogen"

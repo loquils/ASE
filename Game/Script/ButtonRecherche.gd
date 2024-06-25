@@ -2,6 +2,11 @@ extends Button
 
 var Recherche
 
+@onready var NomLabel = $PanelC/PresentationVBoxC/NomMarginC/NomLabel
+@onready var DescriptionLabel = $PanelC/PresentationVBoxC/MarginC/DescriptionLabel
+@onready var PrixLabel = $PanelC/PresentationVBoxC/PrixMarginC/PrixLabel
+@onready var VertPanel = $PanelC/PresentationVBoxC/MarginC/VertPanel
+
 #Définition de l'UI du bouton personnalisé.
 func _set_var(recherche):
 	Recherche = recherche
@@ -12,21 +17,21 @@ func _ready():
 
 #On met a jour l'UI en bloquant le bouton :)
 func _process(_delta):
-	$PanelC/PresentationVBoxC/NomLabel.text = tr(Recherche.Name)
-	$PanelC/PresentationVBoxC/MarginC/DescriptionLabel.text = tr(Recherche.Description)
-	$PanelC/PresentationVBoxC/PrixLabel.text = tr("Prix : ") + str(Recherche.Prix)
+	NomLabel.text = tr(Recherche.Name)
+	DescriptionLabel.text = tr(Recherche.Description)
+	PrixLabel.text = tr("Prix : ") + str(Recherche.Prix)
 	
 	if not Recherche.IsUnlocked:
-		if $PanelC/PresentationVBoxC/MarginC/Panel.visible:
+		if VertPanel.visible:
 			disabled = false
-			$PanelC/PresentationVBoxC/MarginC/Panel.visible = false
+			VertPanel.visible = false
 			
 		if Recherche.Prix.isGreaterThan(RessourceManager.Coins):
 			disabled = true
 		else:
 			disabled = false
 	else:
-		if not $PanelC/PresentationVBoxC/MarginC/Panel.visible:
+		if not VertPanel.visible:
 			ChangeButtonStateToBought()
 
 
@@ -35,5 +40,5 @@ func _process(_delta):
 func ChangeButtonStateToBought():
 	if Recherche.IsUnlocked:
 		disabled = true
-		$PanelC/PresentationVBoxC/MarginC/Panel.visible = true
+		VertPanel.visible = true
 		print("Recherche achetée :)")
