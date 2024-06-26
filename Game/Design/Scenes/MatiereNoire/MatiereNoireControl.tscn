@@ -209,13 +209,103 @@ layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
 
+[node name="RecherchesAcheteesMarginC" type="MarginContainer" parent="PresentationVBoxC/MarginC/VBoxC/PrestigeBonusMarginC/PrestigeBonusPanel/PrestigeBonusScrollC/ListeVBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 10
+
+[node name="BonusRecherchesRecapPanel" type="Panel" parent="PresentationVBoxC/MarginC/VBoxC/PrestigeBonusMarginC/PrestigeBonusPanel/PrestigeBonusScrollC/ListeVBoxC/RecherchesAcheteesMarginC"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_cqyir")
+
+[node name="BonusEtQuantiteHBoxC" type="HBoxContainer" parent="PresentationVBoxC/MarginC/VBoxC/PrestigeBonusMarginC/PrestigeBonusPanel/PrestigeBonusScrollC/ListeVBoxC/RecherchesAcheteesMarginC/BonusRecherchesRecapPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="NomBonusLabel" type="Label" parent="PresentationVBoxC/MarginC/VBoxC/PrestigeBonusMarginC/PrestigeBonusPanel/PrestigeBonusScrollC/ListeVBoxC/RecherchesAcheteesMarginC/BonusRecherchesRecapPanel/BonusEtQuantiteHBoxC"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "RECHERCHESACHETEES"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FondBonusQuantPanel" type="Panel" parent="PresentationVBoxC/MarginC/VBoxC/PrestigeBonusMarginC/PrestigeBonusPanel/PrestigeBonusScrollC/ListeVBoxC/RecherchesAcheteesMarginC/BonusRecherchesRecapPanel/BonusEtQuantiteHBoxC"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_vdjhx")
+
+[node name="BonusLabel" type="Label" parent="PresentationVBoxC/MarginC/VBoxC/PrestigeBonusMarginC/PrestigeBonusPanel/PrestigeBonusScrollC/ListeVBoxC/RecherchesAcheteesMarginC/BonusRecherchesRecapPanel/BonusEtQuantiteHBoxC/FondBonusQuantPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RecherchesMatiereNoireAcheteesMarginC" type="MarginContainer" parent="PresentationVBoxC/MarginC/VBoxC/PrestigeBonusMarginC/PrestigeBonusPanel/PrestigeBonusScrollC/ListeVBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 10
+
+[node name="BonusRecherchesRecapPanel" type="Panel" parent="PresentationVBoxC/MarginC/VBoxC/PrestigeBonusMarginC/PrestigeBonusPanel/PrestigeBonusScrollC/ListeVBoxC/RecherchesMatiereNoireAcheteesMarginC"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_cqyir")
+
+[node name="BonusEtQuantiteHBoxC" type="HBoxContainer" parent="PresentationVBoxC/MarginC/VBoxC/PrestigeBonusMarginC/PrestigeBonusPanel/PrestigeBonusScrollC/ListeVBoxC/RecherchesMatiereNoireAcheteesMarginC/BonusRecherchesRecapPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="NomBonusLabel" type="Label" parent="PresentationVBoxC/MarginC/VBoxC/PrestigeBonusMarginC/PrestigeBonusPanel/PrestigeBonusScrollC/ListeVBoxC/RecherchesMatiereNoireAcheteesMarginC/BonusRecherchesRecapPanel/BonusEtQuantiteHBoxC"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "RECHERCHESACHETEESMATNOIRE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FondBonusQuantPanel" type="Panel" parent="PresentationVBoxC/MarginC/VBoxC/PrestigeBonusMarginC/PrestigeBonusPanel/PrestigeBonusScrollC/ListeVBoxC/RecherchesMatiereNoireAcheteesMarginC/BonusRecherchesRecapPanel/BonusEtQuantiteHBoxC"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_vdjhx")
+
+[node name="BonusLabel" type="Label" parent="PresentationVBoxC/MarginC/VBoxC/PrestigeBonusMarginC/PrestigeBonusPanel/PrestigeBonusScrollC/ListeVBoxC/RecherchesMatiereNoireAcheteesMarginC/BonusRecherchesRecapPanel/BonusEtQuantiteHBoxC/FondBonusQuantPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Bonus1MarginC" type="MarginContainer" parent="PresentationVBoxC/MarginC/VBoxC/PrestigeBonusMarginC/PrestigeBonusPanel/PrestigeBonusScrollC/ListeVBoxC"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
+theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
+theme_override_constants/margin_bottom = 10
 
 [node name="BonusRecherchesRecapPanel" type="Panel" parent="PresentationVBoxC/MarginC/VBoxC/PrestigeBonusMarginC/PrestigeBonusPanel/PrestigeBonusScrollC/ListeVBoxC/Bonus1MarginC"]
 custom_minimum_size = Vector2(0, 50)
@@ -258,9 +348,9 @@ vertical_alignment = 1
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
+theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
+theme_override_constants/margin_bottom = 10
 
 [node name="BonusRecherchesRecapPanel" type="Panel" parent="PresentationVBoxC/MarginC/VBoxC/PrestigeBonusMarginC/PrestigeBonusPanel/PrestigeBonusScrollC/ListeVBoxC/Bonus2MarginC"]
 custom_minimum_size = Vector2(0, 50)

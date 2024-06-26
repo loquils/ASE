@@ -1,27 +1,32 @@
 extends Node
 
 #Bonus des Recherches
-var CurrentBonusesResearches = {"PrixHydrogeneAugmentation" : Big.new(0.0), "HydrogeneCoeffMultiplicateurRapport" : Big.new(1.0), "HeliumCoeffMultiplicateurRapport" : Big.new(1.0)}
 var BonusTypesRecherches = ["PrixHydrogeneAugmentation", "HydrogeneCoeffMultiplicateurRapport", "HeliumCoeffMultiplicateurRapport"]
+var CurrentBonusesResearches = {"PrixHydrogeneAugmentation" : Big.new(0.0), "HydrogeneCoeffMultiplicateurRapport" : Big.new(1.0), "HeliumCoeffMultiplicateurRapport" : Big.new(1.0)}
 
 #Amélioration de l'helium
 var BonusTypesAmeliorationHelium = ["HydrogeneRendementMultiply", "HydrogeneAttributsCoefficientAdd"]
 var CurrentBonusesAmeliorationHelium = {}
 
-var BonusTypesRecherchesMatiereNoire = ["HydrogeneCoeffMultiplicateurRapport", "HeliumCoeffMultiplicateurRapport"]
+#Bonus recherches matière noire
+var BonusTypesRecherchesMatiereNoire = ["HydrogeneCoeffMultiplicateurRapport", "HydrogeneRechercheMNAcheteeCoeffMultiplicateurRapport", "HeliumCoeffMultiplicateurRapport"]
 var CurrentBonusesRecherchesMatiereNoire = {}
 
 func _ready():
-	for bonusType in BonusTypesAmeliorationHelium:
-		CurrentBonusesAmeliorationHelium[bonusType] = Big.new(0.0)
+	if len(BonusTypesAmeliorationHelium) == 0:
+		for bonusType in BonusTypesAmeliorationHelium:
+			CurrentBonusesAmeliorationHelium[bonusType] = Big.new(0.0)
 	
-	for bonusTypeRecherchesMatiereNoire in BonusTypesRecherchesMatiereNoire:
-		CurrentBonusesRecherchesMatiereNoire[bonusTypeRecherchesMatiereNoire] = Big.new(0.0)
+	if len(BonusTypesRecherchesMatiereNoire) == 0:
+		for bonusTypeRecherchesMatiereNoire in BonusTypesRecherchesMatiereNoire:
+			CurrentBonusesRecherchesMatiereNoire[bonusTypeRecherchesMatiereNoire] = Big.new(0.0)
 
 
 #Permet de mettre à jour le dictionnaire des ressources
 #On parcour la liste des ressources, et on ajoute les bonus
 func MajBonusRecherches():
+	InfosPartie.MajInformationsPartie() #Pour l'instant pas utile ici, mais plus tard oui
+	
 	CurrentBonusesResearches["PrixHydrogeneAugmentation"] = Big.new(0.0)
 	CurrentBonusesResearches["HydrogeneCoeffMultiplicateurRapport"] = Big.new(0.0)
 	CurrentBonusesResearches["HeliumCoeffMultiplicateurRapport"] = Big.new(0.0)
@@ -32,6 +37,8 @@ func MajBonusRecherches():
 
 #Mise à jour des bonus des améliorations de l'Helium
 func MajBonusAmeliorationHelium():
+	InfosPartie.MajInformationsPartie() #Pour l'instant pas utile ici, mais plus tard oui
+	
 	RessourceManager.ListeAtomes["Hydrogene"].GlobalMultiplicator = Big.new(1.0)
 	
 	for CurrentBonus in CurrentBonusesAmeliorationHelium:
@@ -56,12 +63,18 @@ func MajBonusAmeliorationHelium():
 
 #Mise à jour des bonus des recherches de matière noire
 func MajBonusRecherchesMatiereNoire():
+	InfosPartie.MajInformationsPartie()
+	
 	for bonusTypeRecherchesMatiereNoire in BonusTypesRecherchesMatiereNoire:
 		CurrentBonusesRecherchesMatiereNoire[bonusTypeRecherchesMatiereNoire] = Big.new(0.0)
-
+		
 	for rechercheMatiereNoire in RessourceManager.ListeRecherchesMatiereNoire:
 		if rechercheMatiereNoire.IsUnlocked:
-			CurrentBonusesRecherchesMatiereNoire[rechercheMatiereNoire.Augmentation] = Big.add(CurrentBonusesRecherchesMatiereNoire[rechercheMatiereNoire.Augmentation], rechercheMatiereNoire.AugmentationPercent)
+			#On check si on a une recherche en fonction de la quantité de recherche achetée, faudra changer ça je pense
+			if rechercheMatiereNoire.Augmentation == "HydrogeneRechercheMNAcheteeCoeffMultiplicateurRapport":
+				CurrentBonusesRecherchesMatiereNoire[rechercheMatiereNoire.Augmentation] = Big.add(CurrentBonusesRecherchesMatiereNoire[rechercheMatiereNoire.Augmentation], Big.multiply(rechercheMatiereNoire.AugmentationPercent, InfosPartie.RecherchesMatiereNoireAchetees))
+			else:
+				CurrentBonusesRecherchesMatiereNoire[rechercheMatiereNoire.Augmentation] = Big.add(CurrentBonusesRecherchesMatiereNoire[rechercheMatiereNoire.Augmentation], rechercheMatiereNoire.AugmentationPercent)
 
 
 #Permet de récupérer le multiplicateur global du rendu des atomes (prend en compte les recherches et les amélioration Helium
@@ -82,12 +95,23 @@ func GetGlobalMultiplicator(Name):
 	if(globalMultiplicator.isEqualTo(Big.new(0.0))):
 		globalMultiplicator = Big.new(1.0)
 	
+	var matiereNoireMultiplicateur = GetDarkMaterMultiplicator(Name)
+	
+	return Big.multiply(globalMultiplicator, matiereNoireMultiplicateur)
+
+
+#Permet de récupérer le multiplicateur sur les recherches de matière norie du rendu des atomes
+func GetDarkMaterMultiplicator(Name):
 	var matiereNoireMultiplicateur = Big.new(1.0)
+	
 	for CurrentRechercheMatiereNoireBonus in CurrentBonusesRecherchesMatiereNoire:
 		if CurrentRechercheMatiereNoireBonus.contains(Name) and CurrentRechercheMatiereNoireBonus.contains("CoeffMultiplicateurRapport"):
-			matiereNoireMultiplicateur = Big.multiply(matiereNoireMultiplicateur, CurrentBonusesRecherchesMatiereNoire[CurrentRechercheMatiereNoireBonus])
+			var multiplicator = Big.new(1.0)
+			if not CurrentBonusesRecherchesMatiereNoire[CurrentRechercheMatiereNoireBonus].isEqualTo(Big.new(0.0)):
+				multiplicator = CurrentBonusesRecherchesMatiereNoire[CurrentRechercheMatiereNoireBonus]			
+			matiereNoireMultiplicateur = Big.multiply(matiereNoireMultiplicateur, multiplicator)
 	
 	if matiereNoireMultiplicateur.isEqualTo(Big.new(0.0)):
 		matiereNoireMultiplicateur = Big.new(1.0)
 	
-	return Big.multiply(globalMultiplicator, matiereNoireMultiplicateur)
+	return matiereNoireMultiplicateur

@@ -22,6 +22,7 @@ RechercheClick="*res://Script/rechercheClick.gd"
 Save="*res://Script/Options/Save.gd"
 BonusManager="*res://Script/Autoload/BonusManager.gd"
 LangueManager="*res://Script/Options/Langues.gd"
+InfosPartie="*res://Script/Autoload/InfosPartie.gd"
 
 [display]
 

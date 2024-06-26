@@ -23,7 +23,6 @@ var ListeRecherchesMatiereNoireInitializeGame = []
 #Liste de toutes les améliorations de la dark matter
 var ListeRecherchesMatiereNoire = []
 var DarkMatter: Big = Big.new(0.0)
-var HydrogeneMax: Big = Big.new(0.0)
 
 # Called when the n*ode enters the scene tree for the first time.
 func _ready():
@@ -53,7 +52,9 @@ func _ready():
 			DarkMatter = Big.ToCustomFormat(ressourceLoadingGame["DarkMatter"])
 		if ressourceLoadingGame.has("RecherchesMatiereNoire"):
 			listeRecherchesMatiereNoireInSaving = ressourceLoadingGame["RecherchesMatiereNoire"]
-	
+		if ressourceLoadingGame.has("RecherchesMatiereNoireAchetees"):
+			InfosPartie.RecherchesMatiereNoireAchetees = ressourceLoadingGame["RecherchesMatiereNoireAchetees"]
+			
 	AtomsLoading(quantiteesAtomesInSaving, atomsListInSaving)
 	LoadResearch(listeRecherchesInSaving)
 	LoadAmeliorationHelium(listeAmeliorationsHeliumInSaving)
@@ -107,7 +108,8 @@ func LoadResearch(listeRecherchesInSaving):
 			
 	for recherche in ListeRechercheInitializeGame:
 		ListeRecherches.append(recherche)
-
+	
+	BonusManager.MajBonusRecherches()
 
 #Permet de charger la liste des recherches
 func LoadAmeliorationHelium(listeAmeliorationsHeliumInSaving):
@@ -122,11 +124,14 @@ func LoadAmeliorationHelium(listeAmeliorationsHeliumInSaving):
 	
 	for ameliorationHelium in ListeAmeliorationsHeliumInitializeGame:
 		ListeAmeliorationsHelium.append(ameliorationHelium)
+	
+	BonusManager.MajBonusAmeliorationHelium()
+
 
 #Permet de charger la liste des recherches de matière noire
 func LoadDarkMatter(listeRecherchesMatiereNoireInSaving):
 	DefineRechercheMatiereNoireListInitializingGame()
-	
+
 	if not listeRecherchesMatiereNoireInSaving == null:
 		for initializedRechercheMatiereNoire in ListeRecherchesMatiereNoireInitializeGame:
 			if initializedRechercheMatiereNoire.Id < len(listeRecherchesMatiereNoireInSaving) and not listeRecherchesMatiereNoireInSaving[initializedRechercheMatiereNoire.Id] == null:
@@ -135,6 +140,9 @@ func LoadDarkMatter(listeRecherchesMatiereNoireInSaving):
 	
 	for rechercheMatiereNoire in ListeRecherchesMatiereNoireInitializeGame:
 		ListeRecherchesMatiereNoire.append(rechercheMatiereNoire)
+	
+	BonusManager.MajBonusRecherchesMatiereNoire()
+
 
 
 #Calcul et ajoute la quantité d'atome à la quantité d'atome
@@ -187,8 +195,8 @@ func DefineAmeliorationHeliumListInitializingGame():
 
 #Permet d'initialiser la liste des recherches de matière noire dans le jeu
 func DefineRechercheMatiereNoireListInitializingGame():
-		ListeRecherchesMatiereNoireInitializeGame.append(RechercheDarkMatter.new(0, "RECHERCHEMATIERENOIRE1", "RECHERCHEMATIERENOIRE1DESCRIPTION", Big.new(20.0, 0), "HydrogeneCoeffMultiplicateurRapport", Big.new(2.0, 0)))
-
+		ListeRecherchesMatiereNoireInitializeGame.append(RechercheDarkMatter.new(0, "RECHERCHEMATIERENOIRE1", "RECHERCHEMATIERENOIRE1DESCRIPTION", Big.new(20.0, 0), "HydrogeneRechercheMNAcheteeCoeffMultiplicateurRapport", Big.new(2.0, 0)))
+		ListeRecherchesMatiereNoireInitializeGame.append(RechercheDarkMatter.new(1, "RECHERCHEMATIERENOIRE1", "RECHERCHEMATIERENOIRE1DESCRIPTION", Big.new(20.0, 0), "HeliumCoeffMultiplicateurRapport", Big.new(2.0, 0)))
 
 #------------------------------------------------------------------------------------------------------#
 
@@ -261,7 +269,8 @@ func save():
 		"ResearchesList" : recherchesListe,
 		"HeliumUpgradesList" : ameliorationHeliumList,
 		"DarkMatter" : DarkMatter.ToJsonFormat(),
-		"RecherchesMatiereNoire" : recherchesMatiereNoireListe
+		"RecherchesMatiereNoire" : recherchesMatiereNoireListe,
+		"RecherchesMatiereNoireAchetees" : InfosPartie.RecherchesMatiereNoireAchetees
 	}
 	
 	return save_dict

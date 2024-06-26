@@ -8,18 +8,6 @@ PRESTIGE, "Prestige", "Prestige"
 OUI, "Oui", "Yes"
 ANNULER, "Annuler", "Cancel"
 
-ARGENTPRESTIGE, "Matière Noire", "Dark Mater"
-RECHERCHEMATIERENOIRE1, "Découverte H²", "H² discovery"
-RECHERCHEMATIERENOIRE1DESCRIPTION, "Double l'apport d'hydrogène par seconde.", "Double hydrogen output per seconde."
-BONUS1MATIERENOIRE, "Hydrogène par seconde : ", "Hydrogen per seconde : "
-BONUS2MATIERENOIRE, "Hélium par seconde : ", "Helium per seconde : "
-
-BONUSNOMTOPCONTENEUR, "Bonus de matière noire :", "Dark Mater bonuses"
-PRESTIGEBOUTON, "Prestige !\n Retours vers un nouveau commencement !", "Prestige !\n Back to a new beginning !"
-NOMVALIDATIONPRESTIGELABEL, "Êtes vous sûr que voulez lancer un prestige ?", "Are you sure you want to prestige ?"
-INFORMATIONVALIDATIONPRESTIGELABEL, "Tous vos atomes, vos coins, vos recherches et vos améliorations seront remis à zeros. Seul les amélioration de la matière noire seront gardées !", "All of your atoms, coins, researches and upgrades will be lost. Only dark matter upgrades will be kept."
-TEXTEQUANTITEEMATIERENOIRE, "Matière Noire gagnée aprés prestige : ", "Dark Mater won after prestige :"
-
 Hydrogene, "Hydrogène", "Hydrogen"
 Hydrogène, "Hydrogène", "Hydrogen"
 Helium, "Hélium", "Helium"
@@ -32,6 +20,11 @@ Complexity, "Complexité", "Complexity"
 Niv., "Niv.", "Lvl."
 Prix : , "Prix : ", "Price : "
 
+OPTIONSLABEL, "Options", "Settings"
+CHANGERLANGUEBUTTON, "Changer langue", "Change language"
+SAUVEGARDELABEL, "Sauvegarder", "Save"
+FORCERESETLABEL, "Totale remise à zéro", "Full force reset"
+
 RECHERCHE1, "Prix Hydrogène", "Hydrogen Price"
 RECHERCHEDESCRIPTION1, "Augmentation du prix de l'hydrogène de 50%.", "50% Hydrogen price augmentation."
 RECHERCHE2, "Prix Hydrogène", "Hydrogen Price"
@@ -43,7 +36,23 @@ RECHERCHEDESCRIPTION4, "Augmentation du prix de l'hydrogène de 500%.", "500% Hy
 RECHERCHE5, "Rendement", "Output"
 RECHERCHEDESCRIPTION5, "Multiplie le rendement de l'hélium par 2.", "Multiply by 2 the helium output."
 
+
 AMELIORATIONHELIUMPRESSION1, "Comprésseur d'hydrogène.", "Hydrogen compressor."
 AMELIORATIONHELIUMPRESSIONDESCRIPTION1, "Multiplie par 2 le rendement d'hydrogène par seconde.", "Multiply by 2 Hydrogen output per second"
 AMELIORATIONHELIUMTEMPERATURE1, "Centrifugeuse Hydrogène.", "Hydrogen centrifuge."
 AMELIORATIONHELIUMTEMPERATUREDESCRIPTION1, "Augmente l'efficacité des attributs de l'Hydrogène.", "Upgrade Hydrogen attributs efficiency."
+
+
+ARGENTPRESTIGE, "Matière Noire", "Dark Mater"
+RECHERCHEMATIERENOIRE1, "Découverte H²", "H² discovery"
+RECHERCHEMATIERENOIRE1DESCRIPTION, "Double l'apport d'hydrogène par seconde pour chaque recherche de matière noire achetée.", "Double hydrogen output per seconde for every dark matter researches bought."
+RECHERCHESACHETEES, "Nombre de recherches : ", "Number of researches : "
+RECHERCHESACHETEESMATNOIRE, "Nombre de recherches de matière noire : ", "Number of dark mater researches : "
+BONUS1MATIERENOIRE, "Hydrogène par seconde : ", "Hydrogen per seconde : "
+BONUS2MATIERENOIRE, "Hélium par seconde : ", "Helium per seconde : "
+
+BONUSNOMTOPCONTENEUR, "Bonus de matière noire :", "Dark Mater bonuses"
+PRESTIGEBOUTON, "Prestige !\n Retours vers un nouveau commencement !", "Prestige !\n Back to a new beginning !"
+NOMVALIDATIONPRESTIGELABEL, "Êtes vous sûr que voulez lancer un prestige ?", "Are you sure you want to prestige ?"
+INFORMATIONVALIDATIONPRESTIGELABEL, "Tous vos atomes, vos coins, vos recherches et vos améliorations seront remis à zeros. Seul les amélioration de la matière noire seront gardées !", "All of your atoms, coins, researches and upgrades will be lost. Only dark matter upgrades will be kept."
+TEXTEQUANTITEEMATIERENOIRE, "Matière Noire gagnée aprés prestige : ", "Dark Mater won after prestige :"

@@ -4,6 +4,8 @@ extends Control
 @onready var AmeliorationHeliumControl = $WindowTopBlackVBoxC/MarginContainer/AmeliorationHeliumControl
 @onready var MatiereNoireControl = $WindowTopBlackVBoxC/MarginContainer/MatiereNoireControl
 
+@onready var OptionsControl = $WindowTopBlackVBoxC/MarginContainer/OptionsControl
+
 var AdButtonScene = preload("res://Design/Scenes/AdButton.tscn")
 
 
@@ -24,18 +26,19 @@ func _on_main_timer_timeout():
 	RessourceManager.CalculateQuantityAtomes(1)
 
 
-#Bouton pour hard_reset
-func _on_button_pressed():
-	Save.hard_reset()
-
-
 #Trigger lors de l'appuie sur le bouton pour ouvrir la page d'améliorations de l'helium 
 func _on_button_amelioration_helium_pressed():
 	AmeliorationHeliumControl.visible = true
 
+
 #Trigger lors de l'appuie sur le bouton pour ouvrir la page de prestige 
 func _on_button_menu_prestige_pressed():
 	MatiereNoireControl.visible = true
+
+
+#Trigger lors de l'appuie sur le bouton pour ouvrir la page d'options 
+func _on_options_button_pressed():
+	OptionsControl.visible = true
 
 
 #Permet de save toutes les minutes
@@ -55,16 +58,13 @@ func _on_button_give_money_pressed():
 	RessourceManager.Coins = Big.add(RessourceManager.Coins, Big.new(1.0, 10))
 
 
-func _on_max_hydro_timer_timeout():
-	if RessourceManager.HydrogeneMax.isLessThan(RessourceManager.QuantiteesAtomes["Hydrogene"]):
-		RessourceManager.HydrogeneMax = RessourceManager.QuantiteesAtomes["Hydrogene"]
+#Trigger lors de la fin du timer InformationsPartie
+#Lance la mise à jour des informations de la partie
+func _on_informations_partie_timer_timeout():
+	InfosPartie.MajInformationsPartie()
 
 
 func _on_ad_timer_timeout():
 	if not has_node("WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC/VBoxBoutons/AdButton"):
 		var buttonAd = AdButtonScene.instantiate()
 		$WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC/VBoxBoutons.add_child(buttonAd)
-
-
-func _on_button_save_pressed():
-	Save.save_game()
