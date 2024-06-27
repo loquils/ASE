@@ -28,9 +28,9 @@ func _process(delta):
 #Pour l'instant on utilise ça, c'est pas bien :3, faut changer l'hydrogène max
 func GetDeltaDarkMatter():
 	if InfosPartie.HydrogeneMaximum.isLessThan(Big.new(1.0,5)):
-		return Big.new(20.0)
+		return Big.new(0.0)
 		
-	return Big.power(Big.subtractAbove0(InfosPartie.HydrogeneMaximum, Big.new(1.0,5)), 0.12)
+	return Big.power(Big.subtractAbove0(InfosPartie.HydrogeneMaximum, Big.new(1.0,5)), 0.5)
 
 
 #Methode appellee par le signal lors de l'appuie sur un des boutons de recherches

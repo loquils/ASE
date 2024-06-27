@@ -38,7 +38,7 @@ func GetPrixAttribut(attribut):
 	#var poww = attribut.CoefficientAchat.power(attribut.Niveau)
 	#var prix = attribut.PrixBaseAmelio.multiply(poww)
 	var poww = Big.power(attribut.CoefficientAchat, attribut.Niveau)
-	var prix = Big.multiply(attribut.PrixBaseAmelio, poww)
+	var prix = Big.divide(Big.multiply(attribut.PrixBaseAmelio, poww), BonusManager.GetRecherchesAttributsCostsDivided(attribut))
 	return prix
 
 

@@ -19,7 +19,7 @@ func _ready():
 
 
 func _process(_delta):
-	$HBoxContainer/AugmenteLabel.text = str(BonusManager.CurrentBonusesResearches["PrixHydrogeneAugmentation"]) + "%"
+	$HBoxContainer/AugmenteLabel.text = str(BonusManager.CurrentBonusesRecherches["PrixHydrogeneAugmentation"]) + "%"
 
 
 #Methode appellee par le signal lors de l'appuie sur un des boutons de recherches

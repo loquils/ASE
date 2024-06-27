@@ -274,17 +274,18 @@ text = "HELIUM"
 label_settings = SubResource("LabelSettings_tgkd5")
 
 [node name="MenuBarBottomPanelC" type="PanelContainer" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC"]
+custom_minimum_size = Vector2(0, 75)
 layout_mode = 2
 size_flags_vertical = 8
 
 [node name="MarginC" type="MarginContainer" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/MenuBarBottomPanelC"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 10
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_right = 15
 
 [node name="MenuBarHBoxC" type="HBoxContainer" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/MenuBarBottomPanelC/MarginC"]
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 size_flags_vertical = 4
 alignment = 1
@@ -294,28 +295,28 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/h_separation = 1
 theme_override_fonts/font = ExtResource("3_2a2og")
-theme_override_font_sizes/font_size = 22
+theme_override_font_sizes/font_size = 24
 text = "ATOMES"
 
 [node name="ButtonMenuRecherche" type="Button" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/MenuBarBottomPanelC/MarginC/MenuBarHBoxC"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("3_2a2og")
-theme_override_font_sizes/font_size = 22
+theme_override_font_sizes/font_size = 24
 text = "RECHERCHES"
 
 [node name="ButtonMenuAmelioration" type="Button" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/MenuBarBottomPanelC/MarginC/MenuBarHBoxC"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("3_2a2og")
-theme_override_font_sizes/font_size = 22
+theme_override_font_sizes/font_size = 24
 text = "AMELIORATIONS"
 
 [node name="ButtonMenuPrestige" type="Button" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/MenuBarBottomPanelC/MarginC/MenuBarHBoxC"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("3_2a2og")
-theme_override_font_sizes/font_size = 22
+theme_override_font_sizes/font_size = 24
 text = "PRESTIGE"
 
 [node name="AmeliorationHeliumControl" parent="WindowTopBlackVBoxC/MarginContainer" instance=ExtResource("13_awkfr")]
@@ -327,6 +328,7 @@ visible = false
 layout_mode = 2
 
 [node name="OptionsControl" type="Control" parent="WindowTopBlackVBoxC/MarginContainer"]
+visible = false
 layout_mode = 2
 script = ExtResource("17_cn1p7")
 

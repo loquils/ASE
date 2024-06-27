@@ -1,9 +1,12 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://cbk6urwquxgkm"]
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://cbk6urwquxgkm"]
 
 [ext_resource type="SystemFont" uid="uid://b1nxbllw54q1b" path="res://Design/Themes/Global/SystemFontGlobal.tres" id="1_rbfyw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nkpye"]
 
 [resource]
 Button/font_sizes/font_size = 20
 Button/fonts/font = ExtResource("1_rbfyw")
+Button/styles/hover = SubResource("StyleBoxEmpty_nkpye")
 Label/font_sizes/font_size = 20
 Label/fonts/font = ExtResource("1_rbfyw")

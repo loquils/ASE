@@ -6,6 +6,7 @@ var BoutonRechercheDarkMatter = preload("res://Design/Scenes/ButtonDarkMatter.ts
 @onready var MatierNoireApresPrestige = $PresentationVBoxC/MarginC/VBoxC/QuantiteeAGagnerHBoxC/QuantiteeLabel
 @onready var RecherchesGridC = $PresentationVBoxC/MarginC/VBoxC/RecherchesMarginC/InterneRecherchesMarginC/PrestigeAmeliorationScrollC/PrestigeGridC
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#On connecte ici l'appuie du bouton lors de l'achat d'une recherche
@@ -26,10 +27,10 @@ func _process(delta):
 
 #Pour l'instant on utilise ça, c'est pas bien :3, faut changer l'hydrogène max
 func GetDeltaDarkMatter():
-	if RessourceManager.HydrogeneMax.isLessThan(Big.new(1.0,5)):
-		return Big.new(20.0)
+	if InfosPartie.HydrogeneMaximum.isLessThan(Big.new(1.0,5)):
+		return Big.new(0.0)
 		
-	return Big.power(Big.subtractAbove0(RessourceManager.HydrogeneMax, Big.new(1.0,5)), 0.12)
+	return Big.power(Big.subtractAbove0(InfosPartie.HydrogeneMaximum, Big.new(1.0,5)), 0.5)
 
 
 #Methode appellee par le signal lors de l'appuie sur un des boutons de recherches
@@ -53,12 +54,14 @@ func DarkMatterReset():
 	RessourceManager.ResetAtomes()
 	RessourceManager.ResetAmeliorationsHelium()
 	RessourceManager.ResetRecherches()
+	InfosPartie.ResetInformationsOnPrestige()
 	RessourceManager.ResetRessources()
 
 
 #Trigger lors de l'appuie sur le bouton exit
 func _on_button_exit_pressed():
 	hide()
+
 
 #Trigger lors de l'appuie sur le bouton de prestige, affiche la fenêtre de validation du prestige
 func _on_prestige_button_pressed():

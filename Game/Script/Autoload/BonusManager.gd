@@ -1,8 +1,8 @@
 extends Node
-
+#Force/Vitesse | Spin/Angle/Complexity
 #Bonus des Recherches
-var BonusTypesRecherches = ["PrixHydrogeneAugmentation", "HydrogeneCoeffMultiplicateurRapport", "HeliumCoeffMultiplicateurRapport"]
-var CurrentBonusesResearches = {"PrixHydrogeneAugmentation" : Big.new(0.0), "HydrogeneCoeffMultiplicateurRapport" : Big.new(1.0), "HeliumCoeffMultiplicateurRapport" : Big.new(1.0)}
+var BonusTypesRecherches = ["PrixHydrogeneAugmentation", "HydrogeneCoeffMultiplicateurRapport", "HeliumCoeffMultiplicateurRapport", "HydrogeneAttributsCostDivided", "HydrogeneForceCostDivided", "HydrogeneVitesseCostDivided", "HeliumAttributsCostDivided", "HeliumSpinCostDivided", "HeliumAngleCostDivided", "HeliumComplexityCostDivided"]
+var CurrentBonusesRecherches = {"PrixHydrogeneAugmentation" : Big.new(0.0), "HydrogeneCoeffMultiplicateurRapport" : Big.new(1.0), "HeliumCoeffMultiplicateurRapport" : Big.new(1.0)}
 
 #Amélioration de l'helium
 var BonusTypesAmeliorationHelium = ["HydrogeneRendementMultiply", "HydrogeneAttributsCoefficientAdd"]
@@ -27,12 +27,12 @@ func _ready():
 func MajBonusRecherches():
 	InfosPartie.MajInformationsPartie() #Pour l'instant pas utile ici, mais plus tard oui
 	
-	CurrentBonusesResearches["PrixHydrogeneAugmentation"] = Big.new(0.0)
-	CurrentBonusesResearches["HydrogeneCoeffMultiplicateurRapport"] = Big.new(0.0)
-	CurrentBonusesResearches["HeliumCoeffMultiplicateurRapport"] = Big.new(0.0)
+	for bonusTypesRecherches in BonusTypesRecherches:
+		CurrentBonusesRecherches[bonusTypesRecherches] = Big.new(0.0)
+	
 	for recherche in RessourceManager.ListeRecherches:
 		if recherche.IsUnlocked:
-			CurrentBonusesResearches[recherche.Augmentation] = Big.add(CurrentBonusesResearches[recherche.Augmentation], recherche.AugmentationPercent)
+			CurrentBonusesRecherches[recherche.Augmentation] = Big.add(CurrentBonusesRecherches[recherche.Augmentation], recherche.AugmentationPercent)
 
 
 #Mise à jour des bonus des améliorations de l'Helium
@@ -41,8 +41,8 @@ func MajBonusAmeliorationHelium():
 	
 	RessourceManager.ListeAtomes["Hydrogene"].GlobalMultiplicator = Big.new(1.0)
 	
-	for CurrentBonus in CurrentBonusesAmeliorationHelium:
-		CurrentBonusesAmeliorationHelium[CurrentBonus] = Big.new(0.0)
+	for bonusTypeAmeliorationHelium in BonusTypesAmeliorationHelium:
+		CurrentBonusesAmeliorationHelium[bonusTypeAmeliorationHelium] = Big.new(0.0)
 	
 	for ameliorationHelium in RessourceManager.ListeAmeliorationsHelium:
 		if ameliorationHelium.IsUnlocked:
@@ -82,9 +82,9 @@ func GetGlobalMultiplicator(Name):
 	var recherchesMultiplicator = Big.new(0.0)
 	var heliumMultiplicator = Big.new(0.0)
 	
-	for CurrentResearchBonus in CurrentBonusesResearches:
+	for CurrentResearchBonus in CurrentBonusesRecherches:
 		if CurrentResearchBonus.contains(Name) and CurrentResearchBonus.contains("CoeffMultiplicateurRapport"):
-			recherchesMultiplicator = Big.add(recherchesMultiplicator, CurrentBonusesResearches[CurrentResearchBonus])
+			recherchesMultiplicator = Big.add(recherchesMultiplicator, CurrentBonusesRecherches[CurrentResearchBonus])
 	
 	for CurrentBonus in CurrentBonusesAmeliorationHelium:
 		if CurrentBonus.contains(Name) and CurrentBonus.contains("RendementMultiply"):
@@ -115,3 +115,17 @@ func GetDarkMaterMultiplicator(Name):
 		matiereNoireMultiplicateur = Big.new(1.0)
 	
 	return matiereNoireMultiplicateur
+
+
+#Permet de récupérer le diviseur du prix des attributs des atomes
+func GetRecherchesAttributsCostsDivided(attribut): 
+	var diviseur = Big.new(0.0)
+	
+	for currentBonusesRecherches in CurrentBonusesRecherches:
+		if (currentBonusesRecherches.contains("CostDivided") and currentBonusesRecherches.contains(attribut.Name) and currentBonusesRecherches.contains(attribut.Atome.Name)) or (currentBonusesRecherches.contains("CostDivided") and currentBonusesRecherches.contains("Attributs") and currentBonusesRecherches.contains(attribut.Atome.Name)):
+			diviseur = Big.add(diviseur, CurrentBonusesRecherches[currentBonusesRecherches])
+	
+	if diviseur.isEqualTo(Big.new(0.0)):
+		diviseur = Big.new(1.0)
+		
+	return diviseur

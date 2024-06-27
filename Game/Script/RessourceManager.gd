@@ -151,7 +151,6 @@ func CalculateQuantityAtomes(timeInSeconde:int = 1):
 		if ListeAtomes[atome].isUnlocked:
 				QuantiteesAtomes[atome] = Big.multiply(Big.add(QuantiteesAtomes[atome], ListeAtomes[atome].GetAtomePerSec()), Big.new(timeInSeconde))
 
-
 #---------------------------------Define all elements of the game !----------------------------------#
 
 #Permet d'initialiser la liste des atomes dans le jeu
@@ -175,11 +174,13 @@ func DefineAtomsListInitializingGame():
 func DefineResearchListInitializingGame():
 	var easyResearch = Recherche.ResearchLevelEnum.EASY
 	
-	ListeRechercheInitializeGame.append(Recherche.new(0, "RECHERCHE1", "RECHERCHEDESCRIPTION1", Big.new(1.0, 3), "PrixHydrogeneAugmentation", Big.new(0.5, 0), easyResearch))
-	ListeRechercheInitializeGame.append(Recherche.new(1, "RECHERCHE2", "RECHERCHEDESCRIPTION2", Big.new(5.0, 3), "PrixHydrogeneAugmentation", Big.new(1.0, 0), easyResearch))
-	ListeRechercheInitializeGame.append(Recherche.new(2, "RECHERCHE3", "RECHERCHEDESCRIPTION3", Big.new(2.0, 4), "HydrogeneCoeffMultiplicateurRapport", Big.new(2.0), easyResearch))
-	ListeRechercheInitializeGame.append(Recherche.new(3, "RECHERCHE4", "RECHERCHEDESCRIPTION4", Big.new(7.5, 4), "PrixHydrogeneAugmentation", Big.new(5.0), easyResearch))
-	ListeRechercheInitializeGame.append(Recherche.new(4, "RECHERCHE5", "RECHERCHEDESCRIPTION5", Big.new(5.0, 5), "HeliumCoeffMultiplicateurRapport", Big.new(2.0), easyResearch))
+	ListeRechercheInitializeGame.append(Recherche.new(0, "RECHERCHE1", "RECHERCHEDESCRIPTION1", Big.new(5.0, 2), "PrixHydrogeneAugmentation", Big.new(0.25, 0), easyResearch))
+	ListeRechercheInitializeGame.append(Recherche.new(1, "RECHERCHE2", "RECHERCHEDESCRIPTION2", Big.new(1.0, 3), "PrixHydrogeneAugmentation", Big.new(0.5, 0), easyResearch))
+	ListeRechercheInitializeGame.append(Recherche.new(2, "RECHERCHE3", "RECHERCHEDESCRIPTION3", Big.new(6.0, 3), "PrixHydrogeneAugmentation", Big.new(1.0, 0), easyResearch))
+	ListeRechercheInitializeGame.append(Recherche.new(3, "RECHERCHE4", "RECHERCHEDESCRIPTION4", Big.new(1.75, 4), "HydrogeneAttributsCostDivided", Big.new(3.0), easyResearch))
+	ListeRechercheInitializeGame.append(Recherche.new(4, "RECHERCHE5", "RECHERCHEDESCRIPTION5", Big.new(5.0, 4), "HydrogeneCoeffMultiplicateurRapport", Big.new(2.0), easyResearch))
+	ListeRechercheInitializeGame.append(Recherche.new(5, "RECHERCHE6", "RECHERCHEDESCRIPTION6", Big.new(1.0, 5), "PrixHydrogeneAugmentation", Big.new(5.0), easyResearch))
+	ListeRechercheInitializeGame.append(Recherche.new(6, "RECHERCHE7", "RECHERCHEDESCRIPTION7", Big.new(5.0, 5), "HeliumCoeffMultiplicateurRapport", Big.new(2.0), easyResearch))
 
 
 #Permet d'initialiser la liste des amélioration de l'hélium dans le jeu
@@ -196,7 +197,7 @@ func DefineAmeliorationHeliumListInitializingGame():
 #Permet d'initialiser la liste des recherches de matière noire dans le jeu
 func DefineRechercheMatiereNoireListInitializingGame():
 		ListeRecherchesMatiereNoireInitializeGame.append(RechercheDarkMatter.new(0, "RECHERCHEMATIERENOIRE1", "RECHERCHEMATIERENOIRE1DESCRIPTION", Big.new(20.0, 0), "HydrogeneRechercheMNAcheteeCoeffMultiplicateurRapport", Big.new(2.0, 0)))
-		ListeRecherchesMatiereNoireInitializeGame.append(RechercheDarkMatter.new(1, "RECHERCHEMATIERENOIRE1", "RECHERCHEMATIERENOIRE1DESCRIPTION", Big.new(20.0, 0), "HeliumCoeffMultiplicateurRapport", Big.new(2.0, 0)))
+		ListeRecherchesMatiereNoireInitializeGame.append(RechercheDarkMatter.new(1, "RECHERCHEMATIERENOIRE2", "RECHERCHEMATIERENOIRE2DESCRIPTION", Big.new(80.0, 0), "HeliumCoeffMultiplicateurRapport", Big.new(2.0, 0)))
 
 #------------------------------------------------------------------------------------------------------#
 
