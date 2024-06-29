@@ -1,0 +1,18 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://kmix07orahi4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v753r"]
+bg_color = Color(0.393085, 0.393086, 0.393085, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[resource]
+Button/font_sizes/font_size = 20
+Button/styles/normal = SubResource("StyleBoxFlat_v753r")
+Label/font_sizes/font_size = 45

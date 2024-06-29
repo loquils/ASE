@@ -27,3 +27,19 @@ func ResetInformationsOnPrestige():
 	HydrogeneMaximum = Big.new(0.0)
 	HydrogeneObtenu = Big.add(HydrogeneObtenu, RessourceManager.QuantiteesAtomes["Hydrogene"])
 	NombrePrestige += 1
+
+func Save():
+	var infosPartieDict = {
+		"NombrePrestige" : NombrePrestige,
+		"HydrogeneMaximum" : HydrogeneMaximum,
+		"HydrogeneObtenu" : HydrogeneObtenu
+	}
+	return infosPartieDict
+
+func Load(infos):
+	if infos.has("NombrePrestige"):
+		NombrePrestige = infos["NombrePrestige"]
+	if infos.has("HydrogeneMaximum"):
+		NombrePrestige = infos["HydrogeneMaximum"]
+	if infos.has("HydrogeneObtenu"):
+		NombrePrestige = infos["HydrogeneObtenu"]

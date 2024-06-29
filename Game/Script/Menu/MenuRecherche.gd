@@ -2,6 +2,8 @@ extends Control
 
 var ButtonRechercheScenePreload = preload("res://Design/Scenes/ButtonRecherche.tscn")
 
+#@onready var ResearchesEasyContainer = $MainMarginC/ResearchLvlVBoxC/ScrollRecherchesC/ResearchesEasyHBoxC
+@onready var ResearchesEasyContainer = $MainMarginC/ResearchLvlVBoxC/ScrollContainer/GridContainer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -13,13 +15,10 @@ func _ready():
 		newRecherchebutton._set_var(recherche)
 		match recherche.ResearchLevel:
 			Recherche.ResearchLevelEnum.EASY:
-				$ScrollContainerGlobalMenu/ResearchLvlVBoxContainer/ScrollRecherchesContainer/ResearchesEasyHBoxContainer.add_child(newRecherchebutton)
+				ResearchesEasyContainer.add_child(newRecherchebutton)
 		
 	BonusManager.MajBonusRecherches()
 
-
-func _process(_delta):
-	$HBoxContainer/AugmenteLabel.text = str(BonusManager.CurrentBonusesRecherches["PrixHydrogeneAugmentation"]) + "%"
 
 
 #Methode appellee par le signal lors de l'appuie sur un des boutons de recherches
@@ -40,4 +39,4 @@ func AchatRehercheButtonPressed(recherche):
 var isEasyButtonExpanded = true
 func _on_expand_lvl_easy_button_pressed():
 	isEasyButtonExpanded = not isEasyButtonExpanded
-	$ScrollContainerGlobalMenu/ResearchLvlVBoxContainer/ScrollRecherchesContainer/ResearchesEasyHBoxContainer.visible = isEasyButtonExpanded
+	ResearchesEasyContainer.visible = isEasyButtonExpanded

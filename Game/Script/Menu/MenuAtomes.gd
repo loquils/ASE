@@ -20,3 +20,6 @@ func AchatAttributButtonPressed(attribut):
 	if attribut.Atome.GetPrixAttribut(attribut).isLessThan(RessourceManager.Coins):#and attribut.Atome.GetPrixAttribut(attribut).isGreaterThan(Big.new(0.0)):
 		RessourceManager.Coins = Big.subtractAbove0(RessourceManager.Coins, attribut.Atome.GetPrixAttribut(attribut))
 		attribut.Niveau = Big.add(attribut.Niveau, Big.new(1.0))
+		#Pour tous lvl 100 passé, on multiplie les coefficient par 2
+		#if Big.roundDown(Big.divide(attribut.Niveau, Big.new(1.0,2)).isEqualTo(Big.divide(attribut.Niveau, Big.new(1.0,2))):
+			#var multiplieur = Big.multiply(attribut.)

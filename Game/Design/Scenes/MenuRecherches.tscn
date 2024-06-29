@@ -1,8 +1,28 @@
-[gd_scene load_steps=4 format=3 uid="uid://c60a8i52thxma"]
+[gd_scene load_steps=6 format=3 uid="uid://c60a8i52thxma"]
 
 [ext_resource type="Script" path="res://Script/Menu/MenuRecherche.gd" id="1_qrou8"]
 [ext_resource type="Theme" uid="uid://du67orp76vnub" path="res://Design/Themes/ThemeRechercheExpandButton.tres" id="1_u48s0"]
 [ext_resource type="Texture2D" uid="uid://qfo0rlivbp6y" path="res://Gimped/TestFlaskNulle.png" id="3_y3h05"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xva6b"]
+bg_color = Color(0.192157, 0.192157, 0.192157, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dmgbm"]
+bg_color = Color(0.254902, 0.254902, 0.254902, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [node name="MenuRecherche" type="Control"]
 layout_mode = 3
@@ -14,31 +34,66 @@ grow_vertical = 2
 theme = ExtResource("1_u48s0")
 script = ExtResource("1_qrou8")
 
-[node name="ScrollContainerGlobalMenu" type="ScrollContainer" parent="."]
+[node name="FondPanel" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xva6b")
 
-[node name="ResearchLvlVBoxContainer" type="VBoxContainer" parent="ScrollContainerGlobalMenu"]
+[node name="MainMarginC" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="ResearchLvlVBoxC" type="VBoxContainer" parent="MainMarginC"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="ScrollButtonsContainer" type="ScrollContainer" parent="ScrollContainerGlobalMenu/ResearchLvlVBoxContainer"]
+[node name="Panel" type="Panel" parent="MainMarginC/ResearchLvlVBoxC"]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_dmgbm")
+
+[node name="ButtonsTypesRecherchesMarginC" type="MarginContainer" parent="MainMarginC/ResearchLvlVBoxC/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="ScrollButtonsCont" type="ScrollContainer" parent="MainMarginC/ResearchLvlVBoxC/Panel/ButtonsTypesRecherchesMarginC"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 
-[node name="ButtonsHBoxContainer" type="HBoxContainer" parent="ScrollContainerGlobalMenu/ResearchLvlVBoxContainer/ScrollButtonsContainer"]
+[node name="ButtonsHBoxCont" type="HBoxContainer" parent="MainMarginC/ResearchLvlVBoxC/Panel/ButtonsTypesRecherchesMarginC/ScrollButtonsCont"]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
 
-[node name="ExpandLvlEasyButton" type="Button" parent="ScrollContainerGlobalMenu/ResearchLvlVBoxContainer/ScrollButtonsContainer/ButtonsHBoxContainer"]
+[node name="ExpandLvlEasyButton" type="Button" parent="MainMarginC/ResearchLvlVBoxC/Panel/ButtonsTypesRecherchesMarginC/ScrollButtonsCont/ButtonsHBoxCont"]
 custom_minimum_size = Vector2(200, 100)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
-[node name="PanelC" type="PanelContainer" parent="ScrollContainerGlobalMenu/ResearchLvlVBoxContainer/ScrollButtonsContainer/ButtonsHBoxContainer/ExpandLvlEasyButton"]
+[node name="PanelC" type="PanelContainer" parent="MainMarginC/ResearchLvlVBoxC/Panel/ButtonsTypesRecherchesMarginC/ScrollButtonsCont/ButtonsHBoxCont/ExpandLvlEasyButton"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -47,46 +102,45 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainerGlobalMenu/ResearchLvlVBoxContainer/ScrollButtonsContainer/ButtonsHBoxContainer/ExpandLvlEasyButton/PanelC"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MainMarginC/ResearchLvlVBoxC/Panel/ButtonsTypesRecherchesMarginC/ScrollButtonsCont/ButtonsHBoxCont/ExpandLvlEasyButton/PanelC"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="ScrollContainerGlobalMenu/ResearchLvlVBoxContainer/ScrollButtonsContainer/ButtonsHBoxContainer/ExpandLvlEasyButton/PanelC/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="MainMarginC/ResearchLvlVBoxC/Panel/ButtonsTypesRecherchesMarginC/ScrollButtonsCont/ButtonsHBoxCont/ExpandLvlEasyButton/PanelC/HBoxContainer"]
 layout_mode = 2
 texture = ExtResource("3_y3h05")
 expand_mode = 2
 stretch_mode = 4
 
-[node name="Label" type="Label" parent="ScrollContainerGlobalMenu/ResearchLvlVBoxContainer/ScrollButtonsContainer/ButtonsHBoxContainer/ExpandLvlEasyButton/PanelC/HBoxContainer"]
+[node name="Label" type="Label" parent="MainMarginC/ResearchLvlVBoxC/Panel/ButtonsTypesRecherchesMarginC/ScrollButtonsCont/ButtonsHBoxCont/ExpandLvlEasyButton/PanelC/HBoxContainer"]
 layout_mode = 2
 text = "Easy"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ScrollRecherchesContainer" type="ScrollContainer" parent="ScrollContainerGlobalMenu/ResearchLvlVBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MainMarginC/ResearchLvlVBoxC/Panel/ButtonsTypesRecherchesMarginC/ScrollButtonsCont/ButtonsHBoxCont"]
+layout_mode = 2
+
+[node name="ScrollRecherchesC" type="ScrollContainer" parent="MainMarginC/ResearchLvlVBoxC"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="ResearchesEasyHBoxContainer" type="HBoxContainer" parent="ScrollContainerGlobalMenu/ResearchLvlVBoxContainer/ScrollRecherchesContainer"]
+[node name="ResearchesEasyHBoxC" type="HBoxContainer" parent="MainMarginC/ResearchLvlVBoxC/ScrollRecherchesC"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -40.0
-grow_horizontal = 2
-grow_vertical = 0
-
-[node name="Label" type="Label" parent="HBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="MainMarginC/ResearchLvlVBoxC"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 18
-text = "Hydrogène augmente pourcent : "
+size_flags_vertical = 3
 
-[node name="AugmenteLabel" type="Label" parent="HBoxContainer"]
+[node name="GridContainer" type="GridContainer" parent="MainMarginC/ResearchLvlVBoxC/ScrollContainer"]
+clip_contents = true
 layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/h_separation = 5
+theme_override_constants/v_separation = 5
+columns = 3
 
-[connection signal="pressed" from="ScrollContainerGlobalMenu/ResearchLvlVBoxContainer/ScrollButtonsContainer/ButtonsHBoxContainer/ExpandLvlEasyButton" to="." method="_on_expand_lvl_easy_button_pressed"]
+[connection signal="pressed" from="MainMarginC/ResearchLvlVBoxC/Panel/ButtonsTypesRecherchesMarginC/ScrollButtonsCont/ButtonsHBoxCont/ExpandLvlEasyButton" to="." method="_on_expand_lvl_easy_button_pressed"]

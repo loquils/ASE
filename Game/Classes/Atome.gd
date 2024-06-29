@@ -35,10 +35,10 @@ func DefineAtomeUnlockingPrice(atomePriceForUnlocking):
 
 #Retourne le prix de l'amélioration de l'attribut.
 func GetPrixAttribut(attribut):
-	#var poww = attribut.CoefficientAchat.power(attribut.Niveau)
-	#var prix = attribut.PrixBaseAmelio.multiply(poww)
-	var poww = Big.power(attribut.CoefficientAchat, attribut.Niveau)
-	var prix = Big.divide(Big.multiply(attribut.PrixBaseAmelio, poww), BonusManager.GetRecherchesAttributsCostsDivided(attribut))
+	var niveauPar100 = Big.roundDown(Big.divide(attribut.Niveau, Big.new(1.0,2)))
+	var prixAchatBaseAttribut = Big.add(attribut.PrixBaseAmelio, Big.multiply(attribut.PrixBaseAmelio, Big.multiply(niveauPar100, Big.new(1.0, 5))))
+	var puissanceCoefficientAchat = Big.power(attribut.CoefficientAchat, attribut.Niveau)
+	var prix = Big.divide(Big.multiply(prixAchatBaseAttribut, puissanceCoefficientAchat), BonusManager.GetRecherchesAttributsCostsDivided(attribut))
 	return prix
 
 

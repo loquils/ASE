@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://jwctjc5cvudy"]
+[gd_scene load_steps=30 format=3 uid="uid://jwctjc5cvudy"]
 
 [ext_resource type="Theme" uid="uid://cbk6urwquxgkm" path="res://Design/Themes/Global/ThemeGlobal.tres" id="1_rwuoq"]
 [ext_resource type="Script" path="res://Script/Game.gd" id="1_xa3fh"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://Script/Menu/MenuAtomes.gd" id="4_l775b"]
 [ext_resource type="PackedScene" uid="uid://c60a8i52thxma" path="res://Design/Scenes/MenuRecherches.tscn" id="5_pwwxi"]
 [ext_resource type="Texture2D" uid="uid://dbud7benyerv0" path="res://Design/Borders/Gimp/QuantityAtomesBorders.png" id="5_ruh6y"]
+[ext_resource type="Theme" uid="uid://kmix07orahi4" path="res://Design/Themes/Accueil/Accueiltheme.tres" id="6_spqmi"]
 [ext_resource type="Script" path="res://Script/TestTranslate/ChangementLangueButton.gd" id="7_oskx7"]
 [ext_resource type="PackedScene" uid="uid://b2fng8la1dmc6" path="res://Design/Scenes/ButtonSellHydrogen.tscn" id="8_8mhas"]
 [ext_resource type="PackedScene" uid="uid://kg8xjpenka38" path="res://Design/Scenes/Ameliorations/AmeliorationHelium.tscn" id="13_awkfr"]
@@ -21,6 +22,60 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j7vtp"]
 bg_color = Color(0, 0, 0, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ur1mw"]
+bg_color = Color(0.192157, 0.192157, 0.192157, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rknl0"]
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_820ok"]
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_avtms"]
+bg_color = Color(0.254902, 0.254902, 0.254902, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
 [sub_resource type="LabelSettings" id="LabelSettings_kmpp2"]
 font = ExtResource("3_2a2og")
 font_size = 24
@@ -30,7 +85,19 @@ font = ExtResource("3_2a2og")
 font_size = 22
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gkhu4"]
-bg_color = Color(0.372549, 0.372549, 0.372549, 1)
+bg_color = Color(0.192157, 0.192157, 0.192157, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gjfw4"]
+bg_color = Color(0.129412, 0.129412, 0.129412, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [sub_resource type="LabelSettings" id="LabelSettings_tgkd5"]
 font = ExtResource("3_2a2og")
@@ -67,19 +134,14 @@ texture = ExtResource("19_8v33v")
 
 [node name="SaveTimer" type="Timer" parent="."]
 wait_time = 60.0
-autostart = true
 
 [node name="MainTimer" type="Timer" parent="."]
-autostart = true
 
 [node name="InformationsPartieTimer" type="Timer" parent="."]
 wait_time = 5.0
-autostart = true
 
 [node name="AdTimer" type="Timer" parent="."]
 wait_time = 10.0
-one_shot = true
-autostart = true
 
 [node name="WindowTopBlackVBoxC" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -95,7 +157,92 @@ layout_mode = 2
 size_flags_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_j7vtp")
 
-[node name="MarginContainer" type="MarginContainer" parent="WindowTopBlackVBoxC"]
+[node name="AccueilControl" type="Control" parent="WindowTopBlackVBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("6_spqmi")
+
+[node name="MainAccueilMarginC" type="MarginContainer" parent="WindowTopBlackVBoxC/AccueilControl"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="FondPanel" type="Panel" parent="WindowTopBlackVBoxC/AccueilControl/MainAccueilMarginC"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ur1mw")
+
+[node name="PresentationVBoxC" type="VBoxContainer" parent="WindowTopBlackVBoxC/AccueilControl/MainAccueilMarginC"]
+layout_mode = 2
+
+[node name="NomJeuLabel" type="Label" parent="WindowTopBlackVBoxC/AccueilControl/MainAccueilMarginC/PresentationVBoxC"]
+layout_mode = 2
+text = "Atom Stack Evolution"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BoutonsLanguesHBoxC" type="HBoxContainer" parent="WindowTopBlackVBoxC/AccueilControl/MainAccueilMarginC/PresentationVBoxC"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="FrancaisButton" type="Button" parent="WindowTopBlackVBoxC/AccueilControl/MainAccueilMarginC/PresentationVBoxC/BoutonsLanguesHBoxC"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_rknl0")
+text = "Français"
+
+[node name="AnglaisButton" type="Button" parent="WindowTopBlackVBoxC/AccueilControl/MainAccueilMarginC/PresentationVBoxC/BoutonsLanguesHBoxC"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_820ok")
+text = "English"
+
+[node name="BonjourMarginC" type="MarginContainer" parent="WindowTopBlackVBoxC/AccueilControl/MainAccueilMarginC/PresentationVBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="FondBonjourPanel" type="Panel" parent="WindowTopBlackVBoxC/AccueilControl/MainAccueilMarginC/PresentationVBoxC/BonjourMarginC"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_avtms")
+
+[node name="TexteMarginC" type="MarginContainer" parent="WindowTopBlackVBoxC/AccueilControl/MainAccueilMarginC/PresentationVBoxC/BonjourMarginC"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="BonjourLabel" type="Label" parent="WindowTopBlackVBoxC/AccueilControl/MainAccueilMarginC/PresentationVBoxC/BonjourMarginC/TexteMarginC"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 25
+text = "BONJOUR"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="BoutonJouerMarginC" type="MarginContainer" parent="WindowTopBlackVBoxC/AccueilControl/MainAccueilMarginC/PresentationVBoxC"]
+layout_mode = 2
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="DebutJeuButton" type="Button" parent="WindowTopBlackVBoxC/AccueilControl/MainAccueilMarginC/PresentationVBoxC/BoutonJouerMarginC"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "JOUERLABEL"
+
+[node name="MainMarginC" type="MarginContainer" parent="WindowTopBlackVBoxC"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 5
@@ -103,23 +250,23 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 0
 
-[node name="MainVBoxC" type="VBoxContainer" parent="WindowTopBlackVBoxC/MarginContainer"]
+[node name="MainVBoxC" type="VBoxContainer" parent="WindowTopBlackVBoxC/MainMarginC"]
 layout_mode = 2
 
-[node name="TopHBoxC" type="HBoxContainer" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC"]
+[node name="TopHBoxC" type="HBoxContainer" parent="WindowTopBlackVBoxC/MainMarginC/MainVBoxC"]
 layout_mode = 2
 
-[node name="RessourcesVBoxC" type="VBoxContainer" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC"]
+[node name="RessourcesVBoxC" type="VBoxContainer" parent="WindowTopBlackVBoxC/MainMarginC/MainVBoxC/TopHBoxC"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="BackGroundCoins" type="NinePatchRect" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC/RessourcesVBoxC"]
+[node name="BackGroundCoins" type="NinePatchRect" parent="WindowTopBlackVBoxC/MainMarginC/MainVBoxC/TopHBoxC/RessourcesVBoxC"]
 custom_minimum_size = Vector2(300, 40)
 layout_mode = 2
 size_flags_horizontal = 0
 texture = ExtResource("5_ruh6y")
 
-[node name="MarginC" type="MarginContainer" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC/RessourcesVBoxC/BackGroundCoins"]
+[node name="MarginC" type="MarginContainer" parent="WindowTopBlackVBoxC/MainMarginC/MainVBoxC/TopHBoxC/RessourcesVBoxC/BackGroundCoins"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -129,17 +276,17 @@ grow_vertical = 2
 theme_override_constants/margin_left = 12
 theme_override_constants/margin_right = 10
 
-[node name="HBoxC" type="HBoxContainer" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC/RessourcesVBoxC/BackGroundCoins/MarginC"]
+[node name="HBoxC" type="HBoxContainer" parent="WindowTopBlackVBoxC/MainMarginC/MainVBoxC/TopHBoxC/RessourcesVBoxC/BackGroundCoins/MarginC"]
 layout_mode = 2
 
-[node name="NameLabel" type="Label" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC/RessourcesVBoxC/BackGroundCoins/MarginC/HBoxC"]
+[node name="NameLabel" type="Label" parent="WindowTopBlackVBoxC/MainMarginC/MainVBoxC/TopHBoxC/RessourcesVBoxC/BackGroundCoins/MarginC/HBoxC"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Coins"
 label_settings = SubResource("LabelSettings_kmpp2")
 vertical_alignment = 1
 
-[node name="CoinsLabel" type="Label" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC/RessourcesVBoxC/BackGroundCoins/MarginC/HBoxC"]
+[node name="CoinsLabel" type="Label" parent="WindowTopBlackVBoxC/MainMarginC/MainVBoxC/TopHBoxC/RessourcesVBoxC/BackGroundCoins/MarginC/HBoxC"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -147,35 +294,35 @@ text = "Quantity"
 label_settings = SubResource("LabelSettings_owup1")
 vertical_alignment = 1
 
-[node name="ParticulesVBoxC" type="VBoxContainer" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC/RessourcesVBoxC"]
+[node name="ParticulesVBoxC" type="VBoxContainer" parent="WindowTopBlackVBoxC/MainMarginC/MainVBoxC/TopHBoxC/RessourcesVBoxC"]
 layout_mode = 2
 script = ExtResource("2_j2sxo")
 
-[node name="VBoxBoutons" type="VBoxContainer" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC"]
+[node name="VBoxBoutons" type="VBoxContainer" parent="WindowTopBlackVBoxC/MainMarginC/MainVBoxC/TopHBoxC"]
 layout_mode = 2
 
-[node name="OptionsButton" type="Button" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC/VBoxBoutons"]
+[node name="OptionsButton" type="Button" parent="WindowTopBlackVBoxC/MainMarginC/MainVBoxC/TopHBoxC/VBoxBoutons"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "OPTIONSLABEL"
 
-[node name="ButtonGiveMoney" type="Button" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC/VBoxBoutons"]
+[node name="ButtonGiveMoney" type="Button" parent="WindowTopBlackVBoxC/MainMarginC/MainVBoxC/TopHBoxC/VBoxBoutons"]
 layout_mode = 2
 text = "FreeMoney"
 
-[node name="SellHydrogenButton" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC" instance=ExtResource("8_8mhas")]
+[node name="SellHydrogenButton" parent="WindowTopBlackVBoxC/MainMarginC/MainVBoxC/TopHBoxC" instance=ExtResource("8_8mhas")]
 layout_mode = 2
 size_flags_vertical = 0
 
-[node name="NewMenuMainControl" type="Control" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC"]
+[node name="NewMenuMainControl" type="Control" parent="WindowTopBlackVBoxC/MainMarginC/MainVBoxC"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("20_qbngu")
 script = ExtResource("21_gy4s4")
 
-[node name="MenuPresentationVBoxC" type="VBoxContainer" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl"]
+[node name="MenuPresentationVBoxC" type="VBoxContainer" parent="WindowTopBlackVBoxC/MainMarginC/MainVBoxC/NewMenuMainControl"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -184,12 +331,12 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 2
 
-[node name="AllMenus" type="Control" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC"]
+[node name="AllMenus" type="Control" parent="WindowTopBlackVBoxC/MainMarginC/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC"]
 custom_minimum_size = Vector2(0, 500)
 layout_mode = 2
 size_flags_vertical = 10
 
-[node name="MenuAtomes" type="Control" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/AllMenus"]
+[node name="MenuAtomes" type="Control" parent="WindowTopBlackVBoxC/MainMarginC/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/AllMenus"]
 visible = false
 custom_minimum_size = Vector2(0, 500)
 layout_mode = 1
@@ -201,7 +348,7 @@ grow_vertical = 2
 size_flags_vertical = 10
 script = ExtResource("4_l775b")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/AllMenus/MenuAtomes"]
+[node name="ScrollContainer" type="ScrollContainer" parent="WindowTopBlackVBoxC/MainMarginC/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/AllMenus/MenuAtomes"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -210,16 +357,20 @@ grow_horizontal = 2
 grow_vertical = 2
 follow_focus = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/AllMenus/MenuAtomes/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="WindowTopBlackVBoxC/MainMarginC/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/AllMenus/MenuAtomes/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 6
 alignment = 1
 
-[node name="MenuRecherche" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/AllMenus" instance=ExtResource("5_pwwxi")]
+[node name="MenuRecherche" parent="WindowTopBlackVBoxC/MainMarginC/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/AllMenus" instance=ExtResource("5_pwwxi")]
 visible = false
+custom_minimum_size = Vector2(0, 800)
 layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+grow_vertical = 0
 
-[node name="MenuAmelioration" type="Control" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/AllMenus"]
+[node name="MenuAmelioration" type="Control" parent="WindowTopBlackVBoxC/MainMarginC/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/AllMenus"]
 visible = false
 custom_minimum_size = Vector2(0, 1000)
 layout_mode = 1
@@ -227,7 +378,7 @@ anchor_top = -1.0
 anchor_right = 1.0
 anchor_bottom = -1.0
 
-[node name="Background" type="Panel" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/AllMenus/MenuAmelioration"]
+[node name="FondPanel" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/AllMenus/MenuAmelioration"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -236,28 +387,36 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_gkhu4")
 
-[node name="GridContainer" type="GridContainer" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/AllMenus/MenuAmelioration"]
+[node name="MarginContainer" type="MarginContainer" parent="WindowTopBlackVBoxC/MainMarginC/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/AllMenus/MenuAmelioration"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="GridContainer" type="GridContainer" parent="WindowTopBlackVBoxC/MainMarginC/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/AllMenus/MenuAmelioration/MarginContainer"]
+layout_mode = 2
 columns = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/AllMenus/MenuAmelioration/GridContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="WindowTopBlackVBoxC/MainMarginC/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/AllMenus/MenuAmelioration/MarginContainer/GridContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="ButtonAmeliorationHelium" type="Button" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/AllMenus/MenuAmelioration/GridContainer/MarginContainer"]
+[node name="ButtonAmeliorationHelium" type="Button" parent="WindowTopBlackVBoxC/MainMarginC/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/AllMenus/MenuAmelioration/MarginContainer/GridContainer/MarginContainer"]
 custom_minimum_size = Vector2(300, 300)
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_gjfw4")
 
-[node name="Label" type="Label" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/AllMenus/MenuAmelioration/GridContainer/MarginContainer/ButtonAmeliorationHelium"]
+[node name="Label" type="Label" parent="WindowTopBlackVBoxC/MainMarginC/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/AllMenus/MenuAmelioration/MarginContainer/GridContainer/MarginContainer/ButtonAmeliorationHelium"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -273,24 +432,24 @@ grow_vertical = 2
 text = "HELIUM"
 label_settings = SubResource("LabelSettings_tgkd5")
 
-[node name="MenuBarBottomPanelC" type="PanelContainer" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC"]
+[node name="MenuBarBottomPanelC" type="PanelContainer" parent="WindowTopBlackVBoxC/MainMarginC/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC"]
 custom_minimum_size = Vector2(0, 75)
 layout_mode = 2
 size_flags_vertical = 8
 
-[node name="MarginC" type="MarginContainer" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/MenuBarBottomPanelC"]
+[node name="MarginC" type="MarginContainer" parent="WindowTopBlackVBoxC/MainMarginC/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/MenuBarBottomPanelC"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_right = 15
 
-[node name="MenuBarHBoxC" type="HBoxContainer" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/MenuBarBottomPanelC/MarginC"]
+[node name="MenuBarHBoxC" type="HBoxContainer" parent="WindowTopBlackVBoxC/MainMarginC/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/MenuBarBottomPanelC/MarginC"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 size_flags_vertical = 4
 alignment = 1
 
-[node name="ButtonMenuAtome" type="Button" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/MenuBarBottomPanelC/MarginC/MenuBarHBoxC"]
+[node name="ButtonMenuAtome" type="Button" parent="WindowTopBlackVBoxC/MainMarginC/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/MenuBarBottomPanelC/MarginC/MenuBarHBoxC"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/h_separation = 1
@@ -298,41 +457,41 @@ theme_override_fonts/font = ExtResource("3_2a2og")
 theme_override_font_sizes/font_size = 24
 text = "ATOMES"
 
-[node name="ButtonMenuRecherche" type="Button" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/MenuBarBottomPanelC/MarginC/MenuBarHBoxC"]
+[node name="ButtonMenuRecherche" type="Button" parent="WindowTopBlackVBoxC/MainMarginC/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/MenuBarBottomPanelC/MarginC/MenuBarHBoxC"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("3_2a2og")
 theme_override_font_sizes/font_size = 24
 text = "RECHERCHES"
 
-[node name="ButtonMenuAmelioration" type="Button" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/MenuBarBottomPanelC/MarginC/MenuBarHBoxC"]
+[node name="ButtonMenuAmelioration" type="Button" parent="WindowTopBlackVBoxC/MainMarginC/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/MenuBarBottomPanelC/MarginC/MenuBarHBoxC"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("3_2a2og")
 theme_override_font_sizes/font_size = 24
 text = "AMELIORATIONS"
 
-[node name="ButtonMenuPrestige" type="Button" parent="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/MenuBarBottomPanelC/MarginC/MenuBarHBoxC"]
+[node name="ButtonMenuPrestige" type="Button" parent="WindowTopBlackVBoxC/MainMarginC/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/MenuBarBottomPanelC/MarginC/MenuBarHBoxC"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("3_2a2og")
 theme_override_font_sizes/font_size = 24
 text = "PRESTIGE"
 
-[node name="AmeliorationHeliumControl" parent="WindowTopBlackVBoxC/MarginContainer" instance=ExtResource("13_awkfr")]
+[node name="AmeliorationHeliumControl" parent="WindowTopBlackVBoxC/MainMarginC" instance=ExtResource("13_awkfr")]
 visible = false
 layout_mode = 2
 
-[node name="MatiereNoireControl" parent="WindowTopBlackVBoxC/MarginContainer" instance=ExtResource("15_ngy2j")]
+[node name="MatiereNoireControl" parent="WindowTopBlackVBoxC/MainMarginC" instance=ExtResource("15_ngy2j")]
 visible = false
 layout_mode = 2
 
-[node name="OptionsControl" type="Control" parent="WindowTopBlackVBoxC/MarginContainer"]
+[node name="OptionsControl" type="Control" parent="WindowTopBlackVBoxC/MainMarginC"]
 visible = false
 layout_mode = 2
 script = ExtResource("17_cn1p7")
 
-[node name="FondPanel" type="Panel" parent="WindowTopBlackVBoxC/MarginContainer/OptionsControl"]
+[node name="FondPanel" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/OptionsControl"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -341,7 +500,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_5a71d")
 
-[node name="PresentationVBoxC" type="VBoxContainer" parent="WindowTopBlackVBoxC/MarginContainer/OptionsControl"]
+[node name="PresentationVBoxC" type="VBoxContainer" parent="WindowTopBlackVBoxC/MainMarginC/OptionsControl"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -349,15 +508,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TopMarginC" type="MarginContainer" parent="WindowTopBlackVBoxC/MarginContainer/OptionsControl/PresentationVBoxC"]
+[node name="TopMarginC" type="MarginContainer" parent="WindowTopBlackVBoxC/MainMarginC/OptionsControl/PresentationVBoxC"]
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_constants/margin_top = 5
 
-[node name="HBoxC" type="HBoxContainer" parent="WindowTopBlackVBoxC/MarginContainer/OptionsControl/PresentationVBoxC/TopMarginC"]
+[node name="HBoxC" type="HBoxContainer" parent="WindowTopBlackVBoxC/MainMarginC/OptionsControl/PresentationVBoxC/TopMarginC"]
 layout_mode = 2
 
-[node name="OptionsLabel" type="Label" parent="WindowTopBlackVBoxC/MarginContainer/OptionsControl/PresentationVBoxC/TopMarginC/HBoxC"]
+[node name="OptionsLabel" type="Label" parent="WindowTopBlackVBoxC/MainMarginC/OptionsControl/PresentationVBoxC/TopMarginC/HBoxC"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
@@ -366,37 +525,37 @@ text = "OPTIONSLABEL"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ExitButton" type="Button" parent="WindowTopBlackVBoxC/MarginContainer/OptionsControl/PresentationVBoxC/TopMarginC/HBoxC"]
+[node name="ExitButton" type="Button" parent="WindowTopBlackVBoxC/MainMarginC/OptionsControl/PresentationVBoxC/TopMarginC/HBoxC"]
 layout_mode = 2
 size_flags_horizontal = 8
 text = "Exit >"
 
-[node name="MainMarginC" type="MarginContainer" parent="WindowTopBlackVBoxC/MarginContainer/OptionsControl/PresentationVBoxC"]
+[node name="MainMarginC" type="MarginContainer" parent="WindowTopBlackVBoxC/MainMarginC/OptionsControl/PresentationVBoxC"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="OptionsVBoxC" type="VBoxContainer" parent="WindowTopBlackVBoxC/MarginContainer/OptionsControl/PresentationVBoxC/MainMarginC"]
+[node name="OptionsVBoxC" type="VBoxContainer" parent="WindowTopBlackVBoxC/MainMarginC/OptionsControl/PresentationVBoxC/MainMarginC"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="WindowTopBlackVBoxC/MarginContainer/OptionsControl/PresentationVBoxC/MainMarginC/OptionsVBoxC"]
+[node name="HBoxContainer" type="HBoxContainer" parent="WindowTopBlackVBoxC/MainMarginC/OptionsControl/PresentationVBoxC/MainMarginC/OptionsVBoxC"]
 layout_mode = 2
 alignment = 1
 
-[node name="ChangementLangueButton" type="Button" parent="WindowTopBlackVBoxC/MarginContainer/OptionsControl/PresentationVBoxC/MainMarginC/OptionsVBoxC/HBoxContainer"]
+[node name="ChangementLangueButton" type="Button" parent="WindowTopBlackVBoxC/MainMarginC/OptionsControl/PresentationVBoxC/MainMarginC/OptionsVBoxC/HBoxContainer"]
 layout_mode = 2
 text = "CHANGERLANGUEBUTTON"
 script = ExtResource("7_oskx7")
 
-[node name="LangueLabel" type="Label" parent="WindowTopBlackVBoxC/MarginContainer/OptionsControl/PresentationVBoxC/MainMarginC/OptionsVBoxC/HBoxContainer"]
+[node name="LangueLabel" type="Label" parent="WindowTopBlackVBoxC/MainMarginC/OptionsControl/PresentationVBoxC/MainMarginC/OptionsVBoxC/HBoxContainer"]
 layout_mode = 2
 
-[node name="ForceResetButton" type="Button" parent="WindowTopBlackVBoxC/MarginContainer/OptionsControl/PresentationVBoxC/MainMarginC/OptionsVBoxC"]
+[node name="ForceResetButton" type="Button" parent="WindowTopBlackVBoxC/MainMarginC/OptionsControl/PresentationVBoxC/MainMarginC/OptionsVBoxC"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "FORCERESETLABEL"
 
-[node name="ButtonSave" type="Button" parent="WindowTopBlackVBoxC/MarginContainer/OptionsControl/PresentationVBoxC/MainMarginC/OptionsVBoxC"]
+[node name="ButtonSave" type="Button" parent="WindowTopBlackVBoxC/MainMarginC/OptionsControl/PresentationVBoxC/MainMarginC/OptionsVBoxC"]
 layout_mode = 2
 text = "SAUVEGARDELABEL"
 
@@ -410,14 +569,17 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_j7vtp")
 [connection signal="timeout" from="MainTimer" to="." method="_on_main_timer_timeout"]
 [connection signal="timeout" from="InformationsPartieTimer" to="." method="_on_informations_partie_timer_timeout"]
 [connection signal="timeout" from="AdTimer" to="." method="_on_ad_timer_timeout"]
-[connection signal="pressed" from="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC/VBoxBoutons/OptionsButton" to="." method="_on_options_button_pressed"]
-[connection signal="pressed" from="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC/VBoxBoutons/ButtonGiveMoney" to="." method="_on_button_give_money_pressed"]
-[connection signal="pressed" from="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/AllMenus/MenuAmelioration/GridContainer/MarginContainer/ButtonAmeliorationHelium" to="." method="_on_button_amelioration_helium_pressed"]
-[connection signal="pressed" from="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/MenuBarBottomPanelC/MarginC/MenuBarHBoxC/ButtonMenuAtome" to="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl" method="_on_button_menu_atome_pressed"]
-[connection signal="pressed" from="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/MenuBarBottomPanelC/MarginC/MenuBarHBoxC/ButtonMenuRecherche" to="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl" method="_on_button_menu_recherche_pressed"]
-[connection signal="pressed" from="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/MenuBarBottomPanelC/MarginC/MenuBarHBoxC/ButtonMenuAmelioration" to="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl" method="_on_button_menu_amelioration_pressed"]
-[connection signal="pressed" from="WindowTopBlackVBoxC/MarginContainer/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/MenuBarBottomPanelC/MarginC/MenuBarHBoxC/ButtonMenuPrestige" to="." method="_on_button_menu_prestige_pressed"]
-[connection signal="pressed" from="WindowTopBlackVBoxC/MarginContainer/OptionsControl/PresentationVBoxC/TopMarginC/HBoxC/ExitButton" to="WindowTopBlackVBoxC/MarginContainer/OptionsControl" method="_on_exit_button_pressed"]
-[connection signal="pressed" from="WindowTopBlackVBoxC/MarginContainer/OptionsControl/PresentationVBoxC/MainMarginC/OptionsVBoxC/HBoxContainer/ChangementLangueButton" to="WindowTopBlackVBoxC/MarginContainer/OptionsControl/PresentationVBoxC/MainMarginC/OptionsVBoxC/HBoxContainer/ChangementLangueButton" method="_on_pressed"]
-[connection signal="pressed" from="WindowTopBlackVBoxC/MarginContainer/OptionsControl/PresentationVBoxC/MainMarginC/OptionsVBoxC/ForceResetButton" to="WindowTopBlackVBoxC/MarginContainer/OptionsControl" method="_on_force_reset_button_pressed"]
-[connection signal="pressed" from="WindowTopBlackVBoxC/MarginContainer/OptionsControl/PresentationVBoxC/MainMarginC/OptionsVBoxC/ButtonSave" to="WindowTopBlackVBoxC/MarginContainer/OptionsControl" method="_on_button_save_pressed"]
+[connection signal="pressed" from="WindowTopBlackVBoxC/AccueilControl/MainAccueilMarginC/PresentationVBoxC/BoutonsLanguesHBoxC/FrancaisButton" to="." method="_on_francais_button_pressed"]
+[connection signal="pressed" from="WindowTopBlackVBoxC/AccueilControl/MainAccueilMarginC/PresentationVBoxC/BoutonsLanguesHBoxC/AnglaisButton" to="." method="_on_anglais_button_pressed"]
+[connection signal="pressed" from="WindowTopBlackVBoxC/AccueilControl/MainAccueilMarginC/PresentationVBoxC/BoutonJouerMarginC/DebutJeuButton" to="." method="_on_debut_jeu_button_pressed"]
+[connection signal="pressed" from="WindowTopBlackVBoxC/MainMarginC/MainVBoxC/TopHBoxC/VBoxBoutons/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="WindowTopBlackVBoxC/MainMarginC/MainVBoxC/TopHBoxC/VBoxBoutons/ButtonGiveMoney" to="." method="_on_button_give_money_pressed"]
+[connection signal="pressed" from="WindowTopBlackVBoxC/MainMarginC/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/AllMenus/MenuAmelioration/MarginContainer/GridContainer/MarginContainer/ButtonAmeliorationHelium" to="." method="_on_button_amelioration_helium_pressed"]
+[connection signal="pressed" from="WindowTopBlackVBoxC/MainMarginC/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/MenuBarBottomPanelC/MarginC/MenuBarHBoxC/ButtonMenuAtome" to="WindowTopBlackVBoxC/MainMarginC/MainVBoxC/NewMenuMainControl" method="_on_button_menu_atome_pressed"]
+[connection signal="pressed" from="WindowTopBlackVBoxC/MainMarginC/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/MenuBarBottomPanelC/MarginC/MenuBarHBoxC/ButtonMenuRecherche" to="WindowTopBlackVBoxC/MainMarginC/MainVBoxC/NewMenuMainControl" method="_on_button_menu_recherche_pressed"]
+[connection signal="pressed" from="WindowTopBlackVBoxC/MainMarginC/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/MenuBarBottomPanelC/MarginC/MenuBarHBoxC/ButtonMenuAmelioration" to="WindowTopBlackVBoxC/MainMarginC/MainVBoxC/NewMenuMainControl" method="_on_button_menu_amelioration_pressed"]
+[connection signal="pressed" from="WindowTopBlackVBoxC/MainMarginC/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/MenuBarBottomPanelC/MarginC/MenuBarHBoxC/ButtonMenuPrestige" to="." method="_on_button_menu_prestige_pressed"]
+[connection signal="pressed" from="WindowTopBlackVBoxC/MainMarginC/OptionsControl/PresentationVBoxC/TopMarginC/HBoxC/ExitButton" to="WindowTopBlackVBoxC/MainMarginC/OptionsControl" method="_on_exit_button_pressed"]
+[connection signal="pressed" from="WindowTopBlackVBoxC/MainMarginC/OptionsControl/PresentationVBoxC/MainMarginC/OptionsVBoxC/HBoxContainer/ChangementLangueButton" to="WindowTopBlackVBoxC/MainMarginC/OptionsControl/PresentationVBoxC/MainMarginC/OptionsVBoxC/HBoxContainer/ChangementLangueButton" method="_on_pressed"]
+[connection signal="pressed" from="WindowTopBlackVBoxC/MainMarginC/OptionsControl/PresentationVBoxC/MainMarginC/OptionsVBoxC/ForceResetButton" to="WindowTopBlackVBoxC/MainMarginC/OptionsControl" method="_on_force_reset_button_pressed"]
+[connection signal="pressed" from="WindowTopBlackVBoxC/MainMarginC/OptionsControl/PresentationVBoxC/MainMarginC/OptionsVBoxC/ButtonSave" to="WindowTopBlackVBoxC/MainMarginC/OptionsControl" method="_on_button_save_pressed"]
