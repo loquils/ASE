@@ -1,5 +1,7 @@
 extends Node
 
+var IsTutorialCompleted = false
+
 var Coins = Big.new(0, 0)
 var QuantiteesAtomes = {}
 
@@ -52,14 +54,16 @@ func _ready():
 			DarkMatter = Big.ToCustomFormat(ressourceLoadingGame["DarkMatter"])
 		if ressourceLoadingGame.has("RecherchesMatiereNoire"):
 			listeRecherchesMatiereNoireInSaving = ressourceLoadingGame["RecherchesMatiereNoire"]
-		if ressourceLoadingGame.has("RecherchesMatiereNoireAchetees"):
-			InfosPartie.RecherchesMatiereNoireAchetees = ressourceLoadingGame["RecherchesMatiereNoireAchetees"]
-			
+		if ressourceLoadingGame.has("InformationsPartie"):
+			InfosPartie.Load(ressourceLoadingGame["InformationsPartie"])
+		if ressourceLoadingGame.has("TutorialCompleted"):
+			IsTutorialCompleted = ressourceLoadingGame["TutorialCompleted"]
+	
+
 	AtomsLoading(quantiteesAtomesInSaving, atomsListInSaving)
 	LoadResearch(listeRecherchesInSaving)
 	LoadAmeliorationHelium(listeAmeliorationsHeliumInSaving)
 	LoadDarkMatter(listeRecherchesMatiereNoireInSaving)
-
 
 #Permet de charger la liste des atomes, et des quantitees possedees
 func AtomsLoading(quantiteesAtomesInSaving, atomsListInSaving):
@@ -78,6 +82,9 @@ func AtomsLoading(quantiteesAtomesInSaving, atomsListInSaving):
 				#Si il existe, il faut qu'on change le niveau
 				if  attributLevelInSave != null:
 					attributInitialized.Niveau = Big.ToCustomFormat(attributLevelInSave)
+				#Et on multiplie le coefficient d'achat par 2 pour tous les 100 niveaux
+			
+			
 			
 			#Faut qu'on définisse si l'atome est débloqué ou pas
 			var isAtomeUnlockedInSave = atomsListInSaving[initializedAtom.Name]["Unlock"]
@@ -157,7 +164,7 @@ func CalculateQuantityAtomes(timeInSeconde:int = 1):
 func DefineAtomsListInitializingGame():
 	#On définit les atomes auxquels on a accès :)
 	var hydrogeneAtom = Atome.new("Hydrogene", Big.new(1.0, 0), Big.new(1.0, 0))
-	var hydrogenAttributsList = [AttributAtome.new(hydrogeneAtom, "Force", Big.new(1.0, 10), Big.new(1.13), Big.new(0.07), Big.new(15)), AttributAtome.new(hydrogeneAtom, "Vitesse", Big.new(0.0), Big.new(1.38), Big.new(0.15), Big.new(30))] #AttributAtome.new(newAtome, "COIIIn", 0, 20, 50, 100)
+	var hydrogenAttributsList = [AttributAtome.new(hydrogeneAtom, "Force", Big.new(9.9, 1), Big.new(1.13), Big.new(0.07), Big.new(15)), AttributAtome.new(hydrogeneAtom, "Vitesse", Big.new(0.0), Big.new(1.38), Big.new(0.15), Big.new(30))] #AttributAtome.new(newAtome, "COIIIn", 0, 20, 50, 100)
 	hydrogeneAtom.DefineAtomeAttributs(hydrogenAttributsList)
 	hydrogeneAtom.isUnlocked = true
 	
@@ -233,7 +240,6 @@ func ResetAmeliorationsHelium():
 	BonusManager.MajBonusAmeliorationHelium()
 
 
-
 func save():
 	#Pour les quantitées
 	var atomsQuantityDictionnary = {}
@@ -261,6 +267,8 @@ func save():
 	var recherchesMatiereNoireListe = []
 	for rechercheMatiereNoire in ListeRecherchesMatiereNoire:
 		recherchesMatiereNoireListe.append({"Id" : rechercheMatiereNoire.Id, "IsUnlocked" : rechercheMatiereNoire.IsUnlocked})
+
+	var dictSavePartie = InfosPartie.Save()
 	
 	var save_dict = {
 		"Langue" : LangueManager.languageCourrant,
@@ -271,7 +279,8 @@ func save():
 		"HeliumUpgradesList" : ameliorationHeliumList,
 		"DarkMatter" : DarkMatter.ToJsonFormat(),
 		"RecherchesMatiereNoire" : recherchesMatiereNoireListe,
-		"RecherchesMatiereNoireAchetees" : InfosPartie.RecherchesMatiereNoireAchetees
+		"InformationsPartie" : InfosPartie.Save(),
+		"TutorialCompleted" : IsTutorialCompleted
 	}
 	
 	return save_dict

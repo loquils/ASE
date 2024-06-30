@@ -1,13 +1,20 @@
 extends Control
 
-@onready var CoinsQuantityLabel = $WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC/RessourcesVBoxC/BackGroundCoins/MarginC/HBoxC/CoinsLabel
-@onready var AmeliorationHeliumControl = $WindowTopBlackVBoxC/MarginContainer/AmeliorationHeliumControl
-@onready var MatiereNoireControl = $WindowTopBlackVBoxC/MarginContainer/MatiereNoireControl
+@onready var AccueilControl = $WindowTopBlackVBoxC/AccueilControl
+@onready var SaveTimer = $SaveTimer
+@onready var MainTimer = $MainTimer
+@onready var InformationsPartieTimer = $InformationsPartieTimer
+@onready var AdTimer = $AdTimer
+@onready var MainMarginC = $WindowTopBlackVBoxC/MainMarginC
 
-@onready var OptionsControl = $WindowTopBlackVBoxC/MarginContainer/OptionsControl
+@onready var CoinsQuantityLabel = $WindowTopBlackVBoxC/MainMarginC/MainVBoxC/TopHBoxC/RessourcesVBoxC/BackGroundCoins/MarginC/HBoxC/CoinsLabel
+@onready var AmeliorationHeliumControl = $WindowTopBlackVBoxC/MainMarginC/AmeliorationHeliumControl
+@onready var MatiereNoireControl = $WindowTopBlackVBoxC/MainMarginC/MatiereNoireControl
+
+@onready var OptionsControl = $WindowTopBlackVBoxC/MainMarginC/OptionsControl
+@onready var TutorielControl = $WindowTopBlackVBoxC/MainMarginC/TutorielControl
 
 var AdButtonScene = preload("res://Design/Scenes/AdButton.tscn")
-
 
 func _ready():
 	MobileAds.initialize()
@@ -65,6 +72,25 @@ func _on_informations_partie_timer_timeout():
 
 
 func _on_ad_timer_timeout():
-	if not has_node("WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC/VBoxBoutons/AdButton"):
+	if not has_node("WindowTopBlackVBoxC/MainMarginC/MainVBoxC/TopHBoxC/VBoxBoutons/AdButton"):
 		var buttonAd = AdButtonScene.instantiate()
-		$WindowTopBlackVBoxC/MarginContainer/MainVBoxC/TopHBoxC/VBoxBoutons.add_child(buttonAd)
+		$WindowTopBlackVBoxC/MainMarginC/MainVBoxC/TopHBoxC/VBoxBoutons.add_child(buttonAd)
+
+#Trigger lors de l'appuie sur le bouton Jouer de la page d'accueil
+func _on_debut_jeu_button_pressed():
+	AccueilControl.hide()
+	MainMarginC.show()
+	SaveTimer.start()
+	MainTimer.start()
+	InformationsPartieTimer.start()
+	AdTimer.start()
+	TutorielControl.AfterAccueil = true
+
+
+#Permet de changer la langue en français depuis la fenetre d'accueil
+func _on_francais_button_pressed():
+	LangueManager.maj_langue("fr")
+
+#Permet de changer la langue en anglais depuis la fenetre d'accueil
+func _on_anglais_button_pressed():
+	LangueManager.maj_langue("en")

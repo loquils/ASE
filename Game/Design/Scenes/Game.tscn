@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://jwctjc5cvudy"]
+[gd_scene load_steps=36 format=3 uid="uid://jwctjc5cvudy"]
 
 [ext_resource type="Theme" uid="uid://cbk6urwquxgkm" path="res://Design/Themes/Global/ThemeGlobal.tres" id="1_rwuoq"]
 [ext_resource type="Script" path="res://Script/Game.gd" id="1_xa3fh"]
@@ -15,7 +15,9 @@
 [ext_resource type="Texture2D" uid="uid://c31eyto1jlpql" path="res://Gimped/TestElectron.png" id="17_1p05m"]
 [ext_resource type="Script" path="res://Script/Options/OptionsControl.gd" id="17_cn1p7"]
 [ext_resource type="Script" path="res://Design/Scenes/Sprite2DTestAnimation.gd" id="18_vft3y"]
+[ext_resource type="Script" path="res://Script/Tutoriel/TutorielControl.gd" id="19_2cpc3"]
 [ext_resource type="Texture2D" uid="uid://1drh7volhffd" path="res://Gimped/Proton.png" id="19_8v33v"]
+[ext_resource type="Theme" uid="uid://l4o32fmgp6uy" path="res://Design/Themes/Tutorial/FondPanelsTutorial.tres" id="20_h7e64"]
 [ext_resource type="Theme" uid="uid://b1lmffes80p5v" path="res://Design/Themes/NewMainMenuTheme.tres" id="20_qbngu"]
 [ext_resource type="Script" path="res://Design/Scenes/NewMenuMainControl.gd" id="21_gy4s4"]
 
@@ -111,6 +113,39 @@ border_width_right = 2
 border_width_bottom = 2
 border_color = Color(0, 0, 0, 1)
 corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1n21c"]
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f3jqu"]
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ls17"]
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7j0tf"]
+bg_color = Color(0.192157, 0.192157, 0.192157, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [node name="Game" type="Control"]
 layout_mode = 3
@@ -559,6 +594,576 @@ text = "FORCERESETLABEL"
 layout_mode = 2
 text = "SAUVEGARDELABEL"
 
+[node name="TutorielControl" type="Control" parent="WindowTopBlackVBoxC/MainMarginC"]
+visible = false
+layout_mode = 2
+script = ExtResource("19_2cpc3")
+
+[node name="FullPanel" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TestControl1" type="Control" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxC" type="VBoxContainer" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("20_h7e64")
+
+[node name="HBoxC" type="HBoxContainer" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl1/VBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="WhitePanel" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl1/VBoxC/HBoxC"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_1n21c")
+
+[node name="Panel" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl1/VBoxC/HBoxC"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Panel" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl1/VBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel2" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl1/VBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel3" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl1/VBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel4" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl1/VBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel5" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl1/VBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel6" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl1/VBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TestControl2" type="Control" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxC" type="VBoxContainer" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("20_h7e64")
+
+[node name="HBoxC" type="HBoxContainer" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl2/VBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl2/VBoxC/HBoxC"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="WhitePanel" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl2/VBoxC/HBoxC"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_f3jqu")
+
+[node name="Panel" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl2/VBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel2" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl2/VBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel3" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl2/VBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel4" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl2/VBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel5" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl2/VBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel6" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl2/VBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TestControl3" type="Control" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxC" type="VBoxContainer" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("20_h7e64")
+
+[node name="Panel" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl3/VBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel2" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl3/VBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel3" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl3/VBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel4" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl3/VBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel5" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl3/VBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel6" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl3/VBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel7" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl3/VBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel8" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl3/VBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel9" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl3/VBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel10" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl3/VBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel11" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl3/VBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel12" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl3/VBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel13" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl3/VBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl3/VBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="WhitePanel" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl3/VBoxC/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_8ls17")
+
+[node name="Panel" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl3/VBoxC/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Panel2" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl3/VBoxC/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Panel3" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl3/VBoxC/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TestControl4" type="Control" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxC" type="VBoxContainer" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl4"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("20_h7e64")
+
+[node name="Panel" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl4/VBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel2" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl4/VBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel3" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl4/VBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel4" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl4/VBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel5" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl4/VBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel6" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl4/VBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel7" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl4/VBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel8" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl4/VBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel9" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl4/VBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel10" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl4/VBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel11" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl4/VBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel12" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl4/VBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel13" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl4/VBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl4/VBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl4/VBoxC/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="WhitePanel" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl4/VBoxC/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_8ls17")
+
+[node name="Panel2" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl4/VBoxC/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Panel3" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl4/VBoxC/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TestControl5" type="Control" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxC" type="VBoxContainer" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl5"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("20_h7e64")
+
+[node name="Panel" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl5/VBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel2" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl5/VBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel3" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl5/VBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel4" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl5/VBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel5" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl5/VBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel6" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl5/VBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel7" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl5/VBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel8" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl5/VBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel9" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl5/VBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel10" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl5/VBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel11" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl5/VBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel12" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl5/VBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel13" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl5/VBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl5/VBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl5/VBoxC/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Panel2" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl5/VBoxC/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="WhitePanel" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl5/VBoxC/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_8ls17")
+
+[node name="Panel3" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl5/VBoxC/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TestControl6" type="Control" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxC" type="VBoxContainer" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl6"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("20_h7e64")
+
+[node name="Panel" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl6/VBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel2" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl6/VBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel3" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl6/VBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel4" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl6/VBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel5" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl6/VBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel6" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl6/VBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel7" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl6/VBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel8" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl6/VBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel9" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl6/VBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel10" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl6/VBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel11" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl6/VBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel12" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl6/VBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel13" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl6/VBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl6/VBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl6/VBoxC/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Panel2" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl6/VBoxC/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Panel3" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl6/VBoxC/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="WhitePanel" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/TestControl6/VBoxC/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_8ls17")
+
+[node name="MessageMarginC" type="MarginContainer" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl"]
+custom_minimum_size = Vector2(500, 300)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="FondPanel" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/MessageMarginC"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_7j0tf")
+
+[node name="VBoxC" type="VBoxContainer" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/MessageMarginC"]
+layout_mode = 2
+
+[node name="NomMarginC" type="MarginContainer" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/MessageMarginC/VBoxC"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="NomLabel" type="Label" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/MessageMarginC/VBoxC/NomMarginC"]
+layout_mode = 2
+text = "NOMFENETRETUTO"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MessageMarginC" type="MarginContainer" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/MessageMarginC/VBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="MessageLabel" type="Label" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/MessageMarginC/VBoxC/MessageMarginC"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_vertical = 1
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ValidationMarginC" type="MarginContainer" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/MessageMarginC/VBoxC"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="ValidationButton" type="Button" parent="WindowTopBlackVBoxC/MainMarginC/TutorielControl/MessageMarginC/VBoxC/ValidationMarginC"]
+layout_mode = 2
+text = "Ok !"
+
 [node name="BlackBannerPanel2" type="Panel" parent="WindowTopBlackVBoxC"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
@@ -583,3 +1188,4 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_j7vtp")
 [connection signal="pressed" from="WindowTopBlackVBoxC/MainMarginC/OptionsControl/PresentationVBoxC/MainMarginC/OptionsVBoxC/HBoxContainer/ChangementLangueButton" to="WindowTopBlackVBoxC/MainMarginC/OptionsControl/PresentationVBoxC/MainMarginC/OptionsVBoxC/HBoxContainer/ChangementLangueButton" method="_on_pressed"]
 [connection signal="pressed" from="WindowTopBlackVBoxC/MainMarginC/OptionsControl/PresentationVBoxC/MainMarginC/OptionsVBoxC/ForceResetButton" to="WindowTopBlackVBoxC/MainMarginC/OptionsControl" method="_on_force_reset_button_pressed"]
 [connection signal="pressed" from="WindowTopBlackVBoxC/MainMarginC/OptionsControl/PresentationVBoxC/MainMarginC/OptionsVBoxC/ButtonSave" to="WindowTopBlackVBoxC/MainMarginC/OptionsControl" method="_on_button_save_pressed"]
+[connection signal="pressed" from="WindowTopBlackVBoxC/MainMarginC/TutorielControl/MessageMarginC/VBoxC/ValidationMarginC/ValidationButton" to="WindowTopBlackVBoxC/MainMarginC/TutorielControl" method="_on_validation_button_pressed"]
