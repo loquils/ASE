@@ -124,7 +124,7 @@ func LoadAmeliorationHelium(listeAmeliorationsHeliumInSaving):
 	
 	if not listeAmeliorationsHeliumInSaving == null:
 		for initializedAmeliorationHelium in ListeAmeliorationsHeliumInitializeGame:
-			if not listeAmeliorationsHeliumInSaving[initializedAmeliorationHelium.Id] == null:
+			if initializedAmeliorationHelium.Id < len(listeAmeliorationsHeliumInSaving) and not listeAmeliorationsHeliumInSaving[initializedAmeliorationHelium.Id] == null:
 				if listeAmeliorationsHeliumInSaving[initializedAmeliorationHelium.Id]["IsUnlocked"]:
 					initializedAmeliorationHelium.IsUnlocked = true
 					initializedAmeliorationHelium.Level = Big.ToCustomFormat(listeAmeliorationsHeliumInSaving[initializedAmeliorationHelium.Id]["Level"])
@@ -192,13 +192,17 @@ func DefineResearchListInitializingGame():
 
 #Permet d'initialiser la liste des amélioration de l'hélium dans le jeu
 func DefineAmeliorationHeliumListInitializingGame():
-	var ameliorationHelium1 = AmeliorationHelium.new(0, "AMELIORATIONHELIUMPRESSION1", "AMELIORATIONHELIUMPRESSIONDESCRIPTION1", AmeliorationHelium.TypeAmeliorationHeliumEnum.Pression, "HydrogeneOutputMultiply", Big.new(2.0, 0))
-	ameliorationHelium1.DefineAtomeUnlockingPrice( {"Coins" : Big.new(5.0, 3)})
+	var ameliorationHelium1 = AmeliorationHelium.new(0, "AMELIORATIONHELIUMPRESSION1", "AMELIORATIONHELIUMPRESSIONDESCRIPTION1", Big.new(1.0, 4), Big.new(1.0, 1), AmeliorationHelium.TypeAmeliorationHeliumEnum.Pression, "HydrogeneOutputMultiply", Big.new(2.0, 0))
+	ameliorationHelium1.DefineAtomeUnlockingPrice( {"Helium" : Big.new(5.0, 3)})
 	ListeAmeliorationsHeliumInitializeGame.append(ameliorationHelium1)
 	
-	var amelio2 = AmeliorationHelium.new(1, "AMELIORATIONHELIUMTEMPERATURE1", "AMELIORATIONHELIUMTEMPERATUREDESCRIPTION1", AmeliorationHelium.TypeAmeliorationHeliumEnum.Temperature, "HydrogeneAttributsCoefficientAdd", Big.new(0.01, 0))
-	amelio2.DefineAtomeUnlockingPrice( {"Hydrogene" : Big.new(2.5, 2)})
+	var amelio2 = AmeliorationHelium.new(1, "AMELIORATIONHELIUMTEMPERATURE1", "AMELIORATIONHELIUMTEMPERATUREDESCRIPTION1", Big.new(1.0, 3), Big.new(5.0, 0), AmeliorationHelium.TypeAmeliorationHeliumEnum.Temperature, "HydrogeneAttributsCoefficientAdd", Big.new(0.01, 0))
+	amelio2.DefineAtomeUnlockingPrice( {"Coins" : Big.new(2.5, 2)})
 	ListeAmeliorationsHeliumInitializeGame.append(amelio2)
+	
+	var ameliorationHelium3 = AmeliorationHelium.new(2, "AMELIORATIONHELIUMTEMPERATURE2", "AMELIORATIONHELIUMTEMPERATUREDESCRIPTION2", Big.new(1.0, 3), Big.new(7.5, 0), AmeliorationHelium.TypeAmeliorationHeliumEnum.Temperature, "HeliumAttributsCoefficientAdd", Big.new(0.01, 0))
+	ameliorationHelium3.DefineAtomeUnlockingPrice( {"Hydrogene" : Big.new(4.0, 2)})
+	ListeAmeliorationsHeliumInitializeGame.append(ameliorationHelium3)
 
 
 #Permet d'initialiser la liste des recherches de matière noire dans le jeu

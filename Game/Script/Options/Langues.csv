@@ -55,10 +55,12 @@ RECHERCHE7, "Rendement", "Output"
 RECHERCHEDESCRIPTION7, "Multiplie le rendement de l'hélium par 2.", "Multiply by 2 the helium output."
 
 
-AMELIORATIONHELIUMPRESSION1, "Comprésseur d'hydrogène.", "Hydrogen compressor."
+AMELIORATIONHELIUMPRESSION1, "Comprésseur d'hydrogène", "Hydrogen compressor"
 AMELIORATIONHELIUMPRESSIONDESCRIPTION1, "Multiplie par 2 le rendement d'hydrogène par seconde.", "Multiply by 2 Hydrogen output per second"
-AMELIORATIONHELIUMTEMPERATURE1, "Centrifugeuse Hydrogène.", "Hydrogen centrifuge."
+AMELIORATIONHELIUMTEMPERATURE1, "Centrifugeuse Hydrogène", "Hydrogen centrifuge"
 AMELIORATIONHELIUMTEMPERATUREDESCRIPTION1, "Augmente l'efficacité des attributs de l'Hydrogène.", "Upgrade Hydrogen attributs efficiency."
+AMELIORATIONHELIUMTEMPERATURE2, "Centrifugeuse Helium", "Helium centrifuge"
+AMELIORATIONHELIUMTEMPERATUREDESCRIPTION2, "Augmente l'efficacité des attributs de l'Helium.", "Upgrade Helium attributs efficiency."
 
 
 ARGENTPRESTIGE, "Matière Noire", "Dark Mater"

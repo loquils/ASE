@@ -5,7 +5,7 @@ var BonusTypesRecherches = ["PrixHydrogeneAugmentation", "HydrogeneCoeffMultipli
 var CurrentBonusesRecherches = {"PrixHydrogeneAugmentation" : Big.new(0.0), "HydrogeneCoeffMultiplicateurRapport" : Big.new(1.0), "HeliumCoeffMultiplicateurRapport" : Big.new(1.0)}
 
 #Amélioration de l'helium
-var BonusTypesAmeliorationHelium = ["HydrogeneOutputMultiply", "HydrogeneAttributsCoefficientAdd"]
+var BonusTypesAmeliorationHelium = ["HydrogeneOutputMultiply", "HydrogeneAttributsCoefficientAdd", "HeliumAttributsCoefficientAdd"]
 var CurrentBonusesAmeliorationHelium = {}
 
 #Bonus recherches matière noire
