@@ -44,13 +44,11 @@ func GetPrixAttribut(attribut):
 
 #Retourne le coefficient d'augmentation des attributs.
 func GetAugmentationsAttributs():
-	var attributsAddition = Big.new(0.0)
+	var attributsAddition = Big.new(1.0)
 	
 	for attribut in ListeAttribs:
-		attributsAddition = Big.add(attributsAddition, Big.multiply(attribut.CoefficientRapport, attribut.Niveau))
+		attributsAddition = Big.add(attributsAddition, attribut.GetAttributRapportAvecNiveau())
 	
-	attributsAddition = Big.add(Big.new(1.0), attributsAddition)
-
 	return attributsAddition
 
 
@@ -58,7 +56,8 @@ func GetAugmentationsAttributs():
 func GetAtomePerSec():
 	if isUnlocked:
 		#return ApportAtome.multiply((CustomNumber.new(1.0).add(GetAugmentationsAttributs()))).multiply(GlobalMultiplicator)
-		return Big.multiply(Big.multiply(ApportAtome, GetAugmentationsAttributs()), BonusManager.GetGlobalMultiplicator(Name))
+		var calculApportAttributs = Big.multiply(ApportAtome, GetAugmentationsAttributs())
+		return Big.multiply(calculApportAttributs, BonusManager.GetGlobalMultiplicator(Name))
 		#return Big.multiply(ApportAtome, GetAugmentationsAttributs())
 	else:
 		return Big.new(0.0)
