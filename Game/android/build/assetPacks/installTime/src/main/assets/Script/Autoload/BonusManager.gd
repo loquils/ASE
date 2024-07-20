@@ -5,7 +5,7 @@ var BonusTypesRecherches = ["PrixHydrogeneAugmentation", "HydrogeneCoeffMultipli
 var CurrentBonusesRecherches = {"PrixHydrogeneAugmentation" : Big.new(0.0), "HydrogeneCoeffMultiplicateurRapport" : Big.new(1.0), "HeliumCoeffMultiplicateurRapport" : Big.new(1.0)}
 
 #Amélioration de l'helium
-var BonusTypesAmeliorationHelium = ["HydrogeneRendementMultiply", "HydrogeneAttributsCoefficientAdd"]
+var BonusTypesAmeliorationHelium = ["HydrogeneOutputMultiply", "HydrogeneAttributsCoefficientAdd", "HeliumAttributsCoefficientAdd"]
 var CurrentBonusesAmeliorationHelium = {}
 
 #Bonus recherches matière noire
@@ -39,26 +39,21 @@ func MajBonusRecherches():
 func MajBonusAmeliorationHelium():
 	InfosPartie.MajInformationsPartie() #Pour l'instant pas utile ici, mais plus tard oui
 	
-	RessourceManager.ListeAtomes["Hydrogene"].GlobalMultiplicator = Big.new(1.0)
-	
+	#Définition des bonus de base, si c'est une multiplication on set a 1, une addition a 0
 	for bonusTypeAmeliorationHelium in BonusTypesAmeliorationHelium:
-		CurrentBonusesAmeliorationHelium[bonusTypeAmeliorationHelium] = Big.new(0.0)
+		if bonusTypeAmeliorationHelium.contains("Multiply"):
+			CurrentBonusesAmeliorationHelium[bonusTypeAmeliorationHelium] = Big.new(1.0)
+		if bonusTypeAmeliorationHelium.contains("Add"):
+			CurrentBonusesAmeliorationHelium[bonusTypeAmeliorationHelium] = Big.new(0.0)
 	
+	#On calcul les CurrentBonus selon si c'est un multiplication ou une addition
 	for ameliorationHelium in RessourceManager.ListeAmeliorationsHelium:
 		if ameliorationHelium.IsUnlocked:
-			CurrentBonusesAmeliorationHelium[ameliorationHelium.BonusTypeAmeliorationHelium] = Big.add(CurrentBonusesAmeliorationHelium[ameliorationHelium.BonusTypeAmeliorationHelium], Big.multiply(ameliorationHelium.BonusAmeliorationHelium, ameliorationHelium.Level))
-	
-	for CurrentBonus in CurrentBonusesAmeliorationHelium:
-		match CurrentBonus:
-			"HydrogeneRendementMultiply":
-				if CurrentBonusesAmeliorationHelium[CurrentBonus].isEqualTo(Big.new(0.0)):
-					RessourceManager.ListeAtomes["Hydrogene"].ApportAtome = RessourceManager.ListeAtomes["Hydrogene"].ApportAtomeBase
-				else:
-					RessourceManager.ListeAtomes["Hydrogene"].GlobalMultiplicator = Big.multiply(RessourceManager.ListeAtomes["Hydrogene"].GlobalMultiplicator, CurrentBonusesAmeliorationHelium[CurrentBonus])
-
-			"HydrogeneAttributsCoefficientAdd":
-				for attributHydrogene in RessourceManager.ListeAtomes["Hydrogene"].ListeAttribs:
-					attributHydrogene.CoefficientRapport = Big.add(attributHydrogene.CoefficientBaseRapport, BonusManager.CurrentBonusesAmeliorationHelium[CurrentBonus])
+			var BonusCalculNiveau = Big.multiply(ameliorationHelium.BonusAmeliorationHelium, ameliorationHelium.Level)
+			if ameliorationHelium.BonusTypeAmeliorationHelium.contains("Multiply"):
+				CurrentBonusesAmeliorationHelium[ameliorationHelium.BonusTypeAmeliorationHelium] = Big.multiply(CurrentBonusesAmeliorationHelium[ameliorationHelium.BonusTypeAmeliorationHelium], BonusCalculNiveau)
+			elif ameliorationHelium.BonusTypeAmeliorationHelium.contains("Add"):
+				CurrentBonusesAmeliorationHelium[ameliorationHelium.BonusTypeAmeliorationHelium] = Big.add(CurrentBonusesAmeliorationHelium[ameliorationHelium.BonusTypeAmeliorationHelium], BonusCalculNiveau)
 
 
 #Mise à jour des bonus des recherches de matière noire
@@ -87,7 +82,7 @@ func GetGlobalMultiplicator(Name):
 			recherchesMultiplicator = Big.add(recherchesMultiplicator, CurrentBonusesRecherches[CurrentResearchBonus])
 	
 	for CurrentBonus in CurrentBonusesAmeliorationHelium:
-		if CurrentBonus.contains(Name) and CurrentBonus.contains("RendementMultiply"):
+		if CurrentBonus.contains(Name) and CurrentBonus.contains("OutputMultiply"):
 			heliumMultiplicator = Big.add(heliumMultiplicator, CurrentBonusesAmeliorationHelium[CurrentBonus])
 	
 	var globalMultiplicator = Big.add(recherchesMultiplicator, heliumMultiplicator)

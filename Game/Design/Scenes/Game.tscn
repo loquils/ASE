@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://jwctjc5cvudy"]
+[gd_scene load_steps=37 format=3 uid="uid://jwctjc5cvudy"]
 
 [ext_resource type="Theme" uid="uid://cbk6urwquxgkm" path="res://Design/Themes/Global/ThemeGlobal.tres" id="1_rwuoq"]
 [ext_resource type="Script" path="res://Script/Game.gd" id="1_xa3fh"]
@@ -105,6 +105,14 @@ corner_radius_bottom_left = 10
 font = ExtResource("3_2a2og")
 font_size = 50
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w80a4"]
+bg_color = Color(0.192157, 0.192157, 0.192157, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5a71d"]
 bg_color = Color(0.192157, 0.192157, 0.192157, 1)
 border_width_left = 2
@@ -177,6 +185,7 @@ wait_time = 5.0
 
 [node name="AdTimer" type="Timer" parent="."]
 wait_time = 10.0
+one_shot = true
 
 [node name="WindowTopBlackVBoxC" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -343,6 +352,7 @@ size_flags_vertical = 4
 text = "OPTIONSLABEL"
 
 [node name="ButtonGiveMoney" type="Button" parent="WindowTopBlackVBoxC/MainMarginC/MainVBoxC/TopHBoxC/VBoxBoutons"]
+visible = false
 layout_mode = 2
 text = "FreeMoney"
 
@@ -520,6 +530,20 @@ layout_mode = 2
 [node name="MatiereNoireControl" parent="WindowTopBlackVBoxC/MainMarginC" instance=ExtResource("15_ngy2j")]
 visible = false
 layout_mode = 2
+
+[node name="AmeliorationLithiumControl" type="Control" parent="WindowTopBlackVBoxC/MainMarginC"]
+visible = false
+layout_mode = 2
+theme = ExtResource("1_rwuoq")
+
+[node name="FondPanel" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/AmeliorationLithiumControl"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_w80a4")
 
 [node name="OptionsControl" type="Control" parent="WindowTopBlackVBoxC/MainMarginC"]
 visible = false

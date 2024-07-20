@@ -10,7 +10,8 @@ var IsUnlocked = false
 var Level: Big
 
 var PrixBase = Big.new(1.0, 3)
-var ApportBase
+
+var CoefficientAchat: Big
 
 enum TypeAmeliorationHeliumEnum {Pression, Temperature} #Pression on / les prix, Temperature on augmente les rendements (genre les coefs)
 var TypeAmeliorationHelium
@@ -20,10 +21,12 @@ var BonusTypeAmeliorationHelium
 var BonusAmeliorationHelium
 
 #func _init(id, name, description, prix:CustomNumber, augmentation, augmentationPercent, researchLevel):
-func _init(id, name, description, typeAmeliorationHelium:TypeAmeliorationHeliumEnum, bonusTypeAmeliorationHelium,bonusAmeliorationHelium:Big, level:Big = Big.new(0.0)):
+func _init(id, name, description, prixBase:Big, coefficientAchat, typeAmeliorationHelium:TypeAmeliorationHeliumEnum, bonusTypeAmeliorationHelium,bonusAmeliorationHelium:Big, level:Big = Big.new(0.0)):
 	Id = id
 	Name = name
 	Description = description
+	PrixBase = prixBase
+	CoefficientAchat = coefficientAchat
 	Level = level
 	TypeAmeliorationHelium = typeAmeliorationHelium
 	BonusTypeAmeliorationHelium = bonusTypeAmeliorationHelium
@@ -37,10 +40,4 @@ func DefineAtomeUnlockingPrice(atomePriceForUnlocking):
 
 #Récupère le prix d'une amélioration, pour l'instant c'est x10 puissance niveau
 func GetPrixAmeliorationHelium():
-	match TypeAmeliorationHelium:
-		TypeAmeliorationHeliumEnum.Pression:
-			return Big.multiply(PrixBase, Big.power(Big.new(1.0, 1), Level))
-			#return PrixBase.multiply(Big.new(1.0, 1).power(Level))
-		TypeAmeliorationHeliumEnum.Temperature:
-			return Big.multiply(PrixBase, Big.power(Big.new(5.0, 0), Level))
-			#return PrixBase.multiply(Big.new(5.0, 0).power(Level))
+	return Big.multiply(PrixBase, Big.power(CoefficientAchat, Level))

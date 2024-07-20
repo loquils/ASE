@@ -21,8 +21,8 @@ func _ready():
 		print("on_ad_showed_full_screen_content")
 	on_user_earned_reward_listener.on_user_earned_reward = func(rewarded_item : RewardedItem):
 		print("on_user_earned_reward, rewarded_item: rewarded", rewarded_item.amount, rewarded_item.type)
-		RessourceManager.CalculateQuantityAtomes(3*60) #A changer avec le temps
-		queue_free()
+		RessourceManager.CalculateQuantityAtomes(2*60) #A changer avec le temps
+		self.queue_free()
 		AdTimerTest.start()
 		
 	if _rewarded_ad:

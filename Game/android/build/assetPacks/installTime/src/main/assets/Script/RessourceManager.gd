@@ -124,7 +124,7 @@ func LoadAmeliorationHelium(listeAmeliorationsHeliumInSaving):
 	
 	if not listeAmeliorationsHeliumInSaving == null:
 		for initializedAmeliorationHelium in ListeAmeliorationsHeliumInitializeGame:
-			if not listeAmeliorationsHeliumInSaving[initializedAmeliorationHelium.Id] == null:
+			if initializedAmeliorationHelium.Id < len(listeAmeliorationsHeliumInSaving) and not listeAmeliorationsHeliumInSaving[initializedAmeliorationHelium.Id] == null:
 				if listeAmeliorationsHeliumInSaving[initializedAmeliorationHelium.Id]["IsUnlocked"]:
 					initializedAmeliorationHelium.IsUnlocked = true
 					initializedAmeliorationHelium.Level = Big.ToCustomFormat(listeAmeliorationsHeliumInSaving[initializedAmeliorationHelium.Id]["Level"])
@@ -164,18 +164,35 @@ func CalculateQuantityAtomes(timeInSeconde:int = 1):
 func DefineAtomsListInitializingGame():
 	#On définit les atomes auxquels on a accès :)
 	var hydrogeneAtom = Atome.new("Hydrogene", Big.new(1.0, 0), Big.new(1.0, 0))
-	var hydrogenAttributsList = [AttributAtome.new(hydrogeneAtom, "Force", Big.new(9.9, 1), Big.new(1.13), Big.new(0.07), Big.new(15)), AttributAtome.new(hydrogeneAtom, "Vitesse", Big.new(0.0), Big.new(1.38), Big.new(0.15), Big.new(30))] #AttributAtome.new(newAtome, "COIIIn", 0, 20, 50, 100)
+	var attribut1Hydrogene = AttributAtome.new(hydrogeneAtom, "Force", Big.new(0.0), Big.new(1.13), Big.new(0.07), Big.new(15))
+	var attribut2Hydrogene = AttributAtome.new(hydrogeneAtom, "Vitesse", Big.new(0.0), Big.new(1.38), Big.new(0.15), Big.new(30))
+	var hydrogenAttributsList = [attribut1Hydrogene, attribut2Hydrogene]
 	hydrogeneAtom.DefineAtomeAttributs(hydrogenAttributsList)
 	hydrogeneAtom.isUnlocked = true
 	
 	AtomsListInitializingGame.append(hydrogeneAtom)
 	
-	var heliumAtom = Atome.new("Helium", Big.new(0.25, 0))
-	var heliumAttributsList = [AttributAtome.new(heliumAtom, "Spin", Big.new(1.0, 5), Big.new(1.32), Big.new(0.12), Big.new(50)), AttributAtome.new(heliumAtom, "Angle", Big.new(0.0), Big.new(1.40), Big.new(0.2), Big.new(50)), AttributAtome.new(heliumAtom, "Complexity", Big.new(0.0), Big.new(1.6), Big.new(0.5), Big.new(100))]
+	var heliumAtom = Atome.new("Helium", Big.new(0.6, 0))
+	var attribut1Helium = AttributAtome.new(heliumAtom, "Spin", Big.new(0.0), Big.new(1.32), Big.new(0.10), Big.new(50))
+	var attribut2Helium = AttributAtome.new(heliumAtom, "Angle", Big.new(0.0), Big.new(1.40), Big.new(0.2), Big.new(50))
+	var attribut3Helium = AttributAtome.new(heliumAtom, "Complexity", Big.new(0.0), Big.new(1.6), Big.new(0.5), Big.new(100))
+	var heliumAttributsList = [attribut1Helium, attribut2Helium, attribut3Helium]
+	
 	heliumAtom.DefineAtomeAttributs(heliumAttributsList)
 	heliumAtom.DefineAtomeUnlockingPrice({"Hydrogene" : Big.new(1.5, 3)})
 	
 	AtomsListInitializingGame.append(heliumAtom)
+	
+	var lithiumAtom = Atome.new("Lithium", Big.new(0.25, 0))
+	var attribut1Lithium = AttributAtome.new(lithiumAtom, "1", Big.new(0.0), Big.new(1.56), Big.new(0.25), Big.new(2.25, 3))
+	var attribut2Lithium = AttributAtome.new(lithiumAtom, "2", Big.new(0.0), Big.new(1.1), Big.new(0.1), Big.new(5.0, 2))
+	var attribut3Lithium = AttributAtome.new(lithiumAtom, "3", Big.new(0.0), Big.new(1.34), Big.new(0.17), Big.new(1.0, 3))
+	var lithiumAttributsList = [attribut1Lithium, attribut2Lithium, attribut3Lithium]
+	
+	lithiumAtom.DefineAtomeAttributs(lithiumAttributsList)
+	lithiumAtom.DefineAtomeUnlockingPrice({"Helium" : Big.new(1.5, 3)})
+	
+	AtomsListInitializingGame.append(lithiumAtom)
 
 #Permet d'initialiser la liste des recherches dans le jeu
 func DefineResearchListInitializingGame():
@@ -192,13 +209,17 @@ func DefineResearchListInitializingGame():
 
 #Permet d'initialiser la liste des amélioration de l'hélium dans le jeu
 func DefineAmeliorationHeliumListInitializingGame():
-	var ameliorationHelium1 = AmeliorationHelium.new(0, "AMELIORATIONHELIUMPRESSION1", "AMELIORATIONHELIUMPRESSIONDESCRIPTION1", AmeliorationHelium.TypeAmeliorationHeliumEnum.Pression, "HydrogeneRendementMultiply", Big.new(2.0, 0))
-	ameliorationHelium1.DefineAtomeUnlockingPrice( {"Coins" : Big.new(5.0, 3)})
+	var ameliorationHelium1 = AmeliorationHelium.new(0, "AMELIORATIONHELIUMPRESSION1", "AMELIORATIONHELIUMPRESSIONDESCRIPTION1", Big.new(1.0, 4), Big.new(1.0, 1), AmeliorationHelium.TypeAmeliorationHeliumEnum.Pression, "HydrogeneOutputMultiply", Big.new(2.0, 0))
+	ameliorationHelium1.DefineAtomeUnlockingPrice( {"Helium" : Big.new(5.0, 3)})
 	ListeAmeliorationsHeliumInitializeGame.append(ameliorationHelium1)
 	
-	var amelio2 = AmeliorationHelium.new(1, "AMELIORATIONHELIUMTEMPERATURE1", "AMELIORATIONHELIUMTEMPERATUREDESCRIPTION1", AmeliorationHelium.TypeAmeliorationHeliumEnum.Temperature, "HydrogeneAttributsCoefficientAdd", Big.new(0.01, 0))
-	amelio2.DefineAtomeUnlockingPrice( {"Hydrogene" : Big.new(2.5, 2)})
+	var amelio2 = AmeliorationHelium.new(1, "AMELIORATIONHELIUMTEMPERATURE1", "AMELIORATIONHELIUMTEMPERATUREDESCRIPTION1", Big.new(1.0, 3), Big.new(5.0, 0), AmeliorationHelium.TypeAmeliorationHeliumEnum.Temperature, "HydrogeneAttributsCoefficientAdd", Big.new(0.01, 0))
+	amelio2.DefineAtomeUnlockingPrice( {"Coins" : Big.new(7.5, 2)})
 	ListeAmeliorationsHeliumInitializeGame.append(amelio2)
+	
+	var ameliorationHelium3 = AmeliorationHelium.new(2, "AMELIORATIONHELIUMTEMPERATURE2", "AMELIORATIONHELIUMTEMPERATUREDESCRIPTION2", Big.new(1.0, 3), Big.new(7.5, 0), AmeliorationHelium.TypeAmeliorationHeliumEnum.Temperature, "HeliumAttributsCoefficientAdd", Big.new(0.01, 0))
+	ameliorationHelium3.DefineAtomeUnlockingPrice( {"Hydrogene" : Big.new(1.25, 3)})
+	ListeAmeliorationsHeliumInitializeGame.append(ameliorationHelium3)
 
 
 #Permet d'initialiser la liste des recherches de matière noire dans le jeu
