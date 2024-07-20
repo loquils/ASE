@@ -8,6 +8,10 @@ var CurrentBonusesRecherches = {"PrixHydrogeneAugmentation" : Big.new(0.0), "Hyd
 var BonusTypesAmeliorationHelium = ["HydrogeneOutputMultiply", "HydrogeneAttributsCoefficientAdd", "HeliumAttributsCoefficientAdd"]
 var CurrentBonusesAmeliorationHelium = {}
 
+#Amélioration du lithium
+var BonusTypesAmeliorationLithium = []
+var CurrentBonusesAmeliorationLithium = {}
+
 #Bonus recherches matière noire
 var BonusTypesRecherchesMatiereNoire = ["HydrogeneCoeffMultiplicateurRapport", "HydrogeneRechercheMNAcheteeCoeffMultiplicateurRapport", "HeliumCoeffMultiplicateurRapport"]
 var CurrentBonusesRecherchesMatiereNoire = {}
@@ -54,6 +58,11 @@ func MajBonusAmeliorationHelium():
 				CurrentBonusesAmeliorationHelium[ameliorationHelium.BonusTypeAmeliorationHelium] = Big.multiply(CurrentBonusesAmeliorationHelium[ameliorationHelium.BonusTypeAmeliorationHelium], BonusCalculNiveau)
 			elif ameliorationHelium.BonusTypeAmeliorationHelium.contains("Add"):
 				CurrentBonusesAmeliorationHelium[ameliorationHelium.BonusTypeAmeliorationHelium] = Big.add(CurrentBonusesAmeliorationHelium[ameliorationHelium.BonusTypeAmeliorationHelium], BonusCalculNiveau)
+
+
+#Mise à jour des bonus des améliorations de l'Helium
+func MajBonusAmeliorationLithium():
+	pass
 
 
 #Mise à jour des bonus des recherches de matière noire

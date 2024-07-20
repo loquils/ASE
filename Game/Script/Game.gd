@@ -9,6 +9,7 @@ extends Control
 
 @onready var CoinsQuantityLabel = $WindowTopBlackVBoxC/MainMarginC/MainVBoxC/TopHBoxC/RessourcesVBoxC/BackGroundCoins/MarginC/HBoxC/CoinsLabel
 @onready var AmeliorationHeliumControl = $WindowTopBlackVBoxC/MainMarginC/AmeliorationHeliumControl
+@onready var AmeliorationLithiumControl = $WindowTopBlackVBoxC/MainMarginC/AmeliorationLithiumControl
 @onready var MatiereNoireControl = $WindowTopBlackVBoxC/MainMarginC/MatiereNoireControl
 
 @onready var OptionsControl = $WindowTopBlackVBoxC/MainMarginC/OptionsControl
@@ -36,6 +37,11 @@ func _on_main_timer_timeout():
 #Trigger lors de l'appuie sur le bouton pour ouvrir la page d'améliorations de l'helium 
 func _on_button_amelioration_helium_pressed():
 	AmeliorationHeliumControl.visible = true
+
+
+#Trigger lors de l'appuie sur le bouton pour ouvrir la page d'améliorations du lithium
+func _on_button_amelioration_lithium_pressed():
+	AmeliorationLithiumControl.visible = true
 
 
 #Trigger lors de l'appuie sur le bouton pour ouvrir la page de prestige 

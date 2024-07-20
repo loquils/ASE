@@ -21,15 +21,19 @@ PRESTIGE, "Prestige", "Prestige"
 OUI, "Oui", "Yes"
 ANNULER, "Annuler", "Cancel"
 
+
 Hydrogene, "Hydrogène", "Hydrogen"
 Hydrogène, "Hydrogène", "Hydrogen"
 Helium, "Hélium", "Helium"
 Hélium, "Hélium", "Helium"
+
 Force, "Force", "Strength"
 Vitesse, "Vitesse", "Speed"
 Rotation, "Rotation", "Rotation"
-Angle, "Angle", "Angle"
-Complexity, "Complexité", "Complexity"
+Complexitee, "Complexité", "Complexity"
+Lien, "Lien", "Link"
+Vibration, "Vibration", "Vibration"
+
 Niv., "Niv.", "Lvl."
 Prix : , "Prix : ", "Price : "
 
