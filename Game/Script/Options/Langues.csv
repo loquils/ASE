@@ -66,6 +66,20 @@ AMELIORATIONHELIUMTEMPERATUREDESCRIPTION1, "Augmente l'efficacité des attributs
 AMELIORATIONHELIUMTEMPERATURE2, "Centrifugeuse Helium", "Helium centrifuge"
 AMELIORATIONHELIUMTEMPERATUREDESCRIPTION2, "Augmente l'efficacité des attributs de l'Helium.", "Upgrade Helium attributs efficiency."
 
+DESCRIPTIONMENUAMELIORATIONLITHIUM, "", ""
+BONUSPROTON, "Sortie Helium ", "Helium Output "
+BONUSNEUTRON, "Prix attribut Helium ", "Helium attribut price "
+TITRENOYAUXPANEL, "Améliorations de puissance du Noyau", "Kernel power ugrades"
+TITREELECTRONPANEL, "Amélioration de puissance des Eléctrons", "Electrons power upgrades"
+TITREELECTRONSKLABEL, "Couche Electron K", "Electron K layer"
+TITREELECTRONSLLABEL, "Couche Electron L", "Electron L layer"
+
+AMELIORATIONLITHIUMPROTONDESCRIPTION, "Augmente la puissance des protons, améliore la sortie de l'Hélium.", "Increase protons power, upgrade Helium output."
+AMELIORATIONLITHIUMNEUTRONDESCRIPTION, "Divise le prix des attributs de l'Helium.", "Increase protons power, upgrade Helium output."
+AMELIORATIONLITHIUMELECTRONK1DESCRIPTION, "Améliore la puissance des protons.", "Increase protons power, upgrade Helium output."
+AMELIORATIONLITHIUMELECTRONK2DESCRIPTION, "Augmente la puissance des protons, améliore la sortie de l'Hélium.", "Increase protons power, upgrade Helium output."
+AMELIORATIONLITHIUMELECTRONLDESCRIPTION, "Augmente la puissance des protons, améliore la sortie de l'Hélium.", "Increase protons power, upgrade Helium output."
+
 
 ARGENTPRESTIGE, "Matière Noire", "Dark Mater"
 RECHERCHEMATIERENOIRE1, "Découverte H²", "H² discovery"

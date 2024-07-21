@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://j3saqbk1feco"]
+[gd_scene load_steps=10 format=3 uid="uid://j3saqbk1feco"]
 
 [ext_resource type="Theme" uid="uid://cbk6urwquxgkm" path="res://Design/Themes/Global/ThemeGlobal.tres" id="1_34c3n"]
 [ext_resource type="Script" path="res://Script/AmeliorationLithium/AmeliorationLithiumControl.gd" id="2_ww3ya"]
 [ext_resource type="Script" path="res://Script/AmeliorationLithium/Node2DLithium.gd" id="3_g5hac"]
 [ext_resource type="Texture2D" uid="uid://1drh7volhffd" path="res://Gimped/Proton.png" id="4_khh03"]
 [ext_resource type="Texture2D" uid="uid://c31eyto1jlpql" path="res://Gimped/TestElectron.png" id="5_f06og"]
+[ext_resource type="PackedScene" uid="uid://cg8ujfkwr68r6" path="res://Design/Scenes/PresentationQuantiteesAtomes.tscn" id="6_bh3pl"]
 [ext_resource type="SystemFont" uid="uid://d2tc25vdki2hk" path="res://Design/Themes/SystemFontForQantities.tres" id="6_h2qa8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w80a4"]
@@ -47,6 +48,7 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_w80a4")
 
 [node name="Node2DLithium" type="Node2D" parent="."]
+visible = false
 position = Vector2(355, 525)
 script = ExtResource("3_g5hac")
 
@@ -72,10 +74,17 @@ grow_vertical = 2
 
 [node name="TopMarginC" type="MarginContainer" parent="PresentationVBoxC"]
 layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
 
 [node name="TopHBoxC" type="HBoxContainer" parent="PresentationVBoxC/TopMarginC"]
 layout_mode = 2
 size_flags_vertical = 0
+
+[node name="GUIMarginC" parent="PresentationVBoxC/TopMarginC/TopHBoxC" instance=ExtResource("6_bh3pl")]
+layout_mode = 2
 
 [node name="ButtonExit" type="Button" parent="PresentationVBoxC/TopMarginC/TopHBoxC"]
 layout_mode = 2
@@ -85,11 +94,71 @@ theme_override_font_sizes/font_size = 24
 text = "Exit >"
 
 [node name="MiddleMarginC" type="MarginContainer" parent="PresentationVBoxC"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="RecapHBoxC" type="HBoxContainer" parent="PresentationVBoxC/MiddleMarginC"]
+layout_mode = 2
+
+[node name="DescriptionMenuMarginC" type="MarginContainer" parent="PresentationVBoxC/MiddleMarginC/RecapHBoxC"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="DescriptionMenuLabel" type="Label" parent="PresentationVBoxC/MiddleMarginC/RecapHBoxC/DescriptionMenuMarginC"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 16
+text = "DESCRIPTIONMENUAMELIORATIONLITHIUM"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PresentationVBoxC/MiddleMarginC/RecapHBoxC"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BonusProtonHBoxC" type="HBoxContainer" parent="PresentationVBoxC/MiddleMarginC/RecapHBoxC/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
+[node name="NomLabel" type="Label" parent="PresentationVBoxC/MiddleMarginC/RecapHBoxC/VBoxContainer/BonusProtonHBoxC"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "BONUSPROTON"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BonusLabel" type="Label" parent="PresentationVBoxC/MiddleMarginC/RecapHBoxC/VBoxContainer/BonusProtonHBoxC"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Bonus"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BonusNeutronHBoxC" type="HBoxContainer" parent="PresentationVBoxC/MiddleMarginC/RecapHBoxC/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="NomLabel" type="Label" parent="PresentationVBoxC/MiddleMarginC/RecapHBoxC/VBoxContainer/BonusNeutronHBoxC"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "BONUSNEUTRON"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BonusLabel" type="Label" parent="PresentationVBoxC/MiddleMarginC/RecapHBoxC/VBoxContainer/BonusNeutronHBoxC"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Bonus"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="MenuNoyauMarginC" type="MarginContainer" parent="PresentationVBoxC"]
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
 
@@ -100,23 +169,34 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_4pkbu")
 [node name="AmeliorationsNoyauVBoxC" type="VBoxContainer" parent="PresentationVBoxC/MenuNoyauMarginC"]
 layout_mode = 2
 
-[node name="UtilityHBoxC" type="HBoxContainer" parent="PresentationVBoxC/MenuNoyauMarginC/AmeliorationsNoyauVBoxC"]
+[node name="TitleMarginC" type="MarginContainer" parent="PresentationVBoxC/MenuNoyauMarginC/AmeliorationsNoyauVBoxC"]
 layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
 
-[node name="ButtonClose" type="Button" parent="PresentationVBoxC/MenuNoyauMarginC/AmeliorationsNoyauVBoxC/UtilityHBoxC"]
+[node name="NomPanelNoyauLabel" type="Label" parent="PresentationVBoxC/MenuNoyauMarginC/AmeliorationsNoyauVBoxC/TitleMarginC"]
 layout_mode = 2
-size_flags_horizontal = 10
-theme_override_fonts/font = ExtResource("6_h2qa8")
-theme_override_font_sizes/font_size = 24
-text = "Close >"
+text = "TITRENOYAUXPANEL"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="AmeliorationsNoyauxHBoxC" type="HBoxContainer" parent="PresentationVBoxC/MenuNoyauMarginC/AmeliorationsNoyauVBoxC"]
+[node name="ContenuMarginC" type="MarginContainer" parent="PresentationVBoxC/MenuNoyauMarginC/AmeliorationsNoyauVBoxC"]
 layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="AmeliorationsNoyauxHBoxC" type="HBoxContainer" parent="PresentationVBoxC/MenuNoyauMarginC/AmeliorationsNoyauVBoxC/ContenuMarginC"]
+layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 1
 
 [node name="MenuElectronMarginC" type="MarginContainer" parent="PresentationVBoxC"]
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
 
@@ -127,15 +207,18 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_4pkbu")
 [node name="AmeliorationsElectronsVBoxC" type="VBoxContainer" parent="PresentationVBoxC/MenuElectronMarginC"]
 layout_mode = 2
 
-[node name="UtilityHBoxC" type="HBoxContainer" parent="PresentationVBoxC/MenuElectronMarginC/AmeliorationsElectronsVBoxC"]
+[node name="TitreMarginC" type="MarginContainer" parent="PresentationVBoxC/MenuElectronMarginC/AmeliorationsElectronsVBoxC"]
 layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
 
-[node name="ButtonClose" type="Button" parent="PresentationVBoxC/MenuElectronMarginC/AmeliorationsElectronsVBoxC/UtilityHBoxC"]
+[node name="NomPanelNoyauLabel" type="Label" parent="PresentationVBoxC/MenuElectronMarginC/AmeliorationsElectronsVBoxC/TitreMarginC"]
 layout_mode = 2
-size_flags_horizontal = 10
-theme_override_fonts/font = ExtResource("6_h2qa8")
-theme_override_font_sizes/font_size = 24
-text = "Close >"
+text = "TITREELECTRONPANEL"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="ElectronsKMarginC" type="MarginContainer" parent="PresentationVBoxC/MenuElectronMarginC/AmeliorationsElectronsVBoxC"]
 layout_mode = 2
@@ -158,7 +241,7 @@ grow_vertical = 2
 
 [node name="NomElectronsKLabel" type="Label" parent="PresentationVBoxC/MenuElectronMarginC/AmeliorationsElectronsVBoxC/ElectronsKMarginC/FondPanel/PresVBoxC"]
 layout_mode = 2
-text = "NOMELECTRONSKLABEL"
+text = "TITREELECTRONSKLABEL"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -188,7 +271,7 @@ grow_vertical = 2
 
 [node name="NomElectronsLLabel" type="Label" parent="PresentationVBoxC/MenuElectronMarginC/AmeliorationsElectronsVBoxC/ElectronsLMarginC/FondPanel/PresVBoxC"]
 layout_mode = 2
-text = "NOMELECTRONSLLABEL"
+text = "TITREELECTRONSLLABEL"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -197,5 +280,3 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [connection signal="pressed" from="PresentationVBoxC/TopMarginC/TopHBoxC/ButtonExit" to="." method="_on_button_exit_pressed"]
-[connection signal="pressed" from="PresentationVBoxC/MenuNoyauMarginC/AmeliorationsNoyauVBoxC/UtilityHBoxC/ButtonClose" to="." method="_on_button_noyau_close_pressed"]
-[connection signal="pressed" from="PresentationVBoxC/MenuElectronMarginC/AmeliorationsElectronsVBoxC/UtilityHBoxC/ButtonClose" to="." method="_on_button_electron_close_pressed"]

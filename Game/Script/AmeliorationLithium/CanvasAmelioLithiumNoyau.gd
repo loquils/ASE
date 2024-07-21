@@ -6,8 +6,7 @@ var AmeliorationLithium: AmeliorationLithium
 @onready var DescriptionAmeliorationLabel = $PresentationVBoxC/MidMarginC/DescriptionMarginC/VBoxC/DescriptionLabel
 @onready var BonusAmeliorationLabel = $PresentationVBoxC/MidMarginC/DescriptionMarginC/VBoxC/BonusMarginC/FondBonusPanel/MarginC/BonusLabel
 @onready var AmeliorationBoutton = $PresentationVBoxC/BotMarginC/ButtonAchatAmelioration
-@onready var NiveauAmeliorationLabel = $PresentationVBoxC/BotMarginC/ButtonAchatAmelioration/HBoxC/NiveauMarginC/VBoxC/NiveauLabel
-@onready var BonusUniqueAmeliorationLabel = $PresentationVBoxC/BotMarginC/ButtonAchatAmelioration/HBoxC/NiveauMarginC/VBoxC/BonusUniqueLabel
+@onready var NiveauAmeliorationLabel = $PresentationVBoxC/BotMarginC/ButtonAchatAmelioration/HBoxC/NiveauMarginC/NiveauLabel
 @onready var PrixAmeliorationLabel = $PresentationVBoxC/BotMarginC/ButtonAchatAmelioration/HBoxC/PrixContainer/PrixLabel
 
 @onready var UnlockPanel = $PanelForUnlock
@@ -17,12 +16,13 @@ var AmeliorationLithium: AmeliorationLithium
 
 func _set_var(ameliorationLithium:AmeliorationLithium):
 	AmeliorationLithium = ameliorationLithium
-	
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	AmeliorationBoutton.pressed.connect(RechercheClick.AmeliorationLithiumButtonEventTrigger.bind(AmeliorationLithium))
 	UnlockAtomePrixLabel.text = str(AmeliorationLithium.AtomePriceForUnlocking.values()[0])
-	
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -31,7 +31,11 @@ func _process(delta):
 	BonusAmeliorationLabel.text = "PasLa"
 	NiveauAmeliorationLabel.text = tr("Niv.") + str(AmeliorationLithium.Level)
 	PrixAmeliorationLabel.text = tr("Prix") + str(AmeliorationLithium.GetPrixAmeliorationLithium())
-	BonusUniqueAmeliorationLabel.text = tr("Bonus +") + str(Big.multiply(AmeliorationLithium.BonusAmeliorationLithium, Big.new(1.0,2))) + "%"
+	
+	if (AmeliorationLithium.CategorieAmeliorationLithium == AmeliorationLithium.CategorieAmeliorationLithiumEnum.Proton):
+		BonusAmeliorationLabel.text = tr("Bonus/Niv +") + str(Big.multiply(BonusManager.GetAmeliorationLithiumProtonUniqueBonus(AmeliorationLithium), Big.new(1.0,2))) + "%"
+	else:
+		BonusAmeliorationLabel.text = tr("Bonus/Niv /") + str(BonusManager.GetAmeliorationLithiumNeutronUniqueBonus(AmeliorationLithium))
 	
 	if UnlockPanel.visible:
 		UnlockAtomeNomLabel.text = tr(AmeliorationLithium.AtomePriceForUnlocking.keys()[0])

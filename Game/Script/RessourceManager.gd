@@ -208,7 +208,7 @@ func DefineAtomsListInitializingGame():
 	AtomsListInitializingGame.append(heliumAtom)
 	
 	var lithiumAtom = Atome.new("Lithium", Big.new(0.25, 0))
-	var attribut1Lithium = AttributAtome.new(lithiumAtom, "Lien", Big.new(0.0), Big.new(1.56), Big.new(0.25), Big.new(2.25, 3))
+	var attribut1Lithium = AttributAtome.new(lithiumAtom, "Lien", Big.new(0.0), Big.new(1.56), Big.new(0.25), Big.new(3.25, 2))
 	var attribut2Lithium = AttributAtome.new(lithiumAtom, "Vitesse", Big.new(0.0), Big.new(1.1), Big.new(0.1), Big.new(5.0, 2))
 	var attribut3Lithium = AttributAtome.new(lithiumAtom, "Vibration", Big.new(0.0), Big.new(1.34), Big.new(0.17), Big.new(1.0, 3))
 	var lithiumAttributsList = [attribut1Lithium, attribut2Lithium, attribut3Lithium]
@@ -223,51 +223,51 @@ func DefineAtomsListInitializingGame():
 func DefineResearchListInitializingGame():
 	var easyResearch = Recherche.ResearchLevelEnum.EASY
 	
-	ListeRechercheInitializeGame.append(Recherche.new(0, "RECHERCHE1", "RECHERCHEDESCRIPTION1", Big.new(5.0, 2), "PrixHydrogeneAugmentation", Big.new(0.25, 0), easyResearch))
-	ListeRechercheInitializeGame.append(Recherche.new(1, "RECHERCHE2", "RECHERCHEDESCRIPTION2", Big.new(1.0, 3), "PrixHydrogeneAugmentation", Big.new(0.5, 0), easyResearch))
-	ListeRechercheInitializeGame.append(Recherche.new(2, "RECHERCHE3", "RECHERCHEDESCRIPTION3", Big.new(6.0, 3), "PrixHydrogeneAugmentation", Big.new(1.0, 0), easyResearch))
-	ListeRechercheInitializeGame.append(Recherche.new(3, "RECHERCHE4", "RECHERCHEDESCRIPTION4", Big.new(1.75, 4), "HydrogeneAttributsCostDivided", Big.new(3.0), easyResearch))
+	ListeRechercheInitializeGame.append(Recherche.new(0, "RECHERCHE1", "RECHERCHEDESCRIPTION1", Big.new(2.5, 2), "PrixHydrogeneAugmentation", Big.new(0.25, 0), easyResearch))
+	ListeRechercheInitializeGame.append(Recherche.new(1, "RECHERCHE2", "RECHERCHEDESCRIPTION2", Big.new(5.0, 3), "PrixHydrogeneAugmentation", Big.new(0.5, 0), easyResearch))
+	ListeRechercheInitializeGame.append(Recherche.new(2, "RECHERCHE3", "RECHERCHEDESCRIPTION3", Big.new(2.0, 3), "PrixHydrogeneAugmentation", Big.new(1.0, 0), easyResearch))
+	ListeRechercheInitializeGame.append(Recherche.new(3, "RECHERCHE4", "RECHERCHEDESCRIPTION4", Big.new(8.0, 3), "HydrogeneAttributsCostDivided", Big.new(3.0), easyResearch))
 	ListeRechercheInitializeGame.append(Recherche.new(4, "RECHERCHE5", "RECHERCHEDESCRIPTION5", Big.new(5.0, 4), "HydrogeneCoeffMultiplicateurRapport", Big.new(2.0), easyResearch))
-	ListeRechercheInitializeGame.append(Recherche.new(5, "RECHERCHE6", "RECHERCHEDESCRIPTION6", Big.new(1.0, 5), "PrixHydrogeneAugmentation", Big.new(5.0), easyResearch))
-	ListeRechercheInitializeGame.append(Recherche.new(6, "RECHERCHE7", "RECHERCHEDESCRIPTION7", Big.new(5.0, 5), "HeliumCoeffMultiplicateurRapport", Big.new(2.0), easyResearch))
+	ListeRechercheInitializeGame.append(Recherche.new(5, "RECHERCHE6", "RECHERCHEDESCRIPTION6", Big.new(2.0, 5), "PrixHydrogeneAugmentation", Big.new(5.0), easyResearch))
+	ListeRechercheInitializeGame.append(Recherche.new(6, "RECHERCHE7", "RECHERCHEDESCRIPTION7", Big.new(8.5, 5), "HeliumCoeffMultiplicateurRapport", Big.new(2.0), easyResearch))
 
 
 #Permet d'initialiser la liste des amélioration de l'hélium dans le jeu
 func DefineAmeliorationHeliumListInitializingGame():
-	var ameliorationHelium1 = AmeliorationHelium.new(0, "AMELIORATIONHELIUMPRESSION1", "AMELIORATIONHELIUMPRESSIONDESCRIPTION1", Big.new(1.0, 4), Big.new(1.0, 1), AmeliorationHelium.TypeAmeliorationHeliumEnum.Pression, "HydrogeneOutputMultiply", Big.new(2.0, 0))
+	var ameliorationHelium1 = AmeliorationHelium.new(0, "AMELIORATIONHELIUMPRESSION1", "AMELIORATIONHELIUMPRESSIONDESCRIPTION1", Big.new(1.0, 3), Big.new(1.0, 1), AmeliorationHelium.TypeAmeliorationHeliumEnum.Pression, "HydrogeneOutputMultiply", Big.new(2.0, 0))
 	ameliorationHelium1.DefineAtomeUnlockingPrice( {"Helium" : Big.new(5.0, 3)})
 	ameliorationHelium1.IsUnlocked = true
 	ListeAmeliorationsHeliumInitializeGame.append(ameliorationHelium1)
 	
-	var amelio2 = AmeliorationHelium.new(1, "AMELIORATIONHELIUMTEMPERATURE1", "AMELIORATIONHELIUMTEMPERATUREDESCRIPTION1", Big.new(1.0, 3), Big.new(5.0, 0), AmeliorationHelium.TypeAmeliorationHeliumEnum.Temperature, "HydrogeneAttributsCoefficientAdd", Big.new(0.01, 0))
+	var amelio2 = AmeliorationHelium.new(1, "AMELIORATIONHELIUMTEMPERATURE1", "AMELIORATIONHELIUMTEMPERATUREDESCRIPTION1", Big.new(1.0, 2), Big.new(5.0, 0), AmeliorationHelium.TypeAmeliorationHeliumEnum.Temperature, "HydrogeneAttributsCoefficientAdd", Big.new(0.01, 0))
 	amelio2.DefineAtomeUnlockingPrice( {"Coins" : Big.new(7.5, 2)})
 	ListeAmeliorationsHeliumInitializeGame.append(amelio2)
 	
-	var ameliorationHelium3 = AmeliorationHelium.new(2, "AMELIORATIONHELIUMTEMPERATURE2", "AMELIORATIONHELIUMTEMPERATUREDESCRIPTION2", Big.new(1.0, 3), Big.new(7.5, 0), AmeliorationHelium.TypeAmeliorationHeliumEnum.Temperature, "HeliumAttributsCoefficientAdd", Big.new(0.01, 0))
+	var ameliorationHelium3 = AmeliorationHelium.new(2, "AMELIORATIONHELIUMTEMPERATURE2", "AMELIORATIONHELIUMTEMPERATUREDESCRIPTION2", Big.new(2.25, 3), Big.new(7.5, 0), AmeliorationHelium.TypeAmeliorationHeliumEnum.Temperature, "HeliumAttributsCoefficientAdd", Big.new(0.01, 0))
 	ameliorationHelium3.DefineAtomeUnlockingPrice( {"Hydrogene" : Big.new(1.25, 3)})
 	ListeAmeliorationsHeliumInitializeGame.append(ameliorationHelium3)
 
 
 #Permet d'initialiser la liste des amélioration du lithium dans le jeu
 func DefineAmeliorationLithiumListInitializingGame():
-	var ameliorationLithiumProton = AmeliorationLithium.new(0, "Proton", "Augmente la puissance des protons, améliore la sortie de l'Hélium.", Big.new(1.0, 1), Big.new(1.0, 1), AmeliorationLithium.CategorieAmeliorationLithiumEnum.Proton, "HeliumOutputMultiply", Big.new(0.05, 0))
+	var ameliorationLithiumProton = AmeliorationLithium.new(0, "Proton", "AMELIORATIONLITHIUMPROTONDESCRIPTION", Big.new(1.0, 1), Big.new(1.0, 1), AmeliorationLithium.CategorieAmeliorationLithiumEnum.Proton, "HeliumOutputMultiply", Big.new(0.05))
 	ameliorationLithiumProton.DefineUnlockingPrice( {"Lithium" : Big.new(1.0, 0)})
 	ameliorationLithiumProton.IsUnlocked = true
 	ListeAmeliorationsLithiumInitializeGame.append(ameliorationLithiumProton)
 	
-	var ameliorationLithiumNeutron = AmeliorationLithium.new(1, "PuissanceNeutron", "COIIIIIIIIIIIIIN", Big.new(1.0, 1), Big.new(1.0, 1), AmeliorationLithium.CategorieAmeliorationLithiumEnum.Neutron, "HeliumAttributCostDivide", Big.new(2.0, 0))
+	var ameliorationLithiumNeutron = AmeliorationLithium.new(1, "Neutron", "AMELIORATIONLITHIUMNEUTRONDESCRIPTION", Big.new(1.0, 1), Big.new(1.0, 1), AmeliorationLithium.CategorieAmeliorationLithiumEnum.Neutron, "HeliumAttributCostDivide", Big.new(0.05))
 	ameliorationLithiumNeutron.DefineUnlockingPrice( {"Lithium" : Big.new(1.0, 0)})
 	ListeAmeliorationsLithiumInitializeGame.append(ameliorationLithiumNeutron)
 	
-	var ameliorationLithiumElectronK1 = AmeliorationLithium.new(2, "PuissanceElectronK1", "COIIIIIIIIIIIIIN", Big.new(1.0, 1), Big.new(1.0, 1), AmeliorationLithium.CategorieAmeliorationLithiumEnum.ElectronK, "ProtonEfficacitee", Big.new(2.0, 0))
+	var ameliorationLithiumElectronK1 = AmeliorationLithium.new(2, "ElectronK1", "AMELIORATIONLITHIUMELECTRONK1DESCRIPTION", Big.new(1.0, 1), Big.new(1.0, 1), AmeliorationLithium.CategorieAmeliorationLithiumEnum.ElectronK, "ProtonEfficacitee", Big.new(0.1))
 	ameliorationLithiumElectronK1.DefineUnlockingPrice( {"Lithium" : Big.new(1.0, 0)})
 	ListeAmeliorationsLithiumInitializeGame.append(ameliorationLithiumElectronK1)
 	
-	var ameliorationLithiumElectronK2 = AmeliorationLithium.new(3, "PuissanceElectronK2", "COIIIIIIIIIIIIIN", Big.new(1.0, 1), Big.new(1.0, 1), AmeliorationLithium.CategorieAmeliorationLithiumEnum.ElectronK, "NeutronEfficacitee", Big.new(2.0, 0))
+	var ameliorationLithiumElectronK2 = AmeliorationLithium.new(3, "ElectronK2", "AMELIORATIONLITHIUMELECTRONK2DESCRIPTION", Big.new(1.0, 1), Big.new(1.0, 1), AmeliorationLithium.CategorieAmeliorationLithiumEnum.ElectronK, "NeutronEfficacitee", Big.new(0.1))
 	ameliorationLithiumElectronK2.DefineUnlockingPrice( {"Lithium" : Big.new(1.0, 0)})
 	ListeAmeliorationsLithiumInitializeGame.append(ameliorationLithiumElectronK2)
 	
-	var ameliorationLithiumElectronL1 = AmeliorationLithium.new(4, "PuissanceElectronL1", "COIIIIIIIIIIIIIN", Big.new(1.0, 1), Big.new(1.0, 1), AmeliorationLithium.CategorieAmeliorationLithiumEnum.ElectronL, "ElectronsKEfficacitee", Big.new(2.0, 0))
+	var ameliorationLithiumElectronL1 = AmeliorationLithium.new(4, "ElectronL1", "AMELIORATIONLITHIUMELECTRONLDESCRIPTION", Big.new(1.0, 1), Big.new(1.0, 1), AmeliorationLithium.CategorieAmeliorationLithiumEnum.ElectronL, "ElectronsKEfficacitee", Big.new(0.25))
 	ameliorationLithiumElectronL1.DefineUnlockingPrice( {"Lithium" : Big.new(1.0, 0)})
 	ListeAmeliorationsLithiumInitializeGame.append(ameliorationLithiumElectronL1)
 
