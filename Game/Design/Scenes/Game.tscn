@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://jwctjc5cvudy"]
+[gd_scene load_steps=38 format=3 uid="uid://jwctjc5cvudy"]
 
 [ext_resource type="Theme" uid="uid://cbk6urwquxgkm" path="res://Design/Themes/Global/ThemeGlobal.tres" id="1_rwuoq"]
 [ext_resource type="Script" path="res://Script/Game.gd" id="1_xa3fh"]
@@ -13,9 +13,8 @@
 [ext_resource type="PackedScene" uid="uid://kg8xjpenka38" path="res://Design/Scenes/Ameliorations/AmeliorationHelium.tscn" id="13_awkfr"]
 [ext_resource type="PackedScene" uid="uid://dwlpff2poyavf" path="res://Design/Scenes/MatiereNoire/MatiereNoireControl.tscn" id="15_ngy2j"]
 [ext_resource type="Texture2D" uid="uid://c31eyto1jlpql" path="res://Gimped/TestElectron.png" id="17_1p05m"]
+[ext_resource type="PackedScene" uid="uid://j3saqbk1feco" path="res://Design/Scenes/Ameliorations/AmeliorationLithiumControl.tscn" id="17_1y4j7"]
 [ext_resource type="Script" path="res://Script/Options/OptionsControl.gd" id="17_cn1p7"]
-[ext_resource type="Script" path="res://Script/AmeliorationLithium/AmeliorationLithiumControl.gd" id="17_ticed"]
-[ext_resource type="Script" path="res://Script/AmeliorationLithium/Node2DLithium.gd" id="18_mqlc3"]
 [ext_resource type="Script" path="res://Design/Scenes/Sprite2DTestAnimation.gd" id="18_vft3y"]
 [ext_resource type="Script" path="res://Script/Tutoriel/TutorielControl.gd" id="19_2cpc3"]
 [ext_resource type="Texture2D" uid="uid://1drh7volhffd" path="res://Gimped/Proton.png" id="19_8v33v"]
@@ -113,26 +112,6 @@ corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w80a4"]
-bg_color = Color(0.192157, 0.192157, 0.192157, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0, 0, 0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4pkbu"]
-bg_color = Color(0.129412, 0.129412, 0.129412, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5a71d"]
 bg_color = Color(0.192157, 0.192157, 0.192157, 1)
@@ -577,85 +556,9 @@ layout_mode = 2
 visible = false
 layout_mode = 2
 
-[node name="AmeliorationLithiumControl" type="Control" parent="WindowTopBlackVBoxC/MainMarginC"]
+[node name="AmeliorationLithiumControl" parent="WindowTopBlackVBoxC/MainMarginC" instance=ExtResource("17_1y4j7")]
 visible = false
 layout_mode = 2
-theme = ExtResource("1_rwuoq")
-script = ExtResource("17_ticed")
-
-[node name="FondPanel" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/AmeliorationLithiumControl"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_w80a4")
-
-[node name="Node2DLithium" type="Node2D" parent="WindowTopBlackVBoxC/MainMarginC/AmeliorationLithiumControl"]
-position = Vector2(355, 525)
-script = ExtResource("18_mqlc3")
-
-[node name="NoyauSprite2D" type="Sprite2D" parent="WindowTopBlackVBoxC/MainMarginC/AmeliorationLithiumControl/Node2DLithium"]
-texture = ExtResource("19_8v33v")
-
-[node name="ElectronK1Sprite2D" type="Sprite2D" parent="WindowTopBlackVBoxC/MainMarginC/AmeliorationLithiumControl/Node2DLithium"]
-texture = ExtResource("17_1p05m")
-
-[node name="ElectronK2Sprite2D" type="Sprite2D" parent="WindowTopBlackVBoxC/MainMarginC/AmeliorationLithiumControl/Node2DLithium"]
-texture = ExtResource("17_1p05m")
-
-[node name="ElectronL1Sprite2D" type="Sprite2D" parent="WindowTopBlackVBoxC/MainMarginC/AmeliorationLithiumControl/Node2DLithium"]
-position = Vector2(-355, -639)
-texture = ExtResource("17_1p05m")
-
-[node name="PresentationVBoxC" type="VBoxContainer" parent="WindowTopBlackVBoxC/MainMarginC/AmeliorationLithiumControl"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="TopMarginC" type="MarginContainer" parent="WindowTopBlackVBoxC/MainMarginC/AmeliorationLithiumControl/PresentationVBoxC"]
-layout_mode = 2
-
-[node name="TopHBoxC" type="HBoxContainer" parent="WindowTopBlackVBoxC/MainMarginC/AmeliorationLithiumControl/PresentationVBoxC/TopMarginC"]
-layout_mode = 2
-size_flags_vertical = 0
-
-[node name="ButtonExit" type="Button" parent="WindowTopBlackVBoxC/MainMarginC/AmeliorationLithiumControl/PresentationVBoxC/TopMarginC/TopHBoxC"]
-layout_mode = 2
-size_flags_horizontal = 10
-theme_override_fonts/font = ExtResource("3_2a2og")
-theme_override_font_sizes/font_size = 24
-text = "Exit >"
-
-[node name="MiddleMarginC" type="MarginContainer" parent="WindowTopBlackVBoxC/MainMarginC/AmeliorationLithiumControl/PresentationVBoxC"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="MenuMarginC" type="MarginContainer" parent="WindowTopBlackVBoxC/MainMarginC/AmeliorationLithiumControl/PresentationVBoxC"]
-visible = false
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="Panel" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/AmeliorationLithiumControl/PresentationVBoxC/MenuMarginC"]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_4pkbu")
-
-[node name="AmeliorationsNoyauVBoxC" type="VBoxContainer" parent="WindowTopBlackVBoxC/MainMarginC/AmeliorationLithiumControl/PresentationVBoxC/MenuMarginC"]
-layout_mode = 2
-
-[node name="UtilityHBoxC" type="HBoxContainer" parent="WindowTopBlackVBoxC/MainMarginC/AmeliorationLithiumControl/PresentationVBoxC/MenuMarginC/AmeliorationsNoyauVBoxC"]
-layout_mode = 2
-
-[node name="ButtonClose" type="Button" parent="WindowTopBlackVBoxC/MainMarginC/AmeliorationLithiumControl/PresentationVBoxC/MenuMarginC/AmeliorationsNoyauVBoxC/UtilityHBoxC"]
-layout_mode = 2
-size_flags_horizontal = 10
-theme_override_fonts/font = ExtResource("3_2a2og")
-theme_override_font_sizes/font_size = 24
-text = "Close >"
 
 [node name="OptionsControl" type="Control" parent="WindowTopBlackVBoxC/MainMarginC"]
 visible = false
@@ -1321,8 +1224,6 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_j7vtp")
 [connection signal="pressed" from="WindowTopBlackVBoxC/MainMarginC/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/MenuBarBottomPanelC/MarginC/MenuBarHBoxC/ButtonMenuRecherche" to="WindowTopBlackVBoxC/MainMarginC/MainVBoxC/NewMenuMainControl" method="_on_button_menu_recherche_pressed"]
 [connection signal="pressed" from="WindowTopBlackVBoxC/MainMarginC/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/MenuBarBottomPanelC/MarginC/MenuBarHBoxC/ButtonMenuAmelioration" to="WindowTopBlackVBoxC/MainMarginC/MainVBoxC/NewMenuMainControl" method="_on_button_menu_amelioration_pressed"]
 [connection signal="pressed" from="WindowTopBlackVBoxC/MainMarginC/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/MenuBarBottomPanelC/MarginC/MenuBarHBoxC/ButtonMenuPrestige" to="." method="_on_button_menu_prestige_pressed"]
-[connection signal="pressed" from="WindowTopBlackVBoxC/MainMarginC/AmeliorationLithiumControl/PresentationVBoxC/TopMarginC/TopHBoxC/ButtonExit" to="WindowTopBlackVBoxC/MainMarginC/AmeliorationLithiumControl" method="_on_button_exit_pressed"]
-[connection signal="pressed" from="WindowTopBlackVBoxC/MainMarginC/AmeliorationLithiumControl/PresentationVBoxC/MenuMarginC/AmeliorationsNoyauVBoxC/UtilityHBoxC/ButtonClose" to="WindowTopBlackVBoxC/MainMarginC/AmeliorationLithiumControl" method="_on_button_close_pressed"]
 [connection signal="pressed" from="WindowTopBlackVBoxC/MainMarginC/OptionsControl/PresentationVBoxC/TopMarginC/HBoxC/ExitButton" to="WindowTopBlackVBoxC/MainMarginC/OptionsControl" method="_on_exit_button_pressed"]
 [connection signal="pressed" from="WindowTopBlackVBoxC/MainMarginC/OptionsControl/PresentationVBoxC/MainMarginC/OptionsVBoxC/HBoxContainer/ChangementLangueButton" to="WindowTopBlackVBoxC/MainMarginC/OptionsControl/PresentationVBoxC/MainMarginC/OptionsVBoxC/HBoxContainer/ChangementLangueButton" method="_on_pressed"]
 [connection signal="pressed" from="WindowTopBlackVBoxC/MainMarginC/OptionsControl/PresentationVBoxC/MainMarginC/OptionsVBoxC/ForceResetButton" to="WindowTopBlackVBoxC/MainMarginC/OptionsControl" method="_on_force_reset_button_pressed"]

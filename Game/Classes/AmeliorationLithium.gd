@@ -4,7 +4,7 @@ var Id
 var Name
 var Description
 
-var AtomePriceForUnlocking = {"Coins" : Big.new(1.0, 2)}
+var AtomePriceForUnlocking = {"Lithium" : Big.new(1.0, 2)}
 var IsUnlocked = false
 
 var Level: Big
@@ -13,7 +13,7 @@ var PrixBase = Big.new(1.0, 0)
 
 var CoefficientAchat: Big
 
-enum CategorieAmeliorationLithiumEnum {Proton, Neutron, Electron}
+enum CategorieAmeliorationLithiumEnum {Proton, Neutron, ElectronK, ElectronL}
 var CategorieAmeliorationLithium
 
 var BonusTypeAmeliorationLithium
@@ -38,3 +38,11 @@ func DefineUnlockingPrice(atomePriceForUnlocking):
 
 func GetPrixAmeliorationLithium():
 	return Big.multiply(PrixBase, Big.power(CoefficientAchat, Level))
+
+
+#func GetBonusAmeliorationLithium():
+#	match CategorieAmeliorationLithium:
+#		CategorieAmeliorationLithiumEnum.Proton:
+#			var currentBonusFromAmelioration = Big.add(BonusAmeliorationLithium, Big.mutiply(BonusAmeliorationLithium, BonusManager.CurrentBonusesAmeliorationLithium["ProtonEfficaciteePourcent"])
+#			var bonusAmeliorationAvecBonus = Big.multiply(currentBonusFromAmelioration, Level)
+#			return bonusAmeliorationAvecBonus

@@ -1,0 +1,201 @@
+[gd_scene load_steps=9 format=3 uid="uid://j3saqbk1feco"]
+
+[ext_resource type="Theme" uid="uid://cbk6urwquxgkm" path="res://Design/Themes/Global/ThemeGlobal.tres" id="1_34c3n"]
+[ext_resource type="Script" path="res://Script/AmeliorationLithium/AmeliorationLithiumControl.gd" id="2_ww3ya"]
+[ext_resource type="Script" path="res://Script/AmeliorationLithium/Node2DLithium.gd" id="3_g5hac"]
+[ext_resource type="Texture2D" uid="uid://1drh7volhffd" path="res://Gimped/Proton.png" id="4_khh03"]
+[ext_resource type="Texture2D" uid="uid://c31eyto1jlpql" path="res://Gimped/TestElectron.png" id="5_f06og"]
+[ext_resource type="SystemFont" uid="uid://d2tc25vdki2hk" path="res://Design/Themes/SystemFontForQantities.tres" id="6_h2qa8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w80a4"]
+bg_color = Color(0.192157, 0.192157, 0.192157, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4pkbu"]
+bg_color = Color(0.129412, 0.129412, 0.129412, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="AmeliorationLithiumControl" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_34c3n")
+script = ExtResource("2_ww3ya")
+
+[node name="FondPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_w80a4")
+
+[node name="Node2DLithium" type="Node2D" parent="."]
+position = Vector2(355, 525)
+script = ExtResource("3_g5hac")
+
+[node name="NoyauSprite2D" type="Sprite2D" parent="Node2DLithium"]
+texture = ExtResource("4_khh03")
+
+[node name="ElectronK1Sprite2D" type="Sprite2D" parent="Node2DLithium"]
+texture = ExtResource("5_f06og")
+
+[node name="ElectronK2Sprite2D" type="Sprite2D" parent="Node2DLithium"]
+texture = ExtResource("5_f06og")
+
+[node name="ElectronL1Sprite2D" type="Sprite2D" parent="Node2DLithium"]
+texture = ExtResource("5_f06og")
+
+[node name="PresentationVBoxC" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TopMarginC" type="MarginContainer" parent="PresentationVBoxC"]
+layout_mode = 2
+
+[node name="TopHBoxC" type="HBoxContainer" parent="PresentationVBoxC/TopMarginC"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="ButtonExit" type="Button" parent="PresentationVBoxC/TopMarginC/TopHBoxC"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_fonts/font = ExtResource("6_h2qa8")
+theme_override_font_sizes/font_size = 24
+text = "Exit >"
+
+[node name="MiddleMarginC" type="MarginContainer" parent="PresentationVBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MenuNoyauMarginC" type="MarginContainer" parent="PresentationVBoxC"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel" type="Panel" parent="PresentationVBoxC/MenuNoyauMarginC"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4pkbu")
+
+[node name="AmeliorationsNoyauVBoxC" type="VBoxContainer" parent="PresentationVBoxC/MenuNoyauMarginC"]
+layout_mode = 2
+
+[node name="UtilityHBoxC" type="HBoxContainer" parent="PresentationVBoxC/MenuNoyauMarginC/AmeliorationsNoyauVBoxC"]
+layout_mode = 2
+
+[node name="ButtonClose" type="Button" parent="PresentationVBoxC/MenuNoyauMarginC/AmeliorationsNoyauVBoxC/UtilityHBoxC"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_fonts/font = ExtResource("6_h2qa8")
+theme_override_font_sizes/font_size = 24
+text = "Close >"
+
+[node name="AmeliorationsNoyauxHBoxC" type="HBoxContainer" parent="PresentationVBoxC/MenuNoyauMarginC/AmeliorationsNoyauVBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="MenuElectronMarginC" type="MarginContainer" parent="PresentationVBoxC"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="FondPanel" type="Panel" parent="PresentationVBoxC/MenuElectronMarginC"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4pkbu")
+
+[node name="AmeliorationsElectronsVBoxC" type="VBoxContainer" parent="PresentationVBoxC/MenuElectronMarginC"]
+layout_mode = 2
+
+[node name="UtilityHBoxC" type="HBoxContainer" parent="PresentationVBoxC/MenuElectronMarginC/AmeliorationsElectronsVBoxC"]
+layout_mode = 2
+
+[node name="ButtonClose" type="Button" parent="PresentationVBoxC/MenuElectronMarginC/AmeliorationsElectronsVBoxC/UtilityHBoxC"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_fonts/font = ExtResource("6_h2qa8")
+theme_override_font_sizes/font_size = 24
+text = "Close >"
+
+[node name="ElectronsKMarginC" type="MarginContainer" parent="PresentationVBoxC/MenuElectronMarginC/AmeliorationsElectronsVBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="FondPanel" type="Panel" parent="PresentationVBoxC/MenuElectronMarginC/AmeliorationsElectronsVBoxC/ElectronsKMarginC"]
+layout_mode = 2
+
+[node name="PresVBoxC" type="VBoxContainer" parent="PresentationVBoxC/MenuElectronMarginC/AmeliorationsElectronsVBoxC/ElectronsKMarginC/FondPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NomElectronsKLabel" type="Label" parent="PresentationVBoxC/MenuElectronMarginC/AmeliorationsElectronsVBoxC/ElectronsKMarginC/FondPanel/PresVBoxC"]
+layout_mode = 2
+text = "NOMELECTRONSKLABEL"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AmeliorationsElectronsKHBoxC" type="HBoxContainer" parent="PresentationVBoxC/MenuElectronMarginC/AmeliorationsElectronsVBoxC/ElectronsKMarginC/FondPanel/PresVBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="ElectronsLMarginC" type="MarginContainer" parent="PresentationVBoxC/MenuElectronMarginC/AmeliorationsElectronsVBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="FondPanel" type="Panel" parent="PresentationVBoxC/MenuElectronMarginC/AmeliorationsElectronsVBoxC/ElectronsLMarginC"]
+layout_mode = 2
+
+[node name="PresVBoxC" type="VBoxContainer" parent="PresentationVBoxC/MenuElectronMarginC/AmeliorationsElectronsVBoxC/ElectronsLMarginC/FondPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NomElectronsLLabel" type="Label" parent="PresentationVBoxC/MenuElectronMarginC/AmeliorationsElectronsVBoxC/ElectronsLMarginC/FondPanel/PresVBoxC"]
+layout_mode = 2
+text = "NOMELECTRONSLLABEL"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AmeliorationsElectronsLHBoxC" type="HBoxContainer" parent="PresentationVBoxC/MenuElectronMarginC/AmeliorationsElectronsVBoxC/ElectronsLMarginC/FondPanel/PresVBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[connection signal="pressed" from="PresentationVBoxC/TopMarginC/TopHBoxC/ButtonExit" to="." method="_on_button_exit_pressed"]
+[connection signal="pressed" from="PresentationVBoxC/MenuNoyauMarginC/AmeliorationsNoyauVBoxC/UtilityHBoxC/ButtonClose" to="." method="_on_button_noyau_close_pressed"]
+[connection signal="pressed" from="PresentationVBoxC/MenuElectronMarginC/AmeliorationsElectronsVBoxC/UtilityHBoxC/ButtonClose" to="." method="_on_button_electron_close_pressed"]

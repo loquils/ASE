@@ -1,0 +1,161 @@
+[gd_scene load_steps=6 format=3 uid="uid://cswogvfee3fn8"]
+
+[ext_resource type="Script" path="res://Script/AmeliorationLithium/ButtonAmeliorationLithium.gd" id="1_o5dqv"]
+[ext_resource type="Theme" uid="uid://c2oksi2eb0sxy" path="res://Design/Themes/themeTest.tres" id="2_0mxq7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_80ndq"]
+bg_color = Color(0.129412, 0.129412, 0.129412, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.117647, 0.117647, 0.117647, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_td2ip"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b4wg7"]
+bg_color = Color(0.611765, 0.611765, 0.611765, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+
+[node name="ButtonMarginC" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.00623, 0.996038)
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+script = ExtResource("1_o5dqv")
+
+[node name="ButtonAmelioElectronLithium" type="Button" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_80ndq")
+
+[node name="MainMarginC" type="MarginContainer" parent="ButtonAmelioElectronLithium"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="PresVBoxC" type="VBoxContainer" parent="ButtonAmelioElectronLithium/MainMarginC"]
+layout_mode = 2
+
+[node name="NomLabel" type="Label" parent="ButtonAmelioElectronLithium/MainMarginC/PresVBoxC"]
+layout_mode = 2
+text = "Nom"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PresHBoxC" type="HBoxContainer" parent="ButtonAmelioElectronLithium/MainMarginC/PresVBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="DescriptionMarginC" type="MarginContainer" parent="ButtonAmelioElectronLithium/MainMarginC/PresVBoxC/PresHBoxC"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="DescriptionLabel" type="Label" parent="ButtonAmelioElectronLithium/MainMarginC/PresVBoxC/PresHBoxC/DescriptionMarginC"]
+layout_mode = 2
+size_flags_vertical = 1
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="DetailsMarginC" type="MarginContainer" parent="ButtonAmelioElectronLithium/MainMarginC/PresVBoxC/PresHBoxC"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="DetailsVBoxC" type="VBoxContainer" parent="ButtonAmelioElectronLithium/MainMarginC/PresVBoxC/PresHBoxC/DetailsMarginC"]
+layout_mode = 2
+alignment = 1
+
+[node name="BonusLabel" type="Label" parent="ButtonAmelioElectronLithium/MainMarginC/PresVBoxC/PresHBoxC/DetailsMarginC/DetailsVBoxC"]
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NiveauLabel" type="Label" parent="ButtonAmelioElectronLithium/MainMarginC/PresVBoxC/PresHBoxC/DetailsMarginC/DetailsVBoxC"]
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PrixLabel" type="Label" parent="ButtonAmelioElectronLithium/MainMarginC/PresVBoxC/PresHBoxC/DetailsMarginC/DetailsVBoxC"]
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PanelForUnlock" type="Panel" parent="."]
+layout_mode = 2
+
+[node name="FondPanel" type="Panel" parent="PanelForUnlock"]
+custom_minimum_size = Vector2(150, 200)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -60.0
+offset_right = 50.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_td2ip")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelForUnlock/FondPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="AmeliorationLithiumUnlockButton" type="Button" parent="PanelForUnlock/FondPanel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_0mxq7")
+theme_override_styles/normal = SubResource("StyleBoxFlat_b4wg7")
+text = "Unlock"
+
+[node name="AtomeLabel" type="Label" parent="PanelForUnlock/FondPanel/VBoxContainer"]
+layout_mode = 2
+text = "Atome"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PrixLabel" type="Label" parent="PanelForUnlock/FondPanel/VBoxContainer"]
+layout_mode = 2
+text = "Prix"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="PanelForUnlock/FondPanel/VBoxContainer/AmeliorationLithiumUnlockButton" to="." method="_on_amelioration_lithium_unlock_button_pressed"]
