@@ -214,7 +214,7 @@ func DefineAtomsListInitializingGame():
 	var lithiumAttributsList = [attribut1Lithium, attribut2Lithium, attribut3Lithium]
 	
 	lithiumAtom.DefineAtomeAttributs(lithiumAttributsList)
-	lithiumAtom.DefineAtomeUnlockingPrice({"Helium" : Big.new(1.5, 3)})
+	lithiumAtom.DefineAtomeUnlockingPrice({"Helium" : Big.new(2.0, 5)})
 	
 	AtomsListInitializingGame.append(lithiumAtom)
 
