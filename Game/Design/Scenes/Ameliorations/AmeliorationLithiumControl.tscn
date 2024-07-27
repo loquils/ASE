@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://j3saqbk1feco"]
 
-[ext_resource type="Theme" uid="uid://cbk6urwquxgkm" path="res://Design/Themes/Global/ThemeGlobal.tres" id="1_34c3n"]
+[ext_resource type="Theme" uid="uid://d28dc3hd3j51o" path="res://Design/Themes/Lithium/AmeliorationLithiumTheme.tres" id="1_7x3n0"]
 [ext_resource type="Script" path="res://Script/AmeliorationLithium/AmeliorationLithiumControl.gd" id="2_ww3ya"]
 [ext_resource type="Script" path="res://Script/AmeliorationLithium/Node2DLithium.gd" id="3_g5hac"]
 [ext_resource type="Texture2D" uid="uid://1drh7volhffd" path="res://Gimped/Proton.png" id="4_khh03"]
@@ -35,7 +35,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_34c3n")
+theme = ExtResource("1_7x3n0")
 script = ExtResource("2_ww3ya")
 
 [node name="FondPanel" type="Panel" parent="."]

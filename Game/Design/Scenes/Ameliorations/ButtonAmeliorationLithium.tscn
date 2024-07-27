@@ -1,19 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://cswogvfee3fn8"]
+[gd_scene load_steps=5 format=3 uid="uid://cswogvfee3fn8"]
 
 [ext_resource type="Script" path="res://Script/AmeliorationLithium/ButtonAmeliorationLithium.gd" id="1_o5dqv"]
 [ext_resource type="Theme" uid="uid://c2oksi2eb0sxy" path="res://Design/Themes/themeTest.tres" id="2_0mxq7"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_80ndq"]
-bg_color = Color(0.129412, 0.129412, 0.129412, 1)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color(0.117647, 0.117647, 0.117647, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_td2ip"]
 bg_color = Color(0, 0, 0, 1)
@@ -42,7 +30,6 @@ script = ExtResource("1_o5dqv")
 [node name="ButtonAmelioElectronLithium" type="Button" parent="."]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_styles/normal = SubResource("StyleBoxFlat_80ndq")
 
 [node name="MainMarginC" type="MarginContainer" parent="ButtonAmelioElectronLithium"]
 layout_mode = 1

@@ -105,8 +105,7 @@ func GetGlobalMultiplicator(Name):
 	
 	for currentBonusAmeliorationLithiumBonus in CurrentBonusesAmeliorationLithium:
 		if currentBonusAmeliorationLithiumBonus.contains(Name) and currentBonusAmeliorationLithiumBonus.contains("OutputMultiply"):
-			var CurrenBonusMultiplicateur = Big.add(Big.new(1.0), CurrentBonusesAmeliorationLithium[currentBonusAmeliorationLithiumBonus])
-			lithiumMultiplicateur =  Big.multiply(CurrenBonusMultiplicateur, GetAmeliorationLithiumProtonMultiplicateur())
+			lithiumMultiplicateur =  GetAmeliorationLithiumProtonBonusTotal()
 	
 	var globalMultiplicator = Big.add(recherchesMultiplicator, heliumMultiplicator)
 	globalMultiplicator = Big.add(globalMultiplicator, lithiumMultiplicateur)
@@ -137,7 +136,7 @@ func GetDarkMaterMultiplicator(Name):
 
 
 #Permet de récupérer le diviseur du prix des attributs des atomes
-func GetRecherchesAttributsCostsDivided(attribut): 
+func GetRecherchesAttributsCostsDivided(attribut):
 	var diviseurRecherches = Big.new(0.0)
 	var diviseurLithium = Big.new(0.0)
 	
@@ -147,7 +146,7 @@ func GetRecherchesAttributsCostsDivided(attribut):
 	
 	for currentBonusAmeliorationLithiumBonus in CurrentBonusesAmeliorationLithium:
 		if currentBonusAmeliorationLithiumBonus.contains(attribut.Atome.Name) and currentBonusAmeliorationLithiumBonus.contains("CostDivided"):
-			diviseurLithium =  Big.multiply(CurrentBonusesAmeliorationLithium[currentBonusAmeliorationLithiumBonus], GetAmeliorationLithiumNeutronDiviseur())
+			diviseurLithium =  Big.add(diviseurLithium, GetAmeliorationLithiumNeutronBonusTotal())
 	
 	var diviseurGlobal = Big.add(diviseurRecherches, diviseurLithium)
 
@@ -162,9 +161,10 @@ func GetAmeliorationLithiumCoefficientProton():
 	return Big.add(Big.new(1.0), CurrentBonusesAmeliorationLithium["ProtonEfficacitee"])
 
 
-#Permet de récupérer le coefficient multiplicateur sur le neutron des améliorations lithium electrons K
-func GetAmeliorationLithiumCoefficientNeutron():
-	return Big.add(Big.new(1.0), CurrentBonusesAmeliorationLithium["NeutronEfficacitee"])
+#Permet de récupérer le bonus de l'amélioration du proton
+func GetAmeliorationLithiumProtonUniqueBonus(ameliorationLithium:AmeliorationLithium):
+	return Big.multiply(ameliorationLithium.BonusAmeliorationLithium, GetAmeliorationLithiumProtonMultiplicateur())
+
 
 #Permet de récupérer le multiplicateur des améliorations de lithium sur la sortie de l'atome d'helium
 func GetAmeliorationLithiumProtonMultiplicateur():
@@ -174,9 +174,15 @@ func GetAmeliorationLithiumProtonMultiplicateur():
 	return ameliorationLithiumTotalProton
 
 
-#Permet de récupérer le coefficient multiplicateur des améliorations lithium electrons L
-func GetAmeliorationLithiumCoefficientElectronsK():
-	return Big.add(Big.new(1.0), CurrentBonusesAmeliorationLithium["ElectronsKEfficacitee"])
+#Permet de récupérer le bonus total du proton
+func GetAmeliorationLithiumProtonBonusTotal():
+	var CurrentBonusMultiplicateur = Big.add(Big.new(1.0), CurrentBonusesAmeliorationLithium["HeliumOutputMultiply"])
+	return Big.multiply(CurrentBonusMultiplicateur, GetAmeliorationLithiumProtonMultiplicateur())
+
+
+#Permet de récupérer le coefficient multiplicateur sur le neutron des améliorations lithium electrons K
+func GetAmeliorationLithiumCoefficientNeutron():
+	return Big.add(Big.new(1.0), CurrentBonusesAmeliorationLithium["NeutronEfficacitee"])
 
 
 #Permet de récupérer le diviseur des améliorations de lithium sur les attributs de l'atome d'helium
@@ -187,23 +193,17 @@ func GetAmeliorationLithiumNeutronDiviseur():
 	return ameliorationLithiumTotalNeutron
 
 
-#Permet de récupérer le bonus de l'amélioration du proton
-func GetAmeliorationLithiumProtonUniqueBonus(ameliorationLithium:AmeliorationLithium):
-	return Big.multiply(ameliorationLithium.BonusAmeliorationLithium, GetAmeliorationLithiumProtonMultiplicateur())
-
-
 #Permet de récupérer le bonus de l'amélioration du neutron
 func GetAmeliorationLithiumNeutronUniqueBonus(ameliorationLithium:AmeliorationLithium):
 	return Big.multiply(ameliorationLithium.BonusAmeliorationLithium, GetAmeliorationLithiumNeutronDiviseur())
 
 
-#Permet de récupérer le bonus total du proton
-func GetAmeliorationLithiumProtonBonusTotal():
-	var CurrentBonusMultiplicateur = Big.add(Big.new(1.0), CurrentBonusesAmeliorationLithium["HeliumOutputMultiply"])
-	return Big.multiply(CurrentBonusMultiplicateur, GetAmeliorationLithiumProtonMultiplicateur())
-
-
 #Permet de récupérer le bonus total du neutron
 func GetAmeliorationLithiumNeutronBonusTotal():
-	var CurrentBonusDiviseur = Big.multiply(CurrentBonusesAmeliorationLithium["HeliumOutputMultiply"], GetAmeliorationLithiumNeutronDiviseur())
-	return Big.multiply(CurrentBonusDiviseur, GetAmeliorationLithiumProtonMultiplicateur())
+	var CurrentBonusDiviseur = Big.multiply(CurrentBonusesAmeliorationLithium["HeliumAttributCostDivide"], GetAmeliorationLithiumNeutronDiviseur())
+	return CurrentBonusDiviseur
+
+
+#Permet de récupérer le coefficient multiplicateur des améliorations lithium electrons L
+func GetAmeliorationLithiumCoefficientElectronsK():
+	return Big.add(Big.new(1.0), CurrentBonusesAmeliorationLithium["ElectronsKEfficacitee"])

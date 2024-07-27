@@ -6,7 +6,7 @@ var BoutonRechercheDarkMatter = preload("res://Design/Scenes/ButtonDarkMatter.ts
 @onready var MatierNoireApresPrestige = $PresentationVBoxC/MarginC/VBoxC/QuantiteeAGagnerHBoxC/QuantiteeLabel
 @onready var RecherchesGridC = $PresentationVBoxC/MarginC/VBoxC/RecherchesMarginC/InterneRecherchesMarginC/PrestigeAmeliorationScrollC/PrestigeGridC
 
-var CoefficientDivisionMatiereNoire = Big.new(2.5,12)
+var CoefficientDivisionMatiereNoire = Big.new(2.5,7)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

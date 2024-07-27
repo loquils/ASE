@@ -1,6 +1,5 @@
-[gd_scene load_steps=9 format=3 uid="uid://b5ln0ofkbushh"]
+[gd_scene load_steps=8 format=3 uid="uid://b5ln0ofkbushh"]
 
-[ext_resource type="Theme" uid="uid://cbk6urwquxgkm" path="res://Design/Themes/Global/ThemeGlobal.tres" id="1_4ucgl"]
 [ext_resource type="Script" path="res://Script/AmeliorationLithium/CanvasAmelioLithiumNoyau.gd" id="2_c6xbw"]
 [ext_resource type="Theme" uid="uid://c2oksi2eb0sxy" path="res://Design/Themes/themeTest.tres" id="3_fyshx"]
 
@@ -44,7 +43,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_4ucgl")
 script = ExtResource("2_c6xbw")
 
 [node name="FondPanel" type="Panel" parent="."]
