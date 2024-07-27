@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://be6ai8p5ud1bx"]
+[gd_scene load_steps=9 format=3 uid="uid://be6ai8p5ud1bx"]
 
 [ext_resource type="Theme" uid="uid://c8qb6obuwxyjl" path="res://Design/Themes/AmeliorationHelium/ThemeBase.tres" id="1_2eipa"]
 [ext_resource type="Script" path="res://Script/ButtonAmeliorationHelium.gd" id="2_ej8al"]
@@ -8,6 +8,9 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hgdw1"]
 bg_color = Color(0.345098, 0.345098, 0.345098, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k7exe"]
+bg_color = Color(0.333333, 0.333333, 0.333333, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_22dwo"]
 bg_color = Color(0, 0, 0, 1)
@@ -110,6 +113,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_k7exe")
 
 [node name="Panel" type="Panel" parent="PanelForUnlock"]
 custom_minimum_size = Vector2(250, 0)

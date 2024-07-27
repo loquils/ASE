@@ -60,17 +60,32 @@ RECHERCHEDESCRIPTION7, "Multiplie le rendement de l'hélium par 2.", "Multiply b
 RECHERCHE8, "Rendement", "Output"
 RECHERCHEDESCRIPTION8, "Multiplie tous les atomes par 8% par recherche achetée.", "Multiply all outputs by 8% par Research bought."
 
+
+DESCRIPTIONMENUAMELIORATIONHELIUM, "", ""
+BONUSPRESSION, "Sortie Hydrogène ", "Hydrogen Output "
+BONUSTEMPERATURE, "Coefficient attributs ", "Attributs coefficient "
+TITREPRESSIONPANEL, "Améliorations de pression", "Pression upgrades"
+TITRETEMPERATUREPANEL, "Amélioration de température", "Temperature upgrades"
+
 AMELIORATIONHELIUMPRESSION1, "Comprésseur d'hydrogène", "Hydrogen compressor"
-AMELIORATIONHELIUMPRESSIONDESCRIPTION1, "Multiplie par 2 le rendement d'hydrogène par seconde.", "Multiply by 2 Hydrogen output per second"
+AMELIORATIONHELIUMPRESSIONDESCRIPTION1, "Augmente de 5% le rendement d'hydrogène par seconde.", "Increase Hydrogen output per second by 5%."
+AMELIORATIONHELIUMPRESSION2, "Chambre de compression", "Compression chamber"
+AMELIORATIONHELIUMPRESSIONDESCRIPTION2, "Augmente de 10% le comprésseur d'hydrogène.", "Increase Hydrogen compressor by 10%."
+AMELIORATIONHELIUMPRESSION3, "Puissance de compression", "Compression power"
+AMELIORATIONHELIUMPRESSIONDESCRIPTION3, "Augmente de 25% la chambre de compréssion.", "Increase Compressor chamber by 25%."
+
 AMELIORATIONHELIUMTEMPERATURE1, "Centrifugeuse Hydrogène", "Hydrogen centrifuge"
 AMELIORATIONHELIUMTEMPERATUREDESCRIPTION1, "Augmente l'efficacité des attributs de l'Hydrogène.", "Upgrade Hydrogen attributs efficiency."
-AMELIORATIONHELIUMTEMPERATURE2, "Centrifugeuse Helium", "Helium centrifuge"
-AMELIORATIONHELIUMTEMPERATUREDESCRIPTION2, "Augmente l'efficacité des attributs de l'Helium.", "Upgrade Helium attributs efficiency."
+AMELIORATIONHELIUMTEMPERATURE2, "Taille de centrifugeuse", "Centrifuge size"
+AMELIORATIONHELIUMTEMPERATUREDESCRIPTION2, "Augmente de 10% la centrifugeuse d'hydrogène.", "Increase Hydrogen centrifuge by 10%."
+AMELIORATIONHELIUMTEMPERATURE3, "Puissance de rotation", "Rotation power"
+AMELIORATIONHELIUMTEMPERATUREDESCRIPTION3, "Augmente de 25% la taille de centrifuge.", "Increase Centrifuge size by 25%."
+
 
 DESCRIPTIONMENUAMELIORATIONLITHIUM, "", ""
 BONUSPROTON, "Sortie Helium ", "Helium Output "
 BONUSNEUTRON, "Prix attribut Helium ", "Helium attribut price "
-TITRENOYAUXPANEL, "Améliorations de puissance du Noyau", "Kernel power ugrades"
+TITRENOYAUXPANEL, "Améliorations de puissance du Noyau", "Kernel power upgrades"
 TITREELECTRONPANEL, "Amélioration de puissance des Eléctrons", "Electrons power upgrades"
 TITREELECTRONSKLABEL, "Couche Electron K", "Electron K layer"
 TITREELECTRONSLLABEL, "Couche Electron L", "Electron L layer"

@@ -1,14 +1,18 @@
 extends Control
 
+@onready var QuantiteeHelium = $PresentationVBoxC/TopMarginC/TopHBoxC/GUIMarginC
+
+@onready var BonusPressionLabel = $PresentationVBoxC/MiddleMarginC/RecapHBoxC/VBoxContainer/BonusPressionHBoxC/BonusLabel
+@onready var BonusTemperatureLabel = $PresentationVBoxC/MiddleMarginC/RecapHBoxC/VBoxContainer/BonusTemperatureHBoxC/BonusLabel
 
 var CustomButtonAmeliorationHelium = preload("res://Design/Scenes/ButtonAmelioHelium.tscn")
-
-
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	RechercheClick.connect("AmeliorationHelium_button_pressed", AchatAmeliorationHeliumButtonPressed)
-
+	
+	QuantiteeHelium._set_var("Helium", Big.new(0.0))
+	
 	for ameliorationHelium in RessourceManager.ListeAmeliorationsHelium:
 		var newAmeliorationHeliumButton = CustomButtonAmeliorationHelium.instantiate()
 		newAmeliorationHeliumButton._set_var(ameliorationHelium)
@@ -23,8 +27,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-		#$DebugLabel.text = str(CurrentBonusesAmeliorationHelium[BonusTypesAmeliorationHelium[0]])
-	pass
+	BonusPressionLabel.text = "+" + str(Big.subtractAbove0(Big.multiply(BonusManager.GetAmeliorationHeliumPressionBonusTotal(), Big.new(1.0, 2)), Big.new(1.0, 2))) + "%"
+	BonusTemperatureLabel.text = "+" + str(BonusManager.GetAmeliorationHeliumTemperatureBonusTotal())
 
 
 #Trigger lors de l'appuie sur un bouton pour augmenter une amélioration de l'helium
