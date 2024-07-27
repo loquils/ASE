@@ -46,12 +46,13 @@ func _process(delta):
 		if not AmeliorationLithium.IsUnlocked:
 			UnlockPanel.visible = true
 			return
-		
-	if RessourceManager.QuantiteesAtomes.has("Lithium"):
-		if RessourceManager.QuantiteesAtomes["Lithium"].isLessThan(AmeliorationLithium.GetPrixAmeliorationLithium()):
-			ButtonAmeliorationLithium.disabled = true
-		else : 
-			ButtonAmeliorationLithium.disabled = false
+	
+	if AmeliorationLithium.IsUnlocked:
+		if RessourceManager.QuantiteesAtomes.has("Lithium"):
+			if RessourceManager.QuantiteesAtomes["Lithium"].isLessThan(AmeliorationLithium.GetPrixAmeliorationLithium()):
+				ButtonAmeliorationLithium.disabled = true
+			else : 
+				ButtonAmeliorationLithium.disabled = false
 
 
 func _on_amelioration_lithium_unlock_button_pressed():

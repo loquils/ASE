@@ -1,7 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cswogvfee3fn8"]
+[gd_scene load_steps=6 format=3 uid="uid://cswogvfee3fn8"]
 
 [ext_resource type="Script" path="res://Script/AmeliorationLithium/ButtonAmeliorationLithium.gd" id="1_o5dqv"]
 [ext_resource type="Theme" uid="uid://c2oksi2eb0sxy" path="res://Design/Themes/themeTest.tres" id="2_0mxq7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ua0en"]
+bg_color = Color(0.2, 0.2, 0.2, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_td2ip"]
 bg_color = Color(0, 0, 0, 1)
@@ -30,6 +33,7 @@ script = ExtResource("1_o5dqv")
 [node name="ButtonAmelioElectronLithium" type="Button" parent="."]
 layout_mode = 2
 size_flags_horizontal = 3
+disabled = true
 
 [node name="MainMarginC" type="MarginContainer" parent="ButtonAmelioElectronLithium"]
 layout_mode = 1
@@ -100,9 +104,10 @@ vertical_alignment = 1
 
 [node name="PanelForUnlock" type="Panel" parent="."]
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ua0en")
 
 [node name="FondPanel" type="Panel" parent="PanelForUnlock"]
-custom_minimum_size = Vector2(150, 200)
+custom_minimum_size = Vector2(200, 100)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

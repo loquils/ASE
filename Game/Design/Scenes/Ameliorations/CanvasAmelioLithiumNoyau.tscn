@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://b5ln0ofkbushh"]
+[gd_scene load_steps=9 format=3 uid="uid://b5ln0ofkbushh"]
 
 [ext_resource type="Script" path="res://Script/AmeliorationLithium/CanvasAmelioLithiumNoyau.gd" id="2_c6xbw"]
 [ext_resource type="Theme" uid="uid://c2oksi2eb0sxy" path="res://Design/Themes/themeTest.tres" id="3_fyshx"]
@@ -24,6 +24,9 @@ corner_radius_bottom_left = 20
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8su6g"]
 bg_color = Color(0.117647, 0.117647, 0.117647, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kcimt"]
+bg_color = Color(0.2, 0.2, 0.2, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u5c7i"]
 bg_color = Color(0, 0, 0, 1)
@@ -194,13 +197,13 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="PanelForUnlock" type="Panel" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_kcimt")
 
 [node name="FondPanel" type="Panel" parent="PanelForUnlock"]
 custom_minimum_size = Vector2(250, 300)
