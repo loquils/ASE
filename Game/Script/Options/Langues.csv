@@ -74,11 +74,11 @@ TITREELECTRONPANEL, "Amélioration de puissance des Eléctrons", "Electrons powe
 TITREELECTRONSKLABEL, "Couche Electron K", "Electron K layer"
 TITREELECTRONSLLABEL, "Couche Electron L", "Electron L layer"
 
-AMELIORATIONLITHIUMPROTONDESCRIPTION, "Augmente la puissance des protons, améliore la sortie de l'Hélium.", "Increase protons power, upgrade Helium output."
-AMELIORATIONLITHIUMNEUTRONDESCRIPTION, "Divise le prix des attributs de l'Helium.", "Increase protons power, upgrade Helium output."
-AMELIORATIONLITHIUMELECTRONK1DESCRIPTION, "Améliore la puissance des protons.", "Increase protons power, upgrade Helium output."
-AMELIORATIONLITHIUMELECTRONK2DESCRIPTION, "Augmente la puissance des protons, améliore la sortie de l'Hélium.", "Increase protons power, upgrade Helium output."
-AMELIORATIONLITHIUMELECTRONLDESCRIPTION, "Augmente la puissance des protons, améliore la sortie de l'Hélium.", "Increase protons power, upgrade Helium output."
+AMELIORATIONLITHIUMPROTONDESCRIPTION, "Augmente la puissance des Protons, améliore la sortie de l'Hélium.", "Increase Protons power, upgrade Helium output."
+AMELIORATIONLITHIUMNEUTRONDESCRIPTION, "Augmente la puissance des Neutrons, divise le prix des attributs de l'Helium.", "Increase Neutrons power, divide Helium attributs price."
+AMELIORATIONLITHIUMELECTRONK1DESCRIPTION, "Améliore le coefficient de puissance des Protons.", "Increase Protons power coefficient."
+AMELIORATIONLITHIUMELECTRONK2DESCRIPTION, "Améliore le coefficient de puissance des Neutrons.", "Increase Neutrons power coefficient."
+AMELIORATIONLITHIUMELECTRONLDESCRIPTION, "Améliore le coefficient des Electrons couche K.", "Increase layer K Electrons coefficient."
 
 
 ARGENTPRESTIGE, "Matière Noire", "Dark Mater"
