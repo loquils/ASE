@@ -24,14 +24,16 @@ func _ready():
 #Methode appellee par le signal lors de l'appuie sur un des boutons de recherches
 #On vérifie si on peut acheter la recherche, et on l'achete.	
 func AchatRehercheButtonPressed(recherche):
-	if RessourceManager.ListeRecherches[recherche.Id].IsUnlocked:
+	var IdRecherche = RessourceManager.ListeRecherches.find(recherche)
+	
+	if RessourceManager.ListeRecherches[IdRecherche].IsUnlocked:
 		return
 	
-	if RessourceManager.ListeRecherches[recherche.Id].Prix.isGreaterThan(RessourceManager.Coins):
+	if RessourceManager.ListeRecherches[IdRecherche].Prix.isGreaterThan(RessourceManager.Coins):
 		return
 	
-	RessourceManager.ListeRecherches[recherche.Id].IsUnlocked = true
-	RessourceManager.Coins = Big.subtractAbove0(RessourceManager.Coins, RessourceManager.ListeRecherches[recherche.Id].Prix)
+	RessourceManager.ListeRecherches[IdRecherche].IsUnlocked = true
+	RessourceManager.Coins = Big.subtractAbove0(RessourceManager.Coins, RessourceManager.ListeRecherches[IdRecherche].Prix)
 
 	BonusManager.MajBonusRecherches()
 
