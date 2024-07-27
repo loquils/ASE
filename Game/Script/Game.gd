@@ -15,6 +15,9 @@ extends Control
 @onready var OptionsControl = $WindowTopBlackVBoxC/MainMarginC/OptionsControl
 @onready var TutorielControl = $WindowTopBlackVBoxC/MainMarginC/TutorielControl
 
+@onready var ButtonMenuAmeliorationHelium = $WindowTopBlackVBoxC/MainMarginC/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/AllMenus/MenuAmelioration/MarginContainer/GridContainer/HeliumAmeliorationMarginC/ButtonAmeliorationHelium
+@onready var ButtonMenuAmeliorationLithium = $WindowTopBlackVBoxC/MainMarginC/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/AllMenus/MenuAmelioration/MarginContainer/GridContainer/LithiumAmeliorationMarginC/ButtonAmeliorationLithium
+
 var AdButtonScene = preload("res://Design/Scenes/AdButton.tscn")
 
 func _ready():
@@ -24,6 +27,8 @@ func _ready():
 func _process(_delta):
 		#var prix = round(coin.PrixBaseAmelioAttributs["Force"] * pow(coin.CoefficientsAchatAttributs["Force"], coin.NiveauxAttributs["Force"]))
 	CoinsQuantityLabel.text = str(RessourceManager.Coins)
+	ButtonMenuAmeliorationHelium.disabled = not RessourceManager.ListeAtomes["Helium"].isUnlocked
+	ButtonMenuAmeliorationLithium.disabled = not RessourceManager.ListeAtomes["Lithium"].isUnlocked
 
 
 #func GetPrixVenteHydrogene():
