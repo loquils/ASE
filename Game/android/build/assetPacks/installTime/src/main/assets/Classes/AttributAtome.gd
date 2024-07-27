@@ -23,12 +23,8 @@ func _init(atome, name, niveau:Big, coefficientAchat:Big, coefficientBaseRapport
 func GetAttributRapportAvecNiveau():
 	var attributCoefficientApresBonus = CoefficientBaseRapport
 	
-	#On ajoute les bonus concernant les augmentations sur tous les attributs d'un atomes
+	#On ajoute les bonus concernant les augmentations sur tous les attributs de l'atome d'hydrogène (bonus helium)
 	if BonusManager.CurrentBonusesAmeliorationHelium.has(Atome.Name + "AttributsCoefficientAdd"):
-			attributCoefficientApresBonus = Big.add(attributCoefficientApresBonus, BonusManager.CurrentBonusesAmeliorationHelium[Atome.Name + "AttributsCoefficientAdd"])
-	
-	#On ajoute les bonus concernant les augmentations sur un attribut en particulier
-	if BonusManager.CurrentBonusesAmeliorationHelium.has(Atome.Name + Name + "CoefficientAdd"):
-			attributCoefficientApresBonus = Big.add(attributCoefficientApresBonus, BonusManager.CurrentBonusesAmeliorationHelium[Atome.Name + Name + "CoefficientAdd"])
-			
+		attributCoefficientApresBonus = Big.add(attributCoefficientApresBonus, BonusManager.GetAmeliorationHeliumTemperatureBonusTotal())
+		
 	return Big.multiply(attributCoefficientApresBonus, Niveau)

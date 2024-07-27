@@ -1,15 +1,15 @@
 extends Node
 #Force/Vitesse | Spin/Angle/Complexity
 #Bonus des Recherches
-var BonusTypesRecherches = ["PrixHydrogeneAugmentation", "HydrogeneCoeffMultiplicateurRapport", "HeliumCoeffMultiplicateurRapport", "HydrogeneAttributsCostDivided", "HydrogeneForceCostDivided", "HydrogeneVitesseCostDivided", "HeliumAttributsCostDivided", "HeliumSpinCostDivided", "HeliumAngleCostDivided", "HeliumComplexityCostDivided"]
+var BonusTypesRecherches = ["PrixHydrogeneAugmentation", "AllCoeffMultiplicateurRapport", "HydrogeneCoeffMultiplicateurRapport", "HeliumCoeffMultiplicateurRapport", "HydrogeneAttributsCostDivided", "HydrogeneForceCostDivided", "HydrogeneVitesseCostDivided", "HeliumAttributsCostDivided", "HeliumSpinCostDivided", "HeliumAngleCostDivided", "HeliumComplexityCostDivided"]
 var CurrentBonusesRecherches = {"PrixHydrogeneAugmentation" : Big.new(0.0), "HydrogeneCoeffMultiplicateurRapport" : Big.new(1.0), "HeliumCoeffMultiplicateurRapport" : Big.new(1.0)}
 
 #Amélioration de l'helium
-var BonusTypesAmeliorationHelium = ["HydrogeneOutputMultiply", "HydrogeneAttributsCoefficientAdd", "HeliumAttributsCoefficientAdd"]
+var BonusTypesAmeliorationHelium = ["HydrogeneOutputMultiply", "HydrogeneAttributsCoefficientAdd", "PressionEfficacitee0", "PressionEfficacitee1","TemperatureEfficacitee0", "TemperatureEfficacitee1"]
 var CurrentBonusesAmeliorationHelium = {}
 
 #Amélioration du lithium
-var BonusTypesAmeliorationLithium = ["HeliumOutputMultiply", "HeliumAttributCostDivide" , "ProtonEfficacitee", "NeutronEfficacitee", "ElectronsKEfficacitee"]
+var BonusTypesAmeliorationLithium = ["HeliumOutputMultiply", "HeliumAttributsCostDivided" , "ProtonEfficacitee", "NeutronEfficacitee", "ElectronsKEfficacitee"]
 var CurrentBonusesAmeliorationLithium = {}
 
 #Bonus recherches matière noire
@@ -36,11 +36,15 @@ func MajBonusRecherches():
 	
 	for recherche in RessourceManager.ListeRecherches:
 		if recherche.IsUnlocked:
-			CurrentBonusesRecherches[recherche.Augmentation] = Big.add(CurrentBonusesRecherches[recherche.Augmentation], recherche.AugmentationPercent)
+			if recherche.Augmentation.contains("ParRecherche"):
+				CurrentBonusesRecherches[recherche.Augmentation.replace("ParRecherche", "")] = Big.add(CurrentBonusesRecherches[recherche.Augmentation.replace("ParRecherche", "")], Big.multiply(recherche.AugmentationPercent, InfosPartie.RecherchesAchetees))
+				print(CurrentBonusesRecherches[recherche.Augmentation.replace("ParRecherche", "")])
+			else:
+				CurrentBonusesRecherches[recherche.Augmentation] = Big.add(CurrentBonusesRecherches[recherche.Augmentation], recherche.AugmentationPercent)
 
 
 #Mise à jour des bonus des améliorations de l'Helium
-func MajBonusAmeliorationHelium():
+func MajBonusAmeliorationHeliumOld():
 	InfosPartie.MajInformationsPartie() #Pour l'instant pas utile ici, mais plus tard oui
 	
 	#Définition des bonus de base, si c'est une multiplication on set a 1, une addition a 0
@@ -58,6 +62,19 @@ func MajBonusAmeliorationHelium():
 				CurrentBonusesAmeliorationHelium[ameliorationHelium.BonusTypeAmeliorationHelium] = Big.multiply(CurrentBonusesAmeliorationHelium[ameliorationHelium.BonusTypeAmeliorationHelium], BonusCalculNiveau)
 			elif ameliorationHelium.BonusTypeAmeliorationHelium.contains("Add"):
 				CurrentBonusesAmeliorationHelium[ameliorationHelium.BonusTypeAmeliorationHelium] = Big.add(CurrentBonusesAmeliorationHelium[ameliorationHelium.BonusTypeAmeliorationHelium], BonusCalculNiveau)
+
+#Mise à jour des bonus des améliorations de l'Helium
+func MajBonusAmeliorationHelium():
+	InfosPartie.MajInformationsPartie() #Pour l'instant pas utile ici, mais plus tard oui
+	
+	for bonusTypeAmeliorationHelium in BonusTypesAmeliorationHelium:
+		CurrentBonusesAmeliorationHelium[bonusTypeAmeliorationHelium] = Big.new(0.0)
+		
+	#On calcul les CurrentBonus selon si c'est un multiplication ou une addition
+	for ameliorationHelium in RessourceManager.ListeAmeliorationsHelium:
+		if ameliorationHelium.IsUnlocked:
+			var BonusCalculNiveau = Big.multiply(ameliorationHelium.BonusAmeliorationHelium, ameliorationHelium.Level)
+			CurrentBonusesAmeliorationHelium[ameliorationHelium.BonusTypeAmeliorationHelium] = BonusCalculNiveau
 
 
 #Mise à jour des bonus des améliorations du lithium
@@ -96,17 +113,16 @@ func GetGlobalMultiplicator(Name):
 	var lithiumMultiplicateur = Big.new(0.0)
 	
 	for CurrentResearchBonus in CurrentBonusesRecherches:
-		if CurrentResearchBonus.contains(Name) and CurrentResearchBonus.contains("CoeffMultiplicateurRapport"):
+		if (CurrentResearchBonus.contains(Name) and CurrentResearchBonus.contains("CoeffMultiplicateurRapport")) or CurrentResearchBonus.contains("AllCoeffMultiplicateurRapport"):
 			recherchesMultiplicator = Big.add(recherchesMultiplicator, CurrentBonusesRecherches[CurrentResearchBonus])
 	
 	for CurrentBonus in CurrentBonusesAmeliorationHelium:
 		if CurrentBonus.contains(Name) and CurrentBonus.contains("OutputMultiply"):
-			heliumMultiplicator = Big.add(heliumMultiplicator, CurrentBonusesAmeliorationHelium[CurrentBonus])
+			heliumMultiplicator = Big.add(heliumMultiplicator, GetAmeliorationHeliumPressionBonusTotal())
 	
 	for currentBonusAmeliorationLithiumBonus in CurrentBonusesAmeliorationLithium:
 		if currentBonusAmeliorationLithiumBonus.contains(Name) and currentBonusAmeliorationLithiumBonus.contains("OutputMultiply"):
-			var CurrenBonusMultiplicateur = Big.add(Big.new(1.0), CurrentBonusesAmeliorationLithium[currentBonusAmeliorationLithiumBonus])
-			lithiumMultiplicateur =  Big.multiply(CurrenBonusMultiplicateur, GetAmeliorationLithiumProtonMultiplicateur())
+			lithiumMultiplicateur = Big.add(lithiumMultiplicateur, GetAmeliorationLithiumProtonBonusTotal())
 	
 	var globalMultiplicator = Big.add(recherchesMultiplicator, heliumMultiplicator)
 	globalMultiplicator = Big.add(globalMultiplicator, lithiumMultiplicateur)
@@ -127,7 +143,7 @@ func GetDarkMaterMultiplicator(Name):
 		if CurrentRechercheMatiereNoireBonus.contains(Name) and CurrentRechercheMatiereNoireBonus.contains("CoeffMultiplicateurRapport"):
 			var multiplicator = Big.new(1.0)
 			if not CurrentBonusesRecherchesMatiereNoire[CurrentRechercheMatiereNoireBonus].isEqualTo(Big.new(0.0)):
-				multiplicator = CurrentBonusesRecherchesMatiereNoire[CurrentRechercheMatiereNoireBonus]			
+				multiplicator = CurrentBonusesRecherchesMatiereNoire[CurrentRechercheMatiereNoireBonus]
 			matiereNoireMultiplicateur = Big.multiply(matiereNoireMultiplicateur, multiplicator)
 	
 	if matiereNoireMultiplicateur.isEqualTo(Big.new(0.0)):
@@ -137,7 +153,7 @@ func GetDarkMaterMultiplicator(Name):
 
 
 #Permet de récupérer le diviseur du prix des attributs des atomes
-func GetRecherchesAttributsCostsDivided(attribut): 
+func GetRecherchesAttributsCostsDivided(attribut):
 	var diviseurRecherches = Big.new(0.0)
 	var diviseurLithium = Big.new(0.0)
 	
@@ -147,7 +163,7 @@ func GetRecherchesAttributsCostsDivided(attribut):
 	
 	for currentBonusAmeliorationLithiumBonus in CurrentBonusesAmeliorationLithium:
 		if currentBonusAmeliorationLithiumBonus.contains(attribut.Atome.Name) and currentBonusAmeliorationLithiumBonus.contains("CostDivided"):
-			diviseurLithium =  Big.multiply(CurrentBonusesAmeliorationLithium[currentBonusAmeliorationLithiumBonus], GetAmeliorationLithiumNeutronDiviseur())
+			diviseurLithium =  Big.add(diviseurLithium, GetAmeliorationLithiumNeutronBonusTotal())
 	
 	var diviseurGlobal = Big.add(diviseurRecherches, diviseurLithium)
 
@@ -156,15 +172,54 @@ func GetRecherchesAttributsCostsDivided(attribut):
 	
 	return diviseurGlobal
 
+#-----------------------------------------Helium-----------------------------------------------------------------
+
+#Permet de récupérer le coefficient multiplicateur sur la pression 1 des améliorations hélium
+func GetAmeliorationHeliumCoefficienPression0():
+	return Big.add(Big.new(1.0), CurrentBonusesAmeliorationHelium["PressionEfficacitee0"])
+
+#Permet de récupérer le coefficient multiplicateur sur la pression 2 des améliorations hélium
+func GetAmeliorationHeliumCoefficienPression1():
+	return Big.add(Big.new(1.0), CurrentBonusesAmeliorationHelium["PressionEfficacitee1"])
+	
+#Permet de récupérer le multiplicateur des améliorations d"helium sur la sortie de l'atome d'hydrogène
+func GetAmeliorationHeliumPressionMultiplicateur():
+	var coefficientPression0 = GetAmeliorationHeliumCoefficienPression0()
+	var coefficientPression1 = GetAmeliorationHeliumCoefficienPression1()
+	return Big.multiply(coefficientPression0, coefficientPression1)
+
+func GetAmeliorationHeliumPressionBonusTotal():
+	var CurrentBonusMultiplicateur = CurrentBonusesAmeliorationHelium["HydrogeneOutputMultiply"]
+	return Big.add(Big.new(1.0), Big.multiply(CurrentBonusMultiplicateur, GetAmeliorationHeliumPressionMultiplicateur()))
+
+
+#Permet de récupérer le coefficient multiplicateur sur la pression 1 des améliorations hélium
+func GetAmeliorationHeliumCoefficienTemperature0():
+	return Big.add(Big.new(1.0), CurrentBonusesAmeliorationHelium["TemperatureEfficacitee0"])
+
+#Permet de récupérer le coefficient multiplicateur sur la pression 2 des améliorations hélium
+func GetAmeliorationHeliumCoefficienTemperature1():
+	return Big.add(Big.new(1.0), CurrentBonusesAmeliorationHelium["TemperatureEfficacitee1"])
+	
+#Permet de récupérer le multiplicateur des améliorations d"helium sur la sortie de l'atome d'hydrogène
+func GetAmeliorationHeliumTemperatureMultiplicateur():
+	var coefficientTemperature0 = GetAmeliorationHeliumCoefficienTemperature0()
+	var coefficientTemperature1 = GetAmeliorationHeliumCoefficienTemperature1()
+	return Big.multiply(coefficientTemperature0, coefficientTemperature1)
+
+func GetAmeliorationHeliumTemperatureBonusTotal():
+	var CurrentBonusMultiplicateur = CurrentBonusesAmeliorationHelium["HydrogeneAttributsCoefficientAdd"]
+	return Big.multiply(CurrentBonusMultiplicateur, GetAmeliorationHeliumTemperatureMultiplicateur())
+
+#-----------------------------------------Lithium-----------------------------------------------------------------
 
 #Permet de récupérer le coefficient multiplicateur sur le proton des améliorations lithium electrons K
 func GetAmeliorationLithiumCoefficientProton():
 	return Big.add(Big.new(1.0), CurrentBonusesAmeliorationLithium["ProtonEfficacitee"])
 
-
-#Permet de récupérer le coefficient multiplicateur sur le neutron des améliorations lithium electrons K
-func GetAmeliorationLithiumCoefficientNeutron():
-	return Big.add(Big.new(1.0), CurrentBonusesAmeliorationLithium["NeutronEfficacitee"])
+#Permet de récupérer le bonus de l'amélioration du proton
+func GetAmeliorationLithiumProtonUniqueBonus(ameliorationLithium:AmeliorationLithium):
+	return Big.multiply(ameliorationLithium.BonusAmeliorationLithium, GetAmeliorationLithiumProtonMultiplicateur())
 
 #Permet de récupérer le multiplicateur des améliorations de lithium sur la sortie de l'atome d'helium
 func GetAmeliorationLithiumProtonMultiplicateur():
@@ -173,11 +228,16 @@ func GetAmeliorationLithiumProtonMultiplicateur():
 	var ameliorationLithiumTotalProton = Big.multiply(ameliorationLithiumElectronsK, ameliorationProton)
 	return ameliorationLithiumTotalProton
 
+#Permet de récupérer le bonus total du proton
+func GetAmeliorationLithiumProtonBonusTotal():
+	var CurrentBonusMultiplicateurOld = Big.add(Big.new(1.0), CurrentBonusesAmeliorationLithium["HeliumOutputMultiply"])
+	var CurrentBonusMultiplicateur = CurrentBonusesAmeliorationLithium["HeliumOutputMultiply"]
+	return Big.multiply(CurrentBonusMultiplicateur, GetAmeliorationLithiumProtonMultiplicateur())
 
-#Permet de récupérer le coefficient multiplicateur des améliorations lithium electrons L
-func GetAmeliorationLithiumCoefficientElectronsK():
-	return Big.add(Big.new(1.0), CurrentBonusesAmeliorationLithium["ElectronsKEfficacitee"])
 
+#Permet de récupérer le coefficient multiplicateur sur le neutron des améliorations lithium electrons K
+func GetAmeliorationLithiumCoefficientNeutron():
+	return Big.add(Big.new(1.0), CurrentBonusesAmeliorationLithium["NeutronEfficacitee"])
 
 #Permet de récupérer le diviseur des améliorations de lithium sur les attributs de l'atome d'helium
 func GetAmeliorationLithiumNeutronDiviseur():
@@ -186,24 +246,16 @@ func GetAmeliorationLithiumNeutronDiviseur():
 	var ameliorationLithiumTotalNeutron = Big.multiply(ameliorationLithiumElectronsK, ameliorationNeutron)
 	return ameliorationLithiumTotalNeutron
 
-
-#Permet de récupérer le bonus de l'amélioration du proton
-func GetAmeliorationLithiumProtonUniqueBonus(ameliorationLithium:AmeliorationLithium):
-	return Big.multiply(ameliorationLithium.BonusAmeliorationLithium, GetAmeliorationLithiumProtonMultiplicateur())
-
-
 #Permet de récupérer le bonus de l'amélioration du neutron
 func GetAmeliorationLithiumNeutronUniqueBonus(ameliorationLithium:AmeliorationLithium):
 	return Big.multiply(ameliorationLithium.BonusAmeliorationLithium, GetAmeliorationLithiumNeutronDiviseur())
 
-
-#Permet de récupérer le bonus total du proton
-func GetAmeliorationLithiumProtonBonusTotal():
-	var CurrentBonusMultiplicateur = Big.add(Big.new(1.0), CurrentBonusesAmeliorationLithium["HeliumOutputMultiply"])
-	return Big.multiply(CurrentBonusMultiplicateur, GetAmeliorationLithiumProtonMultiplicateur())
-
-
 #Permet de récupérer le bonus total du neutron
 func GetAmeliorationLithiumNeutronBonusTotal():
-	var CurrentBonusDiviseur = Big.multiply(CurrentBonusesAmeliorationLithium["HeliumOutputMultiply"], GetAmeliorationLithiumNeutronDiviseur())
-	return Big.multiply(CurrentBonusDiviseur, GetAmeliorationLithiumProtonMultiplicateur())
+	var CurrentBonusDiviseurOld = Big.add(Big.new(1.0), CurrentBonusesAmeliorationLithium["HeliumAttributsCostDivided"])
+	var CurrentBonusDiviseur = CurrentBonusesAmeliorationLithium["HeliumAttributsCostDivided"]
+	return Big.add(Big.new(1.0), Big.multiply(CurrentBonusDiviseur, GetAmeliorationLithiumNeutronDiviseur()))
+
+#Permet de récupérer le coefficient multiplicateur des améliorations lithium electrons L
+func GetAmeliorationLithiumCoefficientElectronsK():
+	return Big.add(Big.new(1.0), CurrentBonusesAmeliorationLithium["ElectronsKEfficacitee"])

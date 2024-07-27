@@ -43,32 +43,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if (Input.is_action_just_pressed("2D_mouse_click") and visible and NoyauSprite2D.get_rect().has_point(NoyauSprite2D.to_local(get_global_mouse_position()))):
-		if (not AmeliorationNoyauMenu.visible):
-			AmeliorationNoyauMenu.show()
-			
-			if (AmeliorationElectronMenu.visible):
-				AmeliorationElectronMenu.hide()
-			else:
-				$Node2DLithium.position -= Vector2(0,100)
-		else:
-			AmeliorationNoyauMenu.hide()
-			$Node2DLithium.position += Vector2(0,100)
-	
-	BonusProtonLabel.text = "+" + str(Big.subtractAbove0(Big.multiply(BonusManager.GetAmeliorationLithiumProtonBonusTotal(), Big.new(1.0, 2)), Big.new(1.0, 2))) + "%"
-	BonusNeutronLabel.text = "+/" + str(BonusManager.GetAmeliorationLithiumProtonBonusTotal())
-	#elif (Input.is_action_just_pressed("2D_mouse_click") and visible and not AmeliorationElectronMenu.visible and get_local_mouse_position().y < size.y - AmeliorationNoyauMenu.size.y):
-	#	if (not AmeliorationElectronMenu.visible):
-	#		AmeliorationElectronMenu.show()
-	#		
-	#		if (AmeliorationNoyauMenu.visible):
-	#			AmeliorationNoyauMenu.hide()
-	#		else:
-	#			$Node2DLithium.position -= Vector2(0,100)
-	#	else:
-	#		AmeliorationElectronMenu.hide()
-	#		$Node2DLithium.position += Vector2(0,100)
-	
+	BonusProtonLabel.text = "+" + str(Big.multiply(BonusManager.GetAmeliorationLithiumProtonBonusTotal(), Big.new(1.0, 2))) + "%"
+	BonusNeutronLabel.text = "+/" + str(BonusManager.GetAmeliorationLithiumNeutronBonusTotal())
 
 
 #Trigger lors de l'appuie sur un bouton pour augmenter une amélioration de lithium
