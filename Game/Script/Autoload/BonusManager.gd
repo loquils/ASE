@@ -1,7 +1,7 @@
 extends Node
 #Force/Vitesse | Spin/Angle/Complexity
 #Bonus des Recherches
-var BonusTypesRecherches = ["PrixHydrogeneAugmentation", "HydrogeneCoeffMultiplicateurRapport", "HeliumCoeffMultiplicateurRapport", "HydrogeneAttributsCostDivided", "HydrogeneForceCostDivided", "HydrogeneVitesseCostDivided", "HeliumAttributsCostDivided", "HeliumSpinCostDivided", "HeliumAngleCostDivided", "HeliumComplexityCostDivided"]
+var BonusTypesRecherches = ["PrixHydrogeneAugmentation", "AllCoeffMultiplicateurRapport", "HydrogeneCoeffMultiplicateurRapport", "HeliumCoeffMultiplicateurRapport", "HydrogeneAttributsCostDivided", "HydrogeneForceCostDivided", "HydrogeneVitesseCostDivided", "HeliumAttributsCostDivided", "HeliumSpinCostDivided", "HeliumAngleCostDivided", "HeliumComplexityCostDivided"]
 var CurrentBonusesRecherches = {"PrixHydrogeneAugmentation" : Big.new(0.0), "HydrogeneCoeffMultiplicateurRapport" : Big.new(1.0), "HeliumCoeffMultiplicateurRapport" : Big.new(1.0)}
 
 #Amélioration de l'helium
@@ -36,7 +36,11 @@ func MajBonusRecherches():
 	
 	for recherche in RessourceManager.ListeRecherches:
 		if recherche.IsUnlocked:
-			CurrentBonusesRecherches[recherche.Augmentation] = Big.add(CurrentBonusesRecherches[recherche.Augmentation], recherche.AugmentationPercent)
+			if recherche.Augmentation.contains("ParRecherche"):
+				CurrentBonusesRecherches[recherche.Augmentation.replace("ParRecherche", "")] = Big.add(CurrentBonusesRecherches[recherche.Augmentation.replace("ParRecherche", "")], Big.multiply(recherche.AugmentationPercent, InfosPartie.RecherchesAchetees))
+				print(CurrentBonusesRecherches[recherche.Augmentation.replace("ParRecherche", "")])
+			else:
+				CurrentBonusesRecherches[recherche.Augmentation] = Big.add(CurrentBonusesRecherches[recherche.Augmentation], recherche.AugmentationPercent)
 
 
 #Mise à jour des bonus des améliorations de l'Helium
@@ -96,7 +100,7 @@ func GetGlobalMultiplicator(Name):
 	var lithiumMultiplicateur = Big.new(0.0)
 	
 	for CurrentResearchBonus in CurrentBonusesRecherches:
-		if CurrentResearchBonus.contains(Name) and CurrentResearchBonus.contains("CoeffMultiplicateurRapport"):
+		if (CurrentResearchBonus.contains(Name) and CurrentResearchBonus.contains("CoeffMultiplicateurRapport")) or CurrentResearchBonus.contains("AllCoeffMultiplicateurRapport"):
 			recherchesMultiplicator = Big.add(recherchesMultiplicator, CurrentBonusesRecherches[CurrentResearchBonus])
 	
 	for CurrentBonus in CurrentBonusesAmeliorationHelium:

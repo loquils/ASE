@@ -57,7 +57,8 @@ RECHERCHE6, "Prix Hydrogène", "Hydrogen Price"
 RECHERCHEDESCRIPTION6, "Augmentation du prix de l'hydrogène de 500%.", "500% Hydrogen price augmentation."
 RECHERCHE7, "Rendement", "Output"
 RECHERCHEDESCRIPTION7, "Multiplie le rendement de l'hélium par 2.", "Multiply by 2 the helium output."
-
+RECHERCHE8, "Rendement", "Output"
+RECHERCHEDESCRIPTION8, "Multiplie tous les atomes par 8% par recherche achetée.", "Multiply all outputs by 8% par Research bought."
 
 AMELIORATIONHELIUMPRESSION1, "Comprésseur d'hydrogène", "Hydrogen compressor"
 AMELIORATIONHELIUMPRESSIONDESCRIPTION1, "Multiplie par 2 le rendement d'hydrogène par seconde.", "Multiply by 2 Hydrogen output per second"
