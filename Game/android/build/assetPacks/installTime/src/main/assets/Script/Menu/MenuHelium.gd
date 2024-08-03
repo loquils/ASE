@@ -27,8 +27,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	BonusPressionLabel.text = "+" + str(Big.subtractAbove0(Big.multiply(BonusManager.GetAmeliorationHeliumPressionBonusTotal(), Big.new(1.0, 2)), Big.new(1.0, 2))) + "%"
-	BonusTemperatureLabel.text = "+" + str(BonusManager.GetAmeliorationHeliumTemperatureBonusTotal())
+	BonusPressionLabel.text = "+" + str(Big.multiply(BonusManager.GetAmeliorationHeliumCoefficienSortieAvecNiveau(), Big.new(1.0, 2))) + "%"
+	BonusTemperatureLabel.text = "+" + str(BonusManager.GetAmeliorationHeliumCoefficienTemperatureAvecNiveau())
 
 
 #Trigger lors de l'appuie sur un bouton pour augmenter une amélioration de l'helium

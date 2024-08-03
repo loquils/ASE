@@ -185,7 +185,6 @@ wait_time = 5.0
 
 [node name="AdTimer" type="Timer" parent="."]
 wait_time = 10.0
-one_shot = true
 
 [node name="WindowTopBlackVBoxC" type="VBoxContainer" parent="."]
 layout_mode = 1

@@ -63,6 +63,7 @@ func MajBonusAmeliorationHeliumOld():
 			elif ameliorationHelium.BonusTypeAmeliorationHelium.contains("Add"):
 				CurrentBonusesAmeliorationHelium[ameliorationHelium.BonusTypeAmeliorationHelium] = Big.add(CurrentBonusesAmeliorationHelium[ameliorationHelium.BonusTypeAmeliorationHelium], BonusCalculNiveau)
 
+
 #Mise à jour des bonus des améliorations de l'Helium
 func MajBonusAmeliorationHelium():
 	InfosPartie.MajInformationsPartie() #Pour l'instant pas utile ici, mais plus tard oui
@@ -73,8 +74,9 @@ func MajBonusAmeliorationHelium():
 	#On calcul les CurrentBonus selon si c'est un multiplication ou une addition
 	for ameliorationHelium in RessourceManager.ListeAmeliorationsHelium:
 		if ameliorationHelium.IsUnlocked:
-			var BonusCalculNiveau = Big.multiply(ameliorationHelium.BonusAmeliorationHelium, ameliorationHelium.Level)
-			CurrentBonusesAmeliorationHelium[ameliorationHelium.BonusTypeAmeliorationHelium] = BonusCalculNiveau
+			#var BonusCalculNiveau = Big.multiply(ameliorationHelium.BonusAmeliorationHelium, ameliorationHelium.Level)
+			#CurrentBonusesAmeliorationHelium[ameliorationHelium.BonusTypeAmeliorationHelium] = BonusCalculNiveau
+			CurrentBonusesAmeliorationHelium[ameliorationHelium.BonusTypeAmeliorationHelium] = ameliorationHelium.BonusAmeliorationHelium
 
 
 #Mise à jour des bonus des améliorations du lithium
@@ -118,7 +120,7 @@ func GetGlobalMultiplicator(Name):
 	
 	for CurrentBonus in CurrentBonusesAmeliorationHelium:
 		if CurrentBonus.contains(Name) and CurrentBonus.contains("OutputMultiply"):
-			heliumMultiplicator = Big.add(heliumMultiplicator, GetAmeliorationHeliumPressionBonusTotal())
+			heliumMultiplicator = Big.add(heliumMultiplicator, GetAmeliorationHeliumCoefficienSortieAvecNiveau())
 	
 	for currentBonusAmeliorationLithiumBonus in CurrentBonusesAmeliorationLithium:
 		if currentBonusAmeliorationLithiumBonus.contains(Name) and currentBonusAmeliorationLithiumBonus.contains("OutputMultiply"):
@@ -174,42 +176,87 @@ func GetRecherchesAttributsCostsDivided(attribut):
 
 #-----------------------------------------Helium-----------------------------------------------------------------
 
-#Permet de récupérer le coefficient multiplicateur sur la pression 1 des améliorations hélium
-func GetAmeliorationHeliumCoefficienPression0():
-	return Big.add(Big.new(1.0), CurrentBonusesAmeliorationHelium["PressionEfficacitee0"])
-
-#Permet de récupérer le coefficient multiplicateur sur la pression 2 des améliorations hélium
+#Permet de récupérer le coefficient sur la pression 2 des améliorations hélium
 func GetAmeliorationHeliumCoefficienPression1():
-	return Big.add(Big.new(1.0), CurrentBonusesAmeliorationHelium["PressionEfficacitee1"])
-	
-#Permet de récupérer le multiplicateur des améliorations d"helium sur la sortie de l'atome d'hydrogène
+	return CurrentBonusesAmeliorationHelium["PressionEfficacitee1"]
+
+#Permet de récupérer le coefficient sur la pression 1 des améliorations hélium
+func GetAmeliorationHeliumCoefficienPression0():
+	return Big.add(CurrentBonusesAmeliorationHelium["PressionEfficacitee0"], GetAmeliorationHeliumCoefficienPression1AvecNiveau())
+
+#Permet de récupérer le coefficient des améliorations d'helium 
 func GetAmeliorationHeliumPressionMultiplicateur():
-	var coefficientPression0 = GetAmeliorationHeliumCoefficienPression0()
-	var coefficientPression1 = GetAmeliorationHeliumCoefficienPression1()
-	return Big.multiply(coefficientPression0, coefficientPression1)
+	return Big.add(CurrentBonusesAmeliorationHelium["HydrogeneOutputMultiply"], GetAmeliorationHeliumCoefficienPression0AvecNiveau())
 
-func GetAmeliorationHeliumPressionBonusTotal():
-	var CurrentBonusMultiplicateur = CurrentBonusesAmeliorationHelium["HydrogeneOutputMultiply"]
-	return Big.add(Big.new(1.0), Big.multiply(CurrentBonusMultiplicateur, GetAmeliorationHeliumPressionMultiplicateur()))
+#Permet de récupérer le coefficient d'ajout sur la pression 1 des améliorations hélium en fontion du niveau de l'amélioration
+func GetAmeliorationHeliumCoefficienPression1AvecNiveau():
+	var nomTypeBonusAmelioration = "PressionEfficacitee1"
+	var objetsTrouvesDansListe = RessourceManager.ListeAmeliorationsHelium.filter(func(amelioration): return amelioration.BonusTypeAmeliorationHelium == nomTypeBonusAmelioration)
+	if (len(objetsTrouvesDansListe) != 1):
+		return
+	return Big.multiply(CurrentBonusesAmeliorationHelium[nomTypeBonusAmelioration], objetsTrouvesDansListe[0].Level)
+
+#Permet de récupérer le coefficient sur la pression 0 des améliorations hélium en fontion du niveau de l'amélioration
+func GetAmeliorationHeliumCoefficienPression0AvecNiveau():
+	var nomTypeBonusAmelioration = "PressionEfficacitee0"
+	var objetsTrouvesDansListe = RessourceManager.ListeAmeliorationsHelium.filter(func(amelioration): return amelioration.BonusTypeAmeliorationHelium == nomTypeBonusAmelioration)
+	if (len(objetsTrouvesDansListe) != 1):
+		return
+	var bonusPression1 = GetAmeliorationHeliumCoefficienPression1AvecNiveau()
+	var bonusPression0 = Big.add(CurrentBonusesAmeliorationHelium[nomTypeBonusAmelioration], bonusPression1)
+	return Big.multiply(bonusPression0, objetsTrouvesDansListe[0].Level)
+
+#Permet de récupérer le coefficient sur la pression 0 des améliorations hélium en fontion du niveau de l'amélioration
+func GetAmeliorationHeliumCoefficienSortieAvecNiveau():
+	var nomTypeBonusAmelioration = "HydrogeneOutputMultiply"
+	var objetsTrouvesDansListe = RessourceManager.ListeAmeliorationsHelium.filter(func(amelioration): return amelioration.BonusTypeAmeliorationHelium == nomTypeBonusAmelioration)
+	if (len(objetsTrouvesDansListe) != 1):
+		return
+	var bonusPression0 = GetAmeliorationHeliumCoefficienPression0AvecNiveau()
+	var bonusPression = Big.add(CurrentBonusesAmeliorationHelium[nomTypeBonusAmelioration], bonusPression0)
+	return Big.multiply(bonusPression, objetsTrouvesDansListe[0].Level)
 
 
-#Permet de récupérer le coefficient multiplicateur sur la pression 1 des améliorations hélium
-func GetAmeliorationHeliumCoefficienTemperature0():
-	return Big.add(Big.new(1.0), CurrentBonusesAmeliorationHelium["TemperatureEfficacitee0"])
-
-#Permet de récupérer le coefficient multiplicateur sur la pression 2 des améliorations hélium
+#Permet de récupérer le coefficient sur la température 1 des améliorations hélium
 func GetAmeliorationHeliumCoefficienTemperature1():
-	return Big.add(Big.new(1.0), CurrentBonusesAmeliorationHelium["TemperatureEfficacitee1"])
-	
-#Permet de récupérer le multiplicateur des améliorations d"helium sur la sortie de l'atome d'hydrogène
-func GetAmeliorationHeliumTemperatureMultiplicateur():
-	var coefficientTemperature0 = GetAmeliorationHeliumCoefficienTemperature0()
-	var coefficientTemperature1 = GetAmeliorationHeliumCoefficienTemperature1()
-	return Big.multiply(coefficientTemperature0, coefficientTemperature1)
+	return CurrentBonusesAmeliorationHelium["TemperatureEfficacitee1"]
 
-func GetAmeliorationHeliumTemperatureBonusTotal():
-	var CurrentBonusMultiplicateur = CurrentBonusesAmeliorationHelium["HydrogeneAttributsCoefficientAdd"]
-	return Big.multiply(CurrentBonusMultiplicateur, GetAmeliorationHeliumTemperatureMultiplicateur())
+#Permet de récupérer le coefficient sur la température 0 des améliorations hélium
+func GetAmeliorationHeliumCoefficienTemperature0():
+	return Big.add(CurrentBonusesAmeliorationHelium["TemperatureEfficacitee0"], GetAmeliorationHeliumCoefficienTemperature1AvecNiveau())
+
+#Permet de récupérer le coefficient des améliorations d"helium sur les attributs de l'atome d'hydrogène
+func GetAmeliorationHeliumTemperatureMultiplicateur():
+	return Big.add(CurrentBonusesAmeliorationHelium["HydrogeneAttributsCoefficientAdd"], GetAmeliorationHeliumCoefficienTemperature0AvecNiveau())
+
+#Permet de récupérer le coefficient d'ajout sur la Temperature 1 des améliorations hélium en fontion du niveau de l'amélioration
+func GetAmeliorationHeliumCoefficienTemperature1AvecNiveau():
+	var nomTypeBonusAmelioration = "TemperatureEfficacitee1"
+	var objetsTrouvesDansListe = RessourceManager.ListeAmeliorationsHelium.filter(func(amelioration): return amelioration.BonusTypeAmeliorationHelium == nomTypeBonusAmelioration)
+	if (len(objetsTrouvesDansListe) != 1):
+		return
+	return Big.multiply(CurrentBonusesAmeliorationHelium[nomTypeBonusAmelioration], objetsTrouvesDansListe[0].Level)
+
+#Permet de récupérer le coefficient sur la Temperature 0 des améliorations hélium en fontion du niveau de l'amélioration
+func GetAmeliorationHeliumCoefficienTemperature0AvecNiveau():
+	var nomTypeBonusAmelioration = "TemperatureEfficacitee0"
+	var objetsTrouvesDansListe = RessourceManager.ListeAmeliorationsHelium.filter(func(amelioration): return amelioration.BonusTypeAmeliorationHelium == nomTypeBonusAmelioration)
+	if (len(objetsTrouvesDansListe) != 1):
+		return
+	var bonusTemperature1 = GetAmeliorationHeliumCoefficienTemperature1AvecNiveau()
+	var bonusTemperature0 = Big.add(CurrentBonusesAmeliorationHelium[nomTypeBonusAmelioration], bonusTemperature1)
+	return Big.multiply(bonusTemperature0, objetsTrouvesDansListe[0].Level)
+
+#Permet de récupérer le coefficient sur la pression 0 des améliorations hélium en fontion du niveau de l'amélioration
+func GetAmeliorationHeliumCoefficienTemperatureAvecNiveau():
+	var nomTypeBonusAmelioration = "HydrogeneAttributsCoefficientAdd"
+	var objetsTrouvesDansListe = RessourceManager.ListeAmeliorationsHelium.filter(func(amelioration): return amelioration.BonusTypeAmeliorationHelium == nomTypeBonusAmelioration)
+	if (len(objetsTrouvesDansListe) != 1):
+		return
+	var bonusTemperature0 = GetAmeliorationHeliumCoefficienTemperature0AvecNiveau()
+	var bonusTemperature = Big.add(CurrentBonusesAmeliorationHelium[nomTypeBonusAmelioration], bonusTemperature0)
+	return Big.multiply(bonusTemperature, objetsTrouvesDansListe[0].Level)
+
 
 #-----------------------------------------Lithium-----------------------------------------------------------------
 
