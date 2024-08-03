@@ -24,13 +24,8 @@ border_width_bottom = 1
 
 [node name="Button" type="Button"]
 custom_minimum_size = Vector2(600, 125)
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = -120.0
-offset_bottom = -1155.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_right = 600.0
+offset_bottom = 150.0
 theme = ExtResource("1_2eipa")
 disabled = true
 script = ExtResource("2_ej8al")

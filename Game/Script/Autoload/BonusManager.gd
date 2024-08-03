@@ -186,7 +186,7 @@ func GetAmeliorationHeliumCoefficienPression0():
 
 #Permet de récupérer le coefficient des améliorations d'helium 
 func GetAmeliorationHeliumPressionMultiplicateur():
-	return Big.add(CurrentBonusesAmeliorationHelium["HydrogeneOutputMultiply"], GetAmeliorationHeliumCoefficienPression0())
+	return Big.add(CurrentBonusesAmeliorationHelium["HydrogeneOutputMultiply"], GetAmeliorationHeliumCoefficienPression0AvecNiveau())
 
 #Permet de récupérer le coefficient d'ajout sur la pression 1 des améliorations hélium en fontion du niveau de l'amélioration
 func GetAmeliorationHeliumCoefficienPression1AvecNiveau():
@@ -217,20 +217,17 @@ func GetAmeliorationHeliumCoefficienSortieAvecNiveau():
 	return Big.multiply(bonusPression, objetsTrouvesDansListe[0].Level)
 
 
-#Permet de récupérer le coefficient sur la pression 1 des améliorations hélium
+#Permet de récupérer le coefficient sur la température 1 des améliorations hélium
 func GetAmeliorationHeliumCoefficienTemperature1():
 	return CurrentBonusesAmeliorationHelium["TemperatureEfficacitee1"]
 
-#Permet de récupérer le coefficient multiplicateur sur la pression 1 des améliorations hélium
+#Permet de récupérer le coefficient sur la température 0 des améliorations hélium
 func GetAmeliorationHeliumCoefficienTemperature0():
 	return Big.add(CurrentBonusesAmeliorationHelium["TemperatureEfficacitee0"], GetAmeliorationHeliumCoefficienTemperature1AvecNiveau())
 
-#Permet de récupérer le multiplicateur des améliorations d"helium sur la sortie de l'atome d'hydrogène
+#Permet de récupérer le coefficient des améliorations d"helium sur les attributs de l'atome d'hydrogène
 func GetAmeliorationHeliumTemperatureMultiplicateur():
-	var coefficientTemperature0 = GetAmeliorationHeliumCoefficienTemperature0()
-	var coefficientTemperature1 = GetAmeliorationHeliumCoefficienTemperature1()
-	return Big.multiply(coefficientTemperature0, coefficientTemperature1)
-
+	return Big.add(CurrentBonusesAmeliorationHelium["HydrogeneAttributsCoefficientAdd"], GetAmeliorationHeliumCoefficienTemperature0AvecNiveau())
 
 #Permet de récupérer le coefficient d'ajout sur la Temperature 1 des améliorations hélium en fontion du niveau de l'amélioration
 func GetAmeliorationHeliumCoefficienTemperature1AvecNiveau():
