@@ -43,8 +43,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	BonusProtonLabel.text = "+" + str(Big.multiply(BonusManager.GetAmeliorationLithiumProtonBonusTotal(), Big.new(1.0, 2))) + "%"
-	BonusNeutronLabel.text = "+/" + str(BonusManager.GetAmeliorationLithiumNeutronBonusTotal())
+	BonusProtonLabel.text = "+" + str(Big.multiply(BonusManager.GetAmeliorationLithiumCoefficientProtonAvecNiveau(), Big.new(1.0, 2))) + "%"
+	BonusNeutronLabel.text = "+/" + str(BonusManager.GetAmeliorationLithiumCoefficientNeutronAvecNiveau())
 
 
 #Trigger lors de l'appuie sur un bouton pour augmenter une amélioration de lithium
