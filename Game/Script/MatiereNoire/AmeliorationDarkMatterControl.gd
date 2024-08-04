@@ -61,6 +61,7 @@ func DarkMatterReset():
 	RessourceManager.DarkMatter = Big.add(RessourceManager.DarkMatter, GetDeltaDarkMatter())
 	RessourceManager.ResetAtomes()
 	RessourceManager.ResetAmeliorationsHelium()
+	RessourceManager.ResetAmeliorationsLithium()
 	RessourceManager.ResetRecherches()
 	InfosPartie.ResetInformationsOnPrestige()
 	RessourceManager.ResetRessources()

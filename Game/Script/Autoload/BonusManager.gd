@@ -13,7 +13,7 @@ var BonusTypesAmeliorationLithium = ["HeliumOutputMultiply", "HeliumAttributsCos
 var CurrentBonusesAmeliorationLithium = {}
 
 #Bonus recherches matière noire
-var BonusTypesRecherchesMatiereNoire = ["HydrogeneCoeffMultiplicateurRapport", "HydrogeneRechercheMNAcheteeCoeffMultiplicateurRapport", "HeliumCoeffMultiplicateurRapport"]
+var BonusTypesRecherchesMatiereNoire = ["HydrogeneOutputMultiply", "HeliumOutputMultiply", "HydrogeneAttributsCostDivided"]
 var CurrentBonusesRecherchesMatiereNoire = {}
 
 func _ready():
@@ -38,7 +38,6 @@ func MajBonusRecherches():
 		if recherche.IsUnlocked:
 			if recherche.Augmentation.contains("ParRecherche"):
 				CurrentBonusesRecherches[recherche.Augmentation.replace("ParRecherche", "")] = Big.add(CurrentBonusesRecherches[recherche.Augmentation.replace("ParRecherche", "")], Big.multiply(recherche.AugmentationPercent, InfosPartie.RecherchesAchetees))
-				print(CurrentBonusesRecherches[recherche.Augmentation.replace("ParRecherche", "")])
 			else:
 				CurrentBonusesRecherches[recherche.Augmentation] = Big.add(CurrentBonusesRecherches[recherche.Augmentation], recherche.AugmentationPercent)
 
@@ -57,19 +56,6 @@ func MajBonusAmeliorationHelium():
 
 
 #Mise à jour des bonus des améliorations du lithium
-func MajBonusAmeliorationLithiumOld():
-	InfosPartie.MajInformationsPartie() #Pour l'instant pas utile ici, mais plus tard oui
-	
-	for bonusTypeAmeliorationLithium in BonusTypesAmeliorationLithium:
-		CurrentBonusesAmeliorationLithium[bonusTypeAmeliorationLithium] = Big.new(0.0)
-	
-	for ameliorationLithium in RessourceManager.ListeAmeliorationsLithium:
-		if ameliorationLithium.IsUnlocked:
-			var BonusCalculNiveau = Big.multiply(ameliorationLithium.BonusAmeliorationLithium, ameliorationLithium.Level)
-			CurrentBonusesAmeliorationLithium[ameliorationLithium.BonusTypeAmeliorationLithium] = BonusCalculNiveau
-
-
-#Mise à jour des bonus des améliorations du lithium
 func MajBonusAmeliorationLithium():
 	InfosPartie.MajInformationsPartie() #Pour l'instant pas utile ici, mais plus tard oui
 	
@@ -79,9 +65,6 @@ func MajBonusAmeliorationLithium():
 	for ameliorationLithium in RessourceManager.ListeAmeliorationsLithium:
 		if ameliorationLithium.IsUnlocked:
 			CurrentBonusesAmeliorationLithium[ameliorationLithium.BonusTypeAmeliorationLithium] = ameliorationLithium.BonusAmeliorationLithium
-
-
-
 
 
 #Mise à jour des bonus des recherches de matière noire
@@ -94,8 +77,8 @@ func MajBonusRecherchesMatiereNoire():
 	for rechercheMatiereNoire in RessourceManager.ListeRecherchesMatiereNoire:
 		if rechercheMatiereNoire.IsUnlocked:
 			#On check si on a une recherche en fonction de la quantité de recherche achetée, faudra changer ça je pense
-			if rechercheMatiereNoire.Augmentation == "HydrogeneRechercheMNAcheteeCoeffMultiplicateurRapport":
-				CurrentBonusesRecherchesMatiereNoire[rechercheMatiereNoire.Augmentation] = Big.add(CurrentBonusesRecherchesMatiereNoire[rechercheMatiereNoire.Augmentation], Big.multiply(rechercheMatiereNoire.AugmentationPercent, InfosPartie.RecherchesMatiereNoireAchetees))
+			if rechercheMatiereNoire.Augmentation.contains("ParRechercheMN"):
+				CurrentBonusesRecherchesMatiereNoire[rechercheMatiereNoire.Augmentation.replace("ParRechercheMN", "")] = Big.add(CurrentBonusesRecherchesMatiereNoire[rechercheMatiereNoire.Augmentation.replace("ParRechercheMN", "")], Big.multiply(rechercheMatiereNoire.AugmentationPercent, InfosPartie.RecherchesMatiereNoireAchetees))
 			else:
 				CurrentBonusesRecherchesMatiereNoire[rechercheMatiereNoire.Augmentation] = Big.add(CurrentBonusesRecherchesMatiereNoire[rechercheMatiereNoire.Augmentation], rechercheMatiereNoire.AugmentationPercent)
 
@@ -129,22 +112,32 @@ func GetGlobalMultiplicator(Name):
 	return Big.multiply(globalMultiplicator, matiereNoireMultiplicateur)
 
 
-#Permet de récupérer le multiplicateur sur les recherches de matière norie du rendu des atomes
+#Permet de récupérer le multiplicateur sur les recherches de matière noire du rendu des atomes
 func GetDarkMaterMultiplicator(Name):
 	var matiereNoireMultiplicateur = Big.new(1.0)
 	
-	for CurrentRechercheMatiereNoireBonus in CurrentBonusesRecherchesMatiereNoire:
-		if CurrentRechercheMatiereNoireBonus.contains(Name) and CurrentRechercheMatiereNoireBonus.contains("CoeffMultiplicateurRapport"):
-			var multiplicator = Big.new(1.0)
-			if not CurrentBonusesRecherchesMatiereNoire[CurrentRechercheMatiereNoireBonus].isEqualTo(Big.new(0.0)):
-				multiplicator = CurrentBonusesRecherchesMatiereNoire[CurrentRechercheMatiereNoireBonus]
-			matiereNoireMultiplicateur = Big.multiply(matiereNoireMultiplicateur, multiplicator)
+	for currentRechercheMatiereNoireBonus in CurrentBonusesRecherchesMatiereNoire:
+		if currentRechercheMatiereNoireBonus.contains(Name) and currentRechercheMatiereNoireBonus.contains("OutputMultiply"):
+			matiereNoireMultiplicateur = Big.add(matiereNoireMultiplicateur, CurrentBonusesRecherchesMatiereNoire[currentRechercheMatiereNoireBonus])
 	
 	if matiereNoireMultiplicateur.isEqualTo(Big.new(0.0)):
 		matiereNoireMultiplicateur = Big.new(1.0)
 	
 	return matiereNoireMultiplicateur
 
+
+#Permet de récupérer le diviseur sur les recherches de matière noire du rendu des atomes
+func GetDarkMaterDiviseur(Name):
+	var matiereNoireDiviseur = Big.new(1.0)
+	for currentRechercheMatiereNoireBonus in CurrentBonusesRecherchesMatiereNoire:
+		if currentRechercheMatiereNoireBonus.contains(Name) and currentRechercheMatiereNoireBonus.contains("AttributsCostDivided"):
+			matiereNoireDiviseur = Big.add(matiereNoireDiviseur, CurrentBonusesRecherchesMatiereNoire[currentRechercheMatiereNoireBonus])
+	
+	#On en a plus besoin de ça, mais juste au cas ou
+	if matiereNoireDiviseur.isEqualTo(Big.new(0.0)):
+		matiereNoireDiviseur = Big.new(1.0)
+	
+	return matiereNoireDiviseur
 
 #Permet de récupérer le diviseur du prix des attributs des atomes
 func GetRecherchesAttributsCostsDivided(attribut):
@@ -164,7 +157,9 @@ func GetRecherchesAttributsCostsDivided(attribut):
 	if diviseurGlobal.isEqualTo(Big.new(0.0)):
 		diviseurGlobal = Big.new(1.0)
 	
-	return diviseurGlobal
+	var matiereNoireDiviseur = GetDarkMaterDiviseur(attribut.Atome.Name)
+
+	return Big.multiply(diviseurGlobal, matiereNoireDiviseur)
 
 #-----------------------------------------Helium-----------------------------------------------------------------
 

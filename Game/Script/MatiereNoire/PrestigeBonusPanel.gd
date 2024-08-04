@@ -4,6 +4,7 @@ extends Panel
 @onready var RecherchesMatiereNoireAcheteesLabel = $PrestigeBonusScrollC/ListeVBoxC/RecherchesMatiereNoireAcheteesMarginC/BonusRecherchesRecapPanel/BonusEtQuantiteHBoxC/FondBonusQuantPanel/BonusLabel
 @onready var BonusLabel1 = $PrestigeBonusScrollC/ListeVBoxC/Bonus1MarginC/BonusRecherchesRecapPanel/BonusEtQuantiteHBoxC/FondBonusQuantPanel/BonusLabel
 @onready var BonusLabel2 = $PrestigeBonusScrollC/ListeVBoxC/Bonus2MarginC/BonusRecherchesRecapPanel/BonusEtQuantiteHBoxC/FondBonusQuantPanel/BonusLabel
+@onready var BonusLabel3 = $PrestigeBonusScrollC/ListeVBoxC/Bonus3MarginC/BonusRecherchesRecapPanel/BonusEtQuantiteHBoxC/FondBonusQuantPanel/BonusLabel
 
 func _process(delta):
 	if visible:
@@ -11,4 +12,5 @@ func _process(delta):
 		RecherchesMatiereNoireAcheteesLabel.text = str(InfosPartie.RecherchesMatiereNoireAchetees)
 
 		BonusLabel1.text = "x " + str(BonusManager.GetDarkMaterMultiplicator("Hydrogene"))
-		BonusLabel2.text = "x " + str(BonusManager.CurrentBonusesRecherchesMatiereNoire["HeliumCoeffMultiplicateurRapport"])
+		BonusLabel2.text = "/ " + str(BonusManager.GetDarkMaterMultiplicator("Hydrogene"))
+		BonusLabel3.text = "x " + str(BonusManager.CurrentBonusesRecherchesMatiereNoire["HeliumOutputMultiply"])

@@ -289,9 +289,9 @@ func DefineAmeliorationLithiumListInitializingGame():
 
 #Permet d'initialiser la liste des recherches de matière noire dans le jeu
 func DefineRechercheMatiereNoireListInitializingGame():
-		ListeRecherchesMatiereNoireInitializeGame.append(RechercheDarkMatter.new(0, "RECHERCHEMATIERENOIRE1", "RECHERCHEMATIERENOIRE1DESCRIPTION", Big.new(1.0, 0), "HydrogeneRechercheMNAcheteeCoeffMultiplicateurRapport", Big.new(2.0, 0)))
-		ListeRecherchesMatiereNoireInitializeGame.append(RechercheDarkMatter.new(1, "RECHERCHEMATIERENOIRE2", "RECHERCHEMATIERENOIRE2DESCRIPTION", Big.new(2.0, 1), "HeliumCoeffMultiplicateurRapport", Big.new(2.0, 0)))
-
+		ListeRecherchesMatiereNoireInitializeGame.append(RechercheDarkMatter.new(0, "RECHERCHEMATIERENOIRE1", "RECHERCHEMATIERENOIRE1DESCRIPTION", Big.new(1.0, 0), "HydrogeneOutputMultiplyParRechercheMN", Big.new(2.0, 0)))
+		ListeRecherchesMatiereNoireInitializeGame.append(RechercheDarkMatter.new(1, "RECHERCHEMATIERENOIRE2", "RECHERCHEMATIERENOIRE2DESCRIPTION", Big.new(1.0, 1), "HydrogeneAttributsCostDividedParRechercheMN", Big.new(5.0, 0)))
+		ListeRecherchesMatiereNoireInitializeGame.append(RechercheDarkMatter.new(2, "RECHERCHEMATIERENOIRE3", "RECHERCHEMATIERENOIRE3DESCRIPTION", Big.new(1.0, 2), "HeliumOutputMultiply", Big.new(2.0, 0)))
 #------------------------------------------------------------------------------------------------------#
 
 
@@ -325,6 +325,14 @@ func ResetAmeliorationsHelium():
 		ameliorationHelium.Level = Big.new(0.0)
 		ameliorationHelium.IsUnlocked = false
 	BonusManager.MajBonusAmeliorationHelium()
+
+
+#Permet de remettre les améliorations Lithium à zeros
+func ResetAmeliorationsLithium():
+	for ameliorationLithium in ListeAmeliorationsLithium:
+		ameliorationLithium.Level = Big.new(0.0)
+		ameliorationLithium.IsUnlocked = false
+	BonusManager.MajBonusAmeliorationLithium()
 
 
 func save():
