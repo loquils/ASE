@@ -9,7 +9,7 @@ var Augmentation
 var AugmentationPercent
 var ResearchLevel:ResearchLevelEnum
 
-enum ResearchLevelEnum {EASY}
+enum ResearchLevelEnum {DEBUT, EASY}
 
 func _init(id, name, description, prix: Big, augmentation, augmentationPercent: Big, researchLevel):
 	Id = id

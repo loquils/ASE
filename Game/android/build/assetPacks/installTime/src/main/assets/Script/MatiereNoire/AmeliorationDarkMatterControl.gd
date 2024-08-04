@@ -6,7 +6,8 @@ var BoutonRechercheDarkMatter = preload("res://Design/Scenes/ButtonDarkMatter.ts
 @onready var MatierNoireApresPrestige = $PresentationVBoxC/MarginC/VBoxC/QuantiteeAGagnerHBoxC/QuantiteeLabel
 @onready var RecherchesGridC = $PresentationVBoxC/MarginC/VBoxC/RecherchesMarginC/InterneRecherchesMarginC/PrestigeAmeliorationScrollC/PrestigeGridC
 
-var CoefficientDivisionMatiereNoire = Big.new(2.5,7)
+#Coefficient de calcul pour la matière noire
+var CoefficientDivisionMatiereNoire = Big.new(5.0,6)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -60,6 +61,7 @@ func DarkMatterReset():
 	RessourceManager.DarkMatter = Big.add(RessourceManager.DarkMatter, GetDeltaDarkMatter())
 	RessourceManager.ResetAtomes()
 	RessourceManager.ResetAmeliorationsHelium()
+	RessourceManager.ResetAmeliorationsLithium()
 	RessourceManager.ResetRecherches()
 	InfosPartie.ResetInformationsOnPrestige()
 	RessourceManager.ResetRessources()

@@ -5,6 +5,7 @@ var AmeliorationLithium: AmeliorationLithium
 @onready var NomAmeliorationLabel = $PresentationVBoxC/TopMarginC/NomMarginC/NomLabel
 @onready var DescriptionAmeliorationLabel = $PresentationVBoxC/MidMarginC/DescriptionMarginC/VBoxC/DescriptionLabel
 @onready var BonusAmeliorationLabel = $PresentationVBoxC/MidMarginC/DescriptionMarginC/VBoxC/BonusMarginC/FondBonusPanel/MarginC/BonusLabel
+@onready var BonusAmeliorationMarginC = $PresentationVBoxC/MidMarginC/DescriptionMarginC/VBoxC/BonusMarginC
 @onready var AmeliorationBoutton = $PresentationVBoxC/BotMarginC/ButtonAchatAmelioration
 @onready var NiveauAmeliorationLabel = $PresentationVBoxC/BotMarginC/ButtonAchatAmelioration/HBoxC/NiveauMarginC/NiveauLabel
 @onready var PrixAmeliorationLabel = $PresentationVBoxC/BotMarginC/ButtonAchatAmelioration/HBoxC/PrixContainer/PrixLabel
@@ -28,14 +29,14 @@ func _ready():
 func _process(delta):
 	NomAmeliorationLabel.text = tr(AmeliorationLithium.Name)
 	DescriptionAmeliorationLabel.text = tr(AmeliorationLithium.Description)
-	BonusAmeliorationLabel.text = "PasLa"
+	
 	NiveauAmeliorationLabel.text = tr("Niv.") + str(AmeliorationLithium.Level)
 	PrixAmeliorationLabel.text = tr("Prix") + str(AmeliorationLithium.GetPrixAmeliorationLithium())
 	
 	if (AmeliorationLithium.CategorieAmeliorationLithium == AmeliorationLithium.CategorieAmeliorationLithiumEnum.Proton):
-		BonusAmeliorationLabel.text = tr("Bonus/Niv +") + str(Big.multiply(BonusManager.GetAmeliorationLithiumProtonUniqueBonus(AmeliorationLithium), Big.new(1.0,2))) + "%"
+		BonusAmeliorationLabel.text = tr("Bonus/Niv +") + str(Big.multiply(BonusManager.GetAmeliorationLithiumProtonMultiplicateur(), Big.new(1.0,2))) + "%"
 	else:
-		BonusAmeliorationLabel.text = tr("Bonus/Niv /") + str(BonusManager.GetAmeliorationLithiumNeutronUniqueBonus(AmeliorationLithium))
+		BonusAmeliorationLabel.text = tr("Bonus/Niv /") + str(BonusManager.GetAmeliorationLithiumNeutronMultiplicateur())
 	
 	if UnlockPanel.visible:
 		UnlockAtomeNomLabel.text = tr(AmeliorationLithium.AtomePriceForUnlocking.keys()[0])

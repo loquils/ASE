@@ -44,22 +44,22 @@ func _process(delta):
 	if (AmeliorationHelium.BonusTypeAmeliorationHelium == "HydrogeneOutputMultiply"):
 		bonusNumberToPrint = str(Big.multiply(BonusManager.GetAmeliorationHeliumPressionMultiplicateur(), Big.new(1.0, 2)))
 	elif (AmeliorationHelium.BonusTypeAmeliorationHelium == "PressionEfficacitee0"):
-		bonusNumberToPrint = str(Big.multiply(BonusManager.GetAmeliorationHeliumCoefficienPression0(), Big.new(1.0, 2)))
-		BonusLabel.text = tr("AMELIORATIONHELIUMPRESSION1") + " +" + str(Big.multiply(BonusManager.GetAmeliorationHeliumCoefficienPression0AvecNiveau(), Big.new(1.0, 2))) + "%"
+		bonusNumberToPrint = str(Big.multiply(BonusManager.GetAmeliorationHeliumCoefficientPression0(), Big.new(1.0, 2)))
+		BonusLabel.text = tr("AMELIORATIONHELIUMPRESSION1") + " +" + str(Big.multiply(BonusManager.GetAmeliorationHeliumCoefficientPression0AvecNiveau(), Big.new(1.0, 2))) + "%"
 		BonusLabel.show()
 	elif (AmeliorationHelium.BonusTypeAmeliorationHelium == "PressionEfficacitee1"):
-		bonusNumberToPrint = str(Big.multiply(BonusManager.GetAmeliorationHeliumCoefficienPression1(), Big.new(1.0, 2)))
-		BonusLabel.text = tr("AMELIORATIONHELIUMPRESSION2") + " +" + str(Big.multiply(BonusManager.GetAmeliorationHeliumCoefficienPression1AvecNiveau(), Big.new(1.0, 2))) + "%"
+		bonusNumberToPrint = str(Big.multiply(BonusManager.GetAmeliorationHeliumCoefficientPression1(), Big.new(1.0, 2)))
+		BonusLabel.text = tr("AMELIORATIONHELIUMPRESSION2") + " +" + str(Big.multiply(BonusManager.GetAmeliorationHeliumCoefficientPression1AvecNiveau(), Big.new(1.0, 2))) + "%"
 		BonusLabel.show()
 	elif (AmeliorationHelium.BonusTypeAmeliorationHelium == "HydrogeneAttributsCoefficientAdd"):
 		bonusNumberToPrint = str(BonusManager.GetAmeliorationHeliumTemperatureMultiplicateur())
 	elif (AmeliorationHelium.BonusTypeAmeliorationHelium == "TemperatureEfficacitee0"):
-		bonusNumberToPrint = str(BonusManager.GetAmeliorationHeliumCoefficienTemperature0())
-		BonusLabel.text = tr("AMELIORATIONHELIUMTEMPERATURE1") + " +" + str(BonusManager.GetAmeliorationHeliumCoefficienTemperature0AvecNiveau())
+		bonusNumberToPrint = str(BonusManager.GetAmeliorationHeliumCoefficientTemperature0())
+		BonusLabel.text = tr("AMELIORATIONHELIUMTEMPERATURE1") + " +" + str(BonusManager.GetAmeliorationHeliumCoefficientTemperature0AvecNiveau())
 		BonusLabel.show()
 	elif (AmeliorationHelium.BonusTypeAmeliorationHelium == "TemperatureEfficacitee1"):
-		bonusNumberToPrint = str(BonusManager.GetAmeliorationHeliumCoefficienTemperature1())
-		BonusLabel.text = tr("AMELIORATIONHELIUMTEMPERATURE2") + " +" + str(BonusManager.GetAmeliorationHeliumCoefficienTemperature1AvecNiveau())
+		bonusNumberToPrint = str(BonusManager.GetAmeliorationHeliumCoefficientTemperature1())
+		BonusLabel.text = tr("AMELIORATIONHELIUMTEMPERATURE2") + " +" + str(BonusManager.GetAmeliorationHeliumCoefficientTemperature1AvecNiveau())
 		BonusLabel.show()
 	
 	DescriptionLabel.text = descriptionTraduite.replace("{calc}", bonusNumberToPrint)

@@ -28,7 +28,15 @@ func _set_var(ameliorationLithium:AmeliorationLithium):
 func _process(delta):
 	NomAmeliorationLabel.text = tr(AmeliorationLithium.Name)
 	DescriptionAmeliorationLabel.text = tr(AmeliorationLithium.Description)
-	BonusAmeliorationLabel.text = "PasLa"
+	
+	if (AmeliorationLithium.BonusTypeAmeliorationLithium == "ProtonEfficacitee"):
+		BonusAmeliorationLabel.text = "+" + str(Big.multiply(BonusManager.GetAmeliorationLithiumCoefficientProton(), Big.new(1.0,2))) + "%"
+	elif (AmeliorationLithium.BonusTypeAmeliorationLithium == "NeutronEfficacitee"):
+		BonusAmeliorationLabel.text = "+/" + str(BonusManager.GetAmeliorationLithiumCoefficientNeutron())
+	elif (AmeliorationLithium.BonusTypeAmeliorationLithium == "ElectronsKEfficacitee"):
+		var bonusElectrons = BonusManager.GetAmeliorationLithiumCoefficientElectronsLAvecNiveaux()
+		BonusAmeliorationLabel.text = "+" + str(Big.multiply(bonusElectrons, Big.new(1.0,2))) + "% | +/" + str(bonusElectrons)
+	
 	NiveauAmeliorationLabel.text = tr("Niv.") + str(AmeliorationLithium.Level)
 	PrixAmeliorationLabel.text = tr("Prix") + str(AmeliorationLithium.GetPrixAmeliorationLithium())
 	

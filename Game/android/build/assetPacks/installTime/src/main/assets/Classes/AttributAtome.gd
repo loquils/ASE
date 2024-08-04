@@ -25,6 +25,6 @@ func GetAttributRapportAvecNiveau():
 	
 	#On ajoute les bonus concernant les augmentations sur tous les attributs de l'atome d'hydrogène (bonus helium)
 	if BonusManager.CurrentBonusesAmeliorationHelium.has(Atome.Name + "AttributsCoefficientAdd"):
-		attributCoefficientApresBonus = Big.add(attributCoefficientApresBonus, BonusManager.GetAmeliorationHeliumCoefficienTemperatureAvecNiveau())
+		attributCoefficientApresBonus = Big.add(attributCoefficientApresBonus, BonusManager.GetAmeliorationHeliumCoefficientTemperatureAvecNiveau())
 		
 	return Big.multiply(attributCoefficientApresBonus, Niveau)
