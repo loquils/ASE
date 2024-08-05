@@ -110,7 +110,7 @@ func AtomsLoading(quantiteesAtomesInSaving, atomsListInSaving):
 
 
 #Permet de charger la liste des recherches
-func LoadResearch(listeRecherchesInSaving):
+func LoadResearchOld(listeRecherchesInSaving):
 	#On définit la liste de base des recherches
 	DefineResearchListInitializingGame()
 	
@@ -125,6 +125,24 @@ func LoadResearch(listeRecherchesInSaving):
 	
 	BonusManager.MajBonusRecherches()
 
+
+#Permet de charger la liste des recherches
+func LoadResearch(listeRecherchesInSaving):
+	#On définit la liste de base des recherches
+	DefineResearchListInitializingGame()
+	
+	if not listeRecherchesInSaving == null:
+		for initializedRecherche in ListeRechercheInitializeGame:
+			#var IdRecherche = listeRecherchesInSaving.find(initializedRecherche)
+			var recherchesTrouveeInSaving = listeRecherchesInSaving.filter(func(rechercheSave): return rechercheSave.Id == initializedRecherche.Id)
+			if recherchesTrouveeInSaving.size() == 1:
+				if recherchesTrouveeInSaving[0]["IsUnlocked"]:
+					initializedRecherche.IsUnlocked = true
+	
+	for recherche in ListeRechercheInitializeGame:
+		ListeRecherches.append(recherche)
+	
+	BonusManager.MajBonusRecherches()
 
 #Permet de charger la liste des recherches
 func LoadAmeliorationHelium(listeAmeliorationsHeliumInSaving):
@@ -289,9 +307,9 @@ func DefineAmeliorationLithiumListInitializingGame():
 
 #Permet d'initialiser la liste des recherches de matière noire dans le jeu
 func DefineRechercheMatiereNoireListInitializingGame():
-		ListeRecherchesMatiereNoireInitializeGame.append(RechercheDarkMatter.new(0, "RECHERCHEMATIERENOIRE1", "RECHERCHEMATIERENOIRE1DESCRIPTION", Big.new(1.0, 0), "HydrogeneOutputMultiplyParRechercheMN", Big.new(2.0, 0)))
+		ListeRecherchesMatiereNoireInitializeGame.append(RechercheDarkMatter.new(0, "RECHERCHEMATIERENOIRE1", "RECHERCHEMATIERENOIRE1DESCRIPTION", Big.new(1.0, 0), "HydrogeneOutputMultiplyParRechercheMN", Big.new(1.0, 0)))
 		ListeRecherchesMatiereNoireInitializeGame.append(RechercheDarkMatter.new(1, "RECHERCHEMATIERENOIRE2", "RECHERCHEMATIERENOIRE2DESCRIPTION", Big.new(1.0, 1), "HydrogeneAttributsCostDividedParRechercheMN", Big.new(5.0, 0)))
-		ListeRecherchesMatiereNoireInitializeGame.append(RechercheDarkMatter.new(2, "RECHERCHEMATIERENOIRE3", "RECHERCHEMATIERENOIRE3DESCRIPTION", Big.new(1.0, 2), "HeliumOutputMultiply", Big.new(2.0, 0)))
+		ListeRecherchesMatiereNoireInitializeGame.append(RechercheDarkMatter.new(2, "RECHERCHEMATIERENOIRE3", "RECHERCHEMATIERENOIRE3DESCRIPTION", Big.new(1.0, 2), "HeliumOutputMultiply", Big.new(1.0, 0)))
 #------------------------------------------------------------------------------------------------------#
 
 

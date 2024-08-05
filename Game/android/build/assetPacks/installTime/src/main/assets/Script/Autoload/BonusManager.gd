@@ -81,7 +81,7 @@ func MajBonusRecherchesMatiereNoire():
 				CurrentBonusesRecherchesMatiereNoire[rechercheMatiereNoire.Augmentation.replace("ParRechercheMN", "")] = Big.add(CurrentBonusesRecherchesMatiereNoire[rechercheMatiereNoire.Augmentation.replace("ParRechercheMN", "")], Big.multiply(rechercheMatiereNoire.AugmentationPercent, InfosPartie.RecherchesMatiereNoireAchetees))
 			else:
 				CurrentBonusesRecherchesMatiereNoire[rechercheMatiereNoire.Augmentation] = Big.add(CurrentBonusesRecherchesMatiereNoire[rechercheMatiereNoire.Augmentation], rechercheMatiereNoire.AugmentationPercent)
-
+	print(CurrentBonusesRecherchesMatiereNoire["HydrogeneOutputMultiply"])
 
 #Permet de récupérer le multiplicateur global du rendu des atomes (prend en compte les recherches et les amélioration Helium/Lithium
 func GetGlobalMultiplicator(Name):
@@ -101,27 +101,18 @@ func GetGlobalMultiplicator(Name):
 		if currentBonusAmeliorationLithiumBonus.contains(Name) and currentBonusAmeliorationLithiumBonus.contains("OutputMultiply"):
 			lithiumMultiplicateur = Big.add(lithiumMultiplicateur, GetAmeliorationLithiumCoefficientProtonAvecNiveau())
 	
-	var globalMultiplicator = Big.add(recherchesMultiplicator, heliumMultiplicator)
-	globalMultiplicator = Big.add(globalMultiplicator, lithiumMultiplicateur)
+	var globalMultiplicator = Big.add(lithiumMultiplicateur, Big.add(recherchesMultiplicator, heliumMultiplicator))
 	
-	if(globalMultiplicator.isEqualTo(Big.new(0.0))):
-		globalMultiplicator = Big.new(1.0)
-	
-	var matiereNoireMultiplicateur = GetDarkMaterMultiplicator(Name)
-	
-	return Big.multiply(globalMultiplicator, matiereNoireMultiplicateur)
+	return globalMultiplicator
 
 
 #Permet de récupérer le multiplicateur sur les recherches de matière noire du rendu des atomes
 func GetDarkMaterMultiplicator(Name):
-	var matiereNoireMultiplicateur = Big.new(1.0)
+	var matiereNoireMultiplicateur = Big.new(0.0)
 	
 	for currentRechercheMatiereNoireBonus in CurrentBonusesRecherchesMatiereNoire:
 		if currentRechercheMatiereNoireBonus.contains(Name) and currentRechercheMatiereNoireBonus.contains("OutputMultiply"):
 			matiereNoireMultiplicateur = Big.add(matiereNoireMultiplicateur, CurrentBonusesRecherchesMatiereNoire[currentRechercheMatiereNoireBonus])
-	
-	if matiereNoireMultiplicateur.isEqualTo(Big.new(0.0)):
-		matiereNoireMultiplicateur = Big.new(1.0)
 	
 	return matiereNoireMultiplicateur
 

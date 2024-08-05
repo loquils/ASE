@@ -11,6 +11,6 @@ func _process(delta):
 		RecherchesAcheteesLabel.text = str(InfosPartie.RecherchesAchetees)
 		RecherchesMatiereNoireAcheteesLabel.text = str(InfosPartie.RecherchesMatiereNoireAchetees)
 
-		BonusLabel1.text = "x " + str(BonusManager.GetDarkMaterMultiplicator("Hydrogene"))
+		BonusLabel1.text = "+" + str(Big.multiply(BonusManager.GetDarkMaterMultiplicator("Hydrogene"), Big.new(1.0, 2))) + "%"
 		BonusLabel2.text = "/ " + str(BonusManager.GetDarkMaterDiviseur("Hydrogene"))
-		BonusLabel3.text = "x " + str(BonusManager.CurrentBonusesRecherchesMatiereNoire["HeliumOutputMultiply"])
+		BonusLabel3.text = "+" + str(Big.multiply(BonusManager.GetDarkMaterMultiplicator("HeliumOutputMultiply"), Big.new(1.0, 2))) + "%"

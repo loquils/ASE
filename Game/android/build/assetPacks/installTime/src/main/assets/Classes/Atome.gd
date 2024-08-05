@@ -57,7 +57,9 @@ func GetAtomePerSec():
 	if isUnlocked:
 		#return ApportAtome.multiply((CustomNumber.new(1.0).add(GetAugmentationsAttributs()))).multiply(GlobalMultiplicator)
 		var calculApportAttributs = Big.multiply(ApportAtome, GetAugmentationsAttributs())
-		return Big.multiply(calculApportAttributs, BonusManager.GetGlobalMultiplicator(Name))
+		var calculGlobalMultiplicateur = Big.multiply(calculApportAttributs, Big.add(Big.new(1.0), BonusManager.GetGlobalMultiplicator(Name)))
+		var calculDarkMatter = Big.multiply(calculGlobalMultiplicateur, Big.add(Big.new(1.0), BonusManager.GetDarkMaterMultiplicator(Name)))
+		return calculDarkMatter
 		#return Big.multiply(ApportAtome, GetAugmentationsAttributs())
 	else:
 		return Big.new(0.0)

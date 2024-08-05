@@ -11,10 +11,10 @@ config_version=5
 [application]
 
 config/name="Atoms Stack Evolution"
-config/version="0.0.12"
+config/version="0.0.13"
 run/main_scene="res://Design/Scenes/Game.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
-config/icon="res://icon.svg"
+config/icon="res://Gimped/Icones/IconeBlack.png"
 
 [autoload]
 
