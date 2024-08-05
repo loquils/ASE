@@ -94,7 +94,7 @@ func _on_debut_jeu_button_pressed():
 	SaveTimer.start()
 	MainTimer.start()
 	InformationsPartieTimer.start()
-	AdTimer.start()
+	#AdTimer.start()
 	TutorielControl.AfterAccueil = true
 
 
