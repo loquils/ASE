@@ -188,7 +188,7 @@ func CalculateQuantityAtomes(timeInSeconde:int = 1):
 func DefineAtomsListInitializingGame():
 	#On définit les atomes auxquels on a accès :)
 	var hydrogeneAtom = Atome.new("Hydrogene", Big.new(1.0, 0), Big.new(1.0, 0))
-	var attribut1Hydrogene = AttributAtome.new(hydrogeneAtom, "Force", Big.new(1.0, 5), Big.new(1.11), Big.new(0.12), Big.new(5))
+	var attribut1Hydrogene = AttributAtome.new(hydrogeneAtom, "Force", Big.new(0.0), Big.new(1.11), Big.new(0.12), Big.new(5))
 	var attribut2Hydrogene = AttributAtome.new(hydrogeneAtom, "Vitesse", Big.new(0.0), Big.new(1.34), Big.new(0.25), Big.new(10))
 	var hydrogenAttributsList = [attribut1Hydrogene, attribut2Hydrogene]
 	hydrogeneAtom.DefineAtomeAttributs(hydrogenAttributsList)
@@ -197,7 +197,7 @@ func DefineAtomsListInitializingGame():
 	AtomsListInitializingGame.append(hydrogeneAtom)
 	
 	var heliumAtom = Atome.new("Helium", Big.new(0.7, 0))
-	var attribut1Helium = AttributAtome.new(heliumAtom, "Force", Big.new(1.0, 5), Big.new(1.30), Big.new(0.10), Big.new(50))
+	var attribut1Helium = AttributAtome.new(heliumAtom, "Force", Big.new(0.0), Big.new(1.30), Big.new(0.10), Big.new(50))
 	var attribut2Helium = AttributAtome.new(heliumAtom, "Rotation", Big.new(0.0), Big.new(1.36), Big.new(0.2), Big.new(75))
 	var attribut3Helium = AttributAtome.new(heliumAtom, "Complexitee", Big.new(0.0), Big.new(1.82), Big.new(0.42), Big.new(120))
 	var heliumAttributsList = [attribut1Helium, attribut2Helium, attribut3Helium]
@@ -208,7 +208,7 @@ func DefineAtomsListInitializingGame():
 	AtomsListInitializingGame.append(heliumAtom)
 	
 	var lithiumAtom = Atome.new("Lithium", Big.new(0.25, 0))
-	var attribut1Lithium = AttributAtome.new(lithiumAtom, "Lien", Big.new(1.0, 5), Big.new(1.56), Big.new(0.25), Big.new(3.25, 2))
+	var attribut1Lithium = AttributAtome.new(lithiumAtom, "Lien", Big.new(0.0), Big.new(1.56), Big.new(0.25), Big.new(3.25, 2))
 	var attribut2Lithium = AttributAtome.new(lithiumAtom, "Vitesse", Big.new(0.0), Big.new(1.1), Big.new(0.1), Big.new(5.0, 2))
 	var attribut3Lithium = AttributAtome.new(lithiumAtom, "Vibration", Big.new(0.0), Big.new(1.34), Big.new(0.17), Big.new(1.0, 3))
 	var lithiumAttributsList = [attribut1Lithium, attribut2Lithium, attribut3Lithium]
