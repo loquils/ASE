@@ -109,7 +109,8 @@ RECHERCHEMATIERENOIRE3DESCRIPTION, "Double l'apport d'helium par seconde .", "Do
 RECHERCHESACHETEES, "Nombre de recherches : ", "Number of researches : "
 RECHERCHESACHETEESMATNOIRE, "Nombre de recherches de matière noire : ", "Number of dark mater researches : "
 BONUS1MATIERENOIRE, "Hydrogène par seconde : ", "Hydrogen per seconde : "
-BONUS2MATIERENOIRE, "Hélium par seconde : ", "Helium per seconde : "
+BONUS2MATIERENOIRE, "Prix attributs Hydrogène : ", "Price Hydrogène attributs : "
+BONUS3MATIERENOIRE, "Hélium par seconde : ", "Helium per seconde : "
 
 BONUSNOMTOPCONTENEUR, "Bonus de matière noire :", "Dark Mater bonuses"
 PRESTIGEBOUTON, "Prestige !\n Retours vers un nouveau commencement !", "Prestige !\n Back to a new beginning !"

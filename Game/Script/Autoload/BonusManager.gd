@@ -81,7 +81,6 @@ func MajBonusRecherchesMatiereNoire():
 				CurrentBonusesRecherchesMatiereNoire[rechercheMatiereNoire.Augmentation.replace("ParRechercheMN", "")] = Big.add(CurrentBonusesRecherchesMatiereNoire[rechercheMatiereNoire.Augmentation.replace("ParRechercheMN", "")], Big.multiply(rechercheMatiereNoire.AugmentationPercent, InfosPartie.RecherchesMatiereNoireAchetees))
 			else:
 				CurrentBonusesRecherchesMatiereNoire[rechercheMatiereNoire.Augmentation] = Big.add(CurrentBonusesRecherchesMatiereNoire[rechercheMatiereNoire.Augmentation], rechercheMatiereNoire.AugmentationPercent)
-	print(CurrentBonusesRecherchesMatiereNoire["HydrogeneOutputMultiply"])
 
 #Permet de récupérer le multiplicateur global du rendu des atomes (prend en compte les recherches et les amélioration Helium/Lithium
 func GetGlobalMultiplicator(Name):
@@ -119,15 +118,15 @@ func GetDarkMaterMultiplicator(Name):
 
 #Permet de récupérer le diviseur sur les recherches de matière noire du rendu des atomes
 func GetDarkMaterDiviseur(Name):
-	var matiereNoireDiviseur = Big.new(1.0)
+	var matiereNoireDiviseur = Big.new(0.0)
+	
 	for currentRechercheMatiereNoireBonus in CurrentBonusesRecherchesMatiereNoire:
 		if currentRechercheMatiereNoireBonus.contains(Name) and currentRechercheMatiereNoireBonus.contains("AttributsCostDivided"):
 			matiereNoireDiviseur = Big.add(matiereNoireDiviseur, CurrentBonusesRecherchesMatiereNoire[currentRechercheMatiereNoireBonus])
 	
-	#On en a plus besoin de ça, mais juste au cas ou
 	if matiereNoireDiviseur.isEqualTo(Big.new(0.0)):
 		matiereNoireDiviseur = Big.new(1.0)
-	
+		
 	return matiereNoireDiviseur
 
 #Permet de récupérer le diviseur du prix des attributs des atomes
@@ -148,9 +147,7 @@ func GetRecherchesAttributsCostsDivided(attribut):
 	if diviseurGlobal.isEqualTo(Big.new(0.0)):
 		diviseurGlobal = Big.new(1.0)
 	
-	var matiereNoireDiviseur = GetDarkMaterDiviseur(attribut.Atome.Name)
-
-	return Big.multiply(diviseurGlobal, matiereNoireDiviseur)
+	return diviseurGlobal
 
 #-----------------------------------------Helium-----------------------------------------------------------------
 
