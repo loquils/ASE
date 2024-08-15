@@ -37,10 +37,14 @@ Vibration, "Vibration", "Vibration"
 Niv., "Niv.", "Lvl."
 Prix : , "Prix : ", "Price : "
 
+
 OPTIONSLABEL, "Options", "Settings"
 CHANGERLANGUEBUTTON, "Changer langue", "Change language"
 SAUVEGARDELABEL, "Sauvegarder", "Save"
 FORCERESETLABEL, "Totale remise à zéro", "Full force reset"
+NOMVALIDATIONRESETLABEL, "Êtes vous sûr que voulez réinitialiser le jeu ?", "Are you sure you want to reset the game ?"
+INFORMATIONVALIDATIONRESETLABEL, "Toutes votre avancée sera remise à zero ! Rien ne pourra être sauvé ! Etes-vous sur de vouloir réinitialiser ?\nLe jeu se fermera.", "Everything will be gone ! Nothing will be saved ! Are you sure you want to reset ?\nThe game will close."
+
 
 RECHERCHEDESCRIPTIONPRIXHYDROTEST, "Augmentation du prix de l'hydrogène de 25%.", "25% Hydrogen price augmentation."
 

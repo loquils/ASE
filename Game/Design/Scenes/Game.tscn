@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://jwctjc5cvudy"]
+[gd_scene load_steps=41 format=3 uid="uid://jwctjc5cvudy"]
 
 [ext_resource type="Theme" uid="uid://cbk6urwquxgkm" path="res://Design/Themes/Global/ThemeGlobal.tres" id="1_rwuoq"]
 [ext_resource type="Script" path="res://Script/Game.gd" id="1_xa3fh"]
@@ -121,6 +121,24 @@ border_width_right = 2
 border_width_bottom = 2
 border_color = Color(0, 0, 0, 1)
 corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_isln8"]
+bg_color = Color(0.192157, 0.192157, 0.192157, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+
+[sub_resource type="LabelSettings" id="LabelSettings_q2qlg"]
+font = ExtResource("3_2a2og")
+font_size = 18
+
+[sub_resource type="LabelSettings" id="LabelSettings_yixj0"]
+font_size = 18
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1n21c"]
 draw_center = false
@@ -631,6 +649,79 @@ text = "FORCERESETLABEL"
 [node name="ButtonSave" type="Button" parent="WindowTopBlackVBoxC/MainMarginC/OptionsControl/PresentationVBoxC/MainMarginC/OptionsVBoxC"]
 layout_mode = 2
 text = "SAUVEGARDELABEL"
+
+[node name="FondValidationResetPanel" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/OptionsControl"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BoxValidationResetPanel" type="Panel" parent="WindowTopBlackVBoxC/MainMarginC/OptionsControl/FondValidationResetPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -120.0
+offset_right = 300.0
+offset_bottom = 120.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_isln8")
+
+[node name="MarginC" type="MarginContainer" parent="WindowTopBlackVBoxC/MainMarginC/OptionsControl/FondValidationResetPanel/BoxValidationResetPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="PresentationVBoxC" type="VBoxContainer" parent="WindowTopBlackVBoxC/MainMarginC/OptionsControl/FondValidationResetPanel/BoxValidationResetPanel/MarginC"]
+layout_mode = 2
+alignment = 1
+
+[node name="NomValidationResetLabel" type="Label" parent="WindowTopBlackVBoxC/MainMarginC/OptionsControl/FondValidationResetPanel/BoxValidationResetPanel/MarginC/PresentationVBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "NOMVALIDATIONRESETLABEL"
+label_settings = SubResource("LabelSettings_q2qlg")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InformationsValidationResetLabel" type="Label" parent="WindowTopBlackVBoxC/MainMarginC/OptionsControl/FondValidationResetPanel/BoxValidationResetPanel/MarginC/PresentationVBoxC"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_vertical = 3
+text = "INFORMATIONVALIDATIONRESETLABEL"
+label_settings = SubResource("LabelSettings_yixj0")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ButonsHBoxC" type="HBoxContainer" parent="WindowTopBlackVBoxC/MainMarginC/OptionsControl/FondValidationResetPanel/BoxValidationResetPanel/MarginC/PresentationVBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="OuiButton" type="Button" parent="WindowTopBlackVBoxC/MainMarginC/OptionsControl/FondValidationResetPanel/BoxValidationResetPanel/MarginC/PresentationVBoxC/ButonsHBoxC"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "OUI"
+
+[node name="AnnulerButton" type="Button" parent="WindowTopBlackVBoxC/MainMarginC/OptionsControl/FondValidationResetPanel/BoxValidationResetPanel/MarginC/PresentationVBoxC/ButonsHBoxC"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "ANNULER"
 
 [node name="TutorielControl" type="Control" parent="WindowTopBlackVBoxC/MainMarginC"]
 visible = false
@@ -1227,4 +1318,6 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_j7vtp")
 [connection signal="pressed" from="WindowTopBlackVBoxC/MainMarginC/OptionsControl/PresentationVBoxC/MainMarginC/OptionsVBoxC/HBoxContainer/ChangementLangueButton" to="WindowTopBlackVBoxC/MainMarginC/OptionsControl/PresentationVBoxC/MainMarginC/OptionsVBoxC/HBoxContainer/ChangementLangueButton" method="_on_pressed"]
 [connection signal="pressed" from="WindowTopBlackVBoxC/MainMarginC/OptionsControl/PresentationVBoxC/MainMarginC/OptionsVBoxC/ForceResetButton" to="WindowTopBlackVBoxC/MainMarginC/OptionsControl" method="_on_force_reset_button_pressed"]
 [connection signal="pressed" from="WindowTopBlackVBoxC/MainMarginC/OptionsControl/PresentationVBoxC/MainMarginC/OptionsVBoxC/ButtonSave" to="WindowTopBlackVBoxC/MainMarginC/OptionsControl" method="_on_button_save_pressed"]
+[connection signal="pressed" from="WindowTopBlackVBoxC/MainMarginC/OptionsControl/FondValidationResetPanel/BoxValidationResetPanel/MarginC/PresentationVBoxC/ButonsHBoxC/OuiButton" to="WindowTopBlackVBoxC/MainMarginC/OptionsControl" method="_on_validation_reset_button_pressed"]
+[connection signal="pressed" from="WindowTopBlackVBoxC/MainMarginC/OptionsControl/FondValidationResetPanel/BoxValidationResetPanel/MarginC/PresentationVBoxC/ButonsHBoxC/AnnulerButton" to="WindowTopBlackVBoxC/MainMarginC/OptionsControl" method="_on_annuler_reset_button_pressed"]
 [connection signal="pressed" from="WindowTopBlackVBoxC/MainMarginC/TutorielControl/MessageMarginC/VBoxC/ValidationMarginC/ValidationButton" to="WindowTopBlackVBoxC/MainMarginC/TutorielControl" method="_on_validation_button_pressed"]
