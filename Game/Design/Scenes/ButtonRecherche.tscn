@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://clfwvscofnwyr"]
+[gd_scene load_steps=7 format=3 uid="uid://clfwvscofnwyr"]
 
 [ext_resource type="Theme" uid="uid://eas28obod65v" path="res://Design/Themes/ThemeRecherches.tres" id="1_qiuuy"]
 [ext_resource type="Script" path="res://Script/ButtonRecherche.gd" id="2_i5jlq"]
@@ -9,6 +9,8 @@
 bg_color = Color(0.345098, 0.345098, 0.345098, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yetdp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ge3q4"]
 
 [node name="Button" type="Button"]
 custom_minimum_size = Vector2(200, 255)
@@ -104,3 +106,13 @@ size_flags_vertical = 10
 theme_override_styles/normal = SubResource("StyleBoxEmpty_yetdp")
 text = "Label"
 horizontal_alignment = 1
+
+[node name="BonusMarginC" type="MarginContainer" parent="PanelC/PresentationVBoxC"]
+visible = false
+layout_mode = 2
+
+[node name="BonusLabel" type="Label" parent="PanelC/PresentationVBoxC/BonusMarginC"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ge3q4")
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -6,6 +6,10 @@ var Recherche
 @onready var DescriptionLabel = $PanelC/PresentationVBoxC/MarginC/DescriptionLabel
 @onready var PrixLabel = $PanelC/PresentationVBoxC/PrixMarginC/PrixLabel
 @onready var VertPanel = $PanelC/PresentationVBoxC/MarginC/VertPanel
+@onready var BonusLabel = $PanelC/PresentationVBoxC/BonusMarginC/BonusLabel
+
+@onready var PrixContainer = $PanelC/PresentationVBoxC/PrixMarginC
+@onready var BonusContainer = $PanelC/PresentationVBoxC/BonusMarginC
 
 #Définition de l'UI du bouton personnalisé.
 func _set_var(recherche):
@@ -22,10 +26,14 @@ func _process(_delta):
 	PrixLabel.text = tr("Prix : ") + str(Recherche.Prix)
 	
 	if not Recherche.IsUnlocked:
+		if BonusContainer.visible:
+			BonusContainer.hide()
+			PrixContainer.show()
+			
 		if VertPanel.visible:
 			disabled = false
 			VertPanel.visible = false
-			
+		
 		if Recherche.Prix.isGreaterThan(RessourceManager.Coins):
 			disabled = true
 		else:
@@ -33,6 +41,7 @@ func _process(_delta):
 	else:
 		if not VertPanel.visible:
 			ChangeButtonStateToBought()
+		BonusLabel.text = Recherche.GetRechercheBonusString()
 
 
 #Methode trigger lors de l'appuie sur ce bouton
@@ -41,4 +50,6 @@ func ChangeButtonStateToBought():
 	if Recherche.IsUnlocked:
 		disabled = true
 		VertPanel.visible = true
+		BonusContainer.show()
+		PrixContainer.hide()
 		print("Recherche achetée :)")
