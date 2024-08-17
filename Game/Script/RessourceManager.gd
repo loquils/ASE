@@ -193,11 +193,14 @@ func LoadDarkMatter(listeRecherchesMatiereNoireInSaving):
 	BonusManager.MajBonusRecherchesMatiereNoire()
 
 
-#Calcul et ajoute la quantité d'atome à la quantité d'atome
+#Calcul et ajoute la quantité d'atome par rapport au temps indiqué
 func CalculateQuantityAtomes(timeInSeconde:int = 1):
 	for atome in ListeAtomes:
 		if ListeAtomes[atome].isUnlocked:
-				QuantiteesAtomes[atome] = Big.multiply(Big.add(QuantiteesAtomes[atome], ListeAtomes[atome].GetAtomePerSec()), Big.new(timeInSeconde))
+				var quantityAtomeWithTime = Big.multiply(ListeAtomes[atome].GetAtomePerSec(), Big.new(timeInSeconde))
+				QuantiteesAtomes[atome] = Big.add(QuantiteesAtomes[atome], quantityAtomeWithTime)
+				#Pour les infos de la partie
+				InfosPartie.CoinsObtenusInThisReset = Big.add(InfosPartie.CoinsObtenusInThisReset, quantityAtomeWithTime)
 
 
 #---------------------------------Define all elements of the game !----------------------------------#
@@ -232,7 +235,7 @@ func DefineAtomsListInitializingGame():
 	var lithiumAttributsList = [attribut1Lithium, attribut2Lithium, attribut3Lithium]
 	
 	lithiumAtom.DefineAtomeAttributs(lithiumAttributsList)
-	lithiumAtom.DefineAtomeUnlockingPrice({"Helium" : Big.new(5.0, 4)})
+	lithiumAtom.DefineAtomeUnlockingPrice({"Helium" : Big.new(5.0, 3)})
 	
 	AtomsListInitializingGame.append(lithiumAtom)
 
