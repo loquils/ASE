@@ -215,9 +215,9 @@ func DefineAtomsListInitializingGame():
 	AtomsListInitializingGame.append(hydrogeneAtom)
 	
 	var heliumAtom = Atome.new("Helium", Big.new(0.7, 0))
-	var attribut1Helium = AttributAtome.new(heliumAtom, "Force", Big.new(0.0), Big.new(1.30), Big.new(0.10), Big.new(50))
-	var attribut2Helium = AttributAtome.new(heliumAtom, "Rotation", Big.new(0.0), Big.new(1.36), Big.new(0.2), Big.new(75))
-	var attribut3Helium = AttributAtome.new(heliumAtom, "Complexitee", Big.new(0.0), Big.new(1.82), Big.new(0.42), Big.new(120))
+	var attribut1Helium = AttributAtome.new(heliumAtom, "Force", Big.new(0.0), Big.new(1.24), Big.new(0.10), Big.new(25))
+	var attribut2Helium = AttributAtome.new(heliumAtom, "Rotation", Big.new(0.0), Big.new(1.36), Big.new(0.2), Big.new(60))
+	var attribut3Helium = AttributAtome.new(heliumAtom, "Complexitee", Big.new(0.0), Big.new(1.82), Big.new(0.42), Big.new(100))
 	var heliumAttributsList = [attribut1Helium, attribut2Helium, attribut3Helium]
 	
 	heliumAtom.DefineAtomeAttributs(heliumAttributsList)
@@ -232,7 +232,7 @@ func DefineAtomsListInitializingGame():
 	var lithiumAttributsList = [attribut1Lithium, attribut2Lithium, attribut3Lithium]
 	
 	lithiumAtom.DefineAtomeAttributs(lithiumAttributsList)
-	lithiumAtom.DefineAtomeUnlockingPrice({"Helium" : Big.new(2.0, 5)})
+	lithiumAtom.DefineAtomeUnlockingPrice({"Helium" : Big.new(5.0, 4)})
 	
 	AtomsListInitializingGame.append(lithiumAtom)
 
@@ -256,29 +256,29 @@ func DefineResearchListInitializingGame():
 
 #Permet d'initialiser la liste des amélioration de l'hélium dans le jeu
 func DefineAmeliorationHeliumListInitializingGame():
-	var ameliorationHeliumPression1 = AmeliorationHelium.new(0, "AMELIORATIONHELIUMPRESSION1", "AMELIORATIONHELIUMPRESSIONDESCRIPTION1", Big.new(1.0, 2), Big.new(2.5), AmeliorationHelium.TypeAmeliorationHeliumEnum.Pression, "HydrogeneOutputMultiply", Big.new(0.05))
+	var ameliorationHeliumPression1 = AmeliorationHelium.new(0, "AMELIORATIONHELIUMPRESSION1", "AMELIORATIONHELIUMPRESSIONDESCRIPTION1", Big.new(1.0, 2), Big.new(1.5), AmeliorationHelium.TypeAmeliorationHeliumEnum.Pression, "HydrogeneOutputMultiply", Big.new(0.05))
 	ameliorationHeliumPression1.DefineAtomeUnlockingPrice( {"Helium" : Big.new(0.0)})
 	ameliorationHeliumPression1.IsUnlocked = true
 	ListeAmeliorationsHeliumInitializeGame.append(ameliorationHeliumPression1)
 	
-	var ameliorationHeliumPression2 = AmeliorationHelium.new(1, "AMELIORATIONHELIUMPRESSION2", "AMELIORATIONHELIUMPRESSIONDESCRIPTION2", Big.new(1.0, 3), Big.new(1.0, 1), AmeliorationHelium.TypeAmeliorationHeliumEnum.Pression, "PressionEfficacitee0", Big.new(0.1))
+	var ameliorationHeliumPression2 = AmeliorationHelium.new(1, "AMELIORATIONHELIUMPRESSION2", "AMELIORATIONHELIUMPRESSIONDESCRIPTION2", Big.new(1.0, 3), Big.new(6.5), AmeliorationHelium.TypeAmeliorationHeliumEnum.Pression, "PressionEfficacitee0", Big.new(0.1))
 	ameliorationHeliumPression2.DefineAtomeUnlockingPrice( {"Helium" : Big.new(5.0, 3)})
 	ListeAmeliorationsHeliumInitializeGame.append(ameliorationHeliumPression2)
 	
-	var ameliorationHeliumPression3 = AmeliorationHelium.new(2, "AMELIORATIONHELIUMPRESSION3", "AMELIORATIONHELIUMPRESSIONDESCRIPTION3", Big.new(2.0, 5), Big.new(2.5, 1), AmeliorationHelium.TypeAmeliorationHeliumEnum.Pression, "PressionEfficacitee1", Big.new(0.25))
+	var ameliorationHeliumPression3 = AmeliorationHelium.new(2, "AMELIORATIONHELIUMPRESSION3", "AMELIORATIONHELIUMPRESSIONDESCRIPTION3", Big.new(2.0, 5), Big.new(2.0, 1), AmeliorationHelium.TypeAmeliorationHeliumEnum.Pression, "PressionEfficacitee1", Big.new(0.25))
 	ameliorationHeliumPression3.DefineAtomeUnlockingPrice( {"Helium" : Big.new(1.0, 6)})
 	ListeAmeliorationsHeliumInitializeGame.append(ameliorationHeliumPression3)
 	
 	
-	var ameliorationHeliumTemperature1 = AmeliorationHelium.new(3, "AMELIORATIONHELIUMTEMPERATURE1", "AMELIORATIONHELIUMTEMPERATUREDESCRIPTION1", Big.new(5.0, 2), Big.new(2.5), AmeliorationHelium.TypeAmeliorationHeliumEnum.Temperature, "HydrogeneAttributsCoefficientAdd", Big.new(0.01))
+	var ameliorationHeliumTemperature1 = AmeliorationHelium.new(3, "AMELIORATIONHELIUMTEMPERATURE1", "AMELIORATIONHELIUMTEMPERATUREDESCRIPTION1", Big.new(5.0, 2), Big.new(1.95), AmeliorationHelium.TypeAmeliorationHeliumEnum.Temperature, "HydrogeneAttributsCoefficientAdd", Big.new(0.01))
 	ameliorationHeliumTemperature1.DefineAtomeUnlockingPrice( {"Helium" : Big.new(1.0, 3)})
 	ListeAmeliorationsHeliumInitializeGame.append(ameliorationHeliumTemperature1)
 	
-	var ameliorationHeliumTemperature2 = AmeliorationHelium.new(4, "AMELIORATIONHELIUMTEMPERATURE2", "AMELIORATIONHELIUMTEMPERATUREDESCRIPTION2", Big.new(1.0, 4), Big.new(1.0, 1), AmeliorationHelium.TypeAmeliorationHeliumEnum.Temperature, "TemperatureEfficacitee0", Big.new(0.04))
+	var ameliorationHeliumTemperature2 = AmeliorationHelium.new(4, "AMELIORATIONHELIUMTEMPERATURE2", "AMELIORATIONHELIUMTEMPERATUREDESCRIPTION2", Big.new(1.0, 4), Big.new(7.8), AmeliorationHelium.TypeAmeliorationHeliumEnum.Temperature, "TemperatureEfficacitee0", Big.new(0.04))
 	ameliorationHeliumTemperature2.DefineAtomeUnlockingPrice( {"Helium" : Big.new(2.5, 4)})
 	ListeAmeliorationsHeliumInitializeGame.append(ameliorationHeliumTemperature2)
 	
-	var ameliorationHeliumTemperature3 = AmeliorationHelium.new(5, "AMELIORATIONHELIUMTEMPERATURE3", "AMELIORATIONHELIUMTEMPERATUREDESCRIPTION3", Big.new(2.5, 6), Big.new(2.5, 1), AmeliorationHelium.TypeAmeliorationHeliumEnum.Temperature, "TemperatureEfficacitee1", Big.new(0.12))
+	var ameliorationHeliumTemperature3 = AmeliorationHelium.new(5, "AMELIORATIONHELIUMTEMPERATURE3", "AMELIORATIONHELIUMTEMPERATUREDESCRIPTION3", Big.new(2.5, 6), Big.new(2.3, 1), AmeliorationHelium.TypeAmeliorationHeliumEnum.Temperature, "TemperatureEfficacitee1", Big.new(0.12))
 	ameliorationHeliumTemperature3.DefineAtomeUnlockingPrice( {"Helium" : Big.new(8.0, 6)})
 	ListeAmeliorationsHeliumInitializeGame.append(ameliorationHeliumTemperature3)
 
