@@ -2,8 +2,8 @@
 2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
 3    package="com.AtomStackEvolution"
 4    android:installLocation="auto"
-5    android:versionCode="14"
-6    android:versionName="0.0.14" >
+5    android:versionCode="15"
+6    android:versionName="0.0.15" >
 7
 8    <uses-sdk
 9        android:minSdkVersion="24"

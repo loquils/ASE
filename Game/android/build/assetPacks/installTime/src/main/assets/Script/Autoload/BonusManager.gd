@@ -1,7 +1,7 @@
 extends Node
 #Force/Vitesse | Spin/Angle/Complexity
 #Bonus des Recherches
-var BonusTypesRecherches = ["PrixHydrogeneAugmentation", "AllOutputMultiply", "HydrogeneOutputMultiply", "HeliumOutputMultiply", "HydrogeneAttributsCostDivided", "HydrogeneForceCostDivided", "HydrogeneVitesseCostDivided", "HeliumAttributsCostDivided", "HeliumSpinCostDivided", "HeliumAngleCostDivided", "HeliumComplexityCostDivided"]
+var BonusTypesRecherches = ["PrixHydrogeneAugmentation", "AllOutputMultiply", "HydrogeneOutputMultiply", "HeliumOutputMultiply", "HydrogeneAttributsCostDivided", "HydrogeneForceCostDivided", "HydrogeneVitesseCostDivided", "HeliumAttributsCostDivided", "HeliumSpinCostDivided", "HeliumAngleCostDivided", "HeliumComplexiteeCostDivided", "HydrogeneForceCoefficientMultiply", "HydrogeneVitesseCoefficientMultiply"]
 var CurrentBonusesRecherches = {}
 
 #Amélioration de l'helium
@@ -157,6 +157,16 @@ func GetRecherchesAttributsCostsDivided(attribut):
 		diviseurGlobal = Big.new(1.0)
 	
 	return diviseurGlobal
+
+#Permet de récupérer le coefficient multiplacateur sur les attributs des atomes
+func GetRecherchesAttributsCoefficientMultiplicateur(attribut):
+	var coefficientMultiplicateur = Big.new(0.0)
+	
+	for currentBonusesRecherches in CurrentBonusesRecherches:
+		if (currentBonusesRecherches.contains("CoefficientMultiply") and currentBonusesRecherches.contains(attribut.Name) and currentBonusesRecherches.contains(attribut.Atome.Name)) or (currentBonusesRecherches.contains("CoefficientMultiply") and currentBonusesRecherches.contains("Attributs") and currentBonusesRecherches.contains(attribut.Atome.Name)):
+			coefficientMultiplicateur = Big.add(coefficientMultiplicateur, CurrentBonusesRecherches[currentBonusesRecherches])
+	
+	return coefficientMultiplicateur
 
 #-----------------------------------------Helium-----------------------------------------------------------------
 

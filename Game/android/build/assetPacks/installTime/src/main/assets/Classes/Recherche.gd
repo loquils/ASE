@@ -32,7 +32,7 @@ func GetRechercheBonus():
 func GetRechercheBonusString():
 	var bonus = GetRechercheBonus()
 	
-	if Augmentation[0].contains("OutputMultiply") or Augmentation[0].contains("PrixHydrogeneAugmentation"):
+	if Augmentation[0].contains("OutputMultiply") or Augmentation[0].contains("PrixHydrogeneAugmentation") or Augmentation[0].contains("CoefficientMultiply"):
 		return "+" + str(Big.multiply(bonus, Big.new(1.0, 2))) + "%"
 	
 	if Augmentation[0].contains("CostDivided"):

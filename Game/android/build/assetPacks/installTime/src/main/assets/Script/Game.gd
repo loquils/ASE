@@ -34,7 +34,7 @@ func _process(_delta):
 #func GetPrixVenteHydrogene():
 #	var newPrix = Big.multiply(RessourceManager.AtomsList["Hydrogene"].PrixBaseVenteAtome, RessourceManager.CurrentBonusesAmeliorationHelium["HydrogeneRendementMultiply"])
 
-
+#Main Timer, 1s, permet de calculer la quantité d'atome que l'on gagne
 func _on_main_timer_timeout():
 	RessourceManager.CalculateQuantityAtomes(1)
 
