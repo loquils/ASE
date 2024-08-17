@@ -71,3 +71,5 @@ func _on_amelioration_lithium_unlock_button_pressed():
 	RessourceManager.QuantiteesAtomes[AmeliorationLithium.AtomePriceForUnlocking.keys()[0]] = Big.subtractAbove0(RessourceManager.QuantiteesAtomes[AmeliorationLithium.AtomePriceForUnlocking.keys()[0]], AmeliorationLithium.AtomePriceForUnlocking.values()[0])
 		
 	AmeliorationLithium.IsUnlocked = true
+	
+	BonusManager.MajBonusAmeliorationLithium()

@@ -52,6 +52,7 @@ func AchatAmeliorationLithiumButtonPressed(ameliorationLithium:AmeliorationLithi
 	if ameliorationLithium.GetPrixAmeliorationLithium().isLessThanOrEqualTo(RessourceManager.QuantiteesAtomes["Lithium"]):
 		RessourceManager.QuantiteesAtomes["Lithium"] = Big.subtractAbove0(RessourceManager.QuantiteesAtomes["Lithium"], ameliorationLithium.GetPrixAmeliorationLithium())
 		ameliorationLithium.Level = Big.add(ameliorationLithium.Level, Big.new(1.0))
+		
 		BonusManager.MajBonusAmeliorationLithium()
 
 

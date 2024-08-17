@@ -41,26 +41,32 @@ func _process(delta):
 	var descriptionTraduite = tr(AmeliorationHelium.Description)
 	var bonusNumberToPrint = Big.new(0.0)
 	
-	if (AmeliorationHelium.BonusTypeAmeliorationHelium == "HydrogeneOutputMultiply"):
-		bonusNumberToPrint = str(Big.multiply(BonusManager.GetAmeliorationHeliumPressionMultiplicateur(), Big.new(1.0, 2)))
-	elif (AmeliorationHelium.BonusTypeAmeliorationHelium == "PressionEfficacitee0"):
-		bonusNumberToPrint = str(Big.multiply(BonusManager.GetAmeliorationHeliumCoefficientPression0(), Big.new(1.0, 2)))
-		BonusLabel.text = tr("AMELIORATIONHELIUMPRESSION1") + " +" + str(Big.multiply(BonusManager.GetAmeliorationHeliumCoefficientPression0AvecNiveau(), Big.new(1.0, 2))) + "%"
-		BonusLabel.show()
-	elif (AmeliorationHelium.BonusTypeAmeliorationHelium == "PressionEfficacitee1"):
-		bonusNumberToPrint = str(Big.multiply(BonusManager.GetAmeliorationHeliumCoefficientPression1(), Big.new(1.0, 2)))
-		BonusLabel.text = tr("AMELIORATIONHELIUMPRESSION2") + " +" + str(Big.multiply(BonusManager.GetAmeliorationHeliumCoefficientPression1AvecNiveau(), Big.new(1.0, 2))) + "%"
-		BonusLabel.show()
-	elif (AmeliorationHelium.BonusTypeAmeliorationHelium == "HydrogeneAttributsCoefficientAdd"):
-		bonusNumberToPrint = str(BonusManager.GetAmeliorationHeliumTemperatureMultiplicateur())
-	elif (AmeliorationHelium.BonusTypeAmeliorationHelium == "TemperatureEfficacitee0"):
-		bonusNumberToPrint = str(BonusManager.GetAmeliorationHeliumCoefficientTemperature0())
-		BonusLabel.text = tr("AMELIORATIONHELIUMTEMPERATURE1") + " +" + str(BonusManager.GetAmeliorationHeliumCoefficientTemperature0AvecNiveau())
-		BonusLabel.show()
-	elif (AmeliorationHelium.BonusTypeAmeliorationHelium == "TemperatureEfficacitee1"):
-		bonusNumberToPrint = str(BonusManager.GetAmeliorationHeliumCoefficientTemperature1())
-		BonusLabel.text = tr("AMELIORATIONHELIUMTEMPERATURE2") + " +" + str(BonusManager.GetAmeliorationHeliumCoefficientTemperature1AvecNiveau())
-		BonusLabel.show()
+	match AmeliorationHelium.BonusTypeAmeliorationHelium:
+		"HydrogeneOutputMultiply":
+			bonusNumberToPrint = str(Big.multiply(BonusManager.GetAmeliorationHeliumPressionMultiplicateur(), Big.new(1.0, 2)))
+		
+		"PressionEfficacitee0":
+			bonusNumberToPrint = str(Big.multiply(BonusManager.GetAmeliorationHeliumCoefficientPression0(), Big.new(1.0, 2)))
+			BonusLabel.text = tr("AMELIORATIONHELIUMPRESSION1") + " +" + str(Big.multiply(BonusManager.GetAmeliorationHeliumCoefficientPression0AvecNiveau(), Big.new(1.0, 2))) + "%"
+			BonusLabel.show()
+		
+		"PressionEfficacitee1":
+			bonusNumberToPrint = str(Big.multiply(BonusManager.GetAmeliorationHeliumCoefficientPression1(), Big.new(1.0, 2)))
+			BonusLabel.text = tr("AMELIORATIONHELIUMPRESSION2") + " +" + str(Big.multiply(BonusManager.GetAmeliorationHeliumCoefficientPression1AvecNiveau(), Big.new(1.0, 2))) + "%"
+			BonusLabel.show()
+		
+		"HydrogeneAttributsCoefficientAdd":
+			bonusNumberToPrint = str(BonusManager.GetAmeliorationHeliumTemperatureMultiplicateur())
+		
+		"TemperatureEfficacitee0":
+			bonusNumberToPrint = str(BonusManager.GetAmeliorationHeliumCoefficientTemperature0())
+			BonusLabel.text = tr("AMELIORATIONHELIUMTEMPERATURE1") + " +" + str(BonusManager.GetAmeliorationHeliumCoefficientTemperature0AvecNiveau())
+			BonusLabel.show()
+		
+		"TemperatureEfficacitee1":
+			bonusNumberToPrint = str(BonusManager.GetAmeliorationHeliumCoefficientTemperature1())
+			BonusLabel.text = tr("AMELIORATIONHELIUMTEMPERATURE2") + " +" + str(BonusManager.GetAmeliorationHeliumCoefficientTemperature1AvecNiveau())
+			BonusLabel.show()
 	
 	DescriptionLabel.text = descriptionTraduite.replace("{calc}", bonusNumberToPrint)
 	
@@ -113,3 +119,5 @@ func _on_amelioration_helium_unlock_button_pressed():
 		RessourceManager.QuantiteesAtomes[AmeliorationHelium.AtomePriceForUnlocking.keys()[0]] = Big.subtractAbove0(RessourceManager.QuantiteesAtomes[AmeliorationHelium.AtomePriceForUnlocking.keys()[0]], AmeliorationHelium.AtomePriceForUnlocking.values()[0])
 		
 	AmeliorationHelium.IsUnlocked = true
+	
+	BonusManager.MajBonusAmeliorationHelium()

@@ -1,8 +1,8 @@
 extends Node
 #Force/Vitesse | Spin/Angle/Complexity
 #Bonus des Recherches
-var BonusTypesRecherches = ["PrixHydrogeneAugmentation", "AllCoeffMultiplicateurRapport", "HydrogeneCoeffMultiplicateurRapport", "HeliumCoeffMultiplicateurRapport", "HydrogeneAttributsCostDivided", "HydrogeneForceCostDivided", "HydrogeneVitesseCostDivided", "HeliumAttributsCostDivided", "HeliumSpinCostDivided", "HeliumAngleCostDivided", "HeliumComplexityCostDivided"]
-var CurrentBonusesRecherches = {"PrixHydrogeneAugmentation" : Big.new(0.0), "HydrogeneCoeffMultiplicateurRapport" : Big.new(1.0), "HeliumCoeffMultiplicateurRapport" : Big.new(1.0)}
+var BonusTypesRecherches = ["PrixHydrogeneAugmentation", "AllOutputMultiply", "HydrogeneOutputMultiply", "HeliumOutputMultiply", "HydrogeneAttributsCostDivided", "HydrogeneForceCostDivided", "HydrogeneVitesseCostDivided", "HeliumAttributsCostDivided", "HeliumSpinCostDivided", "HeliumAngleCostDivided", "HeliumComplexityCostDivided"]
+var CurrentBonusesRecherches = {}
 
 #Amélioration de l'helium
 var BonusTypesAmeliorationHelium = ["HydrogeneOutputMultiply", "HydrogeneAttributsCoefficientAdd", "PressionEfficacitee0", "PressionEfficacitee1","TemperatureEfficacitee0", "TemperatureEfficacitee1"]
@@ -17,14 +17,21 @@ var BonusTypesRecherchesMatiereNoire = ["HydrogeneOutputMultiply", "HeliumOutput
 var CurrentBonusesRecherchesMatiereNoire = {}
 
 func _ready():
-	if len(BonusTypesAmeliorationHelium) == 0:
+	if len(CurrentBonusesRecherches) == 0:
+		for bonusType in BonusTypesRecherches:
+			CurrentBonusesRecherches[bonusType] = Big.new(0.0)
+	
+	if len(CurrentBonusesAmeliorationHelium) == 0:
 		for bonusType in BonusTypesAmeliorationHelium:
 			CurrentBonusesAmeliorationHelium[bonusType] = Big.new(0.0)
 	
-	if len(BonusTypesRecherchesMatiereNoire) == 0:
+	if len(CurrentBonusesAmeliorationLithium) == 0:
+		for bonusType in BonusTypesAmeliorationLithium:
+			CurrentBonusesAmeliorationLithium[bonusType] = Big.new(0.0)
+	
+	if len(CurrentBonusesRecherchesMatiereNoire) == 0:
 		for bonusTypeRecherchesMatiereNoire in BonusTypesRecherchesMatiereNoire:
 			CurrentBonusesRecherchesMatiereNoire[bonusTypeRecherchesMatiereNoire] = Big.new(0.0)
-
 
 #Permet de mettre à jour le dictionnaire des ressources
 #On parcour la liste des ressources, et on ajoute les bonus
@@ -36,10 +43,12 @@ func MajBonusRecherches():
 	
 	for recherche in RessourceManager.ListeRecherches:
 		if recherche.IsUnlocked:
-			if recherche.Augmentation.contains("ParRecherche"):
-				CurrentBonusesRecherches[recherche.Augmentation.replace("ParRecherche", "")] = Big.add(CurrentBonusesRecherches[recherche.Augmentation.replace("ParRecherche", "")], Big.multiply(recherche.AugmentationPercent, InfosPartie.RecherchesAchetees))
-			else:
-				CurrentBonusesRecherches[recherche.Augmentation] = Big.add(CurrentBonusesRecherches[recherche.Augmentation], recherche.AugmentationPercent)
+			for ameliorationRecherche in recherche.Augmentation:
+				if ameliorationRecherche.contains("ParRecherche"):
+					CurrentBonusesRecherches[ameliorationRecherche.replace("ParRecherche", "")] = Big.add(CurrentBonusesRecherches[ameliorationRecherche.replace("ParRecherche", "")], Big.multiply(recherche.AugmentationPercent, InfosPartie.RecherchesAchetees))
+				else:
+					CurrentBonusesRecherches[ameliorationRecherche] = Big.add(CurrentBonusesRecherches[ameliorationRecherche], recherche.AugmentationPercent)
+
 
 
 #Mise à jour des bonus des améliorations de l'Helium
@@ -81,7 +90,6 @@ func MajBonusRecherchesMatiereNoire():
 				CurrentBonusesRecherchesMatiereNoire[rechercheMatiereNoire.Augmentation.replace("ParRechercheMN", "")] = Big.add(CurrentBonusesRecherchesMatiereNoire[rechercheMatiereNoire.Augmentation.replace("ParRechercheMN", "")], Big.multiply(rechercheMatiereNoire.AugmentationPercent, InfosPartie.RecherchesMatiereNoireAchetees))
 			else:
 				CurrentBonusesRecherchesMatiereNoire[rechercheMatiereNoire.Augmentation] = Big.add(CurrentBonusesRecherchesMatiereNoire[rechercheMatiereNoire.Augmentation], rechercheMatiereNoire.AugmentationPercent)
-	print(CurrentBonusesRecherchesMatiereNoire["HydrogeneOutputMultiply"])
 
 #Permet de récupérer le multiplicateur global du rendu des atomes (prend en compte les recherches et les amélioration Helium/Lithium
 func GetGlobalMultiplicator(Name):
@@ -90,7 +98,7 @@ func GetGlobalMultiplicator(Name):
 	var lithiumMultiplicateur = Big.new(0.0)
 	
 	for CurrentResearchBonus in CurrentBonusesRecherches:
-		if (CurrentResearchBonus.contains(Name) and CurrentResearchBonus.contains("CoeffMultiplicateurRapport")) or CurrentResearchBonus.contains("AllCoeffMultiplicateurRapport"):
+		if (CurrentResearchBonus.contains(Name) and CurrentResearchBonus.contains("OutputMultiply")) or CurrentResearchBonus.contains("AllOutputMultiply"):
 			recherchesMultiplicator = Big.add(recherchesMultiplicator, CurrentBonusesRecherches[CurrentResearchBonus])
 	
 	for CurrentBonus in CurrentBonusesAmeliorationHelium:
@@ -119,15 +127,15 @@ func GetDarkMaterMultiplicator(Name):
 
 #Permet de récupérer le diviseur sur les recherches de matière noire du rendu des atomes
 func GetDarkMaterDiviseur(Name):
-	var matiereNoireDiviseur = Big.new(1.0)
+	var matiereNoireDiviseur = Big.new(0.0)
+	
 	for currentRechercheMatiereNoireBonus in CurrentBonusesRecherchesMatiereNoire:
 		if currentRechercheMatiereNoireBonus.contains(Name) and currentRechercheMatiereNoireBonus.contains("AttributsCostDivided"):
 			matiereNoireDiviseur = Big.add(matiereNoireDiviseur, CurrentBonusesRecherchesMatiereNoire[currentRechercheMatiereNoireBonus])
 	
-	#On en a plus besoin de ça, mais juste au cas ou
 	if matiereNoireDiviseur.isEqualTo(Big.new(0.0)):
 		matiereNoireDiviseur = Big.new(1.0)
-	
+		
 	return matiereNoireDiviseur
 
 #Permet de récupérer le diviseur du prix des attributs des atomes
@@ -148,9 +156,7 @@ func GetRecherchesAttributsCostsDivided(attribut):
 	if diviseurGlobal.isEqualTo(Big.new(0.0)):
 		diviseurGlobal = Big.new(1.0)
 	
-	var matiereNoireDiviseur = GetDarkMaterDiviseur(attribut.Atome.Name)
-
-	return Big.multiply(diviseurGlobal, matiereNoireDiviseur)
+	return diviseurGlobal
 
 #-----------------------------------------Helium-----------------------------------------------------------------
 

@@ -242,15 +242,16 @@ func DefineResearchListInitializingGame():
 	var debutRecherche = Recherche.ResearchLevelEnum.DEBUT
 	var easyRecherche = Recherche.ResearchLevelEnum.EASY
 	
-	ListeRechercheInitializeGame.append(Recherche.new(0, "RECHERCHE1", "RECHERCHEDESCRIPTION1", Big.new(2.5, 2), "PrixHydrogeneAugmentation", Big.new(0.25, 0), debutRecherche))
-	ListeRechercheInitializeGame.append(Recherche.new(1, "RECHERCHE2", "RECHERCHEDESCRIPTION2", Big.new(5.0, 2), "PrixHydrogeneAugmentation", Big.new(0.5, 0), debutRecherche))
-	ListeRechercheInitializeGame.append(Recherche.new(8, "RECHERCHE9", "RECHERCHEDESCRIPTION9", Big.new(1.0, 3), "HydrogeneCoeffMultiplicateurRapportParRecherche", Big.new(0.25), debutRecherche))
-	ListeRechercheInitializeGame.append(Recherche.new(2, "RECHERCHE3", "RECHERCHEDESCRIPTION3", Big.new(2.0, 3), "PrixHydrogeneAugmentation", Big.new(1.0, 0), debutRecherche))
-	ListeRechercheInitializeGame.append(Recherche.new(3, "RECHERCHE4", "RECHERCHEDESCRIPTION4", Big.new(6.0, 3), "HydrogeneAttributsCostDivided", Big.new(3.0), debutRecherche))
-	ListeRechercheInitializeGame.append(Recherche.new(7, "RECHERCHE8", "RECHERCHEDESCRIPTION8", Big.new(2.0, 4), "AllCoeffMultiplicateurRapportParRecherche", Big.new(0.08), debutRecherche))
-	ListeRechercheInitializeGame.append(Recherche.new(4, "RECHERCHE5", "RECHERCHEDESCRIPTION5", Big.new(5.0, 4), "HydrogeneCoeffMultiplicateurRapport", Big.new(2.0), debutRecherche))
-	ListeRechercheInitializeGame.append(Recherche.new(5, "RECHERCHE6", "RECHERCHEDESCRIPTION6", Big.new(2.0, 5), "PrixHydrogeneAugmentation", Big.new(5.0), debutRecherche))
-	ListeRechercheInitializeGame.append(Recherche.new(6, "RECHERCHE7", "RECHERCHEDESCRIPTION7", Big.new(8.5, 5), "HeliumCoeffMultiplicateurRapport", Big.new(2.0), debutRecherche))
+	ListeRechercheInitializeGame.append(Recherche.new(0, "RECHERCHE1", "RECHERCHEDESCRIPTION1", Big.new(1.5, 2), ["PrixHydrogeneAugmentation"], Big.new(0.25, 0), debutRecherche))
+	ListeRechercheInitializeGame.append(Recherche.new(1, "RECHERCHE2", "RECHERCHEDESCRIPTION2", Big.new(4.0, 2), ["PrixHydrogeneAugmentation"], Big.new(0.5, 0), debutRecherche))
+	ListeRechercheInitializeGame.append(Recherche.new(8, "RECHERCHE9", "RECHERCHEDESCRIPTION9", Big.new(1.0, 3), ["HydrogeneOutputMultiplyParRecherche"], Big.new(0.25), debutRecherche))
+	ListeRechercheInitializeGame.append(Recherche.new(2, "RECHERCHE3", "RECHERCHEDESCRIPTION3", Big.new(2.5, 3), ["PrixHydrogeneAugmentation"], Big.new(1.0, 0), debutRecherche))
+	ListeRechercheInitializeGame.append(Recherche.new(3, "RECHERCHE4", "RECHERCHEDESCRIPTION4", Big.new(6.0, 3), ["HydrogeneAttributsCostDivided"], Big.new(3.0), debutRecherche))
+	ListeRechercheInitializeGame.append(Recherche.new(7, "RECHERCHE8", "RECHERCHEDESCRIPTION8", Big.new(2.0, 4), ["AllOutputMultiplyParRecherche"], Big.new(0.08), debutRecherche))
+	ListeRechercheInitializeGame.append(Recherche.new(4, "RECHERCHE5", "RECHERCHEDESCRIPTION5", Big.new(5.0, 4), ["HydrogeneOutputMultiplyParRecherche", "HeliumOutputMultiplyParRecherche"], Big.new(0.2), debutRecherche))
+	ListeRechercheInitializeGame.append(Recherche.new(5, "RECHERCHE6", "RECHERCHEDESCRIPTION6", Big.new(2.0, 5), ["PrixHydrogeneAugmentation"], Big.new(5.0), debutRecherche))
+	ListeRechercheInitializeGame.append(Recherche.new(9, "RECHERCHE10", "RECHERCHEDESCRIPTION10", Big.new(5.0, 5), ["HydrogeneAttributsCostDivided", "HeliumAttributsCostDivided"], Big.new(8.0), debutRecherche))
+	ListeRechercheInitializeGame.append(Recherche.new(6, "RECHERCHE7", "RECHERCHEDESCRIPTION7", Big.new(1.0, 6), ["HeliumOutputMultiply"], Big.new(1.0), debutRecherche))
 
 
 #Permet d'initialiser la liste des amélioration de l'hélium dans le jeu
