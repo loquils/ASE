@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://jwctjc5cvudy"]
+[gd_scene load_steps=42 format=3 uid="uid://jwctjc5cvudy"]
 
 [ext_resource type="Theme" uid="uid://cbk6urwquxgkm" path="res://Design/Themes/Global/ThemeGlobal.tres" id="1_rwuoq"]
 [ext_resource type="Script" path="res://Script/Game.gd" id="1_xa3fh"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://c31eyto1jlpql" path="res://Gimped/TestElectron.png" id="17_1p05m"]
 [ext_resource type="PackedScene" uid="uid://j3saqbk1feco" path="res://Design/Scenes/Ameliorations/AmeliorationLithiumControl.tscn" id="17_1y4j7"]
 [ext_resource type="Script" path="res://Script/Options/OptionsControl.gd" id="17_cn1p7"]
+[ext_resource type="PackedScene" uid="uid://cjywjf0dbfxr1" path="res://Design/Scenes/Ameliorations/AmeliorationBerylliumControl.tscn" id="18_30t4x"]
 [ext_resource type="Script" path="res://Design/Scenes/Sprite2DTestAnimation.gd" id="18_vft3y"]
 [ext_resource type="Script" path="res://Script/Tutoriel/TutorielControl.gd" id="19_2cpc3"]
 [ext_resource type="Texture2D" uid="uid://1drh7volhffd" path="res://Gimped/Proton.png" id="19_8v33v"]
@@ -519,6 +520,31 @@ label_settings = SubResource("LabelSettings_tgkd5")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="BerylliumAmeliorationMarginC" type="MarginContainer" parent="WindowTopBlackVBoxC/MainMarginC/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/AllMenus/MenuAmelioration/MarginContainer/GridContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="ButtonAmeliorationBeryllium" type="Button" parent="WindowTopBlackVBoxC/MainMarginC/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/AllMenus/MenuAmelioration/MarginContainer/GridContainer/BerylliumAmeliorationMarginC"]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_diusi")
+
+[node name="Label" type="Label" parent="WindowTopBlackVBoxC/MainMarginC/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/AllMenus/MenuAmelioration/MarginContainer/GridContainer/BerylliumAmeliorationMarginC/ButtonAmeliorationBeryllium"]
+layout_mode = 2
+offset_top = 115.0
+offset_right = 300.0
+offset_bottom = 184.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "BERYLLIUM
+"
+label_settings = SubResource("LabelSettings_tgkd5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="MenuBarBottomPanelC" type="PanelContainer" parent="WindowTopBlackVBoxC/MainMarginC/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC"]
 custom_minimum_size = Vector2(0, 75)
 layout_mode = 2
@@ -577,7 +603,7 @@ layout_mode = 2
 visible = false
 layout_mode = 2
 
-[node name="AmeliorationBerilyumControl" type="Control" parent="WindowTopBlackVBoxC/MainMarginC"]
+[node name="AmeliorationBerylliumControl" parent="WindowTopBlackVBoxC/MainMarginC" instance=ExtResource("18_30t4x")]
 visible = false
 layout_mode = 2
 
@@ -1314,6 +1340,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_j7vtp")
 [connection signal="pressed" from="WindowTopBlackVBoxC/MainMarginC/MainVBoxC/TopHBoxC/VBoxBoutons/ButtonGiveMoney" to="." method="_on_button_give_money_pressed"]
 [connection signal="pressed" from="WindowTopBlackVBoxC/MainMarginC/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/AllMenus/MenuAmelioration/MarginContainer/GridContainer/HeliumAmeliorationMarginC/ButtonAmeliorationHelium" to="." method="_on_button_amelioration_helium_pressed"]
 [connection signal="pressed" from="WindowTopBlackVBoxC/MainMarginC/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/AllMenus/MenuAmelioration/MarginContainer/GridContainer/LithiumAmeliorationMarginC/ButtonAmeliorationLithium" to="." method="_on_button_amelioration_lithium_pressed"]
+[connection signal="pressed" from="WindowTopBlackVBoxC/MainMarginC/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/AllMenus/MenuAmelioration/MarginContainer/GridContainer/BerylliumAmeliorationMarginC/ButtonAmeliorationBeryllium" to="." method="_on_button_amelioration_beryllium_pressed"]
 [connection signal="pressed" from="WindowTopBlackVBoxC/MainMarginC/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/MenuBarBottomPanelC/MarginC/MenuBarHBoxC/ButtonMenuAtome" to="WindowTopBlackVBoxC/MainMarginC/MainVBoxC/NewMenuMainControl" method="_on_button_menu_atome_pressed"]
 [connection signal="pressed" from="WindowTopBlackVBoxC/MainMarginC/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/MenuBarBottomPanelC/MarginC/MenuBarHBoxC/ButtonMenuRecherche" to="WindowTopBlackVBoxC/MainMarginC/MainVBoxC/NewMenuMainControl" method="_on_button_menu_recherche_pressed"]
 [connection signal="pressed" from="WindowTopBlackVBoxC/MainMarginC/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/MenuBarBottomPanelC/MarginC/MenuBarHBoxC/ButtonMenuAmelioration" to="WindowTopBlackVBoxC/MainMarginC/MainVBoxC/NewMenuMainControl" method="_on_button_menu_amelioration_pressed"]

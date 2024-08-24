@@ -1,0 +1,262 @@
+[gd_scene load_steps=3 format=3 uid="uid://bq2qplg73uyiq"]
+
+[ext_resource type="Script" path="res://Script/AmeliorationBeryllium/ButtonAmeliorationBeryllium.gd" id="1_g6x8d"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y3bnf"]
+bg_color = Color(0.192157, 0.192157, 0.192157, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[node name="ButtonAmeliorationBeryllium" type="Button"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_g6x8d")
+
+[node name="MainMarginC" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="PresVBoxC" type="VBoxContainer" parent="MainMarginC"]
+layout_mode = 2
+
+[node name="NomLabel" type="Label" parent="MainMarginC/PresVBoxC"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Nom"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DescriptionMarginC" type="MarginContainer" parent="MainMarginC/PresVBoxC"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="DescriptionLabel" type="Label" parent="MainMarginC/PresVBoxC/DescriptionMarginC"]
+layout_mode = 2
+size_flags_vertical = 1
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="PrixNiveauMarginC" type="MarginContainer" parent="MainMarginC/PresVBoxC"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainMarginC/PresVBoxC/PrixNiveauMarginC"]
+layout_mode = 2
+
+[node name="PrixLabel" type="Label" parent="MainMarginC/PresVBoxC/PrixNiveauMarginC/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NiveauLabel" type="Label" parent="MainMarginC/PresVBoxC/PrixNiveauMarginC/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DetailsMarginC" type="MarginContainer" parent="MainMarginC/PresVBoxC"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxC" type="VBoxContainer" parent="MainMarginC/PresVBoxC/DetailsMarginC"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="HBoxC" type="HBoxContainer" parent="MainMarginC/PresVBoxC/DetailsMarginC/VBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="HydrogeneFondPanel" type="Panel" parent="MainMarginC/PresVBoxC/DetailsMarginC/VBoxC/HBoxC"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_y3bnf")
+
+[node name="MarginC" type="MarginContainer" parent="MainMarginC/PresVBoxC/DetailsMarginC/VBoxC/HBoxC/HydrogeneFondPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="VBoxC" type="VBoxContainer" parent="MainMarginC/PresVBoxC/DetailsMarginC/VBoxC/HBoxC/HydrogeneFondPanel/MarginC"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Label" type="Label" parent="MainMarginC/PresVBoxC/DetailsMarginC/VBoxC/HBoxC/HydrogeneFondPanel/MarginC/VBoxC"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 12
+text = "HYDROGENE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BonusLabel" type="Label" parent="MainMarginC/PresVBoxC/DetailsMarginC/VBoxC/HBoxC/HydrogeneFondPanel/MarginC/VBoxC"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Bonus"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HeliumFondPanel" type="Panel" parent="MainMarginC/PresVBoxC/DetailsMarginC/VBoxC/HBoxC"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_y3bnf")
+
+[node name="MarginC" type="MarginContainer" parent="MainMarginC/PresVBoxC/DetailsMarginC/VBoxC/HBoxC/HeliumFondPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="VBoxC" type="VBoxContainer" parent="MainMarginC/PresVBoxC/DetailsMarginC/VBoxC/HBoxC/HeliumFondPanel/MarginC"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Label" type="Label" parent="MainMarginC/PresVBoxC/DetailsMarginC/VBoxC/HBoxC/HeliumFondPanel/MarginC/VBoxC"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 12
+text = "HELIUM"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BonusLabel" type="Label" parent="MainMarginC/PresVBoxC/DetailsMarginC/VBoxC/HBoxC/HeliumFondPanel/MarginC/VBoxC"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Bonus"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxC2" type="HBoxContainer" parent="MainMarginC/PresVBoxC/DetailsMarginC/VBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="LithiumFondPanel" type="Panel" parent="MainMarginC/PresVBoxC/DetailsMarginC/VBoxC/HBoxC2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_y3bnf")
+
+[node name="MarginC" type="MarginContainer" parent="MainMarginC/PresVBoxC/DetailsMarginC/VBoxC/HBoxC2/LithiumFondPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="VBoxC" type="VBoxContainer" parent="MainMarginC/PresVBoxC/DetailsMarginC/VBoxC/HBoxC2/LithiumFondPanel/MarginC"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Label" type="Label" parent="MainMarginC/PresVBoxC/DetailsMarginC/VBoxC/HBoxC2/LithiumFondPanel/MarginC/VBoxC"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 12
+text = "LITHIUM"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BonusLabel" type="Label" parent="MainMarginC/PresVBoxC/DetailsMarginC/VBoxC/HBoxC2/LithiumFondPanel/MarginC/VBoxC"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Bonus"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BerylliumFondPanel" type="Panel" parent="MainMarginC/PresVBoxC/DetailsMarginC/VBoxC/HBoxC2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_y3bnf")
+
+[node name="MarginC" type="MarginContainer" parent="MainMarginC/PresVBoxC/DetailsMarginC/VBoxC/HBoxC2/BerylliumFondPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="VBoxC" type="VBoxContainer" parent="MainMarginC/PresVBoxC/DetailsMarginC/VBoxC/HBoxC2/BerylliumFondPanel/MarginC"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Label" type="Label" parent="MainMarginC/PresVBoxC/DetailsMarginC/VBoxC/HBoxC2/BerylliumFondPanel/MarginC/VBoxC"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 12
+text = "BERYLLIUM"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BonusLabel" type="Label" parent="MainMarginC/PresVBoxC/DetailsMarginC/VBoxC/HBoxC2/BerylliumFondPanel/MarginC/VBoxC"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Bonus"
+horizontal_alignment = 1
+vertical_alignment = 1

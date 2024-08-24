@@ -27,6 +27,8 @@ Hydrogène, "Hydrogène", "Hydrogen"
 Helium, "Hélium", "Helium"
 Hélium, "Hélium", "Helium"
 
+
+
 Force, "Force", "Strength"
 Vitesse, "Vitesse", "Speed"
 Rotation, "Rotation", "Rotation"
@@ -110,6 +112,11 @@ AMELIORATIONLITHIUMELECTRONK1DESCRIPTION, "Améliore le coefficient de puissance
 AMELIORATIONLITHIUMELECTRONK2DESCRIPTION, "Améliore le coefficient de puissance des Neutrons.", "Increase Neutrons power coefficient."
 AMELIORATIONLITHIUMELECTRONLDESCRIPTION, "Améliore le coefficient des Electrons couche K.", "Increase layer K Electrons coefficient."
 
+
+AMELIORATIONBERYLLIUMHYDROGENEDESCRIPTION, "", ""
+AMELIORATIONBERYLLIUMHELIUMDESCRIPTION, "", ""
+AMELIORATIONBERYLLIUMLITHIUMDESCRIPTION, "", ""
+AMELIORATIONBERYLLIUMBERYLLIUMDESCRIPTION, "", ""
 
 ARGENTPRESTIGE, "Matière Noire", "Dark Mater"
 RECHERCHEMATIERENOIRE1, "Découverte H²", "H² discovery"

@@ -12,10 +12,10 @@ var CurrentBonusesAmeliorationHelium = {}
 var BonusTypesAmeliorationLithium = ["HeliumOutputMultiply", "HeliumAttributsCostDivided" , "ProtonEfficacitee", "NeutronEfficacitee", "ElectronsKEfficacitee"]
 var CurrentBonusesAmeliorationLithium = {}
 
-#Amélioration du berilyum
-var BonusTypesAmeliorationBerilyum = ["HydrogeneLevel", "HeliumLevel" , "LithiumLevel", "BerilyumLevel", "HydrogeneNumberAdd", "HeliumNumberAdd" , "LithiumNumberAdd", "BerilyumNumberAdd"]
-var BaseBonusesAmeliorationsBerilyumPercent = {"HydrogeneOutputMultiply" : Big.new(0.01), "HeliumOutputMultiply" : Big.new(0.01), "LithiumOutputMultiply" : Big.new(0.01), "BerilyumOutputMultiply" : Big.new(0.01)}
-var CurrentBonusesAmeliorationBerilyum = {}
+#Amélioration du Beryllium
+var BonusTypesAmeliorationBeryllium = ["HydrogeneLevel", "HeliumLevel" , "LithiumLevel", "BerylliumLevel", "HydrogeneNumberAdd", "HeliumNumberAdd" , "LithiumNumberAdd", "BerylliumNumberAdd"]
+var BaseBonusesAmeliorationsBerylliumPercent = {"HydrogeneOutputMultiply" : Big.new(0.05), "HeliumOutputMultiply" : Big.new(0.04), "LithiumOutputMultiply" : Big.new(0.03), "BerylliumOutputMultiply" : Big.new(0.02)}
+var CurrentBonusesAmeliorationBeryllium = {}
 
 #Bonus recherches matière noire
 var BonusTypesRecherchesMatiereNoire = ["HydrogeneOutputMultiply", "HeliumOutputMultiply", "HydrogeneAttributsCostDivided"]
@@ -34,9 +34,9 @@ func _ready():
 		for bonusType in BonusTypesAmeliorationLithium:
 			CurrentBonusesAmeliorationLithium[bonusType] = Big.new(0.0)
 	
-	if len(CurrentBonusesAmeliorationBerilyum) == 0:
-		for bonusType in BonusTypesAmeliorationBerilyum:
-			CurrentBonusesAmeliorationBerilyum[bonusType] = Big.new(0.0)
+	if len(CurrentBonusesAmeliorationBeryllium) == 0:
+		for bonusType in BonusTypesAmeliorationBeryllium:
+			CurrentBonusesAmeliorationBeryllium[bonusType] = Big.new(0.0)
 	
 	if len(CurrentBonusesRecherchesMatiereNoire) == 0:
 		for bonusTypeRecherchesMatiereNoire in BonusTypesRecherchesMatiereNoire:
@@ -85,24 +85,24 @@ func MajBonusAmeliorationLithium():
 			CurrentBonusesAmeliorationLithium[ameliorationLithium.BonusTypeAmeliorationLithium] = ameliorationLithium.BonusAmeliorationLithium
 
 
-#Mise à jour des bonus des améliorations du berilyum
-func MajBonusAmeliorationBerilyum():
+#Mise à jour des bonus des améliorations du Beryllium
+func MajBonusAmeliorationBeryllium():
 	InfosPartie.MajInformationsPartie() #Pour l'instant pas utile ici, mais plus tard oui
 	
-	for bonusTypeAmeliorationBerilyum in BonusTypesAmeliorationBerilyum:
-		CurrentBonusesAmeliorationBerilyum[bonusTypeAmeliorationBerilyum] = Big.new(0.0)
+	for bonusTypeAmeliorationBeryllium in BonusTypesAmeliorationBeryllium:
+		CurrentBonusesAmeliorationBeryllium[bonusTypeAmeliorationBeryllium] = Big.new(0.0)
 	
-	for ameliorationBerilyum in RessourceManager.ListeAmeliorationsBerilyum:
-		if ameliorationBerilyum.IsUnlocked and ameliorationBerilyum.CategorieAmeliorationBerilyum == AmeliorationBerilyum.CategorieAmeliorationBerilyumEnum.BonusAdd:
-			var bonusesWithLevel = ameliorationBerilyum.GetBonusesArray()
+	for ameliorationBeryllium in RessourceManager.ListeAmeliorationsBeryllium:
+		if ameliorationBeryllium.IsUnlocked and ameliorationBeryllium.CategorieAmeliorationBeryllium == AmeliorationBeryllium.CategorieAmeliorationBerylliumEnum.BonusAdd:
+			var bonusesWithLevel = ameliorationBeryllium.GetBonusesArray()
 			for i in range(0,4):
-				CurrentBonusesAmeliorationBerilyum[ameliorationBerilyum.BonusTypeAmeliorationBerilyum[i] + "NumberAdd"] = Big.add(CurrentBonusesAmeliorationBerilyum[ameliorationBerilyum.BonusTypeAmeliorationBerilyum[i] + "NumberAdd"], bonusesWithLevel[i])
+				CurrentBonusesAmeliorationBeryllium[ameliorationBeryllium.BonusTypeAmeliorationBeryllium[i] + "NumberAdd"] = Big.add(CurrentBonusesAmeliorationBeryllium[ameliorationBeryllium.BonusTypeAmeliorationBeryllium[i] + "NumberAdd"], bonusesWithLevel[i])
 
-	for ameliorationBerilyum in RessourceManager.ListeAmeliorationsBerilyum:
-		if ameliorationBerilyum.IsUnlocked and ameliorationBerilyum.CategorieAmeliorationBerilyum == AmeliorationBerilyum.CategorieAmeliorationBerilyumEnum.Normal:
-			var bonusesWithLevel = ameliorationBerilyum.GetBonusesArray()
+	for ameliorationBeryllium in RessourceManager.ListeAmeliorationsBeryllium:
+		if ameliorationBeryllium.IsUnlocked and ameliorationBeryllium.CategorieAmeliorationBeryllium == AmeliorationBeryllium.CategorieAmeliorationBerylliumEnum.Normal:
+			var bonusesWithLevel = ameliorationBeryllium.GetBonusesArray()
 			for i in range(0,4):
-				CurrentBonusesAmeliorationBerilyum[ameliorationBerilyum.BonusTypeAmeliorationBerilyum[i] + "Level"] = Big.add(CurrentBonusesAmeliorationBerilyum[ameliorationBerilyum.BonusTypeAmeliorationBerilyum[i] + "Level"], bonusesWithLevel[i])
+				CurrentBonusesAmeliorationBeryllium[ameliorationBeryllium.BonusTypeAmeliorationBeryllium[i] + "Level"] = Big.add(CurrentBonusesAmeliorationBeryllium[ameliorationBeryllium.BonusTypeAmeliorationBeryllium[i] + "Level"], bonusesWithLevel[i])
 
 
 #Mise à jour des bonus des recherches de matière noire
@@ -126,7 +126,7 @@ func GetGlobalMultiplicator(Name):
 	var recherchesMultiplicator = Big.new(0.0)
 	var heliumMultiplicator = Big.new(0.0)
 	var lithiumMultiplicateur = Big.new(0.0)
-	var berilyumMultiplicateur = Big.new(0.0)
+	var BerylliumMultiplicateur = Big.new(0.0)
 	
 	for CurrentResearchBonus in CurrentBonusesRecherches:
 		if (CurrentResearchBonus.contains(Name) and CurrentResearchBonus.contains("OutputMultiply")) or CurrentResearchBonus.contains("AllOutputMultiply"):
@@ -140,9 +140,9 @@ func GetGlobalMultiplicator(Name):
 		if currentBonusAmeliorationLithiumBonus.contains(Name) and currentBonusAmeliorationLithiumBonus.contains("OutputMultiply"):
 			lithiumMultiplicateur = Big.add(lithiumMultiplicateur, GetAmeliorationLithiumCoefficientProtonAvecNiveau())
 	
-	berilyumMultiplicateur = GetAmeliorationBerilyumTotalBonuses(Name)
+	BerylliumMultiplicateur = GetAmeliorationBerylliumTotalBonuses(Name)
 	
-	var globalMultiplicator = Big.add(berilyumMultiplicateur, Big.add(lithiumMultiplicateur, Big.add(recherchesMultiplicator, heliumMultiplicator)))
+	var globalMultiplicator = Big.add(BerylliumMultiplicateur, Big.add(lithiumMultiplicateur, Big.add(recherchesMultiplicator, heliumMultiplicator)))
 	
 	return globalMultiplicator
 
@@ -205,18 +205,18 @@ func GetRecherchesAttributsCoefficientMultiplicateur(attribut):
 
 
 #Permet de récupérer les coeffs bonus des amélioration bérilyum sur les autres améliorations bérilyum
-func GetAmeliorationBerilyumLevels():
-	return [CurrentBonusesAmeliorationBerilyum["HydrogeneLevel"], CurrentBonusesAmeliorationBerilyum["HeliumLevel"], CurrentBonusesAmeliorationBerilyum["LithiumLevel"], CurrentBonusesAmeliorationBerilyum["BerilyumLevel"]]
+func GetAmeliorationBerylliumLevels():
+	return [CurrentBonusesAmeliorationBeryllium["HydrogeneLevel"], CurrentBonusesAmeliorationBeryllium["HeliumLevel"], CurrentBonusesAmeliorationBeryllium["LithiumLevel"], CurrentBonusesAmeliorationBeryllium["BerylliumLevel"]]
 
 
 #Permet de récupérer les coeffs bonus des amélioration bérilyum sur les autres améliorations bérilyum
-func GetAmeliorationBerilyumNumberAddBonuses():
-	return [CurrentBonusesAmeliorationBerilyum["HydrogeneNumberAdd"], CurrentBonusesAmeliorationBerilyum["HeliumNumberAdd"], CurrentBonusesAmeliorationBerilyum["LithiumNumberAdd"], CurrentBonusesAmeliorationBerilyum["BerilyumNumberAdd"]]
+func GetAmeliorationBerylliumNumberAddBonuses():
+	return [CurrentBonusesAmeliorationBeryllium["HydrogeneNumberAdd"], CurrentBonusesAmeliorationBeryllium["HeliumNumberAdd"], CurrentBonusesAmeliorationBeryllium["LithiumNumberAdd"], CurrentBonusesAmeliorationBeryllium["BerylliumNumberAdd"]]
 
 
 #Permet de récupérer les coeffs totaux des améliorations bérilyum (level x BaseBonus)
-func GetAmeliorationBerilyumTotalBonuses(atomeName):
-	return Big.multiply(CurrentBonusesAmeliorationBerilyum[atomeName + "Level"], BaseBonusesAmeliorationsBerilyumPercent[atomeName + "OutputMultiply"])
+func GetAmeliorationBerylliumTotalBonuses(atomeName):
+	return Big.multiply(CurrentBonusesAmeliorationBeryllium[atomeName + "Level"], BaseBonusesAmeliorationsBerylliumPercent[atomeName + "OutputMultiply"])
 
 
 #-----------------------------------------Helium-----------------------------------------------------------------

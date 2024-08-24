@@ -31,10 +31,10 @@ var ListeAmeliorationsLithiumInitializeGame = []
 #Liste de toutes les améliorations du Lithium 
 var ListeAmeliorationsLithium = []
 
-#Liste des améliorations du berilyum en initialisation
-var ListeAmeliorationsBerilyumInitializeGame = []
-#Liste de toutes les améliorations du berilyum 
-var ListeAmeliorationsBerilyum = []
+#Liste des améliorations du Beryllium en initialisation
+var ListeAmeliorationsBerylliumInitializeGame = []
+#Liste de toutes les améliorations du Beryllium 
+var ListeAmeliorationsBeryllium = []
 
 # Called when the n*ode enters the scene tree for the first time.
 func _ready():
@@ -46,7 +46,7 @@ func _ready():
 	var listeRecherchesInSaving
 	var listeAmeliorationsHeliumInSaving
 	var listeAmeliorationsLithiumInSaving
-	var listeAmeliorationsBerilyumInSaving
+	var listeAmeliorationsBerylliumInSaving
 	var listeRecherchesMatiereNoireInSaving
 
 	if ressourceLoadingGame != null:
@@ -64,8 +64,8 @@ func _ready():
 			listeAmeliorationsHeliumInSaving = ressourceLoadingGame["HeliumUpgradesList"]
 		if ressourceLoadingGame.has("LithiumUpgradesList"):
 			listeAmeliorationsLithiumInSaving = ressourceLoadingGame["LithiumUpgradesList"]
-		if ressourceLoadingGame.has("BerilyumUpgradesList"):
-			listeAmeliorationsBerilyumInSaving = ressourceLoadingGame["BerilyumUpgradesList"]
+		if ressourceLoadingGame.has("BerylliumUpgradesList"):
+			listeAmeliorationsBerylliumInSaving = ressourceLoadingGame["BerylliumUpgradesList"]
 		if ressourceLoadingGame.has("DarkMatter"):
 			DarkMatter = Big.ToCustomFormat(ressourceLoadingGame["DarkMatter"])
 		if ressourceLoadingGame.has("RecherchesMatiereNoire"):
@@ -80,7 +80,7 @@ func _ready():
 	LoadResearch(listeRecherchesInSaving)
 	LoadAmeliorationHelium(listeAmeliorationsHeliumInSaving)
 	LoadAmeliorationLithium(listeAmeliorationsLithiumInSaving)
-	LoadAmeliorationBerilyum(listeAmeliorationsBerilyumInSaving)
+	LoadAmeliorationBeryllium(listeAmeliorationsBerylliumInSaving)
 	LoadDarkMatter(listeRecherchesMatiereNoireInSaving)
 
 
@@ -172,21 +172,21 @@ func LoadAmeliorationLithium(listeAmeliorationsLithiumInSaving):
 	BonusManager.MajBonusAmeliorationLithium()
 
 
-#Permet de charger la liste des amélioration de Berilyum
-func LoadAmeliorationBerilyum(listeAmeliorationsBerilyumInSaving):
-	DefineAmeliorationBerilyumListInitializingGame()
+#Permet de charger la liste des amélioration de Beryllium
+func LoadAmeliorationBeryllium(listeAmeliorationsBerylliumInSaving):
+	DefineAmeliorationBerylliumListInitializingGame()
 	
-	if not listeAmeliorationsBerilyumInSaving == null:
-		for initializedAmeliorationBerilyum in ListeAmeliorationsBerilyumInitializeGame:
-			if initializedAmeliorationBerilyum.Id < len(listeAmeliorationsBerilyumInSaving) and not listeAmeliorationsBerilyumInSaving[initializedAmeliorationBerilyum.Id] == null:
-				if listeAmeliorationsBerilyumInSaving[initializedAmeliorationBerilyum.Id]["IsUnlocked"]:
-					initializedAmeliorationBerilyum.IsUnlocked = true
-					initializedAmeliorationBerilyum.Level = Big.ToCustomFormat(listeAmeliorationsBerilyumInSaving[initializedAmeliorationBerilyum.Id]["Level"])
+	if not listeAmeliorationsBerylliumInSaving == null:
+		for initializedAmeliorationBeryllium in ListeAmeliorationsBerylliumInitializeGame:
+			if initializedAmeliorationBeryllium.Id < len(listeAmeliorationsBerylliumInSaving) and not listeAmeliorationsBerylliumInSaving[initializedAmeliorationBeryllium.Id] == null:
+				if listeAmeliorationsBerylliumInSaving[initializedAmeliorationBeryllium.Id]["IsUnlocked"]:
+					initializedAmeliorationBeryllium.IsUnlocked = true
+					initializedAmeliorationBeryllium.Level = Big.ToCustomFormat(listeAmeliorationsBerylliumInSaving[initializedAmeliorationBeryllium.Id]["Level"])
 	
-	for ameliorationBerilyum in ListeAmeliorationsBerilyumInitializeGame:
-		ListeAmeliorationsBerilyum.append(ameliorationBerilyum)
+	for ameliorationBeryllium in ListeAmeliorationsBerylliumInitializeGame:
+		ListeAmeliorationsBeryllium.append(ameliorationBeryllium)
 	
-	BonusManager.MajBonusAmeliorationBerilyum()
+	BonusManager.MajBonusAmeliorationBeryllium()
 
 
 #Permet de charger la liste des recherches de matière noire
@@ -251,16 +251,16 @@ func DefineAtomsListInitializingGame():
 	
 	AtomsListInitializingGame.append(lithiumAtom)
 	
-	var berilyumAtom = Atome.new("Berilyum", Big.new(0.10, 0))
-	var attribut1Berilyum = AttributAtome.new(lithiumAtom, "Force", Big.new(0.0), Big.new(1.45), Big.new(0.18), Big.new(1.75, 3))
-	var attribut2Berilyum = AttributAtome.new(lithiumAtom, "Tension", Big.new(0.0), Big.new(2.25), Big.new(0.75), Big.new(4.0, 3))
-	var attribut3Berilyum = AttributAtome.new(lithiumAtom, "Complexitee", Big.new(0.0), Big.new(1.68), Big.new(0.2), Big.new(1.0, 3))
-	var berilyumAttributsList = [attribut1Berilyum, attribut2Berilyum, attribut3Berilyum]
+	var BerylliumAtom = Atome.new("Beryllium", Big.new(0.10, 0))
+	var attribut1Beryllium = AttributAtome.new(lithiumAtom, "Force", Big.new(0.0), Big.new(1.45), Big.new(0.18), Big.new(1.75, 3))
+	var attribut2Beryllium = AttributAtome.new(lithiumAtom, "Tension", Big.new(0.0), Big.new(2.25), Big.new(0.75), Big.new(4.0, 3))
+	var attribut3Beryllium = AttributAtome.new(lithiumAtom, "Complexitee", Big.new(0.0), Big.new(1.68), Big.new(0.2), Big.new(1.0, 3))
+	var BerylliumAttributsList = [attribut1Beryllium, attribut2Beryllium, attribut3Beryllium]
 	
-	berilyumAtom.DefineAtomeAttributs(berilyumAttributsList)
-	berilyumAtom.DefineAtomeUnlockingPrice({"Lithium" : Big.new(1.0, 4)})
-	berilyumAtom.isUnlocked = true
-	AtomsListInitializingGame.append(berilyumAtom)
+	BerylliumAtom.DefineAtomeAttributs(BerylliumAttributsList)
+	BerylliumAtom.DefineAtomeUnlockingPrice({"Lithium" : Big.new(1.0, 4)})
+	BerylliumAtom.isUnlocked = true
+	AtomsListInitializingGame.append(BerylliumAtom)
 
 
 #Permet d'initialiser la liste des recherches dans le jeu
@@ -336,25 +336,27 @@ func DefineAmeliorationLithiumListInitializingGame():
 	ListeAmeliorationsLithiumInitializeGame.append(ameliorationLithiumElectronL1)
 
 
-#Permet d'initialiser la liste des amélioration du berilyum dans le jeu
-func DefineAmeliorationBerilyumListInitializingGame():
-	var ameliorationBerilyumHydrogene = AmeliorationBerilyum.new(0, "Hydrogene", "AMELIORATIONBERILYUMHYDROGENEDESCRIPTION", Big.new(1.0), Big.new(1.0), AmeliorationBerilyum.CategorieAmeliorationBerilyumEnum.Normal, [1, 1, 0, 0])
-	ameliorationBerilyumHydrogene.DefineUnlockingPrice( {"Lithium" : Big.new(1.0, 0)})
-	ameliorationBerilyumHydrogene.IsUnlocked = true
-	ListeAmeliorationsBerilyumInitializeGame.append(ameliorationBerilyumHydrogene)
+#Permet d'initialiser la liste des amélioration du Beryllium dans le jeu
+func DefineAmeliorationBerylliumListInitializingGame():
+	var ameliorationBerylliumHydrogene = AmeliorationBeryllium.new(0, "Hydrogene", "AMELIORATIONBERYLLIUMHYDROGENEDESCRIPTION", {"Hydrogene" : Big.new(1.0, 2)}, Big.new(1.5), AmeliorationBeryllium.CategorieAmeliorationBerylliumEnum.Normal, [1, 1, 0, 0])
+	ameliorationBerylliumHydrogene.DefineUnlockingPrice( {"Beryllium" : Big.new(1.0, 0)})
+	ameliorationBerylliumHydrogene.IsUnlocked = true
+	ListeAmeliorationsBerylliumInitializeGame.append(ameliorationBerylliumHydrogene)
 	
-	var ameliorationBerilyumHelium = AmeliorationBerilyum.new(1, "Helium", "AMELIORATIONBERILYUMHELIUMDESCRIPTION", Big.new(1.0), Big.new(1.0), AmeliorationBerilyum.CategorieAmeliorationBerilyumEnum.Normal, [0, 0, 1, 1])
-	ameliorationBerilyumHelium.DefineUnlockingPrice( {"Berilyum" : Big.new(1.0, 0)})
-	ameliorationBerilyumHelium.IsUnlocked = true
-	ListeAmeliorationsBerilyumInitializeGame.append(ameliorationBerilyumHelium)
+	var ameliorationBerylliumHelium = AmeliorationBeryllium.new(1, "Helium", "AMELIORATIONBERYLLIUMHELIUMDESCRIPTION", {"Helium" : Big.new(2.0, 2)}, Big.new(1.6), AmeliorationBeryllium.CategorieAmeliorationBerylliumEnum.Normal, [1, 1, 1, 0])
+	ameliorationBerylliumHelium.DefineUnlockingPrice( {"Beryllium" : Big.new(1.0, 0)})
+	ameliorationBerylliumHelium.IsUnlocked = true
+	ListeAmeliorationsBerylliumInitializeGame.append(ameliorationBerylliumHelium)
 	
-	var ameliorationBerilyumLithium = AmeliorationBerilyum.new(2, "Lithium", "AMELIORATIONBERILYUMLITHIUMDESCRIPTION", Big.new(1.0), Big.new(1.0), AmeliorationBerilyum.CategorieAmeliorationBerilyumEnum.Normal, [1, 1, 1, 1])
-	ameliorationBerilyumLithium.DefineUnlockingPrice( {"Berilyum" : Big.new(3.0, 3)})
-	ListeAmeliorationsBerilyumInitializeGame.append(ameliorationBerilyumLithium)
+	var ameliorationBerylliumLithium = AmeliorationBeryllium.new(2, "Lithium", "AMELIORATIONBERYLLIUMLITHIUMDESCRIPTION", {"Lithium" : Big.new(3.0, 2)}, Big.new(1.7), AmeliorationBeryllium.CategorieAmeliorationBerylliumEnum.Normal, [1, 1, 1, 1])
+	ameliorationBerylliumLithium.DefineUnlockingPrice( {"Beryllium" : Big.new(1.0, 0)})
+	ameliorationBerylliumLithium.IsUnlocked = true
+	ListeAmeliorationsBerylliumInitializeGame.append(ameliorationBerylliumLithium)
 	
-	var ameliorationBerilyumBerilyum = AmeliorationBerilyum.new(3, "Berilyum", "AMELIORATIONBERILYUMBERILYUMDESCRIPTION", Big.new(1.0), Big.new(1.0), AmeliorationBerilyum.CategorieAmeliorationBerilyumEnum.BonusAdd, [0, 0, 0, 0])
-	ameliorationBerilyumBerilyum.DefineUnlockingPrice( {"Berilyum" : Big.new(5.0, 5)})
-	ListeAmeliorationsBerilyumInitializeGame.append(ameliorationBerilyumBerilyum)
+	var ameliorationBerylliumBeryllium = AmeliorationBeryllium.new(3, "Beryllium", "AMELIORATIONBERYLLIUMBERYLLIUMDESCRIPTION", {"Beryllium" : Big.new(4.0, 2)}, Big.new(1.8), AmeliorationBeryllium.CategorieAmeliorationBerylliumEnum.BonusAdd, [1, 0.5 , 0.25, 0.12])
+	ameliorationBerylliumBeryllium.DefineUnlockingPrice( {"Beryllium" : Big.new(1.0, 0)})
+	ameliorationBerylliumBeryllium.IsUnlocked = true
+	ListeAmeliorationsBerylliumInitializeGame.append(ameliorationBerylliumBeryllium)
 
 
 #Permet d'initialiser la liste des recherches de matière noire dans le jeu
@@ -434,10 +436,10 @@ func save():
 	for ameliorationLithium in ListeAmeliorationsLithium:
 		ameliorationLithiumList.append({"Id" : ameliorationLithium.Id, "IsUnlocked" : ameliorationLithium.IsUnlocked, "Level" : ameliorationLithium.Level.ToJsonFormat()})
 	
-		#Pour les améliorations du berilyum
-	var ameliorationBerilyumList = []
-	for ameliorationBerilyum in ListeAmeliorationsBerilyum:
-		ameliorationBerilyumList.append({"Id" : ameliorationBerilyum.Id, "IsUnlocked" : ameliorationBerilyum.IsUnlocked, "Level" : ameliorationBerilyum.Level.ToJsonFormat()})
+		#Pour les améliorations du Beryllium
+	var ameliorationBerylliumList = []
+	for ameliorationBeryllium in ListeAmeliorationsBeryllium:
+		ameliorationBerylliumList.append({"Id" : ameliorationBeryllium.Id, "IsUnlocked" : ameliorationBeryllium.IsUnlocked, "Level" : ameliorationBeryllium.Level.ToJsonFormat()})
 
 	#Pour les recherches de matière noire
 	var recherchesMatiereNoireListe = []
@@ -454,7 +456,7 @@ func save():
 		"ResearchesList" : recherchesListe,
 		"HeliumUpgradesList" : ameliorationHeliumList,
 		"LithiumUpgradesList" : ameliorationLithiumList,
-		"BerilyumUpgradesList" : ameliorationBerilyumList,
+		"BerylliumUpgradesList" : ameliorationBerylliumList,
 		"DarkMatter" : DarkMatter.ToJsonFormat(),
 		"RecherchesMatiereNoire" : recherchesMatiereNoireListe,
 		"InformationsPartie" : InfosPartie.Save(),
