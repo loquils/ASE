@@ -577,6 +577,10 @@ layout_mode = 2
 visible = false
 layout_mode = 2
 
+[node name="AmeliorationBerilyumControl" type="Control" parent="WindowTopBlackVBoxC/MainMarginC"]
+visible = false
+layout_mode = 2
+
 [node name="OptionsControl" type="Control" parent="WindowTopBlackVBoxC/MainMarginC"]
 visible = false
 layout_mode = 2
