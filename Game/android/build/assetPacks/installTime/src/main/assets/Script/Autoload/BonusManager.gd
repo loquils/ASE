@@ -12,6 +12,11 @@ var CurrentBonusesAmeliorationHelium = {}
 var BonusTypesAmeliorationLithium = ["HeliumOutputMultiply", "HeliumAttributsCostDivided" , "ProtonEfficacitee", "NeutronEfficacitee", "ElectronsKEfficacitee"]
 var CurrentBonusesAmeliorationLithium = {}
 
+#Amélioration du Beryllium
+var BonusTypesAmeliorationBeryllium = ["HydrogeneLevel", "HeliumLevel" , "LithiumLevel", "BerylliumLevel", "HydrogeneNumberAdd", "HeliumNumberAdd" , "LithiumNumberAdd", "BerylliumNumberAdd"]
+var BaseBonusesAmeliorationsBerylliumPercent = {"HydrogeneOutputMultiply" : Big.new(0.05), "HeliumOutputMultiply" : Big.new(0.04), "LithiumOutputMultiply" : Big.new(0.03), "BerylliumOutputMultiply" : Big.new(0.02)}
+var CurrentBonusesAmeliorationBeryllium = {}
+
 #Bonus recherches matière noire
 var BonusTypesRecherchesMatiereNoire = ["HydrogeneOutputMultiply", "HeliumOutputMultiply", "HydrogeneAttributsCostDivided"]
 var CurrentBonusesRecherchesMatiereNoire = {}
@@ -29,9 +34,14 @@ func _ready():
 		for bonusType in BonusTypesAmeliorationLithium:
 			CurrentBonusesAmeliorationLithium[bonusType] = Big.new(0.0)
 	
+	if len(CurrentBonusesAmeliorationBeryllium) == 0:
+		for bonusType in BonusTypesAmeliorationBeryllium:
+			CurrentBonusesAmeliorationBeryllium[bonusType] = Big.new(0.0)
+	
 	if len(CurrentBonusesRecherchesMatiereNoire) == 0:
 		for bonusTypeRecherchesMatiereNoire in BonusTypesRecherchesMatiereNoire:
 			CurrentBonusesRecherchesMatiereNoire[bonusTypeRecherchesMatiereNoire] = Big.new(0.0)
+
 
 #Permet de mettre à jour le dictionnaire des ressources
 #On parcour la liste des ressources, et on ajoute les bonus
@@ -48,7 +58,6 @@ func MajBonusRecherches():
 					CurrentBonusesRecherches[ameliorationRecherche.replace("ParRecherche", "")] = Big.add(CurrentBonusesRecherches[ameliorationRecherche.replace("ParRecherche", "")], Big.multiply(recherche.AugmentationPercent, InfosPartie.RecherchesAchetees))
 				else:
 					CurrentBonusesRecherches[ameliorationRecherche] = Big.add(CurrentBonusesRecherches[ameliorationRecherche], recherche.AugmentationPercent)
-
 
 
 #Mise à jour des bonus des améliorations de l'Helium
@@ -76,6 +85,26 @@ func MajBonusAmeliorationLithium():
 			CurrentBonusesAmeliorationLithium[ameliorationLithium.BonusTypeAmeliorationLithium] = ameliorationLithium.BonusAmeliorationLithium
 
 
+#Mise à jour des bonus des améliorations du Beryllium
+func MajBonusAmeliorationBeryllium():
+	InfosPartie.MajInformationsPartie() #Pour l'instant pas utile ici, mais plus tard oui
+	
+	for bonusTypeAmeliorationBeryllium in BonusTypesAmeliorationBeryllium:
+		CurrentBonusesAmeliorationBeryllium[bonusTypeAmeliorationBeryllium] = Big.new(0.0)
+	
+	for ameliorationBeryllium in RessourceManager.ListeAmeliorationsBeryllium:
+		if ameliorationBeryllium.IsUnlocked and ameliorationBeryllium.CategorieAmeliorationBeryllium == AmeliorationBeryllium.CategorieAmeliorationBerylliumEnum.BonusAdd:
+			var bonusesWithLevel = ameliorationBeryllium.GetBonusesArray()
+			for i in range(0,4):
+				CurrentBonusesAmeliorationBeryllium[ameliorationBeryllium.BonusTypeAmeliorationBeryllium[i] + "NumberAdd"] = Big.add(CurrentBonusesAmeliorationBeryllium[ameliorationBeryllium.BonusTypeAmeliorationBeryllium[i] + "NumberAdd"], bonusesWithLevel[i])
+
+	for ameliorationBeryllium in RessourceManager.ListeAmeliorationsBeryllium:
+		if ameliorationBeryllium.IsUnlocked and ameliorationBeryllium.CategorieAmeliorationBeryllium == AmeliorationBeryllium.CategorieAmeliorationBerylliumEnum.Normal:
+			var bonusesWithLevel = ameliorationBeryllium.GetBonusesArray()
+			for i in range(0,4):
+				CurrentBonusesAmeliorationBeryllium[ameliorationBeryllium.BonusTypeAmeliorationBeryllium[i] + "Level"] = Big.add(CurrentBonusesAmeliorationBeryllium[ameliorationBeryllium.BonusTypeAmeliorationBeryllium[i] + "Level"], bonusesWithLevel[i])
+
+
 #Mise à jour des bonus des recherches de matière noire
 func MajBonusRecherchesMatiereNoire():
 	InfosPartie.MajInformationsPartie()
@@ -91,11 +120,13 @@ func MajBonusRecherchesMatiereNoire():
 			else:
 				CurrentBonusesRecherchesMatiereNoire[rechercheMatiereNoire.Augmentation] = Big.add(CurrentBonusesRecherchesMatiereNoire[rechercheMatiereNoire.Augmentation], rechercheMatiereNoire.AugmentationPercent)
 
+
 #Permet de récupérer le multiplicateur global du rendu des atomes (prend en compte les recherches et les amélioration Helium/Lithium
 func GetGlobalMultiplicator(Name):
 	var recherchesMultiplicator = Big.new(0.0)
 	var heliumMultiplicator = Big.new(0.0)
 	var lithiumMultiplicateur = Big.new(0.0)
+	var BerylliumMultiplicateur = Big.new(0.0)
 	
 	for CurrentResearchBonus in CurrentBonusesRecherches:
 		if (CurrentResearchBonus.contains(Name) and CurrentResearchBonus.contains("OutputMultiply")) or CurrentResearchBonus.contains("AllOutputMultiply"):
@@ -109,7 +140,9 @@ func GetGlobalMultiplicator(Name):
 		if currentBonusAmeliorationLithiumBonus.contains(Name) and currentBonusAmeliorationLithiumBonus.contains("OutputMultiply"):
 			lithiumMultiplicateur = Big.add(lithiumMultiplicateur, GetAmeliorationLithiumCoefficientProtonAvecNiveau())
 	
-	var globalMultiplicator = Big.add(lithiumMultiplicateur, Big.add(recherchesMultiplicator, heliumMultiplicator))
+	BerylliumMultiplicateur = GetAmeliorationBerylliumTotalBonuses(Name)
+	
+	var globalMultiplicator = Big.add(BerylliumMultiplicateur, Big.add(lithiumMultiplicateur, Big.add(recherchesMultiplicator, heliumMultiplicator)))
 	
 	return globalMultiplicator
 
@@ -138,6 +171,7 @@ func GetDarkMaterDiviseur(Name):
 		
 	return matiereNoireDiviseur
 
+
 #Permet de récupérer le diviseur du prix des attributs des atomes
 func GetRecherchesAttributsCostsDivided(attribut):
 	var diviseurRecherches = Big.new(0.0)
@@ -158,6 +192,7 @@ func GetRecherchesAttributsCostsDivided(attribut):
 	
 	return diviseurGlobal
 
+
 #Permet de récupérer le coefficient multiplacateur sur les attributs des atomes
 func GetRecherchesAttributsCoefficientMultiplicateur(attribut):
 	var coefficientMultiplicateur = Big.new(0.0)
@@ -168,19 +203,40 @@ func GetRecherchesAttributsCoefficientMultiplicateur(attribut):
 	
 	return coefficientMultiplicateur
 
+
+#Permet de récupérer les coeffs bonus des amélioration bérilyum sur les autres améliorations bérilyum
+func GetAmeliorationBerylliumLevels():
+	return [CurrentBonusesAmeliorationBeryllium["HydrogeneLevel"], CurrentBonusesAmeliorationBeryllium["HeliumLevel"], CurrentBonusesAmeliorationBeryllium["LithiumLevel"], CurrentBonusesAmeliorationBeryllium["BerylliumLevel"]]
+
+
+#Permet de récupérer les coeffs bonus des amélioration bérilyum sur les autres améliorations bérilyum
+func GetAmeliorationBerylliumNumberAddBonuses():
+	return [CurrentBonusesAmeliorationBeryllium["HydrogeneNumberAdd"], CurrentBonusesAmeliorationBeryllium["HeliumNumberAdd"], CurrentBonusesAmeliorationBeryllium["LithiumNumberAdd"], CurrentBonusesAmeliorationBeryllium["BerylliumNumberAdd"]]
+
+
+#Permet de récupérer les coeffs totaux des améliorations bérilyum (level x BaseBonus)
+func GetAmeliorationBerylliumTotalBonuses(atomeName):
+	return Big.multiply(CurrentBonusesAmeliorationBeryllium[atomeName + "Level"], BaseBonusesAmeliorationsBerylliumPercent[atomeName + "OutputMultiply"])
+
+func GetAmeliorationBerylliumAllTotalBonuses():
+	return [GetAmeliorationBerylliumTotalBonuses("Hydrogene"), GetAmeliorationBerylliumTotalBonuses("Helium"), GetAmeliorationBerylliumTotalBonuses("Lithium"), GetAmeliorationBerylliumTotalBonuses("Beryllium")]
+
 #-----------------------------------------Helium-----------------------------------------------------------------
 
 #Permet de récupérer le coefficient sur la pression 2 des améliorations hélium
 func GetAmeliorationHeliumCoefficientPression1():
 	return CurrentBonusesAmeliorationHelium["PressionEfficacitee1"]
 
+
 #Permet de récupérer le coefficient sur la pression 1 des améliorations hélium
 func GetAmeliorationHeliumCoefficientPression0():
 	return Big.add(CurrentBonusesAmeliorationHelium["PressionEfficacitee0"], GetAmeliorationHeliumCoefficientPression1AvecNiveau())
 
+
 #Permet de récupérer le coefficient des améliorations d'helium 
 func GetAmeliorationHeliumPressionMultiplicateur():
 	return Big.add(CurrentBonusesAmeliorationHelium["HydrogeneOutputMultiply"], GetAmeliorationHeliumCoefficientPression0AvecNiveau())
+
 
 #Permet de récupérer le coefficient d'ajout sur la pression 1 des améliorations hélium en fontion du niveau de l'amélioration
 func GetAmeliorationHeliumCoefficientPression1AvecNiveau():
@@ -189,6 +245,7 @@ func GetAmeliorationHeliumCoefficientPression1AvecNiveau():
 	if (len(objetsTrouvesDansListe) != 1):
 		return
 	return Big.multiply(CurrentBonusesAmeliorationHelium[nomTypeBonusAmelioration], objetsTrouvesDansListe[0].Level)
+
 
 #Permet de récupérer le coefficient sur la pression 0 des améliorations hélium en fontion du niveau de l'amélioration
 func GetAmeliorationHeliumCoefficientPression0AvecNiveau():
@@ -199,6 +256,7 @@ func GetAmeliorationHeliumCoefficientPression0AvecNiveau():
 	var bonusPression1 = GetAmeliorationHeliumCoefficientPression1AvecNiveau()
 	var bonusPression0 = Big.add(CurrentBonusesAmeliorationHelium[nomTypeBonusAmelioration], bonusPression1)
 	return Big.multiply(bonusPression0, objetsTrouvesDansListe[0].Level)
+
 
 #Permet de récupérer le coefficient sur la pression 0 des améliorations hélium en fontion du niveau de l'amélioration
 func GetAmeliorationHeliumCoefficientSortieAvecNiveau():
@@ -215,13 +273,16 @@ func GetAmeliorationHeliumCoefficientSortieAvecNiveau():
 func GetAmeliorationHeliumCoefficientTemperature1():
 	return CurrentBonusesAmeliorationHelium["TemperatureEfficacitee1"]
 
+
 #Permet de récupérer le coefficient sur la température 0 des améliorations hélium
 func GetAmeliorationHeliumCoefficientTemperature0():
 	return Big.add(CurrentBonusesAmeliorationHelium["TemperatureEfficacitee0"], GetAmeliorationHeliumCoefficientTemperature1AvecNiveau())
 
+
 #Permet de récupérer le coefficient des améliorations d"helium sur les attributs de l'atome d'hydrogène
 func GetAmeliorationHeliumTemperatureMultiplicateur():
 	return Big.add(CurrentBonusesAmeliorationHelium["HydrogeneAttributsCoefficientAdd"], GetAmeliorationHeliumCoefficientTemperature0AvecNiveau())
+
 
 #Permet de récupérer le coefficient d'ajout sur la Temperature 1 des améliorations hélium en fontion du niveau de l'amélioration
 func GetAmeliorationHeliumCoefficientTemperature1AvecNiveau():
@@ -230,6 +291,7 @@ func GetAmeliorationHeliumCoefficientTemperature1AvecNiveau():
 	if (len(objetsTrouvesDansListe) != 1):
 		return
 	return Big.multiply(CurrentBonusesAmeliorationHelium[nomTypeBonusAmelioration], objetsTrouvesDansListe[0].Level)
+
 
 #Permet de récupérer le coefficient sur la Temperature 0 des améliorations hélium en fontion du niveau de l'amélioration
 func GetAmeliorationHeliumCoefficientTemperature0AvecNiveau():
@@ -240,6 +302,7 @@ func GetAmeliorationHeliumCoefficientTemperature0AvecNiveau():
 	var bonusTemperature1 = GetAmeliorationHeliumCoefficientTemperature1AvecNiveau()
 	var bonusTemperature0 = Big.add(CurrentBonusesAmeliorationHelium[nomTypeBonusAmelioration], bonusTemperature1)
 	return Big.multiply(bonusTemperature0, objetsTrouvesDansListe[0].Level)
+
 
 #Permet de récupérer le coefficient sur la pression 0 des améliorations hélium en fontion du niveau de l'amélioration
 func GetAmeliorationHeliumCoefficientTemperatureAvecNiveau():
@@ -253,22 +316,25 @@ func GetAmeliorationHeliumCoefficientTemperatureAvecNiveau():
 
 #New Lithium -----------------------------------------------------------------------------------------------------------
 
-
 #Permet de récupérer le coefficient d'un electron couche L
 func GetAmeliorationLithiumCoefficientElectronsL():
 	return CurrentBonusesAmeliorationLithium["ElectronsKEfficacitee"]
+
 
 #Permet de récupérer le coefficient d'un electron couche K sur proton
 func GetAmeliorationLithiumCoefficientProton():
 	return Big.add(CurrentBonusesAmeliorationLithium["ProtonEfficacitee"], GetAmeliorationLithiumCoefficientElectronsLAvecNiveaux())
 
+
 #Permet de récupérer le coefficient d'un electron couche K sur neutron
 func GetAmeliorationLithiumCoefficientNeutron():
 	return Big.add(CurrentBonusesAmeliorationLithium["NeutronEfficacitee"], GetAmeliorationLithiumCoefficientElectronsLAvecNiveaux())
 
+
 #Permet de récupérer le coefficient sur les protons
 func GetAmeliorationLithiumProtonMultiplicateur():
 	return Big.add(CurrentBonusesAmeliorationLithium["HeliumOutputMultiply"], GetAmeliorationLithiumCoefficientElectronsKProtonAvecNiveau())
+
 
 #Permet de récupérer le coefficient sur les neutrons
 func GetAmeliorationLithiumNeutronMultiplicateur():
@@ -294,6 +360,7 @@ func GetAmeliorationLithiumCoefficientElectronsKProtonAvecNiveau():
 	var bonusProton = Big.add(CurrentBonusesAmeliorationLithium[nomTypeBonusAmelioration], bonusElectronsL)
 	return Big.multiply(bonusProton, objetsTrouvesDansListe[0].Level)
 
+
 #Permet de récupérer le coefficient d'ajout sur les electrons couche K en fontion du niveau de l'amélioration
 func GetAmeliorationLithiumCoefficientElectronsKNeutronAvecNiveau():
 	var nomTypeBonusAmelioration = "NeutronEfficacitee"
@@ -315,6 +382,7 @@ func GetAmeliorationLithiumCoefficientProtonAvecNiveau():
 	var bonusProton = Big.add(CurrentBonusesAmeliorationLithium[nomTypeBonusAmelioration], bonusProtonElectronsK)
 	return Big.multiply(bonusProton, objetsTrouvesDansListe[0].Level)
 
+
 #Permet de récupérer le coefficient sur les protons en fontion du niveau de l'amélioration
 func GetAmeliorationLithiumCoefficientNeutronAvecNiveau():
 	var nomTypeBonusAmelioration = "HeliumAttributsCostDivided"
@@ -324,4 +392,3 @@ func GetAmeliorationLithiumCoefficientNeutronAvecNiveau():
 	var bonusNeutronElectronsK = GetAmeliorationLithiumCoefficientElectronsKNeutronAvecNiveau()
 	var bonusProton = Big.add(CurrentBonusesAmeliorationLithium[nomTypeBonusAmelioration], bonusNeutronElectronsK)
 	return Big.multiply(bonusProton, objetsTrouvesDansListe[0].Level)
-
