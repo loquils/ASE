@@ -18,6 +18,11 @@ extends Control
 @onready var LithiumLevelLabel = $PresentationVBoxC/MiddleMarginC/VBoxContainer/CurrentLevelsMarginC/HBoxC/LithiumFondPanel/MarginC/VBoxC/BonusLabel
 @onready var BerylliumLevelLabel = $PresentationVBoxC/MiddleMarginC/VBoxContainer/CurrentLevelsMarginC/HBoxC/BerylliumFondPanel/MarginC/VBoxC/BonusLabel
 
+@onready var HydrogeneTotalLabel = $PresentationVBoxC/MiddleMarginC/VBoxContainer/CurrentLevelsMarginC/HBoxC/HydrogeneFondPanel/MarginC/VBoxC/TotalBonusLabel
+@onready var HeliumTotalLabel = $PresentationVBoxC/MiddleMarginC/VBoxContainer/CurrentLevelsMarginC/HBoxC/HeliumFondPanel/MarginC/VBoxC/TotalBonusLabel
+@onready var LithiumTotalLabel = $PresentationVBoxC/MiddleMarginC/VBoxContainer/CurrentLevelsMarginC/HBoxC/LithiumFondPanel/MarginC/VBoxC/TotalBonusLabel
+@onready var BerylliumTotalLabel = $PresentationVBoxC/MiddleMarginC/VBoxContainer/CurrentLevelsMarginC/HBoxC/BerylliumFondPanel/MarginC/VBoxC/TotalBonusLabel
+
 
 var CustomButtonAmeliorationBeryllium = preload("res://Design/Scenes/Ameliorations/ButtonAmeliorationBeryllium.tscn")
 
@@ -54,11 +59,16 @@ func _process(delta):
 				BerylliumBaseBonusLabel.text = "+" + str(Big.multiply(currentOutputBonuses["BerylliumOutputMultiply"], Big.new(1.0, 2))) + "%"
 	
 	var currentLevels = BonusManager.GetAmeliorationBerylliumLevels()
-
 	HydrogeneLevelLabel.text = str(currentLevels[0])
 	HeliumLevelLabel.text = str(currentLevels[1])
 	LithiumLevelLabel.text = str(currentLevels[2])
 	BerylliumLevelLabel.text = str(currentLevels[3])
+	
+	var totalBonuses = BonusManager.GetAmeliorationBerylliumAllTotalBonuses()
+	HydrogeneTotalLabel.text = "+" + str(Big.multiply(totalBonuses[0], Big.new(1.0, 2))) + "%"
+	HeliumTotalLabel.text = "+" + str(Big.multiply(totalBonuses[1], Big.new(1.0, 2))) + "%"
+	LithiumTotalLabel.text = "+" + str(Big.multiply(totalBonuses[2], Big.new(1.0, 2))) + "%"
+	BerylliumTotalLabel.text = "+" + str(Big.multiply(totalBonuses[3], Big.new(1.0, 2))) + "%"
 
 #Trigger lors de l'appuie sur un bouton pour augmenter une amélioration de beryllium
 func AchatAmeliorationBerylliumButtonPressed(ameliorationBeryllium:AmeliorationBeryllium):

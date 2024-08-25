@@ -16,13 +16,14 @@ var AmeliorationBeryllium: AmeliorationBeryllium
 @onready var UnlockPanel = $PanelForUnlock
 @onready var UnlockAtomeNomLabel = $PanelForUnlock/FondPanel/VBoxContainer/AtomeLabel
 @onready var UnlockAtomePrixLabel = $PanelForUnlock/FondPanel/VBoxContainer/PrixLabel
-@onready var AmeliorationLithiumUnlockButton= $PanelForUnlock/FondPanel/VBoxContainer/AmeliorationLithiumUnlockButton
+@onready var AmeliorationBerylliumUnlockButton= $PanelForUnlock/FondPanel/VBoxContainer/AmeliorationBerylliumUnlockButton
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pressed.connect(RechercheClick.AmeliorationBerylliumButtonEventTrigger.bind(AmeliorationBeryllium))
-	#UnlockAtomePrixLabel.text = str(AmeliorationLithium.AtomePriceForUnlocking.values()[0])
+	UnlockAtomeNomLabel.text = str(AmeliorationBeryllium.AtomePriceForUnlocking.keys()[0])
+	UnlockAtomePrixLabel.text = str(AmeliorationBeryllium.AtomePriceForUnlocking.values()[0])
 
 
 func _set_var(ameliorationBeryllium:AmeliorationBeryllium):
@@ -33,6 +34,14 @@ func _set_var(ameliorationBeryllium:AmeliorationBeryllium):
 func _process(delta):
 	NomAmeliorationLabel.text = tr(AmeliorationBeryllium.Name)
 	DescriptionAmeliorationLabel.text = tr(AmeliorationBeryllium.Description)
+	if UnlockPanel.visible:
+		if AmeliorationBeryllium.IsUnlocked:
+			UnlockPanel.visible = false
+		
+		if RessourceManager.QuantiteesAtomes[AmeliorationBeryllium.AtomePriceForUnlocking.keys()[0]].isLessThan(AmeliorationBeryllium.AtomePriceForUnlocking.values()[0]):
+			AmeliorationBerylliumUnlockButton.disabled = true
+		else:
+			AmeliorationBerylliumUnlockButton.disabled = false
 	
 	if AmeliorationBeryllium.IsUnlocked:
 		var bonusesAmelioration = AmeliorationBeryllium.BonusesAmeliorationBeryllium
@@ -50,3 +59,32 @@ func _process(delta):
 		NiveauLabel.text = tr("Niv.") + str(AmeliorationBeryllium.Level)
 		var prix = AmeliorationBeryllium.GetPrixAmeliorationBeryllium()
 		PrixLabel.text = tr(prix.keys()[0])  + ": " + str(prix.values()[0])
+	else:
+		UnlockPanel.visible = true
+		return
+	
+	if AmeliorationBeryllium.IsUnlocked:
+		var prixAmelioration = AmeliorationBeryllium.GetPrixAmeliorationBeryllium()
+		var atomPrix = prixAmelioration.keys()[0]
+		var quantiteePrix = prixAmelioration.values()[0]
+		if RessourceManager.QuantiteesAtomes.has(atomPrix):
+			if RessourceManager.QuantiteesAtomes[atomPrix].isLessThan(quantiteePrix):
+				disabled = true
+			else : 
+				disabled = false
+
+
+#Déverrouille la recherche de beryllium
+func _on_amelioration_beryllium_unlock_button_pressed():
+	print("Bouton Unlock beryllium amélioration :" + AmeliorationBeryllium.Name)
+	if AmeliorationBeryllium.IsUnlocked:
+		return
+	
+	if RessourceManager.QuantiteesAtomes[AmeliorationBeryllium.AtomePriceForUnlocking.keys()[0]].isLessThan(AmeliorationBeryllium.AtomePriceForUnlocking.values()[0]):
+		return
+			
+	RessourceManager.QuantiteesAtomes[AmeliorationBeryllium.AtomePriceForUnlocking.keys()[0]] = Big.subtractAbove0(RessourceManager.QuantiteesAtomes[AmeliorationBeryllium.AtomePriceForUnlocking.keys()[0]], AmeliorationBeryllium.AtomePriceForUnlocking.values()[0])
+		
+	AmeliorationBeryllium.IsUnlocked = true
+	
+	BonusManager.MajBonusAmeliorationBeryllium()

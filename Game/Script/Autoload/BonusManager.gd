@@ -218,6 +218,8 @@ func GetAmeliorationBerylliumNumberAddBonuses():
 func GetAmeliorationBerylliumTotalBonuses(atomeName):
 	return Big.multiply(CurrentBonusesAmeliorationBeryllium[atomeName + "Level"], BaseBonusesAmeliorationsBerylliumPercent[atomeName + "OutputMultiply"])
 
+func GetAmeliorationBerylliumAllTotalBonuses():
+	return [GetAmeliorationBerylliumTotalBonuses("Hydrogene"), GetAmeliorationBerylliumTotalBonuses("Helium"), GetAmeliorationBerylliumTotalBonuses("Lithium"), GetAmeliorationBerylliumTotalBonuses("Beryllium")]
 
 #-----------------------------------------Helium-----------------------------------------------------------------
 

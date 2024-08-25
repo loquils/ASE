@@ -310,6 +310,13 @@ text = "Bonus"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="TotalBonusLabel" type="Label" parent="PresentationVBoxC/MiddleMarginC/VBoxContainer/CurrentLevelsMarginC/HBoxC/HydrogeneFondPanel/MarginC/VBoxC"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Total"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="HeliumFondPanel" type="Panel" parent="PresentationVBoxC/MiddleMarginC/VBoxContainer/CurrentLevelsMarginC/HBoxC"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -337,6 +344,13 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 text = "Bonus"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TotalBonusLabel" type="Label" parent="PresentationVBoxC/MiddleMarginC/VBoxContainer/CurrentLevelsMarginC/HBoxC/HeliumFondPanel/MarginC/VBoxC"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Total"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -370,6 +384,13 @@ text = "Bonus"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="TotalBonusLabel" type="Label" parent="PresentationVBoxC/MiddleMarginC/VBoxContainer/CurrentLevelsMarginC/HBoxC/LithiumFondPanel/MarginC/VBoxC"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Total"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="BerylliumFondPanel" type="Panel" parent="PresentationVBoxC/MiddleMarginC/VBoxContainer/CurrentLevelsMarginC/HBoxC"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -397,6 +418,13 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 text = "Bonus"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TotalBonusLabel" type="Label" parent="PresentationVBoxC/MiddleMarginC/VBoxContainer/CurrentLevelsMarginC/HBoxC/BerylliumFondPanel/MarginC/VBoxC"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Total"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -432,7 +460,7 @@ grow_vertical = 2
 
 [node name="NomLabel" type="Label" parent="PresentationVBoxC/AmeliorationsMarginC/AmeliorationsVBoxC/MarginC/FondPanel/PresVBoxC"]
 layout_mode = 2
-text = "TITREELECTRONSKLABEL"
+text = "TITREBERYLLIUMMENU"
 horizontal_alignment = 1
 vertical_alignment = 1
 

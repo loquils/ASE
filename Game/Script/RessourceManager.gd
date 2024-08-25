@@ -259,7 +259,6 @@ func DefineAtomsListInitializingGame():
 	
 	BerylliumAtom.DefineAtomeAttributs(BerylliumAttributsList)
 	BerylliumAtom.DefineAtomeUnlockingPrice({"Lithium" : Big.new(1.0, 4)})
-	BerylliumAtom.isUnlocked = true
 	AtomsListInitializingGame.append(BerylliumAtom)
 
 
@@ -349,13 +348,11 @@ func DefineAmeliorationBerylliumListInitializingGame():
 	ListeAmeliorationsBerylliumInitializeGame.append(ameliorationBerylliumHelium)
 	
 	var ameliorationBerylliumLithium = AmeliorationBeryllium.new(2, "Lithium", "AMELIORATIONBERYLLIUMLITHIUMDESCRIPTION", {"Lithium" : Big.new(3.0, 2)}, Big.new(1.7), AmeliorationBeryllium.CategorieAmeliorationBerylliumEnum.Normal, [1, 1, 1, 1])
-	ameliorationBerylliumLithium.DefineUnlockingPrice( {"Beryllium" : Big.new(1.0, 0)})
-	ameliorationBerylliumLithium.IsUnlocked = true
+	ameliorationBerylliumLithium.DefineUnlockingPrice( {"Beryllium" : Big.new(7.5, 2)})
 	ListeAmeliorationsBerylliumInitializeGame.append(ameliorationBerylliumLithium)
 	
 	var ameliorationBerylliumBeryllium = AmeliorationBeryllium.new(3, "Beryllium", "AMELIORATIONBERYLLIUMBERYLLIUMDESCRIPTION", {"Beryllium" : Big.new(4.0, 2)}, Big.new(1.8), AmeliorationBeryllium.CategorieAmeliorationBerylliumEnum.BonusAdd, [1, 0.5 , 0.25, 0.12])
-	ameliorationBerylliumBeryllium.DefineUnlockingPrice( {"Beryllium" : Big.new(1.0, 0)})
-	ameliorationBerylliumBeryllium.IsUnlocked = true
+	ameliorationBerylliumBeryllium.DefineUnlockingPrice( {"Beryllium" : Big.new(1.0, 4)})
 	ListeAmeliorationsBerylliumInitializeGame.append(ameliorationBerylliumBeryllium)
 
 

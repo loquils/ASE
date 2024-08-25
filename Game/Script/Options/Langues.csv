@@ -112,7 +112,7 @@ AMELIORATIONLITHIUMELECTRONK1DESCRIPTION, "Améliore le coefficient de puissance
 AMELIORATIONLITHIUMELECTRONK2DESCRIPTION, "Améliore le coefficient de puissance des Neutrons.", "Increase Neutrons power coefficient."
 AMELIORATIONLITHIUMELECTRONLDESCRIPTION, "Améliore le coefficient des Electrons couche K.", "Increase layer K Electrons coefficient."
 
-
+TITREBERYLLIUMMENU, "Améliorations Beryllium", "Beryllium Upgrades"
 AMELIORATIONBERYLLIUMHYDROGENEDESCRIPTION, "", ""
 AMELIORATIONBERYLLIUMHELIUMDESCRIPTION, "", ""
 AMELIORATIONBERYLLIUMLITHIUMDESCRIPTION, "", ""
