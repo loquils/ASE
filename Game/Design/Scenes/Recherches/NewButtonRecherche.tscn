@@ -1,0 +1,287 @@
+[gd_scene load_steps=16 format=3 uid="uid://4t5wx31s4vre"]
+
+[ext_resource type="Theme" uid="uid://bpp0g65ufb5yg" path="res://Design/Themes/Recherche/NewThemeButtonRecherche.tres" id="1_0mqas"]
+[ext_resource type="Script" path="res://Design/Scenes/Recherches/NewButtonRecherche.gd" id="2_4hix0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v7abm"]
+bg_color = Color(0.317647, 0.317647, 0.317647, 1)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0.129412, 0.129412, 0.129412, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1gyuv"]
+bg_color = Color(0.192157, 0.192157, 0.192157, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.145098, 0.145098, 0.145098, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v0rnu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0k6yi"]
+bg_color = Color(0.254902, 0.254902, 0.254902, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_umrya"]
+bg_color = Color(0.192157, 0.192157, 0.192157, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.145098, 0.145098, 0.145098, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0b6as"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_msdwl"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_d1oqo"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5w1tp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mdpyf"]
+bg_color = Color(0.443137, 0.443137, 0.443137, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.145098, 0.145098, 0.145098, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_np3oe"]
+bg_color = Color(0.254902, 0.435294, 0.254902, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_snxeu"]
+bg_color = Color(0.443137, 0.443137, 0.443137, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.145098, 0.145098, 0.145098, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4r0jd"]
+
+[node name="NewButtonRecherche" type="Control"]
+custom_minimum_size = Vector2(228, 280)
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -110.0
+offset_top = -130.0
+offset_right = 110.0
+offset_bottom = 130.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("1_0mqas")
+script = ExtResource("2_4hix0")
+
+[node name="PresentationPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v7abm")
+
+[node name="PresentationVBoxC" type="VBoxContainer" parent="PresentationPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NomMarginC" type="MarginContainer" parent="PresentationPanel/PresentationVBoxC"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 5
+
+[node name="PanelC" type="PanelContainer" parent="PresentationPanel/PresentationVBoxC/NomMarginC"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_1gyuv")
+
+[node name="MarginC" type="MarginContainer" parent="PresentationPanel/PresentationVBoxC/NomMarginC/PanelC"]
+layout_mode = 2
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_bottom = 3
+
+[node name="NomLabel" type="Label" parent="PresentationPanel/PresentationVBoxC/NomMarginC/PanelC/MarginC"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_v0rnu")
+text = "Nom"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DescriptionMarginC" type="MarginContainer" parent="PresentationPanel/PresentationVBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 2
+
+[node name="PanelC" type="PanelContainer" parent="PresentationPanel/PresentationVBoxC/DescriptionMarginC"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_0k6yi")
+
+[node name="DescriptionLabel" type="Label" parent="PresentationPanel/PresentationVBoxC/DescriptionMarginC/PanelC"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 16
+text = "Description"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+text_overrun_behavior = 2
+
+[node name="PrixMarginC" type="MarginContainer" parent="PresentationPanel/PresentationVBoxC"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="PanelC" type="PanelContainer" parent="PresentationPanel/PresentationVBoxC/PrixMarginC"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_umrya")
+
+[node name="MarginC" type="MarginContainer" parent="PresentationPanel/PresentationVBoxC/PrixMarginC/PanelC"]
+layout_mode = 2
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_bottom = 3
+
+[node name="PrixLabel" type="Label" parent="PresentationPanel/PresentationVBoxC/PrixMarginC/PanelC/MarginC"]
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_styles/normal = SubResource("StyleBoxEmpty_0b6as")
+text = "Label"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/hover = SubResource("StyleBoxEmpty_msdwl")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_d1oqo")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_5w1tp")
+
+[node name="AchatPresentationPanel" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v7abm")
+
+[node name="PresentationVBoxC" type="VBoxContainer" parent="AchatPresentationPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NomMarginC" type="MarginContainer" parent="AchatPresentationPanel/PresentationVBoxC"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 5
+
+[node name="PanelC" type="PanelContainer" parent="AchatPresentationPanel/PresentationVBoxC/NomMarginC"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_mdpyf")
+
+[node name="MarginC" type="MarginContainer" parent="AchatPresentationPanel/PresentationVBoxC/NomMarginC/PanelC"]
+layout_mode = 2
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_bottom = 3
+
+[node name="NomLabel" type="Label" parent="AchatPresentationPanel/PresentationVBoxC/NomMarginC/PanelC/MarginC"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_v0rnu")
+text = "Nom"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DescriptionMarginC" type="MarginContainer" parent="AchatPresentationPanel/PresentationVBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 2
+
+[node name="PanelC" type="PanelContainer" parent="AchatPresentationPanel/PresentationVBoxC/DescriptionMarginC"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_np3oe")
+
+[node name="DescriptionLabel" type="Label" parent="AchatPresentationPanel/PresentationVBoxC/DescriptionMarginC/PanelC"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 16
+text = "Description"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+text_overrun_behavior = 2
+
+[node name="BonusMarginC" type="MarginContainer" parent="AchatPresentationPanel/PresentationVBoxC"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="PanelC" type="PanelContainer" parent="AchatPresentationPanel/PresentationVBoxC/BonusMarginC"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_snxeu")
+
+[node name="MarginC" type="MarginContainer" parent="AchatPresentationPanel/PresentationVBoxC/BonusMarginC/PanelC"]
+layout_mode = 2
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_bottom = 3
+
+[node name="BonusLabel" type="Label" parent="AchatPresentationPanel/PresentationVBoxC/BonusMarginC/PanelC/MarginC"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_4r0jd")
+text = "Bonus"
+horizontal_alignment = 1
+vertical_alignment = 1

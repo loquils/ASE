@@ -1,6 +1,6 @@
 extends Control
 
-var ButtonRechercheScenePreload = preload("res://Design/Scenes/ButtonRecherche.tscn")
+var ButtonRechercheScenePreload = preload("res://Design/Scenes/Recherches/NewButtonRecherche.tscn")
 
 #@onready var ResearchesEasyContainer = $MainMarginC/ResearchLvlVBoxC/ScrollRecherchesC/ResearchesEasyHBoxC
 @onready var ResearchesDebutContainer = $MainMarginC/ResearchLvlVBoxC/LvlDebutScrollC/GridC
