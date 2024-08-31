@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cjywjf0dbfxr1"]
+[gd_scene load_steps=8 format=3 uid="uid://cjywjf0dbfxr1"]
 
 [ext_resource type="Script" path="res://Script/AmeliorationBeryllium/AmeliorationBerylliumControl.gd" id="1_lypaw"]
 [ext_resource type="PackedScene" uid="uid://cg8ujfkwr68r6" path="res://Design/Scenes/PresentationQuantiteesAtomes.tscn" id="1_mx5u0"]
 [ext_resource type="SystemFont" uid="uid://d2tc25vdki2hk" path="res://Design/Themes/SystemFontForQantities.tres" id="2_2d7rk"]
+[ext_resource type="Texture2D" uid="uid://62kvmyt8803l" path="res://Design/Icones/IconeFlecheBas24pxWhite.png" id="4_r60s2"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qne0d"]
 bg_color = Color(0.192157, 0.192157, 0.192157, 1)
@@ -95,7 +96,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="MiddleMarginC" type="MarginContainer" parent="PresentationVBoxC"]
-custom_minimum_size = Vector2(0, 200)
+custom_minimum_size = Vector2(0, 220)
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PresentationVBoxC/MiddleMarginC"]
@@ -266,6 +267,61 @@ size_flags_vertical = 1
 text = "Bonus"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="IconesFlechesMarginC" type="MarginContainer" parent="PresentationVBoxC/MiddleMarginC/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxC" type="HBoxContainer" parent="PresentationVBoxC/MiddleMarginC/VBoxContainer/IconesFlechesMarginC"]
+layout_mode = 2
+alignment = 1
+
+[node name="MarginC0" type="MarginContainer" parent="PresentationVBoxC/MiddleMarginC/VBoxContainer/IconesFlechesMarginC/HBoxC"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="PresentationVBoxC/MiddleMarginC/VBoxContainer/IconesFlechesMarginC/HBoxC/MarginC0"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("4_r60s2")
+expand_mode = 1
+
+[node name="MarginC1" type="MarginContainer" parent="PresentationVBoxC/MiddleMarginC/VBoxContainer/IconesFlechesMarginC/HBoxC"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="PresentationVBoxC/MiddleMarginC/VBoxContainer/IconesFlechesMarginC/HBoxC/MarginC1"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("4_r60s2")
+expand_mode = 1
+
+[node name="MarginC2" type="MarginContainer" parent="PresentationVBoxC/MiddleMarginC/VBoxContainer/IconesFlechesMarginC/HBoxC"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="PresentationVBoxC/MiddleMarginC/VBoxContainer/IconesFlechesMarginC/HBoxC/MarginC2"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("4_r60s2")
+expand_mode = 1
+
+[node name="MarginC3" type="MarginContainer" parent="PresentationVBoxC/MiddleMarginC/VBoxContainer/IconesFlechesMarginC/HBoxC"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="PresentationVBoxC/MiddleMarginC/VBoxContainer/IconesFlechesMarginC/HBoxC/MarginC3"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("4_r60s2")
+expand_mode = 1
 
 [node name="CurrentLevelsMarginC" type="MarginContainer" parent="PresentationVBoxC/MiddleMarginC/VBoxContainer"]
 layout_mode = 2
