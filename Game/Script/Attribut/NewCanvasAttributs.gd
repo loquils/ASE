@@ -3,32 +3,40 @@ extends Control
 var Atome
 var AttributBoutton = preload("res://Design/Scenes/Attribut/NewButtonAttribut.tscn")
 
+@onready var AttributButtonsC = $PresentationPanel/PresentationVBoxC/ButtonsMarginC/HBoxC
+
+@onready var UnlockPanel = $PanelForUnlock
+@onready var UnlockPanelAtomeLabel = $PanelForUnlock/FondPanel/VBoxC/AtomeLabel
+@onready var UnlockPanelPrixLabel = $PanelForUnlock/FondPanel/VBoxC/PrixLabel
+@onready var UnlockPanelButton = $PanelForUnlock/FondPanel/VBoxC/UnlockButton
+
+@onready var NomAtome = $PresentationPanel/PresentationVBoxC/NomAtomeMarginC/NomLabel
+
 func _set_var(atome):
 	Atome = atome
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$NomAtomeLabel.text = tr(Atome.Name)
-	
 	for attribut in Atome.ListeAttribs:
 		var newBouton = AttributBoutton.instantiate()
 		newBouton._set_var(attribut)
-		$HBoxContainer.add_child(newBouton)
+		AttributButtonsC.add_child(newBouton)
 		
 	if Atome.isUnlocked:
-		$PanelForUnlock.visible = false
+		UnlockPanel.visible = false
 	else:
-		for priceAtome in Atome.AtomePriceForUnlocking:
-			$PanelForUnlock/VBoxContainer/AtomeLabel.text = priceAtome
-			$PanelForUnlock/VBoxContainer/PrixLabel.text = str(Atome.AtomePriceForUnlocking[priceAtome])
+		for atome in Atome.AtomePriceForUnlocking:
+			UnlockPanelAtomeLabel.text = tr(atome)
+			UnlockPanelPrixLabel.text = str(Atome.AtomePriceForUnlocking[atome])
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	$NomAtomeLabel.text = tr(Atome.Name)
+	NomAtome.text = tr(Atome.Name)
 	
-	if $PanelForUnlock.visible:
+	if UnlockPanel.visible:
 		if Atome.isUnlocked:
-			$PanelForUnlock.visible = false
+			UnlockPanel.visible = false
 		
 		#On test si le bouton est disabled ou pas : donc si on a assez de tous les atomes qu'on a besoin
 		var testForOk = true
@@ -36,11 +44,11 @@ func _process(delta):
 			if RessourceManager.QuantiteesAtomes[priceAtomeName].isLessThan(Atome.AtomePriceForUnlocking[priceAtomeName]):
 				testForOk = false
 		
-		$PanelForUnlock/VBoxContainer/Button.disabled = not testForOk
+		UnlockPanelButton.disabled = not testForOk
 	
 	else:
 		if not Atome.isUnlocked:
-			$PanelForUnlock.visible = true
+			UnlockPanel.visible = true
 
 
 func OnUnlockButtonPressed():

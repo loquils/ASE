@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://4t5wx31s4vre"]
 
 [ext_resource type="Theme" uid="uid://bpp0g65ufb5yg" path="res://Design/Themes/Recherche/NewThemeButtonRecherche.tres" id="1_0mqas"]
-[ext_resource type="Script" path="res://Design/Scenes/Recherches/NewButtonRecherche.gd" id="2_4hix0"]
+[ext_resource type="Script" path="res://Script/Recherche/NewButtonRecherche.gd" id="2_plfh7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v7abm"]
 bg_color = Color(0.317647, 0.317647, 0.317647, 1)
@@ -97,7 +97,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 theme = ExtResource("1_0mqas")
-script = ExtResource("2_4hix0")
+script = ExtResource("2_plfh7")
 
 [node name="PresentationPanel" type="Panel" parent="."]
 layout_mode = 1

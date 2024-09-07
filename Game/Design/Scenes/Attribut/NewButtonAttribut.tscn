@@ -1,0 +1,175 @@
+[gd_scene load_steps=10 format=3 uid="uid://bf6pmtxn55u1r"]
+
+[ext_resource type="Theme" uid="uid://dlln31k1x1et5" path="res://Design/Themes/Attribut/NewButtonAttributTheme.tres" id="1_6bqx0"]
+[ext_resource type="Script" path="res://Script/Attribut/NewButtonAttribut.gd" id="2_6ps66"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w67g8"]
+bg_color = Color(0.317647, 0.317647, 0.317647, 1)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0.129412, 0.129412, 0.129412, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_64pgr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m3nl0"]
+bg_color = Color(0.192157, 0.192157, 0.192157, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.145098, 0.145098, 0.145098, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2s2mi"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ql2m0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o0mtu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a0kdt"]
+
+[node name="NewButtonAttribut" type="Control"]
+custom_minimum_size = Vector2(200, 240)
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -114.0
+offset_top = -140.0
+offset_right = 86.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_6bqx0")
+script = ExtResource("2_6ps66")
+
+[node name="PresentationPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_w67g8")
+
+[node name="PresentationVBoxC" type="VBoxContainer" parent="PresentationPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NomMarginC" type="MarginContainer" parent="PresentationPanel/PresentationVBoxC"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 5
+
+[node name="NomLabel" type="Label" parent="PresentationPanel/PresentationVBoxC/NomMarginC"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxEmpty_64pgr")
+text = "Nom"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel" type="Panel" parent="PresentationPanel/PresentationVBoxC"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+
+[node name="CoefficientMarginC" type="MarginContainer" parent="PresentationPanel/PresentationVBoxC"]
+layout_mode = 2
+
+[node name="CoefficientLabel" type="Label" parent="PresentationPanel/PresentationVBoxC/CoefficientMarginC"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Coef"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel2" type="Panel" parent="PresentationPanel/PresentationVBoxC"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+
+[node name="PrixMarginC" type="MarginContainer" parent="PresentationPanel/PresentationVBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 2
+
+[node name="VBoxC" type="VBoxContainer" parent="PresentationPanel/PresentationVBoxC/PrixMarginC"]
+layout_mode = 2
+alignment = 1
+
+[node name="PrixTitreLabel" type="Label" parent="PresentationPanel/PresentationVBoxC/PrixMarginC/VBoxC"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "PRIX"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PrixLabel" type="Label" parent="PresentationPanel/PresentationVBoxC/PrixMarginC/VBoxC"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 26
+text = "Prix"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+text_overrun_behavior = 2
+
+[node name="Panel3" type="Panel" parent="PresentationPanel/PresentationVBoxC"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+
+[node name="NiveauMarginC" type="MarginContainer" parent="PresentationPanel/PresentationVBoxC"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="PanelC" type="PanelContainer" parent="PresentationPanel/PresentationVBoxC/NiveauMarginC"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_m3nl0")
+
+[node name="MarginC" type="MarginContainer" parent="PresentationPanel/PresentationVBoxC/NiveauMarginC/PanelC"]
+layout_mode = 2
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_bottom = 3
+
+[node name="NiveauLabel" type="Label" parent="PresentationPanel/PresentationVBoxC/NiveauMarginC/PanelC/MarginC"]
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_styles/normal = SubResource("StyleBoxEmpty_2s2mi")
+text = "Label"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/hover = SubResource("StyleBoxEmpty_ql2m0")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_o0mtu")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_a0kdt")

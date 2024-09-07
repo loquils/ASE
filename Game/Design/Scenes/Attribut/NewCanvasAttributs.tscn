@@ -1,0 +1,164 @@
+[gd_scene load_steps=8 format=3 uid="uid://ccd8swrtl81p3"]
+
+[ext_resource type="Script" path="res://Script/Attribut/NewCanvasAttributs.gd" id="1_reln3"]
+[ext_resource type="Theme" uid="uid://c2oksi2eb0sxy" path="res://Design/Themes/themeTest.tres" id="2_h6cg5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vafei"]
+bg_color = Color(0.317647, 0.317647, 0.317647, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.129412, 0.129412, 0.129412, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mni4f"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ibu3v"]
+bg_color = Color(0.2, 0.2, 0.2, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tmayr"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0qha7"]
+bg_color = Color(0.611765, 0.611765, 0.611765, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+
+[node name="NewCanvasAttributs" type="Control"]
+custom_minimum_size = Vector2(620, 360)
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -310.0
+offset_top = -180.0
+offset_right = 310.0
+offset_bottom = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_reln3")
+
+[node name="PresentationPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_vafei")
+
+[node name="PresentationVBoxC" type="VBoxContainer" parent="PresentationPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NomAtomeMarginC" type="MarginContainer" parent="PresentationPanel/PresentationVBoxC"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 5
+
+[node name="NomLabel" type="Label" parent="PresentationPanel/PresentationVBoxC/NomAtomeMarginC"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxEmpty_mni4f")
+text = "Nom"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel" type="Panel" parent="PresentationPanel/PresentationVBoxC"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+
+[node name="ButtonsMarginC" type="MarginContainer" parent="PresentationPanel/PresentationVBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 2
+
+[node name="HBoxC" type="HBoxContainer" parent="PresentationPanel/PresentationVBoxC/ButtonsMarginC"]
+layout_mode = 2
+alignment = 1
+
+[node name="Panel3" type="Panel" parent="PresentationPanel/PresentationVBoxC"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+
+[node name="NiveauMarginC" type="MarginContainer" parent="PresentationPanel/PresentationVBoxC"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="PanelForUnlock" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ibu3v")
+
+[node name="FondPanel" type="Panel" parent="PanelForUnlock"]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -60.0
+offset_right = 50.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_tmayr")
+
+[node name="VBoxC" type="VBoxContainer" parent="PanelForUnlock/FondPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="UnlockButton" type="Button" parent="PanelForUnlock/FondPanel/VBoxC"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_h6cg5")
+theme_override_styles/normal = SubResource("StyleBoxFlat_0qha7")
+text = "Unlock"
+
+[node name="AtomeLabel" type="Label" parent="PanelForUnlock/FondPanel/VBoxC"]
+layout_mode = 2
+text = "Atome"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PrixLabel" type="Label" parent="PanelForUnlock/FondPanel/VBoxC"]
+layout_mode = 2
+text = "Prix"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="PanelForUnlock/FondPanel/VBoxC/UnlockButton" to="." method="OnUnlockButtonPressed"]

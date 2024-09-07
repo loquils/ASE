@@ -38,7 +38,8 @@ Vibration, "Vibration", "Vibration"
 
 Niv., "Niv.", "Lvl."
 Prix : , "Prix : ", "Price : "
-
+PRIX, "Prix", "Price"
+Coefficient : , "Coefficient : ", "Coefficient : "
 
 OPTIONSLABEL, "Options", "Settings"
 CHANGERLANGUEBUTTON, "Changer langue", "Change language"

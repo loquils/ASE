@@ -401,7 +401,7 @@ size_flags_vertical = 10
 
 [node name="MenuAtomes" type="Control" parent="WindowTopBlackVBoxC/MainMarginC/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/AllMenus"]
 visible = false
-custom_minimum_size = Vector2(0, 500)
+custom_minimum_size = Vector2(0, 600)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
