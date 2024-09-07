@@ -194,6 +194,20 @@ func GetRecherchesAttributsCostsDivided(attribut):
 	return diviseurGlobal
 
 
+#Permet de récupérer le diviseur du prix des attributs des atomes
+func GetRecherchesAmeliorationHeCostsDivided():
+	var diviseurRecherches = Big.new(0.0)
+	
+	for currentBonusesRecherches in CurrentBonusesRecherches:
+		if (currentBonusesRecherches.contains("AmeliorationsHeCostDivided")):
+			diviseurRecherches = Big.add(diviseurRecherches, CurrentBonusesRecherches[currentBonusesRecherches])
+
+	if diviseurRecherches.isEqualTo(Big.new(0.0)):
+		diviseurRecherches = Big.new(1.0)
+	
+	return diviseurRecherches
+
+
 #Permet de récupérer le coefficient multiplacateur sur les attributs des atomes
 func GetRecherchesAttributsCoefficientMultiplicateur(attribut):
 	var coefficientMultiplicateur = Big.new(0.0)
@@ -219,6 +233,8 @@ func GetAmeliorationBerylliumNumberAddBonuses():
 func GetAmeliorationBerylliumTotalBonuses(atomeName):
 	return Big.multiply(CurrentBonusesAmeliorationBeryllium[atomeName + "Level"], BaseBonusesAmeliorationsBerylliumPercent[atomeName + "OutputMultiply"])
 
+
+#Permet de récupérer tous les coeffs totaux des améliorations bérilyum (level x BaseBonus)
 func GetAmeliorationBerylliumAllTotalBonuses():
 	return [GetAmeliorationBerylliumTotalBonuses("Hydrogene"), GetAmeliorationBerylliumTotalBonuses("Helium"), GetAmeliorationBerylliumTotalBonuses("Lithium"), GetAmeliorationBerylliumTotalBonuses("Beryllium")]
 
@@ -405,4 +421,6 @@ func InitializeRecherchesBonusTypes():
 		for attribut in atome.ListeAttribs:
 			bonusTypesRecherches.append(atome.Name + attribut.Name + "CostDivided")
 			bonusTypesRecherches.append(atome.Name + attribut.Name + "CoefficientMultiply")
+	
+	bonusTypesRecherches.append("AmeliorationsHeCostDivided")
 	return bonusTypesRecherches
