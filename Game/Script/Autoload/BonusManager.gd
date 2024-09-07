@@ -22,6 +22,7 @@ var BonusTypesRecherchesMatiereNoire = ["HydrogeneOutputMultiply", "HeliumOutput
 var CurrentBonusesRecherchesMatiereNoire = {}
 
 func _ready():
+	BonusTypesRecherches = InitializeRecherchesBonusTypes()
 	if len(CurrentBonusesRecherches) == 0:
 		for bonusType in BonusTypesRecherches:
 			CurrentBonusesRecherches[bonusType] = Big.new(0.0)
@@ -392,3 +393,16 @@ func GetAmeliorationLithiumCoefficientNeutronAvecNiveau():
 	var bonusNeutronElectronsK = GetAmeliorationLithiumCoefficientElectronsKNeutronAvecNiveau()
 	var bonusProton = Big.add(CurrentBonusesAmeliorationLithium[nomTypeBonusAmelioration], bonusNeutronElectronsK)
 	return Big.multiply(bonusProton, objetsTrouvesDansListe[0].Level)
+
+#--------------------Initializing bonuses-------------------------------------------
+
+#Permet de recupérer une liste de tous les bonus de recherches possibles.
+func InitializeRecherchesBonusTypes():
+	var bonusTypesRecherches = ["PrixHydrogeneAugmentation", "AllOutputMultiply"]
+	for atome in RessourceManager.AtomsListInitializingGame:
+		bonusTypesRecherches.append(atome.Name + "OutputMultiply")
+		bonusTypesRecherches.append(atome.Name + "AttributsCostDivided")
+		for attribut in atome.ListeAttribs:
+			bonusTypesRecherches.append(atome.Name + attribut.Name + "CostDivided")
+			bonusTypesRecherches.append(atome.Name + attribut.Name + "CoefficientMultiply")
+	return bonusTypesRecherches
