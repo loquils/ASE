@@ -77,22 +77,6 @@ text = "Nom"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="DescriptionMarginC" type="MarginContainer" parent="MainMarginC/PresVBoxC"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="DescriptionLabel" type="Label" parent="MainMarginC/PresVBoxC/DescriptionMarginC"]
-layout_mode = 2
-size_flags_vertical = 1
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 2
-
 [node name="PrixNiveauMarginC" type="MarginContainer" parent="MainMarginC/PresVBoxC"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -101,17 +85,28 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MainMarginC/PresVBoxC/PrixNiveauMarginC"]
+[node name="HBoxC" type="HBoxContainer" parent="MainMarginC/PresVBoxC/PrixNiveauMarginC"]
 layout_mode = 2
 
-[node name="PrixLabel" type="Label" parent="MainMarginC/PresVBoxC/PrixNiveauMarginC/HBoxContainer"]
+[node name="VBoxC" type="VBoxContainer" parent="MainMarginC/PresVBoxC/PrixNiveauMarginC/HBoxC"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Label" type="Label" parent="MainMarginC/PresVBoxC/PrixNiveauMarginC/HBoxC/VBoxC"]
+layout_mode = 2
+text = "PRIX"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PrixLabel" type="Label" parent="MainMarginC/PresVBoxC/PrixNiveauMarginC/HBoxC/VBoxC"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="NiveauLabel" type="Label" parent="MainMarginC/PresVBoxC/PrixNiveauMarginC/HBoxContainer"]
+[node name="NiveauLabel" type="Label" parent="MainMarginC/PresVBoxC/PrixNiveauMarginC/HBoxC"]
 layout_mode = 2
 size_flags_horizontal = 3
 horizontal_alignment = 1
@@ -121,7 +116,8 @@ vertical_alignment = 1
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 3
+size_flags_vertical = 15
+size_flags_stretch_ratio = 0.6
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
@@ -139,6 +135,7 @@ theme_override_constants/separation = 0
 [node name="HydrogeneFondPanel" type="Panel" parent="MainMarginC/PresVBoxC/DetailsMarginC/VBoxC/HBoxC"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_y3bnf")
 
 [node name="MarginC" type="MarginContainer" parent="MainMarginC/PresVBoxC/DetailsMarginC/VBoxC/HBoxC/HydrogeneFondPanel"]
@@ -178,6 +175,7 @@ vertical_alignment = 1
 [node name="HeliumFondPanel" type="Panel" parent="MainMarginC/PresVBoxC/DetailsMarginC/VBoxC/HBoxC"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_y3bnf")
 
 [node name="MarginC" type="MarginContainer" parent="MainMarginC/PresVBoxC/DetailsMarginC/VBoxC/HBoxC/HeliumFondPanel"]
@@ -222,6 +220,7 @@ theme_override_constants/separation = 0
 [node name="LithiumFondPanel" type="Panel" parent="MainMarginC/PresVBoxC/DetailsMarginC/VBoxC/HBoxC2"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_y3bnf")
 
 [node name="MarginC" type="MarginContainer" parent="MainMarginC/PresVBoxC/DetailsMarginC/VBoxC/HBoxC2/LithiumFondPanel"]
@@ -261,6 +260,7 @@ vertical_alignment = 1
 [node name="BerylliumFondPanel" type="Panel" parent="MainMarginC/PresVBoxC/DetailsMarginC/VBoxC/HBoxC2"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_y3bnf")
 
 [node name="MarginC" type="MarginContainer" parent="MainMarginC/PresVBoxC/DetailsMarginC/VBoxC/HBoxC2/BerylliumFondPanel"]

@@ -10,8 +10,8 @@ var AmeliorationBeryllium: AmeliorationBeryllium
 @onready var BonusLithiumLabel = $MainMarginC/PresVBoxC/DetailsMarginC/VBoxC/HBoxC2/LithiumFondPanel/MarginC/VBoxC/BonusLabel
 @onready var BonusBerylliumLabel = $MainMarginC/PresVBoxC/DetailsMarginC/VBoxC/HBoxC2/BerylliumFondPanel/MarginC/VBoxC/BonusLabel
 
-@onready var NiveauLabel = $MainMarginC/PresVBoxC/PrixNiveauMarginC/HBoxContainer/NiveauLabel
-@onready var PrixLabel = $MainMarginC/PresVBoxC/PrixNiveauMarginC/HBoxContainer/PrixLabel
+@onready var NiveauLabel = $MainMarginC/PresVBoxC/PrixNiveauMarginC/HBoxC/NiveauLabel
+@onready var PrixLabel = $MainMarginC/PresVBoxC/PrixNiveauMarginC/HBoxC/VBoxC/PrixLabel
 
 @onready var UnlockPanel = $PanelForUnlock
 @onready var UnlockAtomeNomLabel = $PanelForUnlock/FondPanel/VBoxContainer/AtomeLabel
@@ -33,7 +33,7 @@ func _set_var(ameliorationBeryllium:AmeliorationBeryllium):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	NomAmeliorationLabel.text = tr(AmeliorationBeryllium.Name)
-	DescriptionAmeliorationLabel.text = tr(AmeliorationBeryllium.Description)
+	#DescriptionAmeliorationLabel.text = tr(AmeliorationBeryllium.Description)
 	if UnlockPanel.visible:
 		if AmeliorationBeryllium.IsUnlocked:
 			UnlockPanel.visible = false

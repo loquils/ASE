@@ -213,6 +213,13 @@ func CalculateQuantityAtomes(timeInSeconde:int = 1):
 				QuantiteesAtomes[atome] = Big.add(QuantiteesAtomes[atome], quantityAtomeWithTime)
 
 
+#Calcul et ajoute la quantité d'un atome par rapport au temps indiqué
+func CalculateQuantityOneAtome(atomName, timeInSeconde:int = 1):
+	if ListeAtomes[atomName].isUnlocked:
+		var quantityAtomeWithTime = Big.multiply(ListeAtomes[atomName].GetAtomePerSec(), Big.new(timeInSeconde))
+		return quantityAtomeWithTime
+
+
 #---------------------------------Define all elements of the game !----------------------------------#
 
 #Permet d'initialiser la liste des atomes dans le jeu
@@ -365,10 +372,10 @@ func DefineRechercheMatiereNoireListInitializingGame():
 		ListeRecherchesMatiereNoireInitializeGame.append(RechercheDarkMatter.new(0, "RECHERCHEMATIERENOIRE1", "RECHERCHEMATIERENOIRE1DESCRIPTION", Big.new(1.0, 0), "HydrogeneOutputMultiplyParRechercheMN", Big.new(1.0, 0)))
 		ListeRecherchesMatiereNoireInitializeGame.append(RechercheDarkMatter.new(1, "RECHERCHEMATIERENOIRE2", "RECHERCHEMATIERENOIRE2DESCRIPTION", Big.new(1.0, 1), "HydrogeneAttributsCostDividedParRechercheMN", Big.new(5.0, 0)))
 		ListeRecherchesMatiereNoireInitializeGame.append(RechercheDarkMatter.new(2, "RECHERCHEMATIERENOIRE3", "RECHERCHEMATIERENOIRE3DESCRIPTION", Big.new(1.0, 2), "HeliumOutputMultiply", Big.new(1.0, 0)))
+
 #------------------------------------------------------------------------------------------------------#
 
-
-#Permet de remettre les atomes à zero
+#Permet de remettre les atomes à zero.
 func ResetAtomes():
 	for atome in ListeAtomes:
 		for attribut in ListeAtomes[atome].ListeAttribs:
@@ -378,21 +385,21 @@ func ResetAtomes():
 			ListeAtomes[atome].isUnlocked = false
 
 
-#Permet de remettre la quantitée des atomes à zero
+#Permet de remettre la quantitée des atomes à zero.
 func ResetRessources():
 	Coins = Big.new(0.0)
 	for atomeNom in ListeAtomes:
 		QuantiteesAtomes[atomeNom] = Big.new(0.0)
 
 
-#Permet de remettre les recherches à zeros
+#Permet de remettre les recherches à zero.
 func ResetRecherches():
 	for recherche in ListeRecherches:
 		recherche.IsUnlocked = false
 	BonusManager.MajBonusRecherches()
 
 
-#Permet de remettre les améliorations Helium à zeros
+#Permet de remettre les améliorations Helium à zero.
 func ResetAmeliorationsHelium():
 	for ameliorationHelium in ListeAmeliorationsHelium:
 		ameliorationHelium.Level = Big.new(0.0)
@@ -400,7 +407,7 @@ func ResetAmeliorationsHelium():
 	BonusManager.MajBonusAmeliorationHelium()
 
 
-#Permet de remettre les améliorations Lithium à zeros
+#Permet de remettre les améliorations Lithium à zero.
 func ResetAmeliorationsLithium():
 	for ameliorationLithium in ListeAmeliorationsLithium:
 		ameliorationLithium.Level = Big.new(0.0)
@@ -408,6 +415,7 @@ func ResetAmeliorationsLithium():
 	BonusManager.MajBonusAmeliorationLithium()
 
 
+#Permet de Save les données du jeu en cours.
 func save():
 	#Pour les quantitées
 	var atomsQuantityDictionnary = {}
