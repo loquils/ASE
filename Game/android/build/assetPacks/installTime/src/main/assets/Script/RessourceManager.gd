@@ -211,8 +211,6 @@ func CalculateQuantityAtomes(timeInSeconde:int = 1):
 		if ListeAtomes[atome].isUnlocked:
 				var quantityAtomeWithTime = Big.multiply(ListeAtomes[atome].GetAtomePerSec(), Big.new(timeInSeconde))
 				QuantiteesAtomes[atome] = Big.add(QuantiteesAtomes[atome], quantityAtomeWithTime)
-				#Pour les infos de la partie
-				InfosPartie.CoinsObtenusInThisReset = Big.add(InfosPartie.CoinsObtenusInThisReset, quantityAtomeWithTime)
 
 
 #---------------------------------Define all elements of the game !----------------------------------#
@@ -252,9 +250,9 @@ func DefineAtomsListInitializingGame():
 	AtomsListInitializingGame.append(lithiumAtom)
 	
 	var BerylliumAtom = Atome.new("Beryllium", Big.new(0.10, 0))
-	var attribut1Beryllium = AttributAtome.new(lithiumAtom, "Force", Big.new(0.0), Big.new(1.45), Big.new(0.18), Big.new(1.75, 3))
-	var attribut2Beryllium = AttributAtome.new(lithiumAtom, "Tension", Big.new(0.0), Big.new(2.25), Big.new(0.75), Big.new(4.0, 3))
-	var attribut3Beryllium = AttributAtome.new(lithiumAtom, "Complexitee", Big.new(0.0), Big.new(1.68), Big.new(0.2), Big.new(1.0, 3))
+	var attribut1Beryllium = AttributAtome.new(BerylliumAtom, "Force", Big.new(0.0), Big.new(1.45), Big.new(0.18), Big.new(1.75, 3))
+	var attribut2Beryllium = AttributAtome.new(BerylliumAtom, "Tension", Big.new(0.0), Big.new(2.25), Big.new(0.75), Big.new(4.0, 3))
+	var attribut3Beryllium = AttributAtome.new(BerylliumAtom, "Complexitee", Big.new(0.0), Big.new(1.68), Big.new(0.2), Big.new(1.0, 3))
 	var BerylliumAttributsList = [attribut1Beryllium, attribut2Beryllium, attribut3Beryllium]
 	
 	BerylliumAtom.DefineAtomeAttributs(BerylliumAttributsList)
@@ -267,19 +265,25 @@ func DefineResearchListInitializingGame():
 	var debutRecherche = Recherche.ResearchLevelEnum.DEBUT
 	var easyRecherche = Recherche.ResearchLevelEnum.EASY
 	
-	ListeRechercheInitializeGame.append(Recherche.new(0, "RECHERCHE1", "RECHERCHEDESCRIPTION1", Big.new(1.5, 2), ["PrixHydrogeneAugmentation"], Big.new(0.25, 0), debutRecherche))
-	ListeRechercheInitializeGame.append(Recherche.new(1, "RECHERCHE2", "RECHERCHEDESCRIPTION2", Big.new(4.0, 2), ["PrixHydrogeneAugmentation"], Big.new(0.5, 0), debutRecherche))
-	ListeRechercheInitializeGame.append(Recherche.new(8, "RECHERCHE9", "RECHERCHEDESCRIPTION9", Big.new(1.0, 3), ["HydrogeneOutputMultiplyParRecherche"], Big.new(0.25), debutRecherche))
-	ListeRechercheInitializeGame.append(Recherche.new(2, "RECHERCHE3", "RECHERCHEDESCRIPTION3", Big.new(2.5, 3), ["PrixHydrogeneAugmentation"], Big.new(1.0, 0), debutRecherche))
-	ListeRechercheInitializeGame.append(Recherche.new(3, "RECHERCHE4", "RECHERCHEDESCRIPTION4", Big.new(6.0, 3), ["HydrogeneAttributsCostDivided"], Big.new(3.0), debutRecherche))
-	ListeRechercheInitializeGame.append(Recherche.new(11, "RECHERCHE12", "RECHERCHEDESCRIPTION12", Big.new(1.4, 4), ["HydrogeneVitesseCostDivided", "HeliumComplexiteeCostDivided"], Big.new(15.0), debutRecherche))
-	ListeRechercheInitializeGame.append(Recherche.new(7, "RECHERCHE8", "RECHERCHEDESCRIPTION8", Big.new(3.15, 4), ["AllOutputMultiplyParRecherche"], Big.new(0.08), debutRecherche))
-	ListeRechercheInitializeGame.append(Recherche.new(4, "RECHERCHE5", "RECHERCHEDESCRIPTION5", Big.new(7.55, 4), ["HydrogeneOutputMultiplyParRecherche", "HeliumOutputMultiplyParRecherche"], Big.new(0.2), debutRecherche))
-	ListeRechercheInitializeGame.append(Recherche.new(5, "RECHERCHE6", "RECHERCHEDESCRIPTION6", Big.new(1.8, 5), ["PrixHydrogeneAugmentation"], Big.new(5.0), debutRecherche))
-	ListeRechercheInitializeGame.append(Recherche.new(12, "RECHERCHE13", "RECHERCHEDESCRIPTION13", Big.new(4.0, 5), ["HydrogeneForceCoefficientMultiply", "HydrogeneVitesseCoefficientMultiply"], Big.new(0.2), debutRecherche))
-	ListeRechercheInitializeGame.append(Recherche.new(9, "RECHERCHE10", "RECHERCHEDESCRIPTION10", Big.new(9.75, 5), ["HydrogeneAttributsCostDivided", "HeliumAttributsCostDivided"], Big.new(8.0), debutRecherche))
-	ListeRechercheInitializeGame.append(Recherche.new(6, "RECHERCHE7", "RECHERCHEDESCRIPTION7", Big.new(2.35, 6), ["HeliumOutputMultiply"], Big.new(1.5), debutRecherche))
-	ListeRechercheInitializeGame.append(Recherche.new(10, "RECHERCHE11", "RECHERCHEDESCRIPTION11", Big.new(6.75, 6), ["HydrogeneOutputMultiply", "HeliumOutputMultiply"], Big.new(0.5), debutRecherche))
+	ListeRechercheInitializeGame.append(Recherche.new(0, Big.new(1.5, 2), ["PrixHydrogeneAugmentation"], Big.new(0.25, 0), debutRecherche))
+	ListeRechercheInitializeGame.append(Recherche.new(1, Big.new(4.0, 2), ["PrixHydrogeneAugmentation"], Big.new(0.5, 0), debutRecherche))
+	ListeRechercheInitializeGame.append(Recherche.new(8, Big.new(1.0, 3), ["HydrogeneOutputMultiplyParRecherche"], Big.new(0.25), debutRecherche))
+	ListeRechercheInitializeGame.append(Recherche.new(2, Big.new(2.5, 3), ["PrixHydrogeneAugmentation"], Big.new(1.0, 0), debutRecherche))
+	ListeRechercheInitializeGame.append(Recherche.new(3, Big.new(6.0, 3), ["HydrogeneAttributsCostDivided"], Big.new(3.0), debutRecherche))
+	ListeRechercheInitializeGame.append(Recherche.new(11, Big.new(1.4, 4), ["HydrogeneVitesseCostDivided", "HeliumComplexiteeCostDivided"], Big.new(15.0), debutRecherche))
+	ListeRechercheInitializeGame.append(Recherche.new(7, Big.new(3.15, 4), ["AllOutputMultiplyParRecherche"], Big.new(0.08), debutRecherche))
+	ListeRechercheInitializeGame.append(Recherche.new(4, Big.new(7.55, 4), ["HydrogeneOutputMultiplyParRecherche", "HeliumOutputMultiplyParRecherche"], Big.new(0.2), debutRecherche))
+	ListeRechercheInitializeGame.append(Recherche.new(5, Big.new(1.8, 5), ["PrixHydrogeneAugmentation"], Big.new(5.0), debutRecherche))
+	ListeRechercheInitializeGame.append(Recherche.new(12, Big.new(4.0, 5), ["HydrogeneForceCoefficientMultiply", "HydrogeneVitesseCoefficientMultiply"], Big.new(0.2), debutRecherche))
+	ListeRechercheInitializeGame.append(Recherche.new(9, Big.new(9.75, 5), ["HydrogeneAttributsCostDivided", "HeliumAttributsCostDivided"], Big.new(8.0), debutRecherche))
+	ListeRechercheInitializeGame.append(Recherche.new(6, Big.new(2.35, 6), ["HeliumOutputMultiply"], Big.new(1.5), debutRecherche))
+	ListeRechercheInitializeGame.append(Recherche.new(10, Big.new(6.75, 6), ["HydrogeneOutputMultiply", "HeliumOutputMultiply"], Big.new(0.5), debutRecherche))
+	
+	ListeRechercheInitializeGame.append(Recherche.new(17, Big.new(4.0, 7), ["AmeliorationsHeCostDivided"], Big.new(10), easyRecherche))
+	ListeRechercheInitializeGame.append(Recherche.new(13, Big.new(1.0, 8), ["LithiumOutputMultiply"], Big.new(1.0), easyRecherche))
+	ListeRechercheInitializeGame.append(Recherche.new(14, Big.new(2.5, 8), ["LithiumAttributsCostDividedParRecherche", "BerylliumAttributsCostDividedParRecherche"], Big.new(3.0), easyRecherche))
+	ListeRechercheInitializeGame.append(Recherche.new(15, Big.new(6.25, 8), ["HydrogeneOutputMultiply"], Big.new(2.0), easyRecherche))
+	ListeRechercheInitializeGame.append(Recherche.new(16, Big.new(1.4, 9), ["AllOutputMultiplyParRecherche"], Big.new(0.25), easyRecherche))
 
 
 #Permet d'initialiser la liste des amélioration de l'hélium dans le jeu

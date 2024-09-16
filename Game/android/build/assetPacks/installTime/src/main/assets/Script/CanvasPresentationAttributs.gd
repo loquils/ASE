@@ -1,7 +1,7 @@
 extends Control
 
 var Atome
-var AttributBoutton = preload("res://Design/Scenes/ButtonAttribut.tscn")
+var AttributBoutton = preload("res://Design/Scenes/Attribut/NewButtonAttribut.tscn")
 
 func _set_var(atome):
 	Atome = atome

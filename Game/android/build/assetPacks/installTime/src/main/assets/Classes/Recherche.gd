@@ -11,10 +11,10 @@ var ResearchLevel:ResearchLevelEnum
 
 enum ResearchLevelEnum {DEBUT, EASY}
 
-func _init(id, name, description, prix: Big, augmentation, augmentationPercent: Big, researchLevel):
+func _init(id, prix: Big, augmentation, augmentationPercent: Big, researchLevel):
 	Id = id
-	Name = name
-	Description = description
+	Name = "RECHERCHE" + str(id + 1)
+	Description = "RECHERCHEDESCRIPTION" + str(id + 1)
 	Prix = prix
 	Augmentation = augmentation
 	AugmentationPercent = augmentationPercent

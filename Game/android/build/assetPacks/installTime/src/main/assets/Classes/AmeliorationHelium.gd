@@ -40,4 +40,6 @@ func DefineAtomeUnlockingPrice(atomePriceForUnlocking):
 
 #Récupère le prix d'une amélioration, pour l'instant c'est x10 puissance niveau
 func GetPrixAmeliorationHelium():
-	return Big.multiply(PrixBase, Big.power(CoefficientAchat, Level))
+	var basePrix = Big.multiply(PrixBase, Big.power(CoefficientAchat, Level))
+	var dividePrixBonuses = BonusManager.GetRecherchesAmeliorationHeCostsDivided();
+	return Big.divide(basePrix, dividePrixBonuses)

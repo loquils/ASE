@@ -53,7 +53,6 @@ func _on_button_amelioration_lithium_pressed():
 
 #Trigger lors de l'appuie sur le bouton pour ouvrir la page d'améliorations du beryllium
 func _on_button_amelioration_beryllium_pressed():
-	print("COIIIIIIIIIIIIIIIIIIIIIIIIN")
 	AmeliorationBerylliumControl.visible = true
 
 

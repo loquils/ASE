@@ -10,5 +10,7 @@ func _process(delta):
 
 func _on_pressed():
 	var PrixVenteHydrogene = Big.multiply(RessourceManager.ListeAtomes["Hydrogene"].PrixBaseVenteAtome, Big.add(Big.new(1.0), BonusManager.CurrentBonusesRecherches["PrixHydrogeneAugmentation"]))
-	RessourceManager.Coins = Big.add(RessourceManager.Coins, Big.multiply(PrixVenteHydrogene, RessourceManager.QuantiteesAtomes["Hydrogene"]))
+	var coinsToAdd = Big.add(RessourceManager.Coins, Big.multiply(PrixVenteHydrogene, RessourceManager.QuantiteesAtomes["Hydrogene"]))
+	InfosPartie.CoinsObtenusInThisReset = Big.add(InfosPartie.CoinsObtenusInThisReset, coinsToAdd)
+	RessourceManager.Coins = coinsToAdd
 	RessourceManager.QuantiteesAtomes["Hydrogene"] = Big.new(0.0)

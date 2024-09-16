@@ -1,6 +1,6 @@
 extends Control
 
-var CanvasPresentation = preload("res://Design/Scenes/CanvasPresentationAttributs.tscn")
+var CanvasPresentation = preload("res://Design/Scenes/Attribut/NewCanvasAttributs.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
