@@ -23,6 +23,7 @@ var CurrentBonusesRecherchesMatiereNoire = {}
 
 func _ready():
 	BonusTypesRecherches = InitializeRecherchesBonusTypes()
+	
 	if len(CurrentBonusesRecherches) == 0:
 		for bonusType in BonusTypesRecherches:
 			CurrentBonusesRecherches[bonusType] = Big.new(0.0)

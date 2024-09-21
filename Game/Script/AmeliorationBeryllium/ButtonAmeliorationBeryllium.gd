@@ -3,7 +3,6 @@ extends Button
 var AmeliorationBeryllium: AmeliorationBeryllium
 
 @onready var NomAmeliorationLabel = $MainMarginC/PresVBoxC/NomLabel
-@onready var DescriptionAmeliorationLabel = $MainMarginC/PresVBoxC/DescriptionMarginC/DescriptionLabel
 
 @onready var BonusHydrogeneLabel = $MainMarginC/PresVBoxC/DetailsMarginC/VBoxC/HBoxC/HydrogeneFondPanel/MarginC/VBoxC/BonusLabel
 @onready var BonusHeliumLabel = $MainMarginC/PresVBoxC/DetailsMarginC/VBoxC/HBoxC/HeliumFondPanel/MarginC/VBoxC/BonusLabel
@@ -33,7 +32,6 @@ func _set_var(ameliorationBeryllium:AmeliorationBeryllium):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	NomAmeliorationLabel.text = tr(AmeliorationBeryllium.Name)
-	#DescriptionAmeliorationLabel.text = tr(AmeliorationBeryllium.Description)
 	if UnlockPanel.visible:
 		if AmeliorationBeryllium.IsUnlocked:
 			UnlockPanel.visible = false
