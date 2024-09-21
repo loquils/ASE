@@ -36,9 +36,11 @@ func _process(_delta):
 #func GetPrixVenteHydrogene():
 #	var newPrix = Big.multiply(RessourceManager.AtomsList["Hydrogene"].PrixBaseVenteAtome, RessourceManager.CurrentBonusesAmeliorationHelium["HydrogeneRendementMultiply"])
 
+
 #Main Timer, 1s, permet de calculer la quantité d'atome que l'on gagne
 func _on_main_timer_timeout():
 	RessourceManager.CalculateQuantityAtomes(1)
+	InfosPartie.HydrogeneObtenuInThisReset = Big.add(InfosPartie.HydrogeneObtenuInThisReset, RessourceManager.CalculateQuantityOneAtome("Hydrogene", 1))
 
 
 #Trigger lors de l'appuie sur le bouton pour ouvrir la page d'améliorations de l'helium 
@@ -94,6 +96,7 @@ func _on_ad_timer_timeout():
 		var buttonAd = AdButtonScene.instantiate()
 		$WindowTopBlackVBoxC/MainMarginC/MainVBoxC/TopHBoxC/VBoxBoutons.add_child(buttonAd)
 
+
 #Trigger lors de l'appuie sur le bouton Jouer de la page d'accueil
 func _on_debut_jeu_button_pressed():
 	AccueilControl.hide()
@@ -108,6 +111,7 @@ func _on_debut_jeu_button_pressed():
 #Permet de changer la langue en français depuis la fenetre d'accueil
 func _on_francais_button_pressed():
 	LangueManager.maj_langue("fr")
+
 
 #Permet de changer la langue en anglais depuis la fenetre d'accueil
 func _on_anglais_button_pressed():

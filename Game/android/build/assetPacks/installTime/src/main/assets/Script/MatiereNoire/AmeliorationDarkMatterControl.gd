@@ -7,7 +7,7 @@ var BoutonRechercheDarkMatter = preload("res://Design/Scenes/ButtonDarkMatter.ts
 @onready var RecherchesGridC = $PresentationVBoxC/MarginC/VBoxC/RecherchesMarginC/InterneRecherchesMarginC/PrestigeAmeliorationScrollC/PrestigeGridC
 
 #Coefficient de calcul pour la matière noire
-var CoefficientDivisionMatiereNoire = Big.new(1.0, 7)
+var CoefficientDivisionMatiereNoire = Big.new(1.3, 6)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -37,7 +37,7 @@ func GetDeltaDarkMatterOld():
 
 #Nouveau test sur le calcul de la matière noire
 func GetDeltaDarkMatter():
-	var quantiteeMatiereNoire = Big.divide(InfosPartie.CoinsObtenusInThisReset, CoefficientDivisionMatiereNoire)
+	var quantiteeMatiereNoire = Big.divide(InfosPartie.HydrogeneObtenuInThisReset, CoefficientDivisionMatiereNoire)
 	return quantiteeMatiereNoire
 
 

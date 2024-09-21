@@ -4,7 +4,7 @@ var CoinsObtenusInThisReset = Big.new(0.0)
 var CoinsObtenusTotal = Big.new(0.0)
 
 var HydrogeneMaximum = Big.new(0.0)
-var HydrogeneObtenu = Big.new(0.0)
+var HydrogeneObtenuInThisReset = Big.new(0.0)
 
 var RecherchesAchetees = 0
 var RecherchesMatiereNoireAchetees = 0
@@ -30,20 +30,23 @@ func MajInformationsPartie():
 func ResetInformationsOnPrestige():
 	HydrogeneMaximum = Big.new(0.0)
 	CoinsObtenusInThisReset = Big.new(0.0)
-	HydrogeneObtenu = Big.add(HydrogeneObtenu, RessourceManager.QuantiteesAtomes["Hydrogene"])
+	HydrogeneObtenuInThisReset = Big.new(0.0)
 	CoinsObtenusTotal = Big.add(CoinsObtenusTotal, CoinsObtenusInThisReset)
 	NombrePrestige += 1
 
+
+#Sauvegarde des informations de la partie dans la save.
 func Save():
 	var infosPartieDict = {
 		"NombrePrestige" : NombrePrestige,
 		"HydrogeneMaximum" : HydrogeneMaximum,
-		"HydrogeneObtenu" : HydrogeneObtenu,
+		"HydrogeneObtenuInThisReset" : HydrogeneObtenuInThisReset,
 		"CoinsObtenusInThisReset" : CoinsObtenusInThisReset,
 		"CoinsObtenusTotal" : CoinsObtenusTotal
 	}
 	return infosPartieDict
 
+#Chargement des informations de la partie dans la save.
 func Load(infos):
 	if infos.has("NombrePrestige"):
 		NombrePrestige = infos["NombrePrestige"]
