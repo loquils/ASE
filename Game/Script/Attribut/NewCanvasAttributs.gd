@@ -37,6 +37,10 @@ func _process(_delta):
 	if UnlockPanel.visible:
 		if Atome.isUnlocked:
 			UnlockPanel.visible = false
+		else:
+			for atome in Atome.AtomePriceForUnlocking:
+				UnlockPanelAtomeLabel.text = tr(atome)
+				UnlockPanelPrixLabel.text = str(Atome.AtomePriceForUnlocking[atome])
 		
 		#On test si le bouton est disabled ou pas : donc si on a assez de tous les atomes qu'on a besoin
 		var testForOk = true
