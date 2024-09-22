@@ -9,7 +9,7 @@ var Augmentation:Array
 var AugmentationPercent
 var ResearchLevel:ResearchLevelEnum
 
-enum ResearchLevelEnum {DEBUT, EASY}
+enum ResearchLevelEnum {DARKMATTER, DEBUT, EASY}
 
 func _init(id, name, prix: Big, augmentation, augmentationPercent: Big, researchLevel):
 	Id = id
@@ -23,9 +23,11 @@ func _init(id, name, prix: Big, augmentation, augmentationPercent: Big, research
 #Permet de get le bonus de la recherche (si c'est par recherches achetées, ça récupère le bonus total du coup)
 func GetRechercheBonus():
 	var currentBonus = AugmentationPercent
-	if Augmentation[0].contains("ParRecherche"):
+	if Augmentation[0].contains("ParRechercheMN"):
+		currentBonus = Big.multiply(currentBonus, InfosPartie.RecherchesMatiereNoireAchetees)
+	elif Augmentation[0].contains("ParRecherche"):
 		currentBonus = Big.multiply(currentBonus, InfosPartie.RecherchesAchetees)
-	
+
 	return currentBonus
 
 
@@ -42,7 +44,9 @@ func GetRechercheDescription():
 		result = "CostDivided".to_upper()
 	if augmentation.contains("CoefficientMultiply"):
 		result = "CoefficientMultiply".to_upper()
-	if augmentation.contains("ParRecherche"):
+	if augmentation.contains("ParRechercheMN"):
+		result += "ParRechercheMN".to_upper()
+	elif augmentation.contains("ParRecherche"):
 		result += "ParRecherche".to_upper()
 		
 	if result == "":
@@ -55,7 +59,7 @@ func GetRechercheElements():
 	if Augmentation[0].contains("OutputMultiply"):
 		var resultOutputMultiply = []
 		for augmentation in Augmentation:
-			var atome = augmentation.replace("OutputMultiply", "").replace("ParRecherche", "")
+			var atome = augmentation.replace("OutputMultiply", "").replace("ParRechercheMN", "").replace("ParRecherche", "")
 			if atome.contains("All"):
 				return [tr("ALLATOMES")]
 			resultOutputMultiply.append(tr(atome))
@@ -67,7 +71,7 @@ func GetRechercheElements():
 			
 		var resultCostDivided = []
 		for augmentation in Augmentation:
-			var attribut = augmentation.replace("CostDivided", "").replace("ParRecherche", "")
+			var attribut = augmentation.replace("CostDivided", "").replace("ParRechercheMN", "").replace("ParRecherche", "")
 			if attribut.contains("Attributs"):
 				resultCostDivided.append(tr(attribut.replace("Attributs", "")))
 			else:
@@ -77,13 +81,14 @@ func GetRechercheElements():
 	if Augmentation[0].contains("CoefficientMultiply"):
 		var resultCoefficientMultiply = []
 		for augmentation in Augmentation:
-			var attribut = augmentation.replace("CoefficientMultiply", "").replace("ParRecherche", "")
+			var attribut = augmentation.replace("CoefficientMultiply", "").replace("ParRechercheMN", "").replace("ParRecherche", "")
 			resultCoefficientMultiply.append(GetAttributCostDividedName(attribut))
 		return resultCoefficientMultiply
 		
 	return [""]
 
 
+#Permet de construire la chaine de caractères à afficher : attribut et atome
 func GetAttributCostDividedName(attributName):
 	for atomeName in RessourceManager.ListeAtomes:
 		if attributName.contains(atomeName):

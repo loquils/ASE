@@ -30,7 +30,6 @@ func _ready():
 func _process(_delta):
 	NomLabel.text = tr(Recherche.Name)
 	DescriptionLabel.text = GetRechercheDescriptionText()
-	var coiiin = GetRechercheDescriptionText()
 	PrixLabel.text = tr("Prix : ") + str(Recherche.Prix)
 	
 	if not Recherche.IsUnlocked:
@@ -38,10 +37,16 @@ func _process(_delta):
 			RechercheButton.disabled = false
 			AchatPanel.visible = false
 		
-		if Recherche.Prix.isGreaterThan(RessourceManager.Coins):
-			RechercheButton.disabled = true
+		if Recherche.ResearchLevel == Recherche.ResearchLevelEnum.DARKMATTER:
+			if Recherche.Prix.isGreaterThan(RessourceManager.DarkMatter):
+				RechercheButton.disabled = true
+			else:
+				RechercheButton.disabled = false
 		else:
-			RechercheButton.disabled = false
+			if Recherche.Prix.isGreaterThan(RessourceManager.Coins):
+				RechercheButton.disabled = true
+			else:
+				RechercheButton.disabled = false
 	else:
 		if not AchatPanel.visible:
 			ChangeButtonStateToBought()
@@ -52,7 +57,7 @@ func _process(_delta):
 
 #Permet de récupérer le text de la description automatiquement et traduit.
 func GetRechercheDescriptionText():
-	var description = tr(Recherche.Description.replace("PARRECHERCHE", ""))
+	var description = tr(Recherche.Description.replace("PARRECHERCHEMN", "").replace("PARRECHERCHE", ""))
 	var rechercheElements = Recherche.GetRechercheElements()
 	
 	var elementsString = ""
@@ -72,7 +77,9 @@ func GetRechercheDescriptionText():
 	description = description.replace("{elements}", elementsString)
 	description = description.replace("{calc}", Recherche.GetRechercheString())
 	
-	if Recherche.Description.contains("PARRECHERCHE"):
+	if Recherche.Description.contains("PARRECHERCHEMN"):
+		description = description.insert(len(description) - 1 ,tr("PARRECHERCHEMN"))
+	elif Recherche.Description.contains("PARRECHERCHE"):
 		description = description.insert(len(description) - 1 ,tr("PARRECHERCHE"))
 	
 	return description

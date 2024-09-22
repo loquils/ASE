@@ -9,8 +9,3 @@ func _ready():
 		var newAffichage = AffichageRessourceSceneLoad.instantiate()
 		newAffichage._set_var(ressource, RessourceManager.QuantiteesAtomes[ressource])
 		add_child(newAffichage)
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass

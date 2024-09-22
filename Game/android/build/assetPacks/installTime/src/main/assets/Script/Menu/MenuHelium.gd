@@ -26,7 +26,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	BonusPressionLabel.text = "+" + str(Big.multiply(BonusManager.GetAmeliorationHeliumCoefficientSortieAvecNiveau(), Big.new(1.0, 2))) + "%"
 	BonusTemperatureLabel.text = "+" + str(BonusManager.GetAmeliorationHeliumCoefficientTemperatureAvecNiveau())
 

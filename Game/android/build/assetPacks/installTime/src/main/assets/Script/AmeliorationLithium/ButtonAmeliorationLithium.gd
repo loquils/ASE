@@ -25,7 +25,7 @@ func _set_var(ameliorationLithium:AmeliorationLithium):
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	NomAmeliorationLabel.text = tr(AmeliorationLithium.Name)
 	DescriptionAmeliorationLabel.text = tr(AmeliorationLithium.Description)
 	

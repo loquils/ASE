@@ -29,7 +29,7 @@ func load_game():
 		var json = JSON.new()
 
 		# Parse le Json
-		var parse_result = json.parse(json_string)
+		json.parse(json_string)
 
 		# Récupère les éléments du Json
 		var ressourceLoadingGame = json.get_data()

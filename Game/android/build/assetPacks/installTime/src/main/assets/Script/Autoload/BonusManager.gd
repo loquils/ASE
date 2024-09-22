@@ -1,5 +1,5 @@
 extends Node
-#Force/Vitesse | Spin/Angle/Complexity
+
 #Bonus des Recherches
 var BonusTypesRecherches = ["PrixHydrogeneAugmentation", "AllOutputMultiply", "HydrogeneOutputMultiply", "HeliumOutputMultiply", "HydrogeneAttributsCostDivided", "HydrogeneForceCostDivided", "HydrogeneVitesseCostDivided", "HeliumAttributsCostDivided", "HeliumSpinCostDivided", "HeliumAngleCostDivided", "HeliumComplexiteeCostDivided", "HydrogeneForceCoefficientMultiply", "HydrogeneVitesseCoefficientMultiply"]
 var CurrentBonusesRecherches = {}
@@ -18,7 +18,6 @@ var BaseBonusesAmeliorationsBerylliumPercent = {"HydrogeneOutputMultiply" : Big.
 var CurrentBonusesAmeliorationBeryllium = {}
 
 #Bonus recherches matière noire
-var BonusTypesRecherchesMatiereNoire = ["HydrogeneOutputMultiply", "HeliumOutputMultiply", "HydrogeneAttributsCostDivided"]
 var CurrentBonusesRecherchesMatiereNoire = {}
 
 func _ready():
@@ -41,7 +40,7 @@ func _ready():
 			CurrentBonusesAmeliorationBeryllium[bonusType] = Big.new(0.0)
 	
 	if len(CurrentBonusesRecherchesMatiereNoire) == 0:
-		for bonusTypeRecherchesMatiereNoire in BonusTypesRecherchesMatiereNoire:
+		for bonusTypeRecherchesMatiereNoire in BonusTypesRecherches:
 			CurrentBonusesRecherchesMatiereNoire[bonusTypeRecherchesMatiereNoire] = Big.new(0.0)
 
 
@@ -111,16 +110,16 @@ func MajBonusAmeliorationBeryllium():
 func MajBonusRecherchesMatiereNoire():
 	InfosPartie.MajInformationsPartie()
 	
-	for bonusTypeRecherchesMatiereNoire in BonusTypesRecherchesMatiereNoire:
+	for bonusTypeRecherchesMatiereNoire in BonusTypesRecherches:
 		CurrentBonusesRecherchesMatiereNoire[bonusTypeRecherchesMatiereNoire] = Big.new(0.0)
 		
 	for rechercheMatiereNoire in RessourceManager.ListeRecherchesMatiereNoire:
 		if rechercheMatiereNoire.IsUnlocked:
-			#On check si on a une recherche en fonction de la quantité de recherche achetée, faudra changer ça je pense
-			if rechercheMatiereNoire.Augmentation.contains("ParRechercheMN"):
-				CurrentBonusesRecherchesMatiereNoire[rechercheMatiereNoire.Augmentation.replace("ParRechercheMN", "")] = Big.add(CurrentBonusesRecherchesMatiereNoire[rechercheMatiereNoire.Augmentation.replace("ParRechercheMN", "")], Big.multiply(rechercheMatiereNoire.AugmentationPercent, InfosPartie.RecherchesMatiereNoireAchetees))
-			else:
-				CurrentBonusesRecherchesMatiereNoire[rechercheMatiereNoire.Augmentation] = Big.add(CurrentBonusesRecherchesMatiereNoire[rechercheMatiereNoire.Augmentation], rechercheMatiereNoire.AugmentationPercent)
+			for ameliorationRechercheMatiereNoire in rechercheMatiereNoire.Augmentation:
+				if ameliorationRechercheMatiereNoire.contains("ParRechercheMN"):
+					CurrentBonusesRecherchesMatiereNoire[ameliorationRechercheMatiereNoire.replace("ParRechercheMN", "")] = Big.add(CurrentBonusesRecherchesMatiereNoire[ameliorationRechercheMatiereNoire.replace("ParRechercheMN", "")], Big.multiply(rechercheMatiereNoire.AugmentationPercent, InfosPartie.RecherchesMatiereNoireAchetees))
+				else:
+					CurrentBonusesRecherchesMatiereNoire[ameliorationRechercheMatiereNoire] = Big.add(CurrentBonusesRecherchesMatiereNoire[ameliorationRechercheMatiereNoire], rechercheMatiereNoire.AugmentationPercent)
 
 
 #Permet de récupérer le multiplicateur global du rendu des atomes (prend en compte les recherches et les amélioration Helium/Lithium

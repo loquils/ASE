@@ -1,6 +1,7 @@
 extends Control
 
-var BoutonRechercheDarkMatter = preload("res://Design/Scenes/ButtonDarkMatter.tscn")
+var BoutonRechercheDarkMatter = preload("res://Design/Scenes/Recherches/NewButtonRecherche.tscn")
+
 @onready var PanelValidationPrestige = $FondValidationPrestigePanel
 @onready var MatiereNoireQuantiteeLabel = $PresentationVBoxC/TopMarginC/TopHBoxC/BackGroundDarkMatter/MarginC/HBoxC/MatiereNoireLabel
 @onready var MatierNoireApresPrestige = $PresentationVBoxC/MarginC/VBoxC/QuantiteeAGagnerHBoxC/QuantiteeLabel
@@ -9,10 +10,10 @@ var BoutonRechercheDarkMatter = preload("res://Design/Scenes/ButtonDarkMatter.ts
 #Coefficient de calcul pour la matière noire
 var CoefficientDivisionMatiereNoire = Big.new(1.3, 6)
 
-# Called when the node enters the scene tree for the first time.
+#Initialize la vue de la matière noire
 func _ready():
 	#On connecte ici l'appuie du bouton lors de l'achat d'une recherche
-	RechercheClick.connect("RechercheDarkMatter_button_pressed", AchatRehercheMatiereNoireButtonPressed)
+	RechercheClick.connect("Research_button_pressed", AchatRehercheMatiereNoireButtonPressed)
 	
 	for rechercheDarkMatterInList in RessourceManager.ListeRecherchesMatiereNoire:
 		var newButtonAmeliorationDarkMatter = BoutonRechercheDarkMatter.instantiate()
@@ -21,7 +22,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if visible:
 		MatiereNoireQuantiteeLabel.text = str(RessourceManager.DarkMatter)
 		MatierNoireApresPrestige.text = str(GetDeltaDarkMatter())
@@ -44,15 +45,20 @@ func GetDeltaDarkMatter():
 #Methode appellee par le signal lors de l'appuie sur un des boutons de recherches
 #On vérifie si on peut acheter la recherche, et on l'achete.	
 func AchatRehercheMatiereNoireButtonPressed(recherche):
-	if RessourceManager.ListeRecherchesMatiereNoire[recherche.Id].IsUnlocked:
+	if recherche.ResearchLevel != Recherche.ResearchLevelEnum.DARKMATTER:
 		return
 	
-	if RessourceManager.ListeRecherchesMatiereNoire[recherche.Id].Prix.isGreaterThan(RessourceManager.DarkMatter):
+	var IdRecherche = RessourceManager.ListeRecherchesMatiereNoire.find(recherche)
+	
+	if RessourceManager.ListeRecherchesMatiereNoire[IdRecherche].IsUnlocked:
 		return
 	
-	RessourceManager.ListeRecherchesMatiereNoire[recherche.Id].IsUnlocked = true
-	RessourceManager.DarkMatter = Big.subtractAbove0(RessourceManager.DarkMatter, RessourceManager.ListeRecherchesMatiereNoire[recherche.Id].Prix)
-
+	if RessourceManager.ListeRecherchesMatiereNoire[IdRecherche].Prix.isGreaterThan(RessourceManager.DarkMatter):
+		return
+	
+	RessourceManager.ListeRecherchesMatiereNoire[IdRecherche].IsUnlocked = true
+	RessourceManager.DarkMatter = Big.subtractAbove0(RessourceManager.DarkMatter, RessourceManager.ListeRecherchesMatiereNoire[IdRecherche].Prix)
+	
 	BonusManager.MajBonusRecherchesMatiereNoire()
 
 

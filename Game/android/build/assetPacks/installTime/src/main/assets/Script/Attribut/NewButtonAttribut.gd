@@ -15,7 +15,7 @@ func _set_var(attribut):
 func _ready():
 	AttributButton.pressed.connect(RechercheClick.AttributButtonEventTrigger.bind(Attribut))
 
-func _process(delta):
+func _process(_delta):
 	NomLabel.text = tr(Attribut.Name)
 	CoefficientLabel.text = tr("Coefficient : ") + str(Attribut.GetAttributCoefficientAvecAmeliorations())
 	PrixLabel.text = str(Attribut.Atome.GetPrixAttribut(Attribut))

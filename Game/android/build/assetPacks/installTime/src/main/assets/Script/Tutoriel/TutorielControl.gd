@@ -14,7 +14,7 @@ var NomPanelFondTutoControl = "TestControl"
 #Permet de commencer le tutoriel
 #On pourrait gérer un vrai tutoriel avec un texte quand on débloque certain trucs
 #Il nous faudrait juste un process ici, qui vérifie un array de requirements (QuantiteeHydrogene = 500, Quantitée Helium = 1 etc) 
-func _process(delta):
+func _process(_delta):
 	if not RessourceManager.IsTutorialCompleted:
 		if not TutorielEnCours:
 			if AfterAccueil:

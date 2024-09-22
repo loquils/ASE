@@ -726,14 +726,18 @@ static func subtractAbove0(x, y) -> Big:
 	return result
 
 
-#Permet de couper le chiffre à la 5eme décimale
+#Permet de couper le chiffre à la 5eme décimale.
 func RoundFloat5Decimal(number):
 	return float(str(number).substr(0, 7))
 
 
+#Permet d'écrire dans les chiffres dans le fichier de sauvegarde.
 func ToJsonFormat():
 	return [mantissa, exponent]
 
 
-static func ToCustomFormat(jsonList:Array):
-	return Big.new(jsonList[0], jsonList[1])
+#Permet de charger les chiffre depuis le fichier de sauvegarde.
+static func ToCustomFormat(jsonList):
+	if jsonList is Array:
+		return Big.new(jsonList[0], jsonList[1])
+	return Big.new(0.0)
