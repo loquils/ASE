@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://dbud7benyerv0" path="res://Design/Borders/Gimp/QuantityAtomesBorders.png" id="5_ruh6y"]
 [ext_resource type="Theme" uid="uid://kmix07orahi4" path="res://Design/Themes/Accueil/Accueiltheme.tres" id="6_spqmi"]
 [ext_resource type="Script" path="res://Script/TestTranslate/ChangementLangueButton.gd" id="7_oskx7"]
-[ext_resource type="PackedScene" uid="uid://b2fng8la1dmc6" path="res://Design/Scenes/ButtonSellHydrogen.tscn" id="8_8mhas"]
+[ext_resource type="PackedScene" uid="uid://cx5sg00fo88xf" path="res://Design/Scenes/Utiles/NewButtonVenteHydrogene.tscn" id="11_820sy"]
 [ext_resource type="PackedScene" uid="uid://kg8xjpenka38" path="res://Design/Scenes/Ameliorations/AmeliorationHelium.tscn" id="13_awkfr"]
 [ext_resource type="PackedScene" uid="uid://dwlpff2poyavf" path="res://Design/Scenes/MatiereNoire/MatiereNoireControl.tscn" id="15_ngy2j"]
 [ext_resource type="Texture2D" uid="uid://c31eyto1jlpql" path="res://Gimped/TestElectron.png" id="17_1p05m"]
@@ -374,9 +374,8 @@ visible = false
 layout_mode = 2
 text = "FreeMoney"
 
-[node name="SellHydrogenButton" parent="WindowTopBlackVBoxC/MainMarginC/MainVBoxC/TopHBoxC" instance=ExtResource("8_8mhas")]
+[node name="NewButtonVenteHydrogene" parent="WindowTopBlackVBoxC/MainMarginC/MainVBoxC/TopHBoxC" instance=ExtResource("11_820sy")]
 layout_mode = 2
-size_flags_vertical = 0
 
 [node name="NewMenuMainControl" type="Control" parent="WindowTopBlackVBoxC/MainMarginC/MainVBoxC"]
 custom_minimum_size = Vector2(0, 50)

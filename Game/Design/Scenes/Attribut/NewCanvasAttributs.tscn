@@ -4,7 +4,7 @@
 [ext_resource type="Theme" uid="uid://c2oksi2eb0sxy" path="res://Design/Themes/themeTest.tres" id="2_h6cg5"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vafei"]
-bg_color = Color(0.317647, 0.317647, 0.317647, 1)
+bg_color = Color(0.254902, 0.254902, 0.254902, 1)
 border_width_left = 4
 border_width_top = 4
 border_width_right = 4
@@ -107,6 +107,7 @@ theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
 [node name="PanelForUnlock" type="Panel" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

@@ -1,0 +1,150 @@
+[gd_scene load_steps=12 format=3 uid="uid://cx5sg00fo88xf"]
+
+[ext_resource type="Script" path="res://Script/Utiles/NewButtonVenteHydrogene.gd" id="1_sbjcs"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ccrgp"]
+bg_color = Color(0.254902, 0.254902, 0.254902, 1)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0.129412, 0.129412, 0.129412, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ihdhq"]
+bg_color = Color(0.192157, 0.192157, 0.192157, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.145098, 0.145098, 0.145098, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y67t6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wrs55"]
+bg_color = Color(0.192157, 0.192157, 0.192157, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.145098, 0.145098, 0.145098, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_327ny"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gw52t"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c701x"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3opft"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_msoxo"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pi8bj"]
+
+[node name="NewButtonVenteHydrogene" type="Control"]
+custom_minimum_size = Vector2(175, 140)
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -87.5
+offset_top = -70.0
+offset_right = 87.5
+offset_bottom = 70.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_sbjcs")
+
+[node name="PresentationPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ccrgp")
+
+[node name="PresentationVBoxC" type="VBoxContainer" parent="PresentationPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NomMarginC" type="MarginContainer" parent="PresentationPanel/PresentationVBoxC"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 5
+
+[node name="PanelC" type="PanelContainer" parent="PresentationPanel/PresentationVBoxC/NomMarginC"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ihdhq")
+
+[node name="MarginC" type="MarginContainer" parent="PresentationPanel/PresentationVBoxC/NomMarginC/PanelC"]
+layout_mode = 2
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_bottom = 3
+
+[node name="NomLabel" type="Label" parent="PresentationPanel/PresentationVBoxC/NomMarginC/PanelC/MarginC"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_y67t6")
+text = "SELL_HYDROGENE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PrixMarginC" type="MarginContainer" parent="PresentationPanel/PresentationVBoxC"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="PanelC" type="PanelContainer" parent="PresentationPanel/PresentationVBoxC/PrixMarginC"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wrs55")
+
+[node name="MarginC" type="MarginContainer" parent="PresentationPanel/PresentationVBoxC/PrixMarginC/PanelC"]
+layout_mode = 2
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_bottom = 3
+
+[node name="PrixLabel" type="Label" parent="PresentationPanel/PresentationVBoxC/PrixMarginC/PanelC/MarginC"]
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_styles/normal = SubResource("StyleBoxEmpty_327ny")
+text = "Prix"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_gw52t")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_c701x")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_3opft")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_msoxo")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_pi8bj")
+
+[connection signal="pressed" from="Button" to="." method="_on_pressed"]
