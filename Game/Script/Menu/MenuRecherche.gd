@@ -2,7 +2,6 @@ extends Control
 
 var ButtonRechercheScenePreload = preload("res://Design/Scenes/Recherches/NewButtonRecherche.tscn")
 
-#@onready var ResearchesEasyContainer = $MainMarginC/ResearchLvlVBoxC/ScrollRecherchesC/ResearchesEasyHBoxC
 @onready var ResearchesDebutContainer = $MainMarginC/ResearchLvlVBoxC/LvlDebutScrollC/GridC
 @onready var ResearchesEasyContainer = $MainMarginC/ResearchLvlVBoxC/LvlEasyScrollC/GridC
 
@@ -32,10 +31,12 @@ func _ready():
 	BonusManager.MajBonusRecherches()
 
 
-
 #Methode appellee par le signal lors de l'appuie sur un des boutons de recherches
 #On vérifie si on peut acheter la recherche, et on l'achete.	
 func AchatRehercheButtonPressed(recherche):
+	if recherche.ResearchLevel == Recherche.ResearchLevelEnum.DARKMATTER:
+		return
+		
 	var IdRecherche = RessourceManager.ListeRecherches.find(recherche)
 	
 	if RessourceManager.ListeRecherches[IdRecherche].IsUnlocked:
@@ -48,6 +49,7 @@ func AchatRehercheButtonPressed(recherche):
 	RessourceManager.Coins = Big.subtractAbove0(RessourceManager.Coins, RessourceManager.ListeRecherches[IdRecherche].Prix)
 
 	BonusManager.MajBonusRecherches()
+
 
 #Methode apellee lors de l'appuie sur un des boutons de niveau de recherche
 #Permet d'afficher les bonnes recherches, et de cacher les autres

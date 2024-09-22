@@ -116,11 +116,11 @@ func MajBonusRecherchesMatiereNoire():
 		
 	for rechercheMatiereNoire in RessourceManager.ListeRecherchesMatiereNoire:
 		if rechercheMatiereNoire.IsUnlocked:
-			#On check si on a une recherche en fonction de la quantité de recherche achetée, faudra changer ça je pense
-			if rechercheMatiereNoire.Augmentation.contains("ParRechercheMN"):
-				CurrentBonusesRecherchesMatiereNoire[rechercheMatiereNoire.Augmentation.replace("ParRechercheMN", "")] = Big.add(CurrentBonusesRecherchesMatiereNoire[rechercheMatiereNoire.Augmentation.replace("ParRechercheMN", "")], Big.multiply(rechercheMatiereNoire.AugmentationPercent, InfosPartie.RecherchesMatiereNoireAchetees))
-			else:
-				CurrentBonusesRecherchesMatiereNoire[rechercheMatiereNoire.Augmentation] = Big.add(CurrentBonusesRecherchesMatiereNoire[rechercheMatiereNoire.Augmentation], rechercheMatiereNoire.AugmentationPercent)
+			for ameliorationRechercheMatiereNoire in rechercheMatiereNoire.Augmentation:
+				if ameliorationRechercheMatiereNoire.contains("ParRechercheMN"):
+					CurrentBonusesRecherchesMatiereNoire[ameliorationRechercheMatiereNoire.replace("ParRechercheMN", "")] = Big.add(CurrentBonusesRecherchesMatiereNoire[ameliorationRechercheMatiereNoire.replace("ParRechercheMN", "")], Big.multiply(rechercheMatiereNoire.AugmentationPercent, InfosPartie.RecherchesMatiereNoireAchetees))
+				else:
+					CurrentBonusesRecherchesMatiereNoire[ameliorationRechercheMatiereNoire] = Big.add(CurrentBonusesRecherchesMatiereNoire[ameliorationRechercheMatiereNoire], rechercheMatiereNoire.AugmentationPercent)
 
 
 #Permet de récupérer le multiplicateur global du rendu des atomes (prend en compte les recherches et les amélioration Helium/Lithium
