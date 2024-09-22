@@ -42,7 +42,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	BonusProtonLabel.text = "+" + str(Big.multiply(BonusManager.GetAmeliorationLithiumCoefficientProtonAvecNiveau(), Big.new(1.0, 2))) + "%"
 	BonusNeutronLabel.text = "+/" + str(BonusManager.GetAmeliorationLithiumCoefficientNeutronAvecNiveau())
 

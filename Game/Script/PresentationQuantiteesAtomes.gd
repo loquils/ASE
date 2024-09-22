@@ -12,7 +12,7 @@ func _set_var(ressourceName, ressourceQuantity):
 
 
 # On met à jour l'UI + on affiche la ressource si elle est bloquée
-func _process(delta):
+func _process(_delta):
 	if visible == true:
 		if (not RessourceManager.QuantiteesAtomes.has(RessourceName)) or not RessourceManager.ListeAtomes[RessourceName].isUnlocked:
 			hide()

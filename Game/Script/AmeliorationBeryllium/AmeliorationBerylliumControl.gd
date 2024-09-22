@@ -45,7 +45,7 @@ func _ready():
 				AmeliorationsBonusAddVBoxC.add_child(newAmeliorationBerylliumButton)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	var currentOutputBonuses = BonusManager.BaseBonusesAmeliorationsBerylliumPercent
 	for bonus in currentOutputBonuses:
 		match bonus:

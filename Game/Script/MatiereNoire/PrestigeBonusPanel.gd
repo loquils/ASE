@@ -6,7 +6,7 @@ extends Panel
 @onready var BonusLabel2 = $PrestigeBonusScrollC/ListeVBoxC/Bonus2MarginC/BonusRecherchesRecapPanel/BonusEtQuantiteHBoxC/FondBonusQuantPanel/BonusLabel
 @onready var BonusLabel3 = $PrestigeBonusScrollC/ListeVBoxC/Bonus3MarginC/BonusRecherchesRecapPanel/BonusEtQuantiteHBoxC/FondBonusQuantPanel/BonusLabel
 
-func _process(delta):
+func _process(_delta):
 	if visible:
 		RecherchesAcheteesLabel.text = str(InfosPartie.RecherchesAchetees)
 		RecherchesMatiereNoireAcheteesLabel.text = str(InfosPartie.RecherchesMatiereNoireAchetees)

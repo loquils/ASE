@@ -8,7 +8,7 @@ var HydrogeneObtenuInThisReset = Big.new(0.0)
 
 var RecherchesAchetees = 0
 var RecherchesMatiereNoireAchetees = 0
-var NombrePrestige = 0
+var NombrePrestige:int = 0
 
 #Permet de mettre à jour toutes les informations sur la partie
 func MajInformationsPartie():
@@ -39,22 +39,22 @@ func ResetInformationsOnPrestige():
 func Save():
 	var infosPartieDict = {
 		"NombrePrestige" : NombrePrestige,
-		"HydrogeneMaximum" : HydrogeneMaximum,
-		"HydrogeneObtenuInThisReset" : HydrogeneObtenuInThisReset,
-		"CoinsObtenusInThisReset" : CoinsObtenusInThisReset,
-		"CoinsObtenusTotal" : CoinsObtenusTotal
+		"HydrogeneMaximum" : HydrogeneMaximum.ToJsonFormat(),
+		"HydrogeneObtenuInThisReset" : HydrogeneObtenuInThisReset.ToJsonFormat(),
+		"CoinsObtenusInThisReset" : CoinsObtenusInThisReset.ToJsonFormat(),
+		"CoinsObtenusTotal" : CoinsObtenusTotal.ToJsonFormat()
 	}
 	return infosPartieDict
 
 #Chargement des informations de la partie dans la save.
 func Load(infos):
 	if infos.has("NombrePrestige"):
-		NombrePrestige = infos["NombrePrestige"]
+		NombrePrestige = int(infos["NombrePrestige"])
 	if infos.has("HydrogeneMaximum"):
-		NombrePrestige = infos["HydrogeneMaximum"]
+		HydrogeneMaximum = Big.ToCustomFormat(infos["HydrogeneMaximum"])
 	if infos.has("HydrogeneObtenu"):
-		NombrePrestige = infos["HydrogeneObtenu"]
+		HydrogeneObtenuInThisReset = Big.ToCustomFormat(infos["HydrogeneObtenuInThisReset"])
 	if infos.has("CoinsObtenusInThisReset"):
-		NombrePrestige = infos["CoinsObtenusInThisReset"]
+		CoinsObtenusInThisReset = Big.ToCustomFormat(infos["CoinsObtenusInThisReset"])
 	if infos.has("CoinsObtenusTotal"):
-		NombrePrestige = infos["CoinsObtenusTotal"]
+		CoinsObtenusTotal = Big.ToCustomFormat(infos["CoinsObtenusTotal"])

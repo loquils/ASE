@@ -36,7 +36,7 @@ func _ready():
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	NomLabel.text = tr(AmeliorationHelium.Name)
 	var descriptionTraduite = tr(AmeliorationHelium.Description)
 	var bonusNumberToPrint = Big.new(0.0)

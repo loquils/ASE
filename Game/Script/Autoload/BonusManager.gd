@@ -1,5 +1,5 @@
 extends Node
-#Force/Vitesse | Spin/Angle/Complexity
+
 #Bonus des Recherches
 var BonusTypesRecherches = ["PrixHydrogeneAugmentation", "AllOutputMultiply", "HydrogeneOutputMultiply", "HeliumOutputMultiply", "HydrogeneAttributsCostDivided", "HydrogeneForceCostDivided", "HydrogeneVitesseCostDivided", "HeliumAttributsCostDivided", "HeliumSpinCostDivided", "HeliumAngleCostDivided", "HeliumComplexiteeCostDivided", "HydrogeneForceCoefficientMultiply", "HydrogeneVitesseCoefficientMultiply"]
 var CurrentBonusesRecherches = {}
@@ -18,7 +18,6 @@ var BaseBonusesAmeliorationsBerylliumPercent = {"HydrogeneOutputMultiply" : Big.
 var CurrentBonusesAmeliorationBeryllium = {}
 
 #Bonus recherches matière noire
-var BonusTypesRecherchesMatiereNoire = ["HydrogeneOutputMultiply", "HeliumOutputMultiply", "HydrogeneAttributsCostDivided"]
 var CurrentBonusesRecherchesMatiereNoire = {}
 
 func _ready():
@@ -41,7 +40,7 @@ func _ready():
 			CurrentBonusesAmeliorationBeryllium[bonusType] = Big.new(0.0)
 	
 	if len(CurrentBonusesRecherchesMatiereNoire) == 0:
-		for bonusTypeRecherchesMatiereNoire in BonusTypesRecherchesMatiereNoire:
+		for bonusTypeRecherchesMatiereNoire in BonusTypesRecherches:
 			CurrentBonusesRecherchesMatiereNoire[bonusTypeRecherchesMatiereNoire] = Big.new(0.0)
 
 
@@ -111,7 +110,7 @@ func MajBonusAmeliorationBeryllium():
 func MajBonusRecherchesMatiereNoire():
 	InfosPartie.MajInformationsPartie()
 	
-	for bonusTypeRecherchesMatiereNoire in BonusTypesRecherchesMatiereNoire:
+	for bonusTypeRecherchesMatiereNoire in BonusTypesRecherches:
 		CurrentBonusesRecherchesMatiereNoire[bonusTypeRecherchesMatiereNoire] = Big.new(0.0)
 		
 	for rechercheMatiereNoire in RessourceManager.ListeRecherchesMatiereNoire:

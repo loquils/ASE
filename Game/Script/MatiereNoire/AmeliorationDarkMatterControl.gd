@@ -1,6 +1,5 @@
 extends Control
 
-#var BoutonRechercheDarkMatter = preload("res://Design/Scenes/ButtonDarkMatter.tscn")
 var BoutonRechercheDarkMatter = preload("res://Design/Scenes/Recherches/NewButtonRecherche.tscn")
 
 @onready var PanelValidationPrestige = $FondValidationPrestigePanel
@@ -10,7 +9,6 @@ var BoutonRechercheDarkMatter = preload("res://Design/Scenes/Recherches/NewButto
 
 #Coefficient de calcul pour la matière noire
 var CoefficientDivisionMatiereNoire = Big.new(1.3, 6)
-
 
 #Initialize la vue de la matière noire
 func _ready():
@@ -24,7 +22,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if visible:
 		MatiereNoireQuantiteeLabel.text = str(RessourceManager.DarkMatter)
 		MatierNoireApresPrestige.text = str(GetDeltaDarkMatter())

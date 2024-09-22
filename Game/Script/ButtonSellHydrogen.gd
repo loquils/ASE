@@ -1,7 +1,7 @@
 extends Button
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	var PrixVenteHydrogene = Big.multiply(RessourceManager.ListeAtomes["Hydrogene"].PrixBaseVenteAtome, Big.add(Big.new(1.0), BonusManager.CurrentBonusesRecherches["PrixHydrogeneAugmentation"]))
 	if RessourceManager.QuantiteesAtomes.has("Hydrogene"):
 		$PanelC/PresentationVBoxC/MarginC2/PriceLabel.text = str(Big.multiply(PrixVenteHydrogene, RessourceManager.QuantiteesAtomes["Hydrogene"])) + " C"

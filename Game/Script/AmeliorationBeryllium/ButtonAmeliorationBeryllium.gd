@@ -30,7 +30,7 @@ func _set_var(ameliorationBeryllium:AmeliorationBeryllium):
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	NomAmeliorationLabel.text = tr(AmeliorationBeryllium.Name)
 	if UnlockPanel.visible:
 		if AmeliorationBeryllium.IsUnlocked:
