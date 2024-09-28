@@ -6,7 +6,7 @@ var BoutonRechercheDarkMatter = preload("res://Design/Scenes/Recherches/NewButto
 @onready var MatiereNoireQuantiteeLabel = $PresentationVBoxC/TopMarginC/TopHBoxC/BackGroundDarkMatter/MarginC/HBoxC/MatiereNoireLabel
 @onready var MatierNoireApresPrestige = $PresentationVBoxC/MarginC/VBoxC/QuantiteeAGagnerHBoxC/QuantiteeLabel
 @onready var RecherchesGridC = $PresentationVBoxC/MarginC/VBoxC/RecherchesMarginC/InterneRecherchesMarginC/PrestigeAmeliorationScrollC/PrestigeGridC
-
+@onready var PrestigeButton = $PresentationVBoxC/MarginC/VBoxC/PrestigeButton
 #Coefficient de calcul pour la matière noire
 var CoefficientDivisionMatiereNoire = Big.new(1.3, 6)
 
@@ -23,6 +23,11 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
+	if RessourceManager.DarkMatter.isLessThan(Big.new(1.0)):
+		PrestigeButton.disabled = true
+	else:
+		PrestigeButton.disabled = false
+	
 	if visible:
 		MatiereNoireQuantiteeLabel.text = str(RessourceManager.DarkMatter)
 		MatierNoireApresPrestige.text = str(GetDeltaDarkMatter())
