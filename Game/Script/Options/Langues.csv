@@ -27,7 +27,7 @@ Hydrogene, "Hydrogène", "Hydrogen"
 Hydrogène, "Hydrogène", "Hydrogen"
 Helium, "Hélium", "Helium"
 Hélium, "Hélium", "Helium"
-
+Bore, "Bore", "Boron"
 
 
 Force, "Force", "Strength"
@@ -37,10 +37,14 @@ Complexitee, "Complexité", "Complexity"
 Lien, "Lien", "Link"
 Vibration, "Vibration", "Vibration"
 
-Niv., "Niv.", "Lvl."
+Niv., "Niv. ", "Lvl. "
 Prix : , "Prix : ", "Price : "
-PRIX, "Prix", "Price"
+PRIX, "Prix ", "Price "
+Prix, "Prix ", "Price "
 Coefficient : , "Coefficient : ", "Coefficient : "
+
+UNIQUE, "(Unique)", "(Single)"
+TOTAL, "(Total)", "(Total)"
 
 OPTIONSLABEL, "Options", "Settings"
 CHANGERLANGUEBUTTON, "Changer langue", "Change language"
@@ -111,6 +115,25 @@ AMELIORATIONBERYLLIUMHYDROGENEDESCRIPTION, "", ""
 AMELIORATIONBERYLLIUMHELIUMDESCRIPTION, "", ""
 AMELIORATIONBERYLLIUMLITHIUMDESCRIPTION, "", ""
 AMELIORATIONBERYLLIUMBERYLLIUMDESCRIPTION, "", ""
+
+
+TITRECLASSICPANEL, "Améliorations Bore classiques", "Boron classicals Upgrades"
+TITREADVANCEDPANEL, "Améliorations Bore avancées", "Boron advanced Upgrades"
+QUANTITEEMATIERE, "Quantitée\nMatière", "Matter\nquantity"
+BONUSBERYLLIUMBORE, "Sortie Béryllium", "Beryllium output"
+BONUSDARKMATTERBORE, "Boost Matière Noire", "Dark Matter boost"
+
+AMELIORATIONBORE0NOM, "Marché", "Market place"
+AMELIORATIONBORE1NOM, "Amélioration Marché", "Market upgrade"
+AMELIORATIONBORE2NOM, "Transformateur Béryllium", "Beryllium transformer"
+AMELIORATIONBORE3NOM, "Transformateur Matière Noire", "Dark Matter transformer"
+
+AMELIORATIONBORE0DESCRIPTION, "Achete de la matière en échange de Bore.", "Buys matter in exchange of Boron."
+AMELIORATIONBORE1DESCRIPTION, "Améliore le marché, permet d'obtenir plus de matière par achat.", "Upgrades the market, you get more matter per buy."
+AMELIORATIONBORE2DESCRIPTION, "Améliore l'efficacitée du transformateur de Béryllium.", "Upgrades Beryllium transformer efficiency."
+AMELIORATIONBORE3DESCRIPTION, "Améliore l'efficacitée du transformateur de Matière Noire pour le prochain prestige.", "Upgrades Dark Matter transformer efficiency for the next reset."
+
+
 
 ARGENTPRESTIGE, "Matière Noire", "Dark Mater"
 RECHERCHEMATIERENOIRE1, "Découverte H²", "H² discovery"

@@ -11,6 +11,7 @@ extends Control
 @onready var AmeliorationHeliumControl = $WindowTopBlackVBoxC/MainMarginC/AmeliorationHeliumControl
 @onready var AmeliorationLithiumControl = $WindowTopBlackVBoxC/MainMarginC/AmeliorationLithiumControl
 @onready var AmeliorationBerylliumControl = $WindowTopBlackVBoxC/MainMarginC/AmeliorationBerylliumControl
+@onready var AmeliorationBoreControl = $WindowTopBlackVBoxC/MainMarginC/AmeliorationBoreControl
 @onready var MatiereNoireControl = $WindowTopBlackVBoxC/MainMarginC/MatiereNoireControl
 
 @onready var OptionsControl = $WindowTopBlackVBoxC/MainMarginC/OptionsControl
@@ -19,6 +20,7 @@ extends Control
 @onready var ButtonMenuAmeliorationHelium = $WindowTopBlackVBoxC/MainMarginC/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/AllMenus/MenuAmelioration/MarginContainer/GridContainer/HeliumAmeliorationMarginC/ButtonAmeliorationHelium
 @onready var ButtonMenuAmeliorationLithium = $WindowTopBlackVBoxC/MainMarginC/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/AllMenus/MenuAmelioration/MarginContainer/GridContainer/LithiumAmeliorationMarginC/ButtonAmeliorationLithium
 @onready var ButtonMenuAmeliorationBeryllium = $WindowTopBlackVBoxC/MainMarginC/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/AllMenus/MenuAmelioration/MarginContainer/GridContainer/BerylliumAmeliorationMarginC/ButtonAmeliorationBeryllium
+@onready var ButtonMenuAmeliorationBore = $WindowTopBlackVBoxC/MainMarginC/MainVBoxC/NewMenuMainControl/MenuPresentationVBoxC/AllMenus/MenuAmelioration/MarginContainer/GridContainer/BoreAmeliorationMarginC/ButtonAmeliorationBore
 
 var AdButtonScene = preload("res://Design/Scenes/AdButton.tscn")
 
@@ -32,6 +34,7 @@ func _process(_delta):
 	ButtonMenuAmeliorationHelium.disabled = not RessourceManager.ListeAtomes["Helium"].isUnlocked
 	ButtonMenuAmeliorationLithium.disabled = not RessourceManager.ListeAtomes["Lithium"].isUnlocked
 	ButtonMenuAmeliorationBeryllium.disabled = not RessourceManager.ListeAtomes["Beryllium"].isUnlocked
+	ButtonMenuAmeliorationBore.disabled = not RessourceManager.ListeAtomes["Bore"].isUnlocked
 
 #func GetPrixVenteHydrogene():
 #	var newPrix = Big.multiply(RessourceManager.AtomsList["Hydrogene"].PrixBaseVenteAtome, RessourceManager.CurrentBonusesAmeliorationHelium["HydrogeneRendementMultiply"])
@@ -56,6 +59,11 @@ func _on_button_amelioration_lithium_pressed():
 #Trigger lors de l'appuie sur le bouton pour ouvrir la page d'améliorations du beryllium
 func _on_button_amelioration_beryllium_pressed():
 	AmeliorationBerylliumControl.visible = true
+
+
+#Trigger lors de l'appuie sur le bouton pour ouvrir la page d'améliorations du beryllium
+func _on_button_amelioration_bore_pressed():
+	AmeliorationBoreControl.visible = true
 
 
 #Trigger lors de l'appuie sur le bouton pour ouvrir la page de prestige 

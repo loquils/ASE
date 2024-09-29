@@ -1,0 +1,35 @@
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://71s8qqtby4qf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uc2tu"]
+bg_color = Color(0, 0, 0, 0.537255)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xp8id"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_snjkj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2uws6"]
+bg_color = Color(0.593134, 0.593134, 0.593133, 0.129412)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0.8, 0.8, 0.8, 0)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qebaa"]
+
+[resource]
+Button/font_sizes/font_size = 20
+Button/styles/disabled = SubResource("StyleBoxFlat_uc2tu")
+Button/styles/focus = SubResource("StyleBoxEmpty_xp8id")
+Button/styles/hover = SubResource("StyleBoxEmpty_snjkj")
+Button/styles/normal = SubResource("StyleBoxFlat_2uws6")
+Button/styles/pressed = SubResource("StyleBoxEmpty_qebaa")
+Label/font_sizes/font_size = 20

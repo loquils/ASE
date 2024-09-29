@@ -33,18 +33,17 @@ func _process(_delta):
 		MatierNoireApresPrestige.text = str(GetDeltaDarkMatter())
 
 
-#Pour l'instant on utilise ça, c'est pas bien :3, faut changer l'hydrogène max
+#Nouveau test sur le calcul de la matière noire
 func GetDeltaDarkMatterOld():
-	if InfosPartie.HydrogeneMaximum.isLessThan(Big.new(1.0,5)):
-		return Big.new(0.0)
-		
-	return Big.power(Big.subtractAbove0(InfosPartie.HydrogeneMaximum, Big.new(1.0,5)), 0.5)
+	var quantiteeMatiereNoire = Big.divide(InfosPartie.HydrogeneObtenuInThisReset, CoefficientDivisionMatiereNoire)
+	return quantiteeMatiereNoire
 
 
 #Nouveau test sur le calcul de la matière noire
 func GetDeltaDarkMatter():
 	var quantiteeMatiereNoire = Big.divide(InfosPartie.HydrogeneObtenuInThisReset, CoefficientDivisionMatiereNoire)
-	return quantiteeMatiereNoire
+	var deltaMatiereNoire = Big.multiply(quantiteeMatiereNoire, Big.add(Big.new(1.0), BonusManager.GetDeltaDarkMatterBonus()))
+	return deltaMatiereNoire
 
 
 #Methode appellee par le signal lors de l'appuie sur un des boutons de recherches
