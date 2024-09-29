@@ -13,9 +13,16 @@ var BonusTypesAmeliorationLithium = ["HeliumOutputMultiply", "HeliumAttributsCos
 var CurrentBonusesAmeliorationLithium = {}
 
 #Amélioration du Beryllium
+var AtomesAmeliorationBeryllium = ["Hydrogene", "Helium", "Lithium", "Beryllium"]
 var BonusTypesAmeliorationBeryllium = ["HydrogeneLevel", "HeliumLevel" , "LithiumLevel", "BerylliumLevel", "HydrogeneNumberAdd", "HeliumNumberAdd" , "LithiumNumberAdd", "BerylliumNumberAdd"]
 var BaseBonusesAmeliorationsBerylliumPercent = {"HydrogeneOutputMultiply" : Big.new(0.05), "HeliumOutputMultiply" : Big.new(0.04), "LithiumOutputMultiply" : Big.new(0.03), "BerylliumOutputMultiply" : Big.new(0.02)}
 var CurrentBonusesAmeliorationBeryllium = {}
+
+#Amélioration du Bore
+var BonusBaseAmeliorationsBore = {"BerylliumOutputMultiply" : Big.new(0.05), "DarkMatterOutputMultiply" : Big.new(0.0001)}
+var BonusAmeliorationsBore = {"BerylliumOutputMultiply" : Big.new(0.05), "DarkMatterOutputMultiply" : Big.new(0.0001)}
+var BonusTypesAmeliorationBore = ["QuantiteeMatiere", "BonusQuantiteeMatiere", "AmeliorationBoreBonusBeryllium", "AmeliorationBoreBonusDarkMatter"]
+var CurrentBonusesAmeliorationBore = {}
 
 #Bonus recherches matière noire
 var CurrentBonusesRecherchesMatiereNoire = {}
@@ -38,6 +45,10 @@ func _ready():
 	if len(CurrentBonusesAmeliorationBeryllium) == 0:
 		for bonusType in BonusTypesAmeliorationBeryllium:
 			CurrentBonusesAmeliorationBeryllium[bonusType] = Big.new(0.0)
+	
+	if len(CurrentBonusesAmeliorationBore) == 0:
+		for bonusType in BonusTypesAmeliorationBore:
+			CurrentBonusesAmeliorationBore[bonusType] = Big.new(0.0)
 	
 	if len(CurrentBonusesRecherchesMatiereNoire) == 0:
 		for bonusTypeRecherchesMatiereNoire in BonusTypesRecherches:
@@ -106,6 +117,19 @@ func MajBonusAmeliorationBeryllium():
 				CurrentBonusesAmeliorationBeryllium[ameliorationBeryllium.BonusTypeAmeliorationBeryllium[i] + "Level"] = Big.add(CurrentBonusesAmeliorationBeryllium[ameliorationBeryllium.BonusTypeAmeliorationBeryllium[i] + "Level"], bonusesWithLevel[i])
 
 
+#Mise à jour des bonus des améliorations du bore
+func MajBonusAmeliorationBore():
+	InfosPartie.MajInformationsPartie() #Pour l'instant pas utile ici, mais plus tard oui
+	
+	for bonusTypeAmeliorationBore in BonusTypesAmeliorationBore:
+		CurrentBonusesAmeliorationBore[bonusTypeAmeliorationBore] = Big.new(0.0)
+	
+	for ameliorationBore in RessourceManager.ListeAmeliorationsBore:
+		print(ameliorationBore.BonusTypeAmeliorationBore + " : " + str(ameliorationBore.BonusAmeliorationBore) + " | " + str(ameliorationBore.Level) + " Unlocked ? " + str(ameliorationBore.IsUnlocked))
+		if ameliorationBore.IsUnlocked:
+			CurrentBonusesAmeliorationBore[ameliorationBore.BonusTypeAmeliorationBore] = Big.multiply(ameliorationBore.BonusAmeliorationBore, ameliorationBore.Level)
+
+
 #Mise à jour des bonus des recherches de matière noire
 func MajBonusRecherchesMatiereNoire():
 	InfosPartie.MajInformationsPartie()
@@ -128,6 +152,7 @@ func GetGlobalMultiplicator(Name):
 	var heliumMultiplicator = Big.new(0.0)
 	var lithiumMultiplicateur = Big.new(0.0)
 	var BerylliumMultiplicateur = Big.new(0.0)
+	var BoreMultiplicateur = Big.new(0.0)
 	
 	for CurrentResearchBonus in CurrentBonusesRecherches:
 		if (CurrentResearchBonus.contains(Name) and CurrentResearchBonus.contains("OutputMultiply")) or CurrentResearchBonus.contains("AllOutputMultiply"):
@@ -143,7 +168,9 @@ func GetGlobalMultiplicator(Name):
 	
 	BerylliumMultiplicateur = GetAmeliorationBerylliumTotalBonuses(Name)
 	
-	var globalMultiplicator = Big.add(BerylliumMultiplicateur, Big.add(lithiumMultiplicateur, Big.add(recherchesMultiplicator, heliumMultiplicator)))
+	BoreMultiplicateur = GetAmeliorationBoreOutputBonus(Name)
+	
+	var globalMultiplicator = Big.add(BoreMultiplicateur, Big.add(BerylliumMultiplicateur, Big.add(lithiumMultiplicateur, Big.add(recherchesMultiplicator, heliumMultiplicator))))
 	
 	return globalMultiplicator
 
@@ -171,6 +198,12 @@ func GetDarkMaterDiviseur(Name):
 		matiereNoireDiviseur = Big.new(1.0)
 		
 	return matiereNoireDiviseur
+
+
+#Permet de récupérer le bonus sur le delta de matière noire.
+func GetDeltaDarkMatterBonus():
+	var AmeliorationBoreBonus = GetAmeliorationBoreDMOutputBonus()
+	return AmeliorationBoreBonus
 
 
 #Permet de récupérer le diviseur du prix des attributs des atomes
@@ -217,26 +250,6 @@ func GetRecherchesAttributsCoefficientMultiplicateur(attribut):
 			coefficientMultiplicateur = Big.add(coefficientMultiplicateur, CurrentBonusesRecherches[currentBonusesRecherches])
 	
 	return coefficientMultiplicateur
-
-
-#Permet de récupérer les coeffs bonus des amélioration bérilyum sur les autres améliorations bérilyum
-func GetAmeliorationBerylliumLevels():
-	return [CurrentBonusesAmeliorationBeryllium["HydrogeneLevel"], CurrentBonusesAmeliorationBeryllium["HeliumLevel"], CurrentBonusesAmeliorationBeryllium["LithiumLevel"], CurrentBonusesAmeliorationBeryllium["BerylliumLevel"]]
-
-
-#Permet de récupérer les coeffs bonus des amélioration bérilyum sur les autres améliorations bérilyum
-func GetAmeliorationBerylliumNumberAddBonuses():
-	return [CurrentBonusesAmeliorationBeryllium["HydrogeneNumberAdd"], CurrentBonusesAmeliorationBeryllium["HeliumNumberAdd"], CurrentBonusesAmeliorationBeryllium["LithiumNumberAdd"], CurrentBonusesAmeliorationBeryllium["BerylliumNumberAdd"]]
-
-
-#Permet de récupérer les coeffs totaux des améliorations bérilyum (level x BaseBonus)
-func GetAmeliorationBerylliumTotalBonuses(atomeName):
-	return Big.multiply(CurrentBonusesAmeliorationBeryllium[atomeName + "Level"], BaseBonusesAmeliorationsBerylliumPercent[atomeName + "OutputMultiply"])
-
-
-#Permet de récupérer tous les coeffs totaux des améliorations bérilyum (level x BaseBonus)
-func GetAmeliorationBerylliumAllTotalBonuses():
-	return [GetAmeliorationBerylliumTotalBonuses("Hydrogene"), GetAmeliorationBerylliumTotalBonuses("Helium"), GetAmeliorationBerylliumTotalBonuses("Lithium"), GetAmeliorationBerylliumTotalBonuses("Beryllium")]
 
 #-----------------------------------------Helium-----------------------------------------------------------------
 
@@ -409,6 +422,69 @@ func GetAmeliorationLithiumCoefficientNeutronAvecNiveau():
 	var bonusNeutronElectronsK = GetAmeliorationLithiumCoefficientElectronsKNeutronAvecNiveau()
 	var bonusProton = Big.add(CurrentBonusesAmeliorationLithium[nomTypeBonusAmelioration], bonusNeutronElectronsK)
 	return Big.multiply(bonusProton, objetsTrouvesDansListe[0].Level)
+
+#---------------------------Beryllium------------------------------
+
+#Permet de récupérer les coeffs bonus des amélioration bérilyum sur les autres améliorations bérilyum
+func GetAmeliorationBerylliumLevels():
+	return [CurrentBonusesAmeliorationBeryllium["HydrogeneLevel"], CurrentBonusesAmeliorationBeryllium["HeliumLevel"], CurrentBonusesAmeliorationBeryllium["LithiumLevel"], CurrentBonusesAmeliorationBeryllium["BerylliumLevel"]]
+
+
+#Permet de récupérer les coeffs bonus des amélioration bérilyum sur les autres améliorations bérilyum
+func GetAmeliorationBerylliumNumberAddBonuses():
+	return [CurrentBonusesAmeliorationBeryllium["HydrogeneNumberAdd"], CurrentBonusesAmeliorationBeryllium["HeliumNumberAdd"], CurrentBonusesAmeliorationBeryllium["LithiumNumberAdd"], CurrentBonusesAmeliorationBeryllium["BerylliumNumberAdd"]]
+
+
+#Permet de récupérer les coeffs totaux des améliorations bérilyum (level x BaseBonus)
+func GetAmeliorationBerylliumTotalBonuses(atomeName):
+	if not AtomesAmeliorationBeryllium.has(atomeName):
+		return Big.new(0.0)
+	return Big.multiply(CurrentBonusesAmeliorationBeryllium[atomeName + "Level"], BaseBonusesAmeliorationsBerylliumPercent[atomeName + "OutputMultiply"])
+
+
+#Permet de récupérer tous les coeffs totaux des améliorations bérilyum (level x BaseBonus)
+func GetAmeliorationBerylliumAllTotalBonuses():
+	return [GetAmeliorationBerylliumTotalBonuses("Hydrogene"), GetAmeliorationBerylliumTotalBonuses("Helium"), GetAmeliorationBerylliumTotalBonuses("Lithium"), GetAmeliorationBerylliumTotalBonuses("Beryllium")]
+
+#----------------------------Bore-------------------------------
+
+#Permet de récupérer la quantitée de matière unique, avec le bonus associé.
+func GetAmeliorationBoreQuantiteeMatiereUnique(ameliorationBore):
+	return Big.multiply(ameliorationBore.BonusAmeliorationBore, Big.add(Big.new(1.0), CurrentBonusesAmeliorationBore["BonusQuantiteeMatiere"]))
+
+
+#Permet de récupérer le bonus unique sur la quantitée de matière.
+func GetAmeliorationBoreQuantiteeUniqueBonus(ameliorationBore):
+	return ameliorationBore.BonusAmeliorationBore
+
+
+#Permet de récupérer la quantitée de matière avec le bonus de quantitée des améliorations Bore.
+func GetAmeliorationBoreQuantiteeMatiereAvecBonus():
+	#print(CurrentBonusesAmeliorationBore["BonusQuantiteeMatiere"])
+	return Big.multiply(CurrentBonusesAmeliorationBore["QuantiteeMatiere"], Big.add(Big.new(1.0), CurrentBonusesAmeliorationBore["BonusQuantiteeMatiere"]))
+
+
+#Permet de récupérer le bonus sur le beryllium des améliorations Bore.
+func GetAmeliorationBoreBerylliumCurrentBonus():
+	return Big.multiply(BonusBaseAmeliorationsBore["BerylliumOutputMultiply"], Big.add(Big.new(1.0), CurrentBonusesAmeliorationBore["AmeliorationBoreBonusBeryllium"]))
+
+
+#Permet de récupérer le bonus total sur la sortie du Beryllium des améliorations Bore.
+func GetAmeliorationBoreOutputBonus(atomName):
+	if not atomName == "Beryllium":
+		return Big.new(0)
+	
+	return Big.multiply(GetAmeliorationBoreQuantiteeMatiereAvecBonus(), GetAmeliorationBoreBerylliumCurrentBonus())
+
+
+#Permet de récupérer le bonus sur la matière noire des améliorations Bore.
+func GetAmeliorationBoreDarkMatterCurrentBonus():
+	return Big.multiply(BonusBaseAmeliorationsBore["DarkMatterOutputMultiply"], Big.add(Big.new(1.0), CurrentBonusesAmeliorationBore["AmeliorationBoreBonusDarkMatter"]))
+
+
+#Permet de récupérer le bonus total sur la sortie de la matière noire des améliorations Bore.
+func GetAmeliorationBoreDMOutputBonus():
+	return Big.multiply(GetAmeliorationBoreQuantiteeMatiereAvecBonus(), GetAmeliorationBoreDarkMatterCurrentBonus())
 
 #--------------------Initializing bonuses-------------------------------------------
 

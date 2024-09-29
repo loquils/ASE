@@ -6,6 +6,7 @@ signal UnlockAtome_button_pressed(atome)
 signal AmeliorationHelium_button_pressed(ameliorationHelium)
 signal AmeliorationLithium_button_pressed(ameliorationLithium)
 signal AmeliorationBeryllium_button_pressed(ameliorationBeryllium)
+signal AmeliorationBore_button_pressed(ameliorationBore)
 signal RechercheDarkMatter_button_pressed(ameliorationDarkMatter)
 
 #Appuie sur un bouton de recherche.
@@ -41,3 +42,8 @@ func AmeliorationBerylliumButtonEventTrigger(ameliorationBeryllium):
 #Appuie sur un bouton de recherche de matière noire.
 func RechercheDarkMatterButtonEventTrigger(rechercheDarkMatter):
 	RechercheDarkMatter_button_pressed.emit(rechercheDarkMatter)
+
+
+#Appuie sur un bouton d'amélioration Bore.
+func AmeliorationBoreButtonEventTrigger(ameliorationBore):
+	AmeliorationBore_button_pressed.emit(ameliorationBore)

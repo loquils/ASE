@@ -6,7 +6,7 @@ var BoutonRechercheDarkMatter = preload("res://Design/Scenes/Recherches/NewButto
 @onready var MatiereNoireQuantiteeLabel = $PresentationVBoxC/TopMarginC/TopHBoxC/BackGroundDarkMatter/MarginC/HBoxC/MatiereNoireLabel
 @onready var MatierNoireApresPrestige = $PresentationVBoxC/MarginC/VBoxC/QuantiteeAGagnerHBoxC/QuantiteeLabel
 @onready var RecherchesGridC = $PresentationVBoxC/MarginC/VBoxC/RecherchesMarginC/InterneRecherchesMarginC/PrestigeAmeliorationScrollC/PrestigeGridC
-
+@onready var PrestigeButton = $PresentationVBoxC/MarginC/VBoxC/PrestigeButton
 #Coefficient de calcul pour la matière noire
 var CoefficientDivisionMatiereNoire = Big.new(1.3, 6)
 
@@ -23,23 +23,27 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
+	if RessourceManager.DarkMatter.isLessThan(Big.new(1.0)):
+		PrestigeButton.disabled = true
+	else:
+		PrestigeButton.disabled = false
+	
 	if visible:
 		MatiereNoireQuantiteeLabel.text = str(RessourceManager.DarkMatter)
 		MatierNoireApresPrestige.text = str(GetDeltaDarkMatter())
 
 
-#Pour l'instant on utilise ça, c'est pas bien :3, faut changer l'hydrogène max
+#Nouveau test sur le calcul de la matière noire
 func GetDeltaDarkMatterOld():
-	if InfosPartie.HydrogeneMaximum.isLessThan(Big.new(1.0,5)):
-		return Big.new(0.0)
-		
-	return Big.power(Big.subtractAbove0(InfosPartie.HydrogeneMaximum, Big.new(1.0,5)), 0.5)
+	var quantiteeMatiereNoire = Big.divide(InfosPartie.HydrogeneObtenuInThisReset, CoefficientDivisionMatiereNoire)
+	return quantiteeMatiereNoire
 
 
 #Nouveau test sur le calcul de la matière noire
 func GetDeltaDarkMatter():
 	var quantiteeMatiereNoire = Big.divide(InfosPartie.HydrogeneObtenuInThisReset, CoefficientDivisionMatiereNoire)
-	return quantiteeMatiereNoire
+	var deltaMatiereNoire = Big.multiply(quantiteeMatiereNoire, Big.add(Big.new(1.0), BonusManager.GetDeltaDarkMatterBonus()))
+	return deltaMatiereNoire
 
 
 #Methode appellee par le signal lors de l'appuie sur un des boutons de recherches
