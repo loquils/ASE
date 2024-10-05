@@ -116,6 +116,10 @@ AMELIORATIONBERYLLIUMHELIUMDESCRIPTION, "", ""
 AMELIORATIONBERYLLIUMLITHIUMDESCRIPTION, "", ""
 AMELIORATIONBERYLLIUMBERYLLIUMDESCRIPTION, "", ""
 
+BONUSHYDROGENE, "Sortie Hydrogène", "Hydrogene output"
+BONUSHELIUM, "Sortie Helium", "Helium output"
+BONUSLITHIUM, "Sortie Lithium", "Lithium output"
+BONUSBERYLLIUM, "Sortie Béryllium", "Beryllium output"
 
 TITRECLASSICPANEL, "Améliorations Bore classiques", "Boron classicals Upgrades"
 TITREADVANCEDPANEL, "Améliorations Bore avancées", "Boron advanced Upgrades"

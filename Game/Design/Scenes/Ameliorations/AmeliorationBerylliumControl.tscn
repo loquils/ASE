@@ -143,7 +143,7 @@ alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
-text = "BONUSPROTON"
+text = "BONUSHYDROGENE"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -181,7 +181,7 @@ alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
-text = "BONUSPROTON"
+text = "BONUSHELIUM"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -219,7 +219,7 @@ alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
-text = "BONUSPROTON"
+text = "BONUSLITHIUM"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -257,7 +257,7 @@ alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
-text = "BONUSPROTON"
+text = "BONUSBERYLLIUM"
 horizontal_alignment = 1
 vertical_alignment = 1
 
