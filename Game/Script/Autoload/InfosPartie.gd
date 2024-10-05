@@ -52,7 +52,7 @@ func Load(infos):
 		NombrePrestige = int(infos["NombrePrestige"])
 	if infos.has("HydrogeneMaximum"):
 		HydrogeneMaximum = Big.ToCustomFormat(infos["HydrogeneMaximum"])
-	if infos.has("HydrogeneObtenu"):
+	if infos.has("HydrogeneObtenuInThisReset"):
 		HydrogeneObtenuInThisReset = Big.ToCustomFormat(infos["HydrogeneObtenuInThisReset"])
 	if infos.has("CoinsObtenusInThisReset"):
 		CoinsObtenusInThisReset = Big.ToCustomFormat(infos["CoinsObtenusInThisReset"])
