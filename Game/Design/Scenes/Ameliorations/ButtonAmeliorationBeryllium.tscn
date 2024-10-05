@@ -349,3 +349,5 @@ layout_mode = 2
 text = "Prix"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[connection signal="pressed" from="PanelForUnlock/FondPanel/VBoxContainer/AmeliorationBerylliumUnlockButton" to="." method="_on_amelioration_beryllium_unlock_button_pressed"]
