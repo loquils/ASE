@@ -23,7 +23,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	if RessourceManager.DarkMatter.isLessThan(Big.new(1.0)):
+	if GetDeltaDarkMatter().isLessThan(Big.new(1.0)):
 		PrestigeButton.disabled = true
 	else:
 		PrestigeButton.disabled = false

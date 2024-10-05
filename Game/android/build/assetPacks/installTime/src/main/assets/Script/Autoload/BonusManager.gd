@@ -54,7 +54,6 @@ func _ready():
 		for bonusTypeRecherchesMatiereNoire in BonusTypesRecherches:
 			CurrentBonusesRecherchesMatiereNoire[bonusTypeRecherchesMatiereNoire] = Big.new(0.0)
 
-
 #Permet de mettre à jour le dictionnaire des ressources
 #On parcour la liste des ressources, et on ajoute les bonus
 func MajBonusRecherches():
@@ -146,6 +145,19 @@ func MajBonusRecherchesMatiereNoire():
 					CurrentBonusesRecherchesMatiereNoire[ameliorationRechercheMatiereNoire] = Big.add(CurrentBonusesRecherchesMatiereNoire[ameliorationRechercheMatiereNoire], rechercheMatiereNoire.AugmentationPercent)
 
 
+#Récupère le prix de l'Hydrogène avec les bonus
+func GetPrixHydrogene():
+	var recherchesPrice = Big.new(0.0)
+	var recherchesMatiereNoirePrice = Big.new(0.0)
+	
+	recherchesPrice = BonusManager.CurrentBonusesRecherches["PrixHydrogeneAugmentation"]
+	recherchesMatiereNoirePrice = BonusManager.CurrentBonusesRecherchesMatiereNoire["PrixHydrogeneAugmentation"]
+	
+	var globalPrice = Big.add(recherchesPrice, recherchesMatiereNoirePrice)
+	
+	return globalPrice
+
+
 #Permet de récupérer le multiplicateur global du rendu des atomes (prend en compte les recherches et les amélioration Helium/Lithium
 func GetGlobalMultiplicator(Name):
 	var recherchesMultiplicator = Big.new(0.0)
@@ -228,17 +240,32 @@ func GetRecherchesAttributsCostsDivided(attribut):
 
 
 #Permet de récupérer le diviseur du prix des attributs des atomes
-func GetRecherchesAmeliorationHeCostsDivided():
+func GetRecherchesAmeliorationHeCostsDivided(id):
 	var diviseurRecherches = Big.new(0.0)
+	
+	var diviseurRecherchesMatiereNoire = Big.new(0.0)
 	
 	for currentBonusesRecherches in CurrentBonusesRecherches:
 		if (currentBonusesRecherches.contains("AmeliorationsHeCostDivided")):
 			diviseurRecherches = Big.add(diviseurRecherches, CurrentBonusesRecherches[currentBonusesRecherches])
 
+	for currentBonusesRecherchesMatiereNoire in CurrentBonusesRecherchesMatiereNoire:
+		if (currentBonusesRecherchesMatiereNoire.contains("AmeliorationHelium") and currentBonusesRecherchesMatiereNoire.contains("CostDivided")):
+			if (currentBonusesRecherchesMatiereNoire.replace("AmeliorationHelium", "").replace("CostDivided", "").contains(str(id))):
+				diviseurRecherchesMatiereNoire = Big.add(diviseurRecherchesMatiereNoire, CurrentBonusesRecherchesMatiereNoire[currentBonusesRecherchesMatiereNoire])
+	
+	if diviseurRecherchesMatiereNoire.isEqualTo(Big.new(0.0)):
+		diviseurRecherchesMatiereNoire = Big.new(1.0)
+	
 	if diviseurRecherches.isEqualTo(Big.new(0.0)):
 		diviseurRecherches = Big.new(1.0)
 	
-	return diviseurRecherches
+	var diviseurGlobal = Big.multiply(diviseurRecherches, diviseurRecherchesMatiereNoire)
+	
+	if diviseurGlobal.isEqualTo(Big.new(0.0)):
+		diviseurGlobal = Big.new(1.0)
+	
+	return diviseurGlobal
 
 
 #Permet de récupérer le coefficient multiplacateur sur les attributs des atomes
@@ -499,4 +526,6 @@ func InitializeRecherchesBonusTypes():
 			bonusTypesRecherches.append(atome.Name + attribut.Name + "CoefficientMultiply")
 	
 	bonusTypesRecherches.append("AmeliorationsHeCostDivided")
+	bonusTypesRecherches.append("AmeliorationHelium0CostDivided")
+	bonusTypesRecherches.append("AmeliorationHelium3CostDivided")
 	return bonusTypesRecherches
