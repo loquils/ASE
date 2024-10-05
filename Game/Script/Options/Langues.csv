@@ -25,8 +25,12 @@ MENU, "Menu", "Menu"
 
 Hydrogene, "Hydrogène", "Hydrogen"
 Hydrogène, "Hydrogène", "Hydrogen"
+HYDROGENE, "Hydrogène", "Hydrogen"
 Helium, "Hélium", "Helium"
 Hélium, "Hélium", "Helium"
+HELIUM, "Hélium", "Helium"
+LITHIUM, "Lithium", "Lithium"
+BERYLLIUM, "Béryllium", "Beryllium"
 Bore, "Bore", "Boron"
 
 
@@ -110,11 +114,14 @@ AMELIORATIONLITHIUMELECTRONK1DESCRIPTION, "Améliore le coefficient de puissance
 AMELIORATIONLITHIUMELECTRONK2DESCRIPTION, "Améliore le coefficient de puissance des Neutrons.", "Increase Neutrons power coefficient."
 AMELIORATIONLITHIUMELECTRONLDESCRIPTION, "Améliore le coefficient des Electrons couche K.", "Increase layer K Electrons coefficient."
 
+BONUSACTUEL, "Bonus actuel", "Current bonus"
+BONUSSUIVANT, "Bonus suivant", "Next bonus"
+
 TITREBERYLLIUMMENU, "Améliorations Beryllium", "Beryllium Upgrades"
 AMELIORATIONBERYLLIUMHYDROGENEDESCRIPTION, "", ""
 AMELIORATIONBERYLLIUMHELIUMDESCRIPTION, "", ""
 AMELIORATIONBERYLLIUMLITHIUMDESCRIPTION, "", ""
-AMELIORATIONBERYLLIUMBERYLLIUMDESCRIPTION, "", ""
+AMELIORATIONBERYLLIUMBERYLLIUMDESCRIPTION, "CoinCoincOICNcoin", ""
 
 BONUSHYDROGENE, "Sortie Hydrogène", "Hydrogene output"
 BONUSHELIUM, "Sortie Helium", "Helium output"
