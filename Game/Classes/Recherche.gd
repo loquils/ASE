@@ -56,6 +56,15 @@ func GetRechercheDescription():
 
 #Permet de recupérer les différents éléments impactés par la recherche.
 func GetRechercheElements():
+	if Augmentation[0].contains("AmeliorationHelium") or Augmentation[0].contains("AmeliorationsHe"):
+		var resultAmeliorationHelium = []
+		for augmentation in Augmentation:
+			var upgrade = augmentation.replace("AmeliorationHelium", "").replace("ParRechercheMN", "").replace("ParRecherche", "").replace("CostDivided", "")
+			if upgrade.contains("AmeliorationsHe"):
+				return [tr("AMELIORATIONSHE")]
+			resultAmeliorationHelium.append(tr("AMELIORATIONHELIUM" + str(int(upgrade) + 1)))
+		return resultAmeliorationHelium
+	
 	if Augmentation[0].contains("OutputMultiply"):
 		var resultOutputMultiply = []
 		for augmentation in Augmentation:
@@ -64,11 +73,11 @@ func GetRechercheElements():
 				return [tr("ALLATOMES")]
 			resultOutputMultiply.append(tr(atome))
 		return resultOutputMultiply
-		
+	
 	if Augmentation[0].contains("CostDivided"):
 		if Augmentation[0].contains("AmeliorationsHe"):
 			return [tr("Ameliorations") + tr("Helium")]
-			
+		
 		var resultCostDivided = []
 		for augmentation in Augmentation:
 			var attribut = augmentation.replace("CostDivided", "").replace("ParRechercheMN", "").replace("ParRecherche", "")
@@ -77,14 +86,14 @@ func GetRechercheElements():
 			else:
 				resultCostDivided.append(GetAttributCostDividedName(attribut))
 		return resultCostDivided
-		
+	
 	if Augmentation[0].contains("CoefficientMultiply"):
 		var resultCoefficientMultiply = []
 		for augmentation in Augmentation:
 			var attribut = augmentation.replace("CoefficientMultiply", "").replace("ParRechercheMN", "").replace("ParRecherche", "")
 			resultCoefficientMultiply.append(GetAttributCostDividedName(attribut))
 		return resultCoefficientMultiply
-		
+	
 	return [""]
 
 

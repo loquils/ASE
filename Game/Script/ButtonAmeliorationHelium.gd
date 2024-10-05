@@ -47,12 +47,12 @@ func _process(_delta):
 		
 		"PressionEfficacitee0":
 			bonusNumberToPrint = str(Big.multiply(BonusManager.GetAmeliorationHeliumCoefficientPression0(), Big.new(1.0, 2)))
-			BonusLabel.text = tr("AMELIORATIONHELIUMPRESSION1") + " +" + str(Big.multiply(BonusManager.GetAmeliorationHeliumCoefficientPression0AvecNiveau(), Big.new(1.0, 2))) + "%"
+			BonusLabel.text = tr("AMELIORATIONHELIUM1") + " +" + str(Big.multiply(BonusManager.GetAmeliorationHeliumCoefficientPression0AvecNiveau(), Big.new(1.0, 2))) + "%"
 			BonusLabel.show()
 		
 		"PressionEfficacitee1":
 			bonusNumberToPrint = str(Big.multiply(BonusManager.GetAmeliorationHeliumCoefficientPression1(), Big.new(1.0, 2)))
-			BonusLabel.text = tr("AMELIORATIONHELIUMPRESSION2") + " +" + str(Big.multiply(BonusManager.GetAmeliorationHeliumCoefficientPression1AvecNiveau(), Big.new(1.0, 2))) + "%"
+			BonusLabel.text = tr("AMELIORATIONHELIUM2") + " +" + str(Big.multiply(BonusManager.GetAmeliorationHeliumCoefficientPression1AvecNiveau(), Big.new(1.0, 2))) + "%"
 			BonusLabel.show()
 		
 		"HydrogeneAttributsCoefficientAdd":
@@ -60,12 +60,12 @@ func _process(_delta):
 		
 		"TemperatureEfficacitee0":
 			bonusNumberToPrint = str(BonusManager.GetAmeliorationHeliumCoefficientTemperature0())
-			BonusLabel.text = tr("AMELIORATIONHELIUMTEMPERATURE1") + " +" + str(BonusManager.GetAmeliorationHeliumCoefficientTemperature0AvecNiveau())
+			BonusLabel.text = tr("AMELIORATIONHELIUM3") + " +" + str(BonusManager.GetAmeliorationHeliumCoefficientTemperature0AvecNiveau())
 			BonusLabel.show()
 		
 		"TemperatureEfficacitee1":
 			bonusNumberToPrint = str(BonusManager.GetAmeliorationHeliumCoefficientTemperature1())
-			BonusLabel.text = tr("AMELIORATIONHELIUMTEMPERATURE2") + " +" + str(BonusManager.GetAmeliorationHeliumCoefficientTemperature1AvecNiveau())
+			BonusLabel.text = tr("AMELIORATIONHELIUM4") + " +" + str(BonusManager.GetAmeliorationHeliumCoefficientTemperature1AvecNiveau())
 			BonusLabel.show()
 	
 	DescriptionLabel.text = descriptionTraduite.replace("{calc}", bonusNumberToPrint)
