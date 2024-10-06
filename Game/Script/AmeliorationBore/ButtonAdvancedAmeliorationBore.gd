@@ -7,6 +7,7 @@ var AmeliorationBore
 @onready var BonusAmeliorationLabel = $PresentationPanel/PresentationVBoxC/ContenuHBoxC/LeftMarginC/DescriptionMarginC/VBoxC/BonusMarginC/FondBonusPanel/MarginC/BonusLabel
 @onready var NiveauAmeliorationLabel = $PresentationPanel/PresentationVBoxC/ContenuHBoxC/RightMarginC/PanelC/VBoxC/NiveauMarginC/NiveauLabel
 @onready var PrixAmeliorationLabel = $PresentationPanel/PresentationVBoxC/ContenuHBoxC/RightMarginC/PanelC/VBoxC/PrixContainer/PrixLabel
+@onready var BonusActuelLabel = $PresentationPanel/PresentationVBoxC/ContenuHBoxC/RightMarginC/PanelC/VBoxC/BonusActuelMarginC/BonusActuel
 @onready var ButtonAmeliorationBore = $Button
 
 @onready var UnlockPanel = $PanelForUnlock
@@ -31,6 +32,7 @@ func _process(delta):
 	
 	NiveauAmeliorationLabel.text = tr("Niv.") + str(AmeliorationBore.Level)
 	PrixAmeliorationLabel.text = tr("Prix") + str(AmeliorationBore.GetPrixAmeliorationBore())
+	BonusActuelLabel.text = "+" + str(Big.multiply(BonusManager.GetAmeliorationBoreBerylliumBonusAvecNiveauxAmelioration(AmeliorationBore), Big.new(1.0, 2))) + "%"
 
 	BonusAmeliorationLabel.text = "Bonus/Niv +" + str(Big.multiply(BonusManager.GetAmeliorationBoreQuantiteeUniqueBonus(AmeliorationBore), Big.new(1.0, 2))) + "%"
 	

@@ -493,11 +493,15 @@ func GetAmeliorationBoreQuantiteeUniqueBonus(ameliorationBore):
 
 #Permet de récupérer la quantitée de matière avec le bonus de quantitée des améliorations Bore.
 func GetAmeliorationBoreQuantiteeMatiereAvecBonus():
-	#print(CurrentBonusesAmeliorationBore["BonusQuantiteeMatiere"])
 	return Big.multiply(CurrentBonusesAmeliorationBore["QuantiteeMatiere"], Big.add(Big.new(1.0), CurrentBonusesAmeliorationBore["BonusQuantiteeMatiere"]))
 
 
-#Permet de récupérer le bonus sur le beryllium des améliorations Bore.
+#Permet de récupérer le bonus total de l'amélioration de le sortie de béryllium en fonction de son niveau.
+func GetAmeliorationBoreBerylliumBonusAvecNiveauxAmelioration(ameliorationBore):
+	return Big.multiply(ameliorationBore.BonusAmeliorationBore, ameliorationBore.Level)
+
+
+#Permet de récupérer le bonus de sortie sur le beryllium des améliorations Bore.
 func GetAmeliorationBoreBerylliumCurrentBonus():
 	return Big.multiply(BonusBaseAmeliorationsBore["BerylliumOutputMultiply"], Big.add(Big.new(1.0), CurrentBonusesAmeliorationBore["AmeliorationBoreBonusBeryllium"]))
 

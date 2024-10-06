@@ -232,6 +232,20 @@ text = "Niveau"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="BonusActuelMarginC" type="MarginContainer" parent="PresentationPanel/PresentationVBoxC/ContenuHBoxC/RightMarginC/PanelC/VBoxC"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_right = 5
+
+[node name="BonusActuel" type="Label" parent="PresentationPanel/PresentationVBoxC/ContenuHBoxC/RightMarginC/PanelC/VBoxC/BonusActuelMarginC"]
+layout_mode = 2
+text = "BonusActuel
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="PrixContainer" type="MarginContainer" parent="PresentationPanel/PresentationVBoxC/ContenuHBoxC/RightMarginC/PanelC/VBoxC"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -257,6 +271,7 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_t7pbe")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_kr4jt")
 
 [node name="PanelForUnlock" type="Panel" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
