@@ -6,6 +6,7 @@ var Description
 
 var AtomePriceForUnlocking = {"Beryllium" : Big.new(1.0, 2)}
 var IsUnlocked = false
+var IsBasedUnlocked = false
 
 var Level: Big
 
@@ -22,7 +23,7 @@ var BonusTypeAmeliorationBeryllium = ["Hydrogene", "Helium", "Lithium", "Berylli
 var BonusesAmeliorationBeryllium
 
 
-func _init(id, name, description, prixBase, coefficientAchat, categorieAmeliorationBeryllium:CategorieAmeliorationBerylliumEnum, bonusesAmeliorationBeryllium, level:Big = Big.new(0.0)):
+func _init(id, name, description, prixBase, coefficientAchat, categorieAmeliorationBeryllium:CategorieAmeliorationBerylliumEnum, bonusesAmeliorationBeryllium, isBasedUnlocked = false, level:Big = Big.new(0.0)):
 	Id = id
 	Name = name
 	Description = description
@@ -31,6 +32,9 @@ func _init(id, name, description, prixBase, coefficientAchat, categorieAmeliorat
 	Level = level
 	CategorieAmeliorationBeryllium = categorieAmeliorationBeryllium
 	BonusesAmeliorationBeryllium = bonusesAmeliorationBeryllium
+	IsBasedUnlocked = isBasedUnlocked
+	if not IsUnlocked and IsBasedUnlocked:
+		IsUnlocked = true
 
 
 #Permet de definir le prix pour débloquer l'amélioration.

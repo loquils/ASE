@@ -42,8 +42,9 @@ func GetDeltaDarkMatterOld():
 #Nouveau test sur le calcul de la matière noire
 func GetDeltaDarkMatter():
 	var quantiteeMatiereNoire = Big.divide(InfosPartie.HydrogeneObtenuInThisReset, CoefficientDivisionMatiereNoire)
-	var deltaMatiereNoire = Big.multiply(quantiteeMatiereNoire, Big.add(Big.new(1.0), BonusManager.GetDeltaDarkMatterBonus()))
-	return deltaMatiereNoire
+	var deltaMatiereNoireAvecBonuses = Big.multiply(quantiteeMatiereNoire, Big.add(Big.new(1.0), BonusManager.GetDeltaDarkMatterBonus()))
+	var deltaMatiereNoireFinal = Big.multiply(deltaMatiereNoireAvecBonuses, Big.add(Big.new(1.0), BonusManager.GetDeltaDarkMatterBonusDarkMatterResearch()))
+	return deltaMatiereNoireFinal
 
 
 #Methode appellee par le signal lors de l'appuie sur un des boutons de recherches
@@ -70,8 +71,7 @@ func AchatRehercheMatiereNoireButtonPressed(recherche):
 func DarkMatterReset():
 	RessourceManager.DarkMatter = Big.add(RessourceManager.DarkMatter, GetDeltaDarkMatter())
 	RessourceManager.ResetAtomes()
-	RessourceManager.ResetAmeliorationsHelium()
-	RessourceManager.ResetAmeliorationsLithium()
+	RessourceManager.ResetToutesAmeliorations()
 	RessourceManager.ResetRecherches()
 	InfosPartie.ResetInformationsOnPrestige()
 	RessourceManager.ResetRessources()
