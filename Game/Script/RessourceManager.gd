@@ -85,7 +85,6 @@ func _ready():
 		if ressourceLoadingGame.has("TutorialCompleted"):
 			IsTutorialCompleted = ressourceLoadingGame["TutorialCompleted"]
 	
-
 	AtomsLoading(quantiteesAtomesInSaving, atomsListInSaving)
 	LoadResearch(listeRecherchesInSaving)
 	LoadAmeliorationHelium(listeAmeliorationsHeliumInSaving)
@@ -325,6 +324,7 @@ func DefineResearchListInitializingGame():
 	ListeRechercheInitializeGame.append(Recherche.new(14, "DIVIDE", Big.new(2.1, 8), ["LithiumAttributsCostDividedParRecherche", "BerylliumAttributsCostDividedParRecherche"], Big.new(3.0), easyRecherche))
 	ListeRechercheInitializeGame.append(Recherche.new(15, "RENDEMENT", Big.new(4.8, 8), ["HydrogeneOutputMultiply"], Big.new(2.0), easyRecherche))
 	ListeRechercheInitializeGame.append(Recherche.new(16, "RENDEMENT", Big.new(1.0, 9), ["AllOutputMultiplyParRecherche"], Big.new(0.25), easyRecherche))
+	#ListeRechercheInitializeGame.append(Recherche.new(17, "RENDEMENT", Big.new(1.0), ["MatiereNoireOutputMultiply"], Big.new(0.25), easyRecherche))
 
 
 #Permet d'initialiser la liste des amélioration de l'hélium dans le jeu

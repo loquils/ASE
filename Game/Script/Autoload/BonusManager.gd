@@ -214,8 +214,14 @@ func GetDarkMaterDiviseur(Name):
 
 #Permet de récupérer le bonus sur le delta de matière noire.
 func GetDeltaDarkMatterBonus():
-	var AmeliorationBoreBonus = GetAmeliorationBoreDMOutputBonus()
-	return AmeliorationBoreBonus
+	var rechercheBonus = CurrentBonusesRecherches["MatiereNoireOutputMultiply"]
+	var ameliorationsBoreBonus = GetAmeliorationBoreDMOutputBonus()
+	return Big.add(rechercheBonus, ameliorationsBoreBonus)
+
+
+#Permet de récupérer le bonus sur le delta de matière noire des recherches matière noire.
+func GetDeltaDarkMatterBonusDarkMatterResearch():
+	return CurrentBonusesRecherchesMatiereNoire["MatiereNoireOutputMultiply"]
 
 
 #Permet de récupérer le diviseur du prix des attributs des atomes
@@ -528,4 +534,5 @@ func InitializeRecherchesBonusTypes():
 	bonusTypesRecherches.append("AmeliorationsHeCostDivided")
 	bonusTypesRecherches.append("AmeliorationHelium0CostDivided")
 	bonusTypesRecherches.append("AmeliorationHelium3CostDivided")
+	bonusTypesRecherches.append("MatiereNoireOutputMultiply")
 	return bonusTypesRecherches
