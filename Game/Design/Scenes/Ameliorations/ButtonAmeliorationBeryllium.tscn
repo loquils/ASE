@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bq2qplg73uyiq"]
+[gd_scene load_steps=12 format=3 uid="uid://bq2qplg73uyiq"]
 
 [ext_resource type="Script" path="res://Script/AmeliorationBeryllium/ButtonAmeliorationBeryllium.gd" id="1_g6x8d"]
 [ext_resource type="Theme" uid="uid://c2oksi2eb0sxy" path="res://Design/Themes/themeTest.tres" id="2_65jpk"]
@@ -20,6 +20,18 @@ corner_radius_bottom_left = 10
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bk6a8"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wph1h"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rkcyt"]
+bg_color = Color(0.254902, 0.254902, 0.254902, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.226707, 0.226708, 0.226707, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y3bnf"]
 bg_color = Color(0.192157, 0.192157, 0.192157, 1)
@@ -103,14 +115,38 @@ vertical_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+text = "Prix"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="NiveauLabel" type="Label" parent="MainMarginC/PresVBoxC/PrixNiveauMarginC/HBoxC"]
 layout_mode = 2
 size_flags_horizontal = 3
+text = "Niveau"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="DescriptionMarginC" type="MarginContainer" parent="MainMarginC/PresVBoxC"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="PanelC" type="PanelContainer" parent="MainMarginC/PresVBoxC/DescriptionMarginC"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_rkcyt")
+
+[node name="DescriptionLabel" type="Label" parent="MainMarginC/PresVBoxC/DescriptionMarginC/PanelC"]
+layout_mode = 2
+text = "Description"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="DetailsMarginC" type="MarginContainer" parent="MainMarginC/PresVBoxC"]
 custom_minimum_size = Vector2(150, 150)
@@ -298,6 +334,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="BerylliumVBoxC" type="VBoxContainer" parent="MainMarginC/PresVBoxC/DetailsMarginC"]
+visible = false
 layout_mode = 2
 theme_override_constants/separation = 0
 
@@ -568,6 +605,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="PanelForUnlock" type="Panel" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

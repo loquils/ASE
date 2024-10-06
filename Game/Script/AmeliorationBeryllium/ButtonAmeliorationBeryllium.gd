@@ -11,6 +11,8 @@ var AmeliorationBeryllium: AmeliorationBeryllium
 
 @onready var NiveauLabel = $MainMarginC/PresVBoxC/PrixNiveauMarginC/HBoxC/NiveauLabel
 @onready var PrixLabel = $MainMarginC/PresVBoxC/PrixNiveauMarginC/HBoxC/VBoxC/PrixLabel
+@onready var DescriptionMarginC = $MainMarginC/PresVBoxC/DescriptionMarginC
+@onready var DescriptionLabel = $MainMarginC/PresVBoxC/DescriptionMarginC/PanelC/DescriptionLabel
 
 @onready var UnlockPanel = $PanelForUnlock
 @onready var UnlockAtomeNomLabel = $PanelForUnlock/FondPanel/VBoxContainer/AtomeLabel
@@ -65,6 +67,7 @@ func _process(_delta):
 				BerylliumAmeliorationVBoxC.hide()
 			if not AllAmeliorationsVBoxC.visible:
 				AllAmeliorationsVBoxC.show()
+			DescriptionMarginC.hide()
 			
 			BonusHydrogeneLabel.text = str(finalLevels[0])
 			BonusHeliumLabel.text = str(finalLevels[1])
@@ -76,6 +79,8 @@ func _process(_delta):
 				BerylliumAmeliorationVBoxC.show()
 			if AllAmeliorationsVBoxC.visible:
 				AllAmeliorationsVBoxC.hide()
+			DescriptionMarginC.show()
+			DescriptionLabel.text = tr(AmeliorationBeryllium.Description)
 			
 			BerylliumCurrentHydrogenBonusLabel.text = "+" + str(bonusesAdd[0])
 			BerylliumNextHydrogenBonusLabel.text = "+" + str(Big.add(Big.new(bonusesAdd[0]), bonusesAmelioration[0]))

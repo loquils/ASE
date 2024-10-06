@@ -122,7 +122,7 @@ TITREBERYLLIUMMENU, "Améliorations Beryllium", "Beryllium Upgrades"
 AMELIORATIONBERYLLIUMHYDROGENEDESCRIPTION, "", ""
 AMELIORATIONBERYLLIUMHELIUMDESCRIPTION, "", ""
 AMELIORATIONBERYLLIUMLITHIUMDESCRIPTION, "", ""
-AMELIORATIONBERYLLIUMBERYLLIUMDESCRIPTION, "CoinCoincOICNcoin", ""
+AMELIORATIONBERYLLIUMBERYLLIUMDESCRIPTION, "Augmente le nombre de particules gagnées sur toutes les améliorations du Béryllium. ", "Increase the number of particules won on all Beryllium upgrades."
 
 BONUSHYDROGENE, "Sortie Hydrogène", "Hydrogene output"
 BONUSHELIUM, "Sortie Helium", "Helium output"
