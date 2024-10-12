@@ -245,20 +245,59 @@ func GetRecherchesAttributsCostsDivided(attribut):
 	return diviseurGlobal
 
 
-#Permet de récupérer le diviseur du prix des attributs des atomes
+#Permet de récupérer le diviseur du prix des améliorations Hélium.
 func GetRecherchesAmeliorationHeCostsDivided(id):
 	var diviseurRecherches = Big.new(0.0)
 	
 	var diviseurRecherchesMatiereNoire = Big.new(0.0)
 	
 	for currentBonusesRecherches in CurrentBonusesRecherches:
+		if (currentBonusesRecherches.contains("AmeliorationHelium") and currentBonusesRecherches.contains("CostDivided")):
+			if (currentBonusesRecherches.replace("AmeliorationHelium", "").replace("CostDivided", "").contains(str(id))):
+				diviseurRecherches = Big.add(diviseurRecherches, CurrentBonusesRecherches[currentBonusesRecherches])
 		if (currentBonusesRecherches.contains("AmeliorationsHeCostDivided")):
 			diviseurRecherches = Big.add(diviseurRecherches, CurrentBonusesRecherches[currentBonusesRecherches])
-
+	
 	for currentBonusesRecherchesMatiereNoire in CurrentBonusesRecherchesMatiereNoire:
 		if (currentBonusesRecherchesMatiereNoire.contains("AmeliorationHelium") and currentBonusesRecherchesMatiereNoire.contains("CostDivided")):
 			if (currentBonusesRecherchesMatiereNoire.replace("AmeliorationHelium", "").replace("CostDivided", "").contains(str(id))):
 				diviseurRecherchesMatiereNoire = Big.add(diviseurRecherchesMatiereNoire, CurrentBonusesRecherchesMatiereNoire[currentBonusesRecherchesMatiereNoire])
+		elif currentBonusesRecherchesMatiereNoire.contains("AmeliorationsHeCostDivided"):
+			diviseurRecherchesMatiereNoire = Big.add(diviseurRecherchesMatiereNoire, CurrentBonusesRecherchesMatiereNoire[currentBonusesRecherchesMatiereNoire])
+	
+	if diviseurRecherchesMatiereNoire.isEqualTo(Big.new(0.0)):
+		diviseurRecherchesMatiereNoire = Big.new(1.0)
+	
+	if diviseurRecherches.isEqualTo(Big.new(0.0)):
+		diviseurRecherches = Big.new(1.0)
+	
+	var diviseurGlobal = Big.multiply(diviseurRecherches, diviseurRecherchesMatiereNoire)
+	
+	if diviseurGlobal.isEqualTo(Big.new(0.0)):
+		diviseurGlobal = Big.new(1.0)
+	
+	return diviseurGlobal
+
+
+#Permet de récupérer le diviseur du prix des améliorations Hélium.
+func GetRecherchesAmeliorationLithiumCostsDivided(id):
+	var diviseurRecherches = Big.new(0.0)
+	
+	var diviseurRecherchesMatiereNoire = Big.new(0.0)
+	
+	for currentBonusesRecherches in CurrentBonusesRecherches:
+		if (currentBonusesRecherches.contains("AmeliorationLithium") and currentBonusesRecherches.contains("CostDivided")):
+			if (currentBonusesRecherches.replace("AmeliorationLithium", "").replace("CostDivided", "").contains(str(id))):
+				diviseurRecherches = Big.add(diviseurRecherches, CurrentBonusesRecherches[currentBonusesRecherches])
+		if (currentBonusesRecherches.contains("AmeliorationsLithiumCostDivided")):
+			diviseurRecherches = Big.add(diviseurRecherches, CurrentBonusesRecherches[currentBonusesRecherches])
+	
+	for currentBonusesRecherchesMatiereNoire in CurrentBonusesRecherchesMatiereNoire:
+		if (currentBonusesRecherchesMatiereNoire.contains("AmeliorationLithium") and currentBonusesRecherchesMatiereNoire.contains("CostDivided")):
+			if (currentBonusesRecherchesMatiereNoire.replace("AmeliorationLithium", "").replace("CostDivided", "").contains(str(id))):
+				diviseurRecherchesMatiereNoire = Big.add(diviseurRecherchesMatiereNoire, CurrentBonusesRecherchesMatiereNoire[currentBonusesRecherchesMatiereNoire])
+		elif currentBonusesRecherchesMatiereNoire.contains("AmeliorationsLithiumCostDivided"):
+			diviseurRecherchesMatiereNoire = Big.add(diviseurRecherchesMatiereNoire, CurrentBonusesRecherchesMatiereNoire[currentBonusesRecherchesMatiereNoire])
 	
 	if diviseurRecherchesMatiereNoire.isEqualTo(Big.new(0.0)):
 		diviseurRecherchesMatiereNoire = Big.new(1.0)
@@ -538,5 +577,8 @@ func InitializeRecherchesBonusTypes():
 	bonusTypesRecherches.append("AmeliorationsHeCostDivided")
 	bonusTypesRecherches.append("AmeliorationHelium0CostDivided")
 	bonusTypesRecherches.append("AmeliorationHelium3CostDivided")
+	bonusTypesRecherches.append("AmeliorationsLithiumCostDivided")
+	bonusTypesRecherches.append("AmeliorationLithium0CostDivided")
+	bonusTypesRecherches.append("AmeliorationLithium1CostDivided")
 	bonusTypesRecherches.append("MatiereNoireOutputMultiply")
 	return bonusTypesRecherches
