@@ -1,0 +1,40 @@
+[gd_scene load_steps=2 format=3 uid="uid://d4beas3ywf4fh"]
+
+[ext_resource type="Script" path="res://Script/Utiles/CanvasBonusHorsLigneLineControl.gd" id="1_o7crd"]
+
+[node name="CanvasBonusHorsLigneLineControl" type="Control"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 3
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_o7crd")
+
+[node name="HBoxC" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NamePanelC" type="PanelContainer" parent="HBoxC"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NameLabel" type="Label" parent="HBoxC/NamePanelC"]
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QuantityPanelC2" type="PanelContainer" parent="HBoxC"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="QuantityLabel" type="Label" parent="HBoxC/QuantityPanelC2"]
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1

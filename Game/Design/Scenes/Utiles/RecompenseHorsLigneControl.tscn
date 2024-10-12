@@ -1,0 +1,120 @@
+[gd_scene load_steps=4 format=3 uid="uid://co7bto83s8itm"]
+
+[ext_resource type="Script" path="res://Script/Utiles/RecompenseHorsLigneControl.gd" id="1_mu72a"]
+[ext_resource type="Theme" uid="uid://ch4wxrheole62" path="res://Design/Themes/Accueil/BonusHorsLigneThem.tres" id="1_wnq55"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ugiw0"]
+bg_color = Color(0.192157, 0.192157, 0.192157, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="RecompenseHorsLigneControl" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_wnq55")
+script = ExtResource("1_mu72a")
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[node name="GlobalPanelC" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="FenetrePanelC" type="PanelContainer" parent="GlobalPanelC"]
+custom_minimum_size = Vector2(500, 300)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_ugiw0")
+
+[node name="PresentationVBoxC" type="VBoxContainer" parent="GlobalPanelC/FenetrePanelC"]
+layout_mode = 2
+
+[node name="NomFenetreMarginC" type="MarginContainer" parent="GlobalPanelC/FenetrePanelC/PresentationVBoxC"]
+layout_mode = 2
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="NomFondPanelC" type="PanelContainer" parent="GlobalPanelC/FenetrePanelC/PresentationVBoxC/NomFenetreMarginC"]
+layout_mode = 2
+
+[node name="NomLabel" type="Label" parent="GlobalPanelC/FenetrePanelC/PresentationVBoxC/NomFenetreMarginC/NomFondPanelC"]
+layout_mode = 2
+text = "TITREFENETREHORSLIGNE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DescriptionMarginC" type="MarginContainer" parent="GlobalPanelC/FenetrePanelC/PresentationVBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="DescriptionFondPanelC" type="PanelContainer" parent="GlobalPanelC/FenetrePanelC/PresentationVBoxC/DescriptionMarginC"]
+layout_mode = 2
+
+[node name="LoadingLabel" type="Label" parent="GlobalPanelC/FenetrePanelC/PresentationVBoxC/DescriptionMarginC/DescriptionFondPanelC"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 1
+text = "LOADING"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxC" type="VBoxContainer" parent="GlobalPanelC/FenetrePanelC/PresentationVBoxC/DescriptionMarginC/DescriptionFondPanelC"]
+layout_mode = 2
+
+[node name="DescriptionLabel" type="Label" parent="GlobalPanelC/FenetrePanelC/PresentationVBoxC/DescriptionMarginC/DescriptionFondPanelC/VBoxC"]
+layout_mode = 2
+size_flags_vertical = 1
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="RecompensesVBoxC" type="VBoxContainer" parent="GlobalPanelC/FenetrePanelC/PresentationVBoxC/DescriptionMarginC/DescriptionFondPanelC/VBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TitreRecompenseLabel" type="Label" parent="GlobalPanelC/FenetrePanelC/PresentationVBoxC/DescriptionMarginC/DescriptionFondPanelC/VBoxC/RecompensesVBoxC"]
+layout_mode = 2
+text = "ABSENCE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RechargerHBoxC" type="HBoxContainer" parent="GlobalPanelC/FenetrePanelC/PresentationVBoxC/DescriptionMarginC/DescriptionFondPanelC/VBoxC"]
+visible = false
+layout_mode = 2
+alignment = 1
+
+[node name="RechargerButton" type="Button" parent="GlobalPanelC/FenetrePanelC/PresentationVBoxC/DescriptionMarginC/DescriptionFondPanelC/VBoxC/RechargerHBoxC"]
+layout_mode = 2
+text = "RECHARGER"
+
+[node name="ButtonsMarginC" type="MarginContainer" parent="GlobalPanelC/FenetrePanelC/PresentationVBoxC"]
+layout_mode = 2
+
+[node name="RecupererButton" type="Button" parent="GlobalPanelC/FenetrePanelC/PresentationVBoxC/ButtonsMarginC"]
+visible = false
+layout_mode = 2
+text = "RECUPERER"
+
+[node name="CancelButton" type="Button" parent="GlobalPanelC/FenetrePanelC/PresentationVBoxC/ButtonsMarginC"]
+layout_mode = 2
+text = "CANCEL"
+
+[connection signal="pressed" from="GlobalPanelC/FenetrePanelC/PresentationVBoxC/DescriptionMarginC/DescriptionFondPanelC/VBoxC/RechargerHBoxC/RechargerButton" to="." method="_on_recharger_button_pressed"]
+[connection signal="pressed" from="GlobalPanelC/FenetrePanelC/PresentationVBoxC/ButtonsMarginC/RecupererButton" to="." method="_on_recuperer_button_pressed"]
+[connection signal="pressed" from="GlobalPanelC/FenetrePanelC/PresentationVBoxC/ButtonsMarginC/CancelButton" to="." method="_on_cancel_button_pressed"]
