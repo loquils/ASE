@@ -41,7 +41,9 @@ func DefineUnlockingPrice(atomePriceForUnlocking):
 
 
 func GetPrixAmeliorationLithium():
-	return Big.multiply(PrixBase, Big.power(CoefficientAchat, Level))
+	var basePrix = Big.multiply(PrixBase, Big.power(CoefficientAchat, Level))
+	var dividePrixBonuses = BonusManager.GetRecherchesAmeliorationLithiumCostsDivided(Id);
+	return Big.divide(basePrix, dividePrixBonuses)
 
 
 #func GetBonusAmeliorationLithium():

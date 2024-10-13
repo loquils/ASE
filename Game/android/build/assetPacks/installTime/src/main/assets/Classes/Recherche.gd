@@ -65,6 +65,15 @@ func GetRechercheElements():
 			resultAmeliorationHelium.append(tr("AMELIORATIONHELIUM" + str(int(upgrade) + 1)))
 		return resultAmeliorationHelium
 	
+	if Augmentation[0].contains("AmeliorationLithium") or Augmentation[0].contains("AmeliorationsLithium"):
+		var resultAmeliorationLithium = []
+		for augmentation in Augmentation:
+			var upgrade = augmentation.replace("AmeliorationLithium", "").replace("ParRechercheMN", "").replace("ParRecherche", "").replace("CostDivided", "")
+			if upgrade.contains("AmeliorationsLithium"):
+				return [tr("AMELIORATIONSLITHIUM")]
+			resultAmeliorationLithium.append(tr("AMELIORATIONLITHIUM" + str(int(upgrade) + 1)))
+		return resultAmeliorationLithium
+	
 	if Augmentation[0].contains("OutputMultiply"):
 		var resultOutputMultiply = []
 		for augmentation in Augmentation:
