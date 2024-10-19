@@ -355,7 +355,8 @@ func GetAmeliorationHeliumCoefficientPression0():
 
 #Permet de récupérer le coefficient des améliorations d'helium 
 func GetAmeliorationHeliumPressionMultiplicateur():
-	return Big.add(CurrentBonusesAmeliorationHelium["HydrogeneOutputMultiply"], GetAmeliorationHeliumCoefficientPression0AvecNiveau())
+	var currentBonusHydrogenOutputMultiply = Big.add(CurrentBonusesAmeliorationHelium["HydrogeneOutputMultiply"], GetAmeliorationHeliumCoefficientPression0AvecNiveau())
+	return Big.multiply(currentBonusHydrogenOutputMultiply, Big.add(Big.new(1.0), CurrentBonusesRecherchesMatiereNoire["AmeliorationHelium0OutputMultiply"]))
 
 
 #Permet de récupérer le coefficient d'ajout sur la pression 1 des améliorations hélium en fontion du niveau de l'amélioration
@@ -386,7 +387,8 @@ func GetAmeliorationHeliumCoefficientSortieAvecNiveau():
 		return
 	var bonusPression0 = GetAmeliorationHeliumCoefficientPression0AvecNiveau()
 	var bonusPression = Big.add(CurrentBonusesAmeliorationHelium[nomTypeBonusAmelioration], bonusPression0)
-	return Big.multiply(bonusPression, objetsTrouvesDansListe[0].Level)
+	var currentBonusHydrogenOutputMultiplyAvecBonus = Big.multiply(bonusPression, Big.add(Big.new(1.0), CurrentBonusesRecherchesMatiereNoire["AmeliorationHelium0OutputMultiply"]))
+	return Big.multiply(currentBonusHydrogenOutputMultiplyAvecBonus, objetsTrouvesDansListe[0].Level)
 
 
 #Permet de récupérer le coefficient sur la température 1 des améliorations hélium
@@ -600,6 +602,8 @@ func InitializeRecherchesBonusTypes():
 	bonusTypesRecherches.append("AmeliorationLithium0CostDivided")
 	bonusTypesRecherches.append("AmeliorationLithium1CostDivided")
 	bonusTypesRecherches.append("MatiereNoireOutputMultiply")
+	
+	bonusTypesRecherches.append("AmeliorationHelium0OutputMultiply")
 	
 	bonusTypesRecherches.append("RechercheOutputMultiply")
 	bonusTypesRecherches.append("RechercheMatiereNoireOutputMultiply")

@@ -59,10 +59,16 @@ func GetRechercheElements():
 	if Augmentation[0].contains("AmeliorationHelium") or Augmentation[0].contains("AmeliorationsHe"):
 		var resultAmeliorationHelium = []
 		for augmentation in Augmentation:
-			var upgrade = augmentation.replace("AmeliorationHelium", "").replace("ParRechercheMN", "").replace("ParRecherche", "").replace("CostDivided", "")
-			if upgrade.contains("AmeliorationsHe"):
-				return [tr("AMELIORATIONSHE")]
-			resultAmeliorationHelium.append(tr("AMELIORATIONHELIUM" + str(int(upgrade) + 1)))
+			if Augmentation[0].contains("OutputMultiply"):
+				var upgrade = augmentation.replace("AmeliorationHelium", "").replace("ParRechercheMN", "").replace("ParRecherche", "").replace("OutputMultiply", "")
+				var nomRecherche = RessourceManager.ListeAmeliorationsHelium.filter(func(amelioration): return amelioration.Id == int(upgrade))
+				if nomRecherche.size() == 1:
+					resultAmeliorationHelium.append(tr(nomRecherche[0].Name))
+			else:
+				var upgrade = augmentation.replace("AmeliorationHelium", "").replace("ParRechercheMN", "").replace("ParRecherche", "").replace("CostDivided", "")
+				if upgrade.contains("AmeliorationsHe"):
+					return [tr("AMELIORATIONSHE")]
+				resultAmeliorationHelium.append(tr("AMELIORATIONHELIUM" + str(int(upgrade) + 1)))
 		return resultAmeliorationHelium
 	
 	if Augmentation[0].contains("AmeliorationLithium") or Augmentation[0].contains("AmeliorationsLithium"):
