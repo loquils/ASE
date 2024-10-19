@@ -329,7 +329,7 @@ func DefineResearchListInitializingGame():
 	ListeRechercheInitializeGame.append(Recherche.new(18, "RENDEMENT", Big.new(6.7, 9), ["LithiumOutputMultiply","BerylliumOutputMultiply"], Big.new(0.8), easyRecherche))
 	ListeRechercheInitializeGame.append(Recherche.new(19, "DIVIDE", Big.new(2.0, 10), ["BoreAttributsCostDivided"], Big.new(8.0), easyRecherche))
 	ListeRechercheInitializeGame.append(Recherche.new(20, "RENDEMENT", Big.new(5.25, 10), ["HydrogeneOutputMultiplyParRecherche", "HeliumOutputMultiplyParRecherche", "LithiumOutputMultiplyParRecherche"], Big.new(0.5), easyRecherche))
-	ListeRechercheInitializeGame.append(Recherche.new(26, "DIVIDE", Big.new(1.8, 11), ["LithiumAttributsCostDivided", "BerylliumAttributsCostDivided"], Big.new(1.0), easyRecherche))
+	ListeRechercheInitializeGame.append(Recherche.new(26, "DIVIDE", Big.new(1.8, 11), ["LithiumAttributsCostDivided", "BerylliumAttributsCostDivided"], Big.new(8.0), easyRecherche))
 	ListeRechercheInitializeGame.append(Recherche.new(22, "AMELIOLITHIUM", Big.new(3.75, 11), ["AmeliorationLithium0CostDivided", "AmeliorationLithium1CostDivided"], Big.new(5.0), easyRecherche))
 	ListeRechercheInitializeGame.append(Recherche.new(23, "RENDEMENT", Big.new(8.0, 11), ["RechercheOutputMultiply"], Big.new(0.2), easyRecherche))
 	ListeRechercheInitializeGame.append(Recherche.new(24, "DIVIDE", Big.new(1.75, 12), ["HeliumAttributsCoefficientMultiply"], Big.new(1.0), easyRecherche))
