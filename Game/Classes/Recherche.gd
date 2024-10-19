@@ -9,7 +9,7 @@ var Augmentation:Array
 var AugmentationPercent
 var ResearchLevel:ResearchLevelEnum
 
-enum ResearchLevelEnum {DARKMATTER, DEBUT, EASY}
+enum ResearchLevelEnum {DARKMATTER, DEBUT, EASY, LESSEASY}
 
 func _init(id, name, prix: Big, augmentation, augmentationPercent: Big, researchLevel):
 	Id = id
@@ -71,7 +71,11 @@ func GetRechercheElements():
 			var upgrade = augmentation.replace("AmeliorationLithium", "").replace("ParRechercheMN", "").replace("ParRecherche", "").replace("CostDivided", "")
 			if upgrade.contains("AmeliorationsLithium"):
 				return [tr("AMELIORATIONSLITHIUM")]
-			resultAmeliorationLithium.append(tr("AMELIORATIONLITHIUM" + str(int(upgrade) + 1)))
+			var nomRecherche = RessourceManager.ListeAmeliorationsLithium.filter(func(amelioration): return amelioration.Id == int(upgrade))
+			if nomRecherche.size() == 1:
+				resultAmeliorationLithium.append(tr(nomRecherche[0].Name))
+			else:
+				resultAmeliorationLithium.append(tr("AMELIORATIONLITHIUM" + str(int(upgrade) + 1)))
 		return resultAmeliorationLithium
 	
 	if Augmentation[0].contains("OutputMultiply"):
@@ -100,7 +104,12 @@ func GetRechercheElements():
 		var resultCoefficientMultiply = []
 		for augmentation in Augmentation:
 			var attribut = augmentation.replace("CoefficientMultiply", "").replace("ParRechercheMN", "").replace("ParRecherche", "")
-			resultCoefficientMultiply.append(GetAttributCostDividedName(attribut))
+			if Id == 23:
+				var coin = "coin"
+			if attribut.contains("Attributs"):
+				resultCoefficientMultiply.append(tr(attribut.replace("Attributs", "")))
+			else:
+				resultCoefficientMultiply.append(GetAttributCostDividedName(attribut))
 		return resultCoefficientMultiply
 	
 	return [""]

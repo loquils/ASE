@@ -77,14 +77,14 @@ ET, "et", "and"
 PRIXHYDROGENEAUGMENTATION, "Augmentation du prix de l'hydrogène de {calc}.", "{calc} Hydrogen price augmentation."
 OUTPUTMULTIPLY, "Augmente la sortie {elements} de {calc}.", "Increase {elements} output by {calc}."
 COSTDIVIDED, "Divise le prix des attributs {elements} par {calc}.", "Divide {elements} attributes costs by {calc}."
-COEFFICIENTMULTIPLY, "Augmente les attributs {elements} de {calc}.", "Increase Hydrogen Strenght and Speed attributes by {calc}."
+COEFFICIENTMULTIPLY, "Boost les attributs {elements} de {calc}.", "Boost {elements} attributes by {calc}."
 
 PRIXHYDROGENE, "Prix Hydrogène", "Hydrogen Price"
 DIVIDE, "Divise", "Divided"
 RENDEMENT, "Rendement", "Output"
 ATTRIBUTS, "Attributs", "Attributes"
 AMELIOHELIUM, "Améliorations He", "He Upgrades"
-
+AMELIOLITHIUM, "Améliorations Li", "Li Upgrades"
 
 
 DESCRIPTIONMENUAMELIORATIONHELIUM, "", ""
