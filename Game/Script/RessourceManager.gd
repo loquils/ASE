@@ -319,7 +319,7 @@ func DefineResearchListInitializingGame():
 	ListeRechercheInitializeGame.append(Recherche.new(6, "RENDEMENT", Big.new(2.2, 6), ["HeliumOutputMultiply"], Big.new(1.5), debutRecherche))
 	ListeRechercheInitializeGame.append(Recherche.new(10, "RENDEMENT", Big.new(5.25, 6), ["HydrogeneOutputMultiply", "HeliumOutputMultiply"], Big.new(0.5), debutRecherche))
 	
-	ListeRechercheInitializeGame.append(Recherche.new(17, "AMELIOHELIUM", Big.new(2.0, 7), ["AmeliorationHelium0CostDivided", "AmeliorationHelium3CostDivided"], Big.new(10), easyRecherche))
+	ListeRechercheInitializeGame.append(Recherche.new(21, "AMELIOHELIUM", Big.new(2.0, 7), ["AmeliorationHelium0CostDivided", "AmeliorationHelium3CostDivided"], Big.new(10), easyRecherche))
 	ListeRechercheInitializeGame.append(Recherche.new(13, "RENDEMENT", Big.new(7.0, 7), ["LithiumOutputMultiply"], Big.new(1.0), easyRecherche))
 	ListeRechercheInitializeGame.append(Recherche.new(14, "DIVIDE", Big.new(2.1, 8), ["LithiumAttributsCostDividedParRecherche", "BerylliumAttributsCostDividedParRecherche"], Big.new(3.0), easyRecherche))
 	ListeRechercheInitializeGame.append(Recherche.new(15, "RENDEMENT", Big.new(4.8, 8), ["HydrogeneOutputMultiply"], Big.new(2.0), easyRecherche))
