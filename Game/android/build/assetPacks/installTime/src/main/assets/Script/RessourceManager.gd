@@ -145,7 +145,7 @@ func LoadResearch(listeRecherchesInSaving):
 	for recherche in ListeRechercheInitializeGame:
 		ListeRecherches.append(recherche)
 	
-	BonusManager.MajBonusRecherches()
+	#BonusManager.MajBonusRecherches()
 
 
 #Permet de charger la liste des recherches
@@ -229,7 +229,7 @@ func LoadDarkMatter(listeRecherchesMatiereNoireInSaving):
 	for rechercheMatiereNoire in ListeRecherchesMatiereNoireInitializeGame:
 		ListeRecherchesMatiereNoire.append(rechercheMatiereNoire)
 	
-	BonusManager.MajBonusRecherchesMatiereNoire()
+	#BonusManager.MajBonusRecherchesMatiereNoire()
 
 
 #Calcul et ajoute la quantité d'atome par rapport au temps indiqué
@@ -304,32 +304,36 @@ func DefineAtomsListInitializingGame():
 func DefineResearchListInitializingGame():
 	var debutRecherche = Recherche.ResearchLevelEnum.DEBUT
 	var easyRecherche = Recherche.ResearchLevelEnum.EASY
+	var lessEasyRecherche = Recherche.ResearchLevelEnum.LESSEASY
 	
 	ListeRechercheInitializeGame.append(Recherche.new(0, "PRIXHYDROGENE", Big.new(1.5, 2), ["PrixHydrogeneAugmentation"], Big.new(0.25, 0), debutRecherche))
 	ListeRechercheInitializeGame.append(Recherche.new(1, "PRIXHYDROGENE", Big.new(4.0, 2), ["PrixHydrogeneAugmentation"], Big.new(0.5, 0), debutRecherche))
 	ListeRechercheInitializeGame.append(Recherche.new(8, "RENDEMENT", Big.new(1.0, 3), ["HydrogeneOutputMultiplyParRecherche"], Big.new(0.25), debutRecherche))
 	ListeRechercheInitializeGame.append(Recherche.new(2, "PRIXHYDROGENE", Big.new(2.5, 3), ["PrixHydrogeneAugmentation"], Big.new(1.0, 0), debutRecherche))
 	ListeRechercheInitializeGame.append(Recherche.new(3, "DIVIDE", Big.new(6.0, 3), ["HydrogeneAttributsCostDivided"], Big.new(3.0), debutRecherche))
-	ListeRechercheInitializeGame.append(Recherche.new(11, "DIVIDE", Big.new(1.4, 4), ["HydrogeneVitesseCostDivided", "HeliumComplexiteeCostDivided"], Big.new(15.0), debutRecherche))
+	ListeRechercheInitializeGame.append(Recherche.new(11, "DIVIDE", Big.new(1.4, 4), ["HydrogeneVitesseCostDivided", "HeliumComplexiteeCostDivided"], Big.new(10.0), debutRecherche))
 	ListeRechercheInitializeGame.append(Recherche.new(7, "RENDEMENT", Big.new(3.15, 4), ["AllOutputMultiplyParRecherche"], Big.new(0.08), debutRecherche))
-	ListeRechercheInitializeGame.append(Recherche.new(4, "RENDEMENT", Big.new(7.55, 4), ["HydrogeneOutputMultiplyParRecherche", "HeliumOutputMultiplyParRecherche"], Big.new(0.2), debutRecherche))
-	ListeRechercheInitializeGame.append(Recherche.new(5, "PRIXHYDROGENE", Big.new(1.8, 5), ["PrixHydrogeneAugmentation"], Big.new(5.0), debutRecherche))
+	ListeRechercheInitializeGame.append(Recherche.new(4, "RENDEMENT", Big.new(7.55, 4), ["HydrogeneOutputMultiplyParRecherche", "HeliumOutputMultiplyParRecherche"], Big.new(0.1), debutRecherche))
+	ListeRechercheInitializeGame.append(Recherche.new(5, "PRIXHYDROGENE", Big.new(1.8, 5), ["PrixHydrogeneAugmentation"], Big.new(3.0), debutRecherche))
 	ListeRechercheInitializeGame.append(Recherche.new(12, "ATTRIBUTS", Big.new(4.0, 5), ["HydrogeneForceCoefficientMultiply", "HydrogeneVitesseCoefficientMultiply"], Big.new(0.2), debutRecherche))
 	ListeRechercheInitializeGame.append(Recherche.new(9, "DIVIDE", Big.new(9.75, 5), ["HydrogeneAttributsCostDivided", "HeliumAttributsCostDivided"], Big.new(8.0), debutRecherche))
-	ListeRechercheInitializeGame.append(Recherche.new(6, "RENDEMENT", Big.new(2.2, 6), ["HeliumOutputMultiply"], Big.new(1.5), debutRecherche))
+	ListeRechercheInitializeGame.append(Recherche.new(6, "RENDEMENT", Big.new(2.2, 6), ["HeliumOutputMultiply"], Big.new(0.75), debutRecherche))
 	ListeRechercheInitializeGame.append(Recherche.new(10, "RENDEMENT", Big.new(5.25, 6), ["HydrogeneOutputMultiply", "HeliumOutputMultiply"], Big.new(0.5), debutRecherche))
 	
-	ListeRechercheInitializeGame.append(Recherche.new(17, "AMELIOHELIUM", Big.new(2.0, 7), ["AmeliorationHelium0CostDivided", "AmeliorationHelium3CostDivided"], Big.new(10), easyRecherche))
+	ListeRechercheInitializeGame.append(Recherche.new(21, "AMELIOHELIUM", Big.new(2.0, 7), ["AmeliorationHelium0CostDivided", "AmeliorationHelium3CostDivided"], Big.new(10), easyRecherche))
 	ListeRechercheInitializeGame.append(Recherche.new(13, "RENDEMENT", Big.new(7.0, 7), ["LithiumOutputMultiply"], Big.new(1.0), easyRecherche))
 	ListeRechercheInitializeGame.append(Recherche.new(14, "DIVIDE", Big.new(2.1, 8), ["LithiumAttributsCostDividedParRecherche", "BerylliumAttributsCostDividedParRecherche"], Big.new(3.0), easyRecherche))
-	ListeRechercheInitializeGame.append(Recherche.new(15, "RENDEMENT", Big.new(4.8, 8), ["HydrogeneOutputMultiply"], Big.new(2.0), easyRecherche))
+	ListeRechercheInitializeGame.append(Recherche.new(15, "RENDEMENT", Big.new(4.8, 8), ["HeliumOutputMultiply"], Big.new(2.0), easyRecherche))
 	ListeRechercheInitializeGame.append(Recherche.new(16, "RENDEMENT", Big.new(1.0, 9), ["AllOutputMultiplyParRecherche"], Big.new(0.25), easyRecherche))
-	ListeRechercheInitializeGame.append(Recherche.new(17, "RENDEMENT", Big.new(2.5, 9), ["MatiereNoireOutputMultiply"], Big.new(0.25), easyRecherche))
-	ListeRechercheInitializeGame.append(Recherche.new(18, "RENDEMENT", Big.new(6.7, 9), ["BerylliumOutputMultiply","BoreOutputMultiply"], Big.new(0.5), easyRecherche))
-	ListeRechercheInitializeGame.append(Recherche.new(19, "DIVIDE", Big.new(2.0, 10), ["BoreAttributsCostDivided"], Big.new(10.0), easyRecherche))
+	ListeRechercheInitializeGame.append(Recherche.new(17, "RENDEMENT", Big.new(2.5, 9), ["MatiereNoireOutputMultiply"], Big.new(0.15), easyRecherche))
+	ListeRechercheInitializeGame.append(Recherche.new(18, "RENDEMENT", Big.new(6.7, 9), ["LithiumOutputMultiply","BerylliumOutputMultiply"], Big.new(0.8), easyRecherche))
+	ListeRechercheInitializeGame.append(Recherche.new(19, "DIVIDE", Big.new(2.0, 10), ["BoreAttributsCostDivided"], Big.new(8.0), easyRecherche))
 	ListeRechercheInitializeGame.append(Recherche.new(20, "RENDEMENT", Big.new(5.25, 10), ["HydrogeneOutputMultiplyParRecherche", "HeliumOutputMultiplyParRecherche", "LithiumOutputMultiplyParRecherche"], Big.new(0.5), easyRecherche))
-	#ListeRechercheInitializeGame.append(Recherche.new(20, "AMELIOLITHIUM", Big.new(6.7, 9), ["AmeliorationLithium0CostDivided", "AmeliorationLithium1CostDivided"], Big.new(5.0), easyRecherche))
-
+	ListeRechercheInitializeGame.append(Recherche.new(26, "DIVIDE", Big.new(1.8, 11), ["LithiumAttributsCostDivided", "BerylliumAttributsCostDivided"], Big.new(8.0), easyRecherche))
+	ListeRechercheInitializeGame.append(Recherche.new(22, "AMELIOLITHIUM", Big.new(3.75, 11), ["AmeliorationLithium0CostDivided", "AmeliorationLithium1CostDivided"], Big.new(5.0), easyRecherche))
+	ListeRechercheInitializeGame.append(Recherche.new(23, "RENDEMENT", Big.new(8.0, 11), ["RechercheOutputMultiply"], Big.new(0.2), easyRecherche))
+	ListeRechercheInitializeGame.append(Recherche.new(24, "DIVIDE", Big.new(1.75, 12), ["HeliumAttributsCoefficientMultiply"], Big.new(1.0), easyRecherche))
+	ListeRechercheInitializeGame.append(Recherche.new(25, "RENDEMENT", Big.new(4.0, 12), ["BerylliumOutputMultiply", "BoreOutputMultiply"], Big.new(1.0), easyRecherche))
 
 
 #Permet d'initialiser la liste des amélioration de l'hélium dans le jeu
@@ -430,6 +434,9 @@ func DefineRechercheMatiereNoireListInitializingGame():
 	ListeRecherchesMatiereNoireInitializeGame.append(Recherche.new(3, "RECHERCHEMATIERENOIRE4", Big.new(1.0, 3), ["AmeliorationsHeCostDividedParRechercheMN"], Big.new(1.0, 1), dmRecherche))
 	ListeRecherchesMatiereNoireInitializeGame.append(Recherche.new(4, "PRIXHYDROGENE", Big.new(1.0, 4), ["PrixHydrogeneAugmentation"], Big.new(3.0, 2), dmRecherche))
 	ListeRecherchesMatiereNoireInitializeGame.append(Recherche.new(5, "RENDEMENT", Big.new(1.0, 5), ["HydrogeneOutputMultiplyParRechercheMN", "HeliumOutputMultiplyParRechercheMN", "LithiumOutputMultiplyParRechercheMN", "BerylliumOutputMultiplyParRechercheMN"], Big.new(0.75), dmRecherche))
+	ListeRecherchesMatiereNoireInitializeGame.append(Recherche.new(6, "DIVIDED", Big.new(1.0, 6), ["HeliumAttributsCostDividedParRechercheMN", "LithiumAttributsCostDividedParRechercheMN"], Big.new(5.0, 1), dmRecherche))
+	ListeRecherchesMatiereNoireInitializeGame.append(Recherche.new(6, "RENDEMENT", Big.new(1.0, 7), ["AmeliorationHelium0OutputMultiply"], Big.new(0.2), dmRecherche))
+	
 
 #----------------------------------------------Réinitialisation--------------------------------------------------------#
 

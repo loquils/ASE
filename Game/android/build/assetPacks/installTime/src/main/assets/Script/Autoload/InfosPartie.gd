@@ -15,15 +15,30 @@ func MajInformationsPartie():
 	if HydrogeneMaximum.isLessThan(RessourceManager.QuantiteesAtomes["Hydrogene"]):
 		HydrogeneMaximum = RessourceManager.QuantiteesAtomes["Hydrogene"]
 	
-	RecherchesAchetees = 0
+	RecherchesAchetees = GetNombreRecherchesAchetees()
+	RecherchesMatiereNoireAchetees = GetNombreRecherchesMatiereNoireAchetees()
+
+
+#Permet de calculer la quantitée de recherches achetées avec les bonus.
+func GetNombreRecherchesAchetees():
+	var recherchesAcheteesAvantBonus = 0
 	for recherche in RessourceManager.ListeRecherches:
 		if recherche.IsUnlocked:
-			RecherchesAchetees += 1
+			recherchesAcheteesAvantBonus += 1
 	
-	RecherchesMatiereNoireAchetees = 0
+	var bonusRecherchesAchetees = BonusManager.GetRecherchesBonusNombreRecherchesAchetees()
+	return Big.multiply(recherchesAcheteesAvantBonus, Big.add(Big.new(1.0), bonusRecherchesAchetees))
+
+
+#Permet de calculer la quantitée de recherches achetées avec les bonus.
+func GetNombreRecherchesMatiereNoireAchetees():
+	var recherchesMatiereNoireAcheteesAvantBonus = 0
 	for rechercheMatiereNoire in RessourceManager.ListeRecherchesMatiereNoire:
 		if rechercheMatiereNoire.IsUnlocked:
-			RecherchesMatiereNoireAchetees += 1
+			recherchesMatiereNoireAcheteesAvantBonus += 1
+	
+	var bonusRecherchesMatiereNoireAchetees = BonusManager.GetRecherchesBonusNombreRecherchesMatiereNoireAchetees()
+	return Big.multiply(recherchesMatiereNoireAcheteesAvantBonus, Big.add(Big.new(1.0), bonusRecherchesMatiereNoireAchetees))
 
 
 #Permet de faire un reset de prestige sur les informations de la partie
