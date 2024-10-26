@@ -267,7 +267,7 @@ func DefineAtomsListInitializingGame():
 	var heliumAttributsList = [attribut1Helium, attribut2Helium, attribut3Helium]
 
 	heliumAtom.DefineAtomeAttributs(heliumAttributsList)
-	heliumAtom.DefineAtomeUnlockingPrice({"Hydrogene" : Big.new(1.5, 3)})
+	heliumAtom.DefineAtomeUnlockingPrice({"Hydrogene" : Big.new(7.85, 3)})
 	AtomsListInitializingGame.append(heliumAtom)
 	
 	var lithiumAtom = Atome.new("Lithium", Big.new(0.25, 0))
@@ -277,7 +277,7 @@ func DefineAtomsListInitializingGame():
 	var lithiumAttributsList = [attribut1Lithium, attribut2Lithium, attribut3Lithium]
 
 	lithiumAtom.DefineAtomeAttributs(lithiumAttributsList)
-	lithiumAtom.DefineAtomeUnlockingPrice({"Helium" : Big.new(3.8, 3)})
+	lithiumAtom.DefineAtomeUnlockingPrice({"Helium" : Big.new(2.64, 4)})
 	AtomsListInitializingGame.append(lithiumAtom)
 	
 	var berylliumAtom = Atome.new("Beryllium", Big.new(0.10, 0))
@@ -287,16 +287,16 @@ func DefineAtomsListInitializingGame():
 	var berylliumAttributsList = [attribut1Beryllium, attribut2Beryllium, attribut3Beryllium]
 
 	berylliumAtom.DefineAtomeAttributs(berylliumAttributsList)
-	berylliumAtom.DefineAtomeUnlockingPrice({"Lithium" : Big.new(5.75, 3)})
+	berylliumAtom.DefineAtomeUnlockingPrice({"Lithium" : Big.new(7.4, 4)})
 	AtomsListInitializingGame.append(berylliumAtom)
 	
-	var boreAtom = Atome.new("Bore", Big.new(0.10, 0))
+	var boreAtom = Atome.new("Bore", Big.new(0.05, 0))
 	var attribut1Bore = AttributAtome.new(boreAtom, "Tension", Big.new(0.0), Big.new(1.25), Big.new(0.19), Big.new(5.4, 3))
 	var attribut2Bore = AttributAtome.new(boreAtom, "Vibration", Big.new(0.0), Big.new(1.17), Big.new(0.15), Big.new(3.2, 3))
 	var boreAttributsList = [attribut1Bore, attribut2Bore]
 
 	boreAtom.DefineAtomeAttributs(boreAttributsList)
-	boreAtom.DefineAtomeUnlockingPrice({"Beryllium" : Big.new(9.25, 3)})
+	boreAtom.DefineAtomeUnlockingPrice({"Beryllium" : Big.new(2.38, 5)})
 	AtomsListInitializingGame.append(boreAtom)
 
 
@@ -448,20 +448,22 @@ func DefineRechercheMatiereNoireListInitializingGame():
 #----------------------------------------------Réinitialisation--------------------------------------------------------#
 
 #Permet de remettre les atomes à zero.
-func ResetAtomes():
+func ResetAtomes(crunch:bool = false):
 	for atome in ListeAtomes:
 		for attribut in ListeAtomes[atome].ListeAttribs:
 			attribut.Niveau = Big.new(0.0)
 	
-		if not atome == "Hydrogene":
+		if crunch and not atome == "Hydrogene":
 			ListeAtomes[atome].isUnlocked = false
 
 
 #Permet de remettre la quantitée des atomes à zero.
-func ResetRessources():
+func ResetRessources(crunch:bool = false):
 	Coins = Big.new(0.0)
 	for atomeNom in ListeAtomes:
 		QuantiteesAtomes[atomeNom] = Big.new(0.0)
+	if crunch:
+		DarkMatter = Big.new(0.0)
 
 
 #Permet de remettre les recherches à zero.
@@ -469,6 +471,13 @@ func ResetRecherches():
 	for recherche in ListeRecherches:
 		recherche.IsUnlocked = false
 	BonusManager.MajBonusRecherches()
+
+
+#Permet de remettre les recherches matière noire à zero.
+func ResetRecherchesMatiereNoire():
+	for rechercheMatiereNoire in ListeRecherchesMatiereNoire:
+		rechercheMatiereNoire.IsUnlocked = false
+	BonusManager.MajBonusRecherchesMatiereNoire()
 
 
 #Permet de remettre les améliorations Helium à zero.
