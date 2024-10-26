@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dwlpff2poyavf"]
+[gd_scene load_steps=19 format=3 uid="uid://dwlpff2poyavf"]
 
 [ext_resource type="Script" path="res://Script/MatiereNoire/AmeliorationDarkMatterControl.gd" id="1_fkydw"]
 [ext_resource type="Theme" uid="uid://cbk6urwquxgkm" path="res://Design/Themes/Global/ThemeGlobal.tres" id="1_wti7w"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://Script/MatiereNoire/PrestigeBonusPanel.gd" id="4_3m2ry"]
 [ext_resource type="StyleBox" uid="uid://c3chktlureqv4" path="res://Design/Themes/RecherchesMatiereNoire/BoutonPrestigeNormalFlat.tres" id="4_njnl8"]
 [ext_resource type="StyleBox" uid="uid://x6itlg2mjh5o" path="res://Design/Themes/RecherchesMatiereNoire/BoutonPrestigeHoverFlat.tres" id="5_leuvx"]
+[ext_resource type="Script" path="res://Script/MatiereNoire/MoleculesControl.gd" id="8_v5j5x"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3u10t"]
 bg_color = Color(0.192157, 0.192157, 0.192157, 1)
@@ -460,6 +461,7 @@ theme_override_styles/hover = ExtResource("5_leuvx")
 text = "PRESTIGEBOUTON"
 
 [node name="RecherchesMarginC" type="MarginContainer" parent="PresentationVBoxC/MarginC/VBoxC"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 5
@@ -478,15 +480,106 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="PrestigeAmeliorationScrollC" type="ScrollContainer" parent="PresentationVBoxC/MarginC/VBoxC/RecherchesMarginC/InterneRecherchesMarginC"]
+[node name="VBoxC" type="VBoxContainer" parent="PresentationVBoxC/MarginC/VBoxC/RecherchesMarginC/InterneRecherchesMarginC"]
+layout_mode = 2
+
+[node name="ReturnRecherchesButton" type="Button" parent="PresentationVBoxC/MarginC/VBoxC/RecherchesMarginC/InterneRecherchesMarginC/VBoxC"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+text = "RETURN"
+
+[node name="PrestigeAmeliorationScrollC" type="ScrollContainer" parent="PresentationVBoxC/MarginC/VBoxC/RecherchesMarginC/InterneRecherchesMarginC/VBoxC"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="PrestigeGridC" type="GridContainer" parent="PresentationVBoxC/MarginC/VBoxC/RecherchesMarginC/InterneRecherchesMarginC/PrestigeAmeliorationScrollC"]
+[node name="PrestigeGridC" type="GridContainer" parent="PresentationVBoxC/MarginC/VBoxC/RecherchesMarginC/InterneRecherchesMarginC/VBoxC/PrestigeAmeliorationScrollC"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 columns = 3
+
+[node name="PrestigeButtonsMarginC" type="MarginContainer" parent="PresentationVBoxC/MarginC/VBoxC"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="FondButtonsPanel" type="Panel" parent="PresentationVBoxC/MarginC/VBoxC/PrestigeButtonsMarginC"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_o2hme")
+
+[node name="InterneButtonsMarginC" type="MarginContainer" parent="PresentationVBoxC/MarginC/VBoxC/PrestigeButtonsMarginC"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="PrestigeButtonsGridC" type="GridContainer" parent="PresentationVBoxC/MarginC/VBoxC/PrestigeButtonsMarginC/InterneButtonsMarginC"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+columns = 2
+
+[node name="RecherchesMarginC" type="MarginContainer" parent="PresentationVBoxC/MarginC/VBoxC/PrestigeButtonsMarginC/InterneButtonsMarginC/PrestigeButtonsGridC"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="RecherchesButton" type="Button" parent="PresentationVBoxC/MarginC/VBoxC/PrestigeButtonsMarginC/InterneButtonsMarginC/PrestigeButtonsGridC/RecherchesMarginC"]
+layout_mode = 2
+text = "RECHERCHES"
+
+[node name="MoleculesMarginC2" type="MarginContainer" parent="PresentationVBoxC/MarginC/VBoxC/PrestigeButtonsMarginC/InterneButtonsMarginC/PrestigeButtonsGridC"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="MoleculesButton" type="Button" parent="PresentationVBoxC/MarginC/VBoxC/PrestigeButtonsMarginC/InterneButtonsMarginC/PrestigeButtonsGridC/MoleculesMarginC2"]
+layout_mode = 2
+disabled = true
+text = "COMINGSOON"
+
+[node name="MoleculesControl" type="Control" parent="PresentationVBoxC"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("8_v5j5x")
+
+[node name="MainMarginC" type="MarginContainer" parent="PresentationVBoxC/MoleculesControl"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PresentationVBoxC/MoleculesControl/MainMarginC"]
+layout_mode = 2
+
+[node name="ReturnMoleculeButton" type="Button" parent="PresentationVBoxC/MoleculesControl/MainMarginC/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+text = "RETURN"
+
+[node name="ScrollC" type="ScrollContainer" parent="PresentationVBoxC/MoleculesControl/MainMarginC/VBoxContainer"]
+layout_mode = 2
+
+[node name="ListeMoleculesVBoxC" type="VBoxContainer" parent="PresentationVBoxC/MoleculesControl/MainMarginC/VBoxContainer/ScrollC"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
 
 [node name="FondValidationPrestigePanel" type="Panel" parent="."]
 visible = false
@@ -563,5 +656,9 @@ text = "ANNULER"
 
 [connection signal="pressed" from="PresentationVBoxC/TopMarginC/TopHBoxC/ButtonExit" to="." method="_on_button_exit_pressed"]
 [connection signal="pressed" from="PresentationVBoxC/MarginC/VBoxC/PrestigeButton" to="." method="_on_prestige_button_pressed"]
+[connection signal="pressed" from="PresentationVBoxC/MarginC/VBoxC/RecherchesMarginC/InterneRecherchesMarginC/VBoxC/ReturnRecherchesButton" to="." method="_on_return_molecule_button_pressed"]
+[connection signal="pressed" from="PresentationVBoxC/MarginC/VBoxC/PrestigeButtonsMarginC/InterneButtonsMarginC/PrestigeButtonsGridC/RecherchesMarginC/RecherchesButton" to="." method="_on_recherches_button_pressed"]
+[connection signal="pressed" from="PresentationVBoxC/MarginC/VBoxC/PrestigeButtonsMarginC/InterneButtonsMarginC/PrestigeButtonsGridC/MoleculesMarginC2/MoleculesButton" to="." method="_on_molecules_button_pressed"]
+[connection signal="pressed" from="PresentationVBoxC/MoleculesControl/MainMarginC/VBoxContainer/ReturnMoleculeButton" to="." method="_on_return_molecule_button_pressed"]
 [connection signal="pressed" from="FondValidationPrestigePanel/BoxValidationPrestigePanel/MarginContainer/PresentationVBoxC/ButonsHBoxC/OuiButton" to="." method="_on_validation_prestige_button_pressed"]
 [connection signal="pressed" from="FondValidationPrestigePanel/BoxValidationPrestigePanel/MarginContainer/PresentationVBoxC/ButonsHBoxC/AnnulerButton" to="." method="_on_annuler_prestige_button_pressed"]

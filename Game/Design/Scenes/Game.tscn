@@ -648,10 +648,6 @@ text = "PRESTIGE"
 visible = false
 layout_mode = 2
 
-[node name="MatiereNoireControl" parent="WindowTopBlackVBoxC/MainMarginC" instance=ExtResource("15_ngy2j")]
-visible = false
-layout_mode = 2
-
 [node name="AmeliorationLithiumControl" parent="WindowTopBlackVBoxC/MainMarginC" instance=ExtResource("17_1y4j7")]
 visible = false
 layout_mode = 2
@@ -661,6 +657,10 @@ visible = false
 layout_mode = 2
 
 [node name="AmeliorationBoreControl" parent="WindowTopBlackVBoxC/MainMarginC" instance=ExtResource("19_5unuy")]
+visible = false
+layout_mode = 2
+
+[node name="MatiereNoireControl" parent="WindowTopBlackVBoxC/MainMarginC" instance=ExtResource("15_ngy2j")]
 visible = false
 layout_mode = 2
 

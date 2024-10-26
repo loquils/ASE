@@ -41,6 +41,9 @@ var ListeAmeliorationsBoreInitializeGame = []
 #Liste de toutes les améliorations du Bore 
 var ListeAmeliorationsBore = []
 
+#Liste de toutes les molécules
+var ListeMolecules = []
+
 # Called when the n*ode enters the scene tree for the first time.
 func _ready():
 	BonusManager.BonusTypesRecherches = BonusManager.InitializeRecherchesBonusTypes()
@@ -444,6 +447,10 @@ func DefineRechercheMatiereNoireListInitializingGame():
 	ListeRecherchesMatiereNoireInitializeGame.append(Recherche.new(5, "RENDEMENT", Big.new(1.0, 5), ["HydrogeneOutputMultiplyParRechercheMN", "HeliumOutputMultiplyParRechercheMN", "LithiumOutputMultiplyParRechercheMN", "BerylliumOutputMultiplyParRechercheMN"], Big.new(0.75), dmRecherche))
 	ListeRecherchesMatiereNoireInitializeGame.append(Recherche.new(6, "DIVIDED", Big.new(1.0, 6), ["HeliumAttributsCostDividedParRechercheMN", "LithiumAttributsCostDividedParRechercheMN"], Big.new(5.0, 1), dmRecherche))
 	ListeRecherchesMatiereNoireInitializeGame.append(Recherche.new(6, "RENDEMENT", Big.new(1.0, 7), ["AmeliorationHelium0OutputMultiply"], Big.new(0.2), dmRecherche))
+
+
+func DefineMoleculesListInitializingGame():
+	ListeMolecules.append(Molecule.new(0, "DIHyDROGENE", Big.new(0.0), [""], Big.new(0.0)))
 
 
 #----------------------------------------------Réinitialisation--------------------------------------------------------#

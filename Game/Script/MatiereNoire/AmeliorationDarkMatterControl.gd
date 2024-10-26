@@ -5,8 +5,14 @@ var BoutonRechercheDarkMatter = preload("res://Design/Scenes/Recherches/NewButto
 @onready var PanelValidationPrestige = $FondValidationPrestigePanel
 @onready var MatiereNoireQuantiteeLabel = $PresentationVBoxC/TopMarginC/TopHBoxC/BackGroundDarkMatter/MarginC/HBoxC/MatiereNoireLabel
 @onready var MatierNoireApresPrestige = $PresentationVBoxC/MarginC/VBoxC/QuantiteeAGagnerHBoxC/QuantiteeLabel
-@onready var RecherchesGridC = $PresentationVBoxC/MarginC/VBoxC/RecherchesMarginC/InterneRecherchesMarginC/PrestigeAmeliorationScrollC/PrestigeGridC
+@onready var RecherchesGridC = $PresentationVBoxC/MarginC/VBoxC/RecherchesMarginC/InterneRecherchesMarginC/VBoxC/PrestigeAmeliorationScrollC/PrestigeGridC
 @onready var PrestigeButton = $PresentationVBoxC/MarginC/VBoxC/PrestigeButton
+
+@onready var MainMarginC = $PresentationVBoxC/MarginC
+@onready var RecherchesMarginC = $PresentationVBoxC/MarginC/VBoxC/RecherchesMarginC
+@onready var ButtonsMarginC = $PresentationVBoxC/MarginC/VBoxC/PrestigeButtonsMarginC
+@onready var MoleculesControl = $PresentationVBoxC/MoleculesControl
+
 #Coefficient de calcul pour la matière noire
 var CoefficientDivisionMatiereNoire = Big.new(4.6, 6)
 
@@ -99,3 +105,20 @@ func _on_validation_prestige_button_pressed():
 #Trigger lors de l'appuie sur le bouton d'annulation du prestige
 func _on_annuler_prestige_button_pressed():
 	PanelValidationPrestige.hide()
+
+
+func _on_recherches_button_pressed():
+	ButtonsMarginC.hide()
+	RecherchesMarginC.show()
+
+
+func _on_molecules_button_pressed():
+	MainMarginC.hide()
+	MoleculesControl.show()
+
+
+func _on_return_molecule_button_pressed():
+	MoleculesControl.hide()
+	RecherchesMarginC.hide()
+	MainMarginC.show()
+	ButtonsMarginC.show()

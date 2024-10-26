@@ -1,0 +1,90 @@
+[gd_scene load_steps=3 format=3 uid="uid://bugpt7qnjfpxi"]
+
+[ext_resource type="Script" path="res://Script/MatiereNoire/CanvasMoleculeControl.gd" id="1_dqajv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_go5y1"]
+bg_color = Color(0.254902, 0.254902, 0.254902, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.129412, 0.129412, 0.129412, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="CanvasMoleculeControl" type="Control"]
+custom_minimum_size = Vector2(400, 200)
+layout_mode = 3
+anchors_preset = 0
+size_flags_horizontal = 4
+script = ExtResource("1_dqajv")
+
+[node name="PanelC" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_go5y1")
+
+[node name="MainVBoxC" type="VBoxContainer" parent="PanelC"]
+layout_mode = 2
+
+[node name="NomMarginC" type="MarginContainer" parent="PanelC/MainVBoxC"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="NomLabel" type="Label" parent="PanelC/MainVBoxC/NomMarginC"]
+layout_mode = 2
+text = "Dihydrogène"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MainMarginC" type="MarginContainer" parent="PanelC/MainVBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MainHBoxC" type="HBoxContainer" parent="PanelC/MainVBoxC/MainMarginC"]
+layout_mode = 2
+
+[node name="MoleculeViewPanelC" type="PanelContainer" parent="PanelC/MainVBoxC/MainMarginC/MainHBoxC"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RightVBoxC" type="VBoxContainer" parent="PanelC/MainVBoxC/MainMarginC/MainHBoxC"]
+layout_mode = 2
+
+[node name="DescriptionMarginC" type="MarginContainer" parent="PanelC/MainVBoxC/MainMarginC/MainHBoxC/RightVBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Label" type="Label" parent="PanelC/MainVBoxC/MainMarginC/MainHBoxC/RightVBoxC/DescriptionMarginC"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="ButtonsMarginC2" type="MarginContainer" parent="PanelC/MainVBoxC/MainMarginC/MainHBoxC/RightVBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="UpgradeButton" type="Button" parent="PanelC/MainVBoxC/MainMarginC/MainHBoxC/RightVBoxC/ButtonsMarginC2"]
+layout_mode = 2
+text = "Upgrade"
