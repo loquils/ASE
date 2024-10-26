@@ -68,6 +68,11 @@ HEURES, "Heure(s)", "Hour(s)"
 MINUTES, "Minute(s)", "Minute(s)"
 HORSLIGNE, "Hors ligne (Max 4H): ", "Offline (Max 4H): "
 
+
+DEBUT, "Début", "Begin"
+EASY, "Facile", "Easy"
+LESSEASY, "Moins\nFacile", "Less\nEasy"
+
 PARRECHERCHE, "par Recherches achetées", "per Research bought"
 ALLATOMES, "tous les atomes", "all atoms"
 DAPPO, "d'", ""

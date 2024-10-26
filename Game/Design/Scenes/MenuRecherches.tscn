@@ -77,23 +77,23 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="ScrollButtonsCont" type="ScrollContainer" parent="MainMarginC/ResearchLvlVBoxC/Panel/ButtonsTypesRecherchesMarginC"]
+[node name="ScrollButtonsC" type="ScrollContainer" parent="MainMarginC/ResearchLvlVBoxC/Panel/ButtonsTypesRecherchesMarginC"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 
-[node name="ButtonsHBoxCont" type="HBoxContainer" parent="MainMarginC/ResearchLvlVBoxC/Panel/ButtonsTypesRecherchesMarginC/ScrollButtonsCont"]
+[node name="ButtonsHBoxC" type="HBoxContainer" parent="MainMarginC/ResearchLvlVBoxC/Panel/ButtonsTypesRecherchesMarginC/ScrollButtonsC"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 1
 
-[node name="ExpandLvlDebutButton" type="Button" parent="MainMarginC/ResearchLvlVBoxC/Panel/ButtonsTypesRecherchesMarginC/ScrollButtonsCont/ButtonsHBoxCont"]
+[node name="ExpandLvlDebutButton" type="Button" parent="MainMarginC/ResearchLvlVBoxC/Panel/ButtonsTypesRecherchesMarginC/ScrollButtonsC/ButtonsHBoxC"]
 custom_minimum_size = Vector2(200, 100)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="PanelC" type="PanelContainer" parent="MainMarginC/ResearchLvlVBoxC/Panel/ButtonsTypesRecherchesMarginC/ScrollButtonsCont/ButtonsHBoxCont/ExpandLvlDebutButton"]
+[node name="PanelC" type="PanelContainer" parent="MainMarginC/ResearchLvlVBoxC/Panel/ButtonsTypesRecherchesMarginC/ScrollButtonsC/ButtonsHBoxC/ExpandLvlDebutButton"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -102,28 +102,30 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MainMarginC/ResearchLvlVBoxC/Panel/ButtonsTypesRecherchesMarginC/ScrollButtonsCont/ButtonsHBoxCont/ExpandLvlDebutButton/PanelC"]
+[node name="HBoxC" type="HBoxContainer" parent="MainMarginC/ResearchLvlVBoxC/Panel/ButtonsTypesRecherchesMarginC/ScrollButtonsC/ButtonsHBoxC/ExpandLvlDebutButton/PanelC"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="MainMarginC/ResearchLvlVBoxC/Panel/ButtonsTypesRecherchesMarginC/ScrollButtonsCont/ButtonsHBoxCont/ExpandLvlDebutButton/PanelC/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="MainMarginC/ResearchLvlVBoxC/Panel/ButtonsTypesRecherchesMarginC/ScrollButtonsC/ButtonsHBoxC/ExpandLvlDebutButton/PanelC/HBoxC"]
 layout_mode = 2
 texture = ExtResource("3_y3h05")
 expand_mode = 2
 stretch_mode = 4
 
-[node name="Label" type="Label" parent="MainMarginC/ResearchLvlVBoxC/Panel/ButtonsTypesRecherchesMarginC/ScrollButtonsCont/ButtonsHBoxCont/ExpandLvlDebutButton/PanelC/HBoxContainer"]
+[node name="Label" type="Label" parent="MainMarginC/ResearchLvlVBoxC/Panel/ButtonsTypesRecherchesMarginC/ScrollButtonsC/ButtonsHBoxC/ExpandLvlDebutButton/PanelC/HBoxC"]
 layout_mode = 2
-text = "Début"
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "DEBUT"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ExpandLvlEasyButton" type="Button" parent="MainMarginC/ResearchLvlVBoxC/Panel/ButtonsTypesRecherchesMarginC/ScrollButtonsCont/ButtonsHBoxCont"]
+[node name="ExpandLvlEasyButton" type="Button" parent="MainMarginC/ResearchLvlVBoxC/Panel/ButtonsTypesRecherchesMarginC/ScrollButtonsC/ButtonsHBoxC"]
 custom_minimum_size = Vector2(200, 100)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="PanelC" type="PanelContainer" parent="MainMarginC/ResearchLvlVBoxC/Panel/ButtonsTypesRecherchesMarginC/ScrollButtonsCont/ButtonsHBoxCont/ExpandLvlEasyButton"]
+[node name="PanelC" type="PanelContainer" parent="MainMarginC/ResearchLvlVBoxC/Panel/ButtonsTypesRecherchesMarginC/ScrollButtonsC/ButtonsHBoxC/ExpandLvlEasyButton"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -132,22 +134,56 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MainMarginC/ResearchLvlVBoxC/Panel/ButtonsTypesRecherchesMarginC/ScrollButtonsCont/ButtonsHBoxCont/ExpandLvlEasyButton/PanelC"]
+[node name="HBoxC" type="HBoxContainer" parent="MainMarginC/ResearchLvlVBoxC/Panel/ButtonsTypesRecherchesMarginC/ScrollButtonsC/ButtonsHBoxC/ExpandLvlEasyButton/PanelC"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="MainMarginC/ResearchLvlVBoxC/Panel/ButtonsTypesRecherchesMarginC/ScrollButtonsCont/ButtonsHBoxCont/ExpandLvlEasyButton/PanelC/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="MainMarginC/ResearchLvlVBoxC/Panel/ButtonsTypesRecherchesMarginC/ScrollButtonsC/ButtonsHBoxC/ExpandLvlEasyButton/PanelC/HBoxC"]
 layout_mode = 2
 texture = ExtResource("3_y3h05")
 expand_mode = 2
 stretch_mode = 4
 
-[node name="Label" type="Label" parent="MainMarginC/ResearchLvlVBoxC/Panel/ButtonsTypesRecherchesMarginC/ScrollButtonsCont/ButtonsHBoxCont/ExpandLvlEasyButton/PanelC/HBoxContainer"]
+[node name="Label" type="Label" parent="MainMarginC/ResearchLvlVBoxC/Panel/ButtonsTypesRecherchesMarginC/ScrollButtonsC/ButtonsHBoxC/ExpandLvlEasyButton/PanelC/HBoxC"]
 layout_mode = 2
-text = "Easy"
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "EASY"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="MainMarginC/ResearchLvlVBoxC/Panel/ButtonsTypesRecherchesMarginC/ScrollButtonsCont/ButtonsHBoxCont"]
+[node name="ExpandLvlLessEasyButton" type="Button" parent="MainMarginC/ResearchLvlVBoxC/Panel/ButtonsTypesRecherchesMarginC/ScrollButtonsC/ButtonsHBoxC"]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="PanelC" type="PanelContainer" parent="MainMarginC/ResearchLvlVBoxC/Panel/ButtonsTypesRecherchesMarginC/ScrollButtonsC/ButtonsHBoxC/ExpandLvlLessEasyButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="HBoxC" type="HBoxContainer" parent="MainMarginC/ResearchLvlVBoxC/Panel/ButtonsTypesRecherchesMarginC/ScrollButtonsC/ButtonsHBoxC/ExpandLvlLessEasyButton/PanelC"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MainMarginC/ResearchLvlVBoxC/Panel/ButtonsTypesRecherchesMarginC/ScrollButtonsC/ButtonsHBoxC/ExpandLvlLessEasyButton/PanelC/HBoxC"]
+layout_mode = 2
+texture = ExtResource("3_y3h05")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="MainMarginC/ResearchLvlVBoxC/Panel/ButtonsTypesRecherchesMarginC/ScrollButtonsC/ButtonsHBoxC/ExpandLvlLessEasyButton/PanelC/HBoxC"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "LESSEASY"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginC" type="MarginContainer" parent="MainMarginC/ResearchLvlVBoxC/Panel/ButtonsTypesRecherchesMarginC/ScrollButtonsC/ButtonsHBoxC"]
 layout_mode = 2
 
 [node name="LvlDebutScrollC" type="ScrollContainer" parent="MainMarginC/ResearchLvlVBoxC"]
@@ -175,5 +211,19 @@ theme_override_constants/h_separation = 5
 theme_override_constants/v_separation = 5
 columns = 3
 
-[connection signal="pressed" from="MainMarginC/ResearchLvlVBoxC/Panel/ButtonsTypesRecherchesMarginC/ScrollButtonsCont/ButtonsHBoxCont/ExpandLvlDebutButton" to="." method="_on_expand_lvl_button_pressed" binds= ["Debut"]]
-[connection signal="pressed" from="MainMarginC/ResearchLvlVBoxC/Panel/ButtonsTypesRecherchesMarginC/ScrollButtonsCont/ButtonsHBoxCont/ExpandLvlEasyButton" to="." method="_on_expand_lvl_button_pressed" binds= ["Easy"]]
+[node name="LvlLessEasyScrollC" type="ScrollContainer" parent="MainMarginC/ResearchLvlVBoxC"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="GridC" type="GridContainer" parent="MainMarginC/ResearchLvlVBoxC/LvlLessEasyScrollC"]
+clip_contents = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/h_separation = 5
+theme_override_constants/v_separation = 5
+columns = 3
+
+[connection signal="pressed" from="MainMarginC/ResearchLvlVBoxC/Panel/ButtonsTypesRecherchesMarginC/ScrollButtonsC/ButtonsHBoxC/ExpandLvlDebutButton" to="." method="_on_expand_lvl_button_pressed" binds= ["Debut"]]
+[connection signal="pressed" from="MainMarginC/ResearchLvlVBoxC/Panel/ButtonsTypesRecherchesMarginC/ScrollButtonsC/ButtonsHBoxC/ExpandLvlEasyButton" to="." method="_on_expand_lvl_button_pressed" binds= ["Easy"]]
+[connection signal="pressed" from="MainMarginC/ResearchLvlVBoxC/Panel/ButtonsTypesRecherchesMarginC/ScrollButtonsC/ButtonsHBoxC/ExpandLvlLessEasyButton" to="." method="_on_expand_lvl_button_pressed" binds= ["LessEasy"]]

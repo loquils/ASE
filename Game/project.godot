@@ -35,7 +35,7 @@ window/handheld/orientation=1
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/admob/plugin.cfg")
+enabled=PackedStringArray("res://addons/admob/plugin.cfg", "res://addons/mytextprinter/plugin.cfg", "res://addons/zylann.editor_debugger/plugin.cfg")
 
 [input]
 

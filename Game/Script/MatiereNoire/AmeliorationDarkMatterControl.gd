@@ -8,7 +8,7 @@ var BoutonRechercheDarkMatter = preload("res://Design/Scenes/Recherches/NewButto
 @onready var RecherchesGridC = $PresentationVBoxC/MarginC/VBoxC/RecherchesMarginC/InterneRecherchesMarginC/PrestigeAmeliorationScrollC/PrestigeGridC
 @onready var PrestigeButton = $PresentationVBoxC/MarginC/VBoxC/PrestigeButton
 #Coefficient de calcul pour la matière noire
-var CoefficientDivisionMatiereNoire = Big.new(1.3, 6)
+var CoefficientDivisionMatiereNoire = Big.new(4.6, 6)
 
 #Initialize la vue de la matière noire
 func _ready():
@@ -75,6 +75,8 @@ func DarkMatterReset():
 	RessourceManager.ResetRecherches()
 	InfosPartie.ResetInformationsOnPrestige()
 	RessourceManager.ResetRessources()
+	
+	BonusManager.MajBonusRecherchesMatiereNoire()
 
 
 #Trigger lors de l'appuie sur le bouton exit
