@@ -1,0 +1,113 @@
+[gd_scene load_steps=4 format=3 uid="uid://cc4b4mlnagyio"]
+
+[ext_resource type="Theme" uid="uid://cbk6urwquxgkm" path="res://Design/Themes/Global/ThemeGlobal.tres" id="1_t3ir1"]
+[ext_resource type="Script" path="res://Script/MatiereNoire/MoleculesControl.gd" id="1_t8cqy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kyaes"]
+bg_color = Color(0.254902, 0.254902, 0.254902, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.129412, 0.129412, 0.129412, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="MoleculesControl" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+theme = ExtResource("1_t3ir1")
+script = ExtResource("1_t8cqy")
+
+[node name="MainMarginC" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMarginC"]
+layout_mode = 2
+
+[node name="PresentationPanelC" type="PanelContainer" parent="MainMarginC/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_kyaes")
+
+[node name="MainVBoxC" type="VBoxContainer" parent="MainMarginC/VBoxContainer/PresentationPanelC"]
+layout_mode = 2
+
+[node name="TitleMarginC" type="MarginContainer" parent="MainMarginC/VBoxContainer/PresentationPanelC/MainVBoxC"]
+layout_mode = 2
+
+[node name="TitlePanelC" type="PanelContainer" parent="MainMarginC/VBoxContainer/PresentationPanelC/MainVBoxC/TitleMarginC"]
+layout_mode = 2
+
+[node name="MarginC" type="MarginContainer" parent="MainMarginC/VBoxContainer/PresentationPanelC/MainVBoxC/TitleMarginC/TitlePanelC"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="TitleLabel" type="Label" parent="MainMarginC/VBoxContainer/PresentationPanelC/MainVBoxC/TitleMarginC/TitlePanelC/MarginC"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "TITREMENUMOLECULES"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DescriptionMarginC" type="MarginContainer" parent="MainMarginC/VBoxContainer/PresentationPanelC/MainVBoxC"]
+layout_mode = 2
+
+[node name="DescriptionPanelC" type="PanelContainer" parent="MainMarginC/VBoxContainer/PresentationPanelC/MainVBoxC/DescriptionMarginC"]
+layout_mode = 2
+
+[node name="DescriptionMarginC" type="MarginContainer" parent="MainMarginC/VBoxContainer/PresentationPanelC/MainVBoxC/DescriptionMarginC/DescriptionPanelC"]
+layout_mode = 2
+
+[node name="DescriptionLabel" type="Label" parent="MainMarginC/VBoxContainer/PresentationPanelC/MainVBoxC/DescriptionMarginC/DescriptionPanelC/DescriptionMarginC"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+text = "DESCRIPTIONMENUMOLECULES"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="MoleculesMarginC" type="MarginContainer" parent="MainMarginC/VBoxContainer/PresentationPanelC/MainVBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MoleculesPanelC" type="PanelContainer" parent="MainMarginC/VBoxContainer/PresentationPanelC/MainVBoxC/MoleculesMarginC"]
+layout_mode = 2
+
+[node name="ScrollC" type="ScrollContainer" parent="MainMarginC/VBoxContainer/PresentationPanelC/MainVBoxC/MoleculesMarginC/MoleculesPanelC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ListeMoleculesVBoxC" type="VBoxContainer" parent="MainMarginC/VBoxContainer/PresentationPanelC/MainVBoxC/MoleculesMarginC/MoleculesPanelC/ScrollC"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="ReturnMoleculeButton" type="Button" parent="MainMarginC/VBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "RETURN"
+
+[connection signal="pressed" from="MainMarginC/VBoxContainer/ReturnMoleculeButton" to="." method="_on_return_molecule_button_pressed"]

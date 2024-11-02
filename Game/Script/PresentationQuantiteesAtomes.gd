@@ -1,10 +1,9 @@
 extends MarginContainer
 
-
 var RessourceName
 var RessourceQuantity
 
-func _set_var(ressourceName, ressourceQuantity):
+func _set_var(ressourceName:String, ressourceQuantity):
 	RessourceName = ressourceName
 	RessourceQuantity = ressourceQuantity
 	$BackGround/MarginC/HBoxC/NameLabel.text = tr(RessourceName)

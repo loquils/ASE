@@ -1,5 +1,6 @@
 extends Node
 
+signal ReturnToDarkMatter_button_pressed()
 signal Research_button_pressed(recherche)
 signal Attribut_button_pressed(atome)
 signal UnlockAtome_button_pressed(atome)
@@ -8,6 +9,11 @@ signal AmeliorationLithium_button_pressed(ameliorationLithium)
 signal AmeliorationBeryllium_button_pressed(ameliorationBeryllium)
 signal AmeliorationBore_button_pressed(ameliorationBore)
 signal RechercheDarkMatter_button_pressed(ameliorationDarkMatter)
+
+#Appuie sur le bouton de retours dans les molécules
+func ReturnToDarkMatterMenu():
+	ReturnToDarkMatter_button_pressed.emit()
+
 
 #Appuie sur un bouton de recherche.
 func RechercheButtonEventTrigger(recherche):

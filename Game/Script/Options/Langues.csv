@@ -179,3 +179,8 @@ PRESTIGEBOUTON, "Prestige !\n Retours vers un nouveau commencement !", "Prestige
 NOMVALIDATIONPRESTIGELABEL, "Êtes vous sûr que voulez lancer un prestige ?", "Are you sure you want to prestige ?"
 INFORMATIONVALIDATIONPRESTIGELABEL, "Tous vos atomes, vos coins, vos recherches et vos améliorations seront remis à zeros. Seul les amélioration de la matière noire seront gardées !", "All of your atoms, coins, researches and upgrades will be lost. Only dark matter upgrades will be kept."
 TEXTEQUANTITEEMATIERENOIRE, "Matière Noire gagnée aprés prestige : ", "Dark Mater won after prestige :"
+
+
+TITREMENUMOLECULES, "Menu Molécules", "Molecules Menu"
+DESCRIPTIONMENUMOLECULES, "Les molécules sont une autre forme de collecte.\nElles se débloquent avec de la matière noire, et permettent d'améliorer les atomes (selon les molécules) et ont leur propre apport par seconde.\nOn peut également retrouver les molécules dans des menus d'améliorations d'atomes.", "Molecules are another sort of farming.\nThey are unlocked with dark matter, and they upgrade atomes (according to molecule) and they have their own farming systems.\nYou can find molecules in atomes upgrades menus too."
+QUANTITY, "Quantitée : ", "Quantity : "
