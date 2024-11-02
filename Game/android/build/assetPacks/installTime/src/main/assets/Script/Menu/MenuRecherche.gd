@@ -4,6 +4,7 @@ var ButtonRechercheScenePreload = preload("res://Design/Scenes/Recherches/NewBut
 
 @onready var ResearchesDebutContainer = $MainMarginC/ResearchLvlVBoxC/LvlDebutScrollC/GridC
 @onready var ResearchesEasyContainer = $MainMarginC/ResearchLvlVBoxC/LvlEasyScrollC/GridC
+@onready var ResearchesLessEasyContainer = $MainMarginC/ResearchLvlVBoxC/LvlLessEasyScrollC/GridC
 
 @onready var RechercheVBoxC = $MainMarginC/ResearchLvlVBoxC
 
@@ -27,6 +28,8 @@ func _ready():
 				ResearchesDebutContainer.add_child(newRecherchebutton)
 			Recherche.ResearchLevelEnum.EASY:
 				ResearchesEasyContainer.add_child(newRecherchebutton)
+			Recherche.ResearchLevelEnum.LESSEASY:
+				ResearchesLessEasyContainer.add_child(newRecherchebutton)
 	
 	BonusManager.MajBonusRecherches()
 
@@ -55,7 +58,7 @@ func AchatRehercheButtonPressed(recherche):
 #Permet d'afficher les bonnes recherches, et de cacher les autres
 func _on_expand_lvl_button_pressed(extra_arg_0):
 	for scrollC in ListeScrollCNiveaux:
-		if scrollC.name.contains(extra_arg_0):
+		if scrollC.name.replace("Lvl", "").replace("ScrollC", "") == extra_arg_0:
 			scrollC.show()
 		else:
 			scrollC.hide()
