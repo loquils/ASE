@@ -20,6 +20,7 @@ var CoefficientDivisionMatiereNoire = Big.new(4.6, 6)
 func _ready():
 	#On connecte ici l'appuie du bouton lors de l'achat d'une recherche
 	RechercheClick.connect("Research_button_pressed", AchatRehercheMatiereNoireButtonPressed)
+	RechercheClick.connect("ReturnToDarkMatter_button_pressed", ReturnToDarkMatterButtonPressed)
 	
 	for rechercheDarkMatterInList in RessourceManager.ListeRecherchesMatiereNoire:
 		var newButtonAmeliorationDarkMatter = BoutonRechercheDarkMatter.instantiate()
@@ -116,8 +117,7 @@ func _on_molecules_button_pressed():
 	MainMarginC.hide()
 	MoleculesControl.show()
 
-
-func _on_return_molecule_button_pressed():
+func ReturnToDarkMatterButtonPressed():
 	MoleculesControl.hide()
 	RecherchesMarginC.hide()
 	MainMarginC.show()

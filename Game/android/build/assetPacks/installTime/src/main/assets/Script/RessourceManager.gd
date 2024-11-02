@@ -5,6 +5,8 @@ var IsTutorialCompleted = false
 var Coins = Big.new(0, 0)
 var QuantiteesAtomes = {}
 
+var QuantiteesMolecules = {}
+
 #Liste des atomes du jeu 
 var AtomsListInitializingGame = []
 #Dictionnaire de tous les atomes avec les états actuels (les clés sont les noms des atomes)
@@ -41,6 +43,8 @@ var ListeAmeliorationsBoreInitializeGame = []
 #Liste de toutes les améliorations du Bore 
 var ListeAmeliorationsBore = []
 
+#Liste des molécules en initialisation
+var ListeMoleculesInitializeGame = []
 #Liste de toutes les molécules
 var ListeMolecules = []
 
@@ -59,6 +63,7 @@ func _ready():
 	var listeAmeliorationsBerylliumInSaving
 	var listeAmeliorationsBoreInSaving
 	var listeRecherchesMatiereNoireInSaving
+	var listeMolecules
 
 	if ressourceLoadingGame != null:
 		if ressourceLoadingGame.has("Langue"):
@@ -83,6 +88,8 @@ func _ready():
 			DarkMatter = Big.ToCustomFormat(ressourceLoadingGame["DarkMatter"])
 		if ressourceLoadingGame.has("RecherchesMatiereNoire"):
 			listeRecherchesMatiereNoireInSaving = ressourceLoadingGame["RecherchesMatiereNoire"]
+		if ressourceLoadingGame.has("ListeMolecules"):
+			listeMolecules = ressourceLoadingGame["ListeMolecules"]
 		if ressourceLoadingGame.has("InformationsPartie"):
 			InfosPartie.Load(ressourceLoadingGame["InformationsPartie"])
 		if ressourceLoadingGame.has("TutorialCompleted"):
@@ -95,6 +102,7 @@ func _ready():
 	LoadAmeliorationBeryllium(listeAmeliorationsBerylliumInSaving)
 	LoadAmeliorationBore(listeAmeliorationsBoreInSaving)
 	LoadDarkMatter(listeRecherchesMatiereNoireInSaving)
+	LoadMolecule(listeMolecules)
 
 
 #Permet de charger la liste des atomes, et des quantitees possedees
@@ -235,13 +243,35 @@ func LoadDarkMatter(listeRecherchesMatiereNoireInSaving):
 	#BonusManager.MajBonusRecherchesMatiereNoire()
 
 
+func LoadMolecule(listeMoleculeInSaving):
+	DefineMoleculesListInitializingGame()
+	
+	if not listeMoleculeInSaving == null:
+		for initializedMolecule in ListeMoleculesInitializeGame:
+			if initializedMolecule.Id < len(listeMoleculeInSaving) and not listeMoleculeInSaving[initializedMolecule.Id] == null:
+				if listeMoleculeInSaving[initializedMolecule.Id]["IsUnlocked"]:
+					initializedMolecule.IsUnlocked = true
+	
+	for molecule in ListeMoleculesInitializeGame:
+		ListeMolecules.append(molecule)
+		QuantiteesMolecules[molecule.Name] = Big.new(0.0)
+
+
 #Calcul et ajoute la quantité d'atome par rapport au temps indiqué
 func CalculateQuantityAtomes(timeInSeconde:int = 1):
+	#Calcul des atomes.
 	for atome in ListeAtomes:
 		if ListeAtomes[atome].isUnlocked:
-				var quantityAtomeWithTime = Big.multiply(ListeAtomes[atome].GetAtomePerSec(), Big.new(timeInSeconde))
-				QuantiteesAtomes[atome] = Big.add(QuantiteesAtomes[atome], quantityAtomeWithTime)
-
+			var quantityAtomeWithTime = Big.multiply(ListeAtomes[atome].GetAtomePerSec(), Big.new(timeInSeconde))
+			QuantiteesAtomes[atome] = Big.add(QuantiteesAtomes[atome], quantityAtomeWithTime)
+	
+	#Calcul des molécules.
+	for molecule in ListeMolecules:
+		if molecule.IsUnlocked:
+			var baseQuantiteeMoleculesDictionnary = molecule.GetMoleculeProductionPerSeconde()
+			for atomeConsomation in baseQuantiteeMoleculesDictionnary:
+				QuantiteesMolecules[molecule.Name] = baseQuantiteeMoleculesDictionnary[atomeConsomation]
+				var coin = "coin"
 
 #Calcul et ajoute la quantité d'un atome par rapport au temps indiqué
 func CalculateQuantityOneAtome(atomName, timeInSeconde:int = 1):
@@ -436,7 +466,7 @@ func DefineAmeliorationBoreListInitializingGame():
 	ListeAmeliorationsBoreInitializeGame.append(ameliorationBoreDMBaseBonus)
 
 
-#Permet d'initialiser la liste des recherches de matière noire dans le jeu
+#Permet d'initialiser la liste des recherches de matière noire dans le jeu.
 func DefineRechercheMatiereNoireListInitializingGame():
 	var dmRecherche = Recherche.ResearchLevelEnum.DARKMATTER
 	ListeRecherchesMatiereNoireInitializeGame.append(Recherche.new(0, "RECHERCHEMATIERENOIRE1", Big.new(1.0, 0), ["HydrogeneOutputMultiplyParRechercheMN", "HeliumOutputMultiplyParRechercheMN"], Big.new(1.0, 0), dmRecherche))
@@ -449,8 +479,12 @@ func DefineRechercheMatiereNoireListInitializingGame():
 	ListeRecherchesMatiereNoireInitializeGame.append(Recherche.new(6, "RENDEMENT", Big.new(1.0, 7), ["AmeliorationHelium0OutputMultiply"], Big.new(0.2), dmRecherche))
 
 
+#Permet d'initialiser la liste des molécules dans le jeu.
 func DefineMoleculesListInitializingGame():
-	ListeMolecules.append(Molecule.new(0, "DIHyDROGENE", Big.new(0.0), [""], Big.new(0.0)))
+	var moleculeDihydrogene = Molecule.new(0, "DIHYDROGENE", Big.new(0.0), [""], Big.new(0.0), true)
+	moleculeDihydrogene.DefineUnlockingPrice({"DarkMatter" : Big.new(1.0)})
+	moleculeDihydrogene.DefineAtomeBaseComation({"Hydrogene" : 2})
+	ListeMoleculesInitializeGame.append(moleculeDihydrogene)
 
 
 #----------------------------------------------Réinitialisation--------------------------------------------------------#
@@ -578,6 +612,11 @@ func save():
 	for rechercheMatiereNoire in ListeRecherchesMatiereNoire:
 		recherchesMatiereNoireListe.append({"Id" : rechercheMatiereNoire.Id, "IsUnlocked" : rechercheMatiereNoire.IsUnlocked})
 	
+	#Pour les molécules
+	var moleculesListe = []
+	for molecule in ListeMolecules:
+		moleculesListe.append({"Id" : molecule.Id, "IsUnlocked" : molecule.IsUnlocked})
+	
 	var save_dict = {
 		"Langue" : LangueManager.languageCourrant,
 		"Coins" : Coins.ToJsonFormat(),
@@ -590,6 +629,7 @@ func save():
 		"BoreUpgradesList" : ameliorationBoreList,
 		"DarkMatter" : DarkMatter.ToJsonFormat(),
 		"RecherchesMatiereNoire" : recherchesMatiereNoireListe,
+		"ListeMolecules" : moleculesListe,
 		"InformationsPartie" : InfosPartie.Save(),
 		"TutorialCompleted" : IsTutorialCompleted
 	}
