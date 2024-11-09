@@ -43,7 +43,7 @@ func _process(_delta):
 #Main Timer, 1s, permet de calculer la quantité d'atome que l'on gagne
 func _on_main_timer_timeout():
 	RessourceManager.CalculateQuantityAtomes(1)
-	InfosPartie.HydrogeneObtenuInThisReset = Big.add(InfosPartie.HydrogeneObtenuInThisReset, RessourceManager.CalculateQuantityOneAtome("Hydrogene", 1))
+	#InfosPartie.HydrogeneObtenuInThisReset = Big.add(InfosPartie.HydrogeneObtenuInThisReset, RessourceManager.CalculateQuantityOneAtome("Hydrogene", 1))
 
 
 #Trigger lors de l'appuie sur le bouton pour ouvrir la page d'améliorations de l'helium 

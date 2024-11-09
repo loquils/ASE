@@ -27,6 +27,9 @@ var CurrentBonusesAmeliorationBore = {}
 #Bonus recherches matière noire
 var CurrentBonusesRecherchesMatiereNoire = {}
 
+#Bonus molécules
+var CurrentBonusesMolecules = {}
+
 func _ready():
 	BonusTypesRecherches = InitializeRecherchesBonusTypes()
 	
@@ -53,6 +56,9 @@ func _ready():
 	if len(CurrentBonusesRecherchesMatiereNoire) == 0:
 		for bonusTypeRecherchesMatiereNoire in BonusTypesRecherches:
 			CurrentBonusesRecherchesMatiereNoire[bonusTypeRecherchesMatiereNoire] = Big.new(0.0)
+	
+	for atome in RessourceManager.AtomsListInitializingGame:
+		CurrentBonusesMolecules[atome.Name] = Big.new(0.0)
 
 #Permet de mettre à jour le dictionnaire des ressources
 #On parcour la liste des ressources, et on ajoute les bonus
@@ -143,6 +149,24 @@ func MajBonusRecherchesMatiereNoire():
 					CurrentBonusesRecherchesMatiereNoire[ameliorationRechercheMatiereNoire.replace("ParRechercheMN", "")] = Big.add(CurrentBonusesRecherchesMatiereNoire[ameliorationRechercheMatiereNoire.replace("ParRechercheMN", "")], Big.multiply(rechercheMatiereNoire.AugmentationPercent, InfosPartie.RecherchesMatiereNoireAchetees))
 				else:
 					CurrentBonusesRecherchesMatiereNoire[ameliorationRechercheMatiereNoire] = Big.add(CurrentBonusesRecherchesMatiereNoire[ameliorationRechercheMatiereNoire], rechercheMatiereNoire.AugmentationPercent)
+
+
+#Permet de mettre à jour les bonus des molécules
+func MajBonusMolecules():
+	InfosPartie.MajInformationsPartie()
+	
+	for bonus in CurrentBonusesMolecules:
+		CurrentBonusesMolecules[bonus] = Big.new(0.0)
+	
+	for molecule in RessourceManager.ListeMolecules:
+		if molecule.IsUnlocked:
+			for bonus in molecule.AtomeBaseSortie:
+				CurrentBonusesMolecules[bonus] = Big.add(CurrentBonusesMolecules[bonus], Big.multiply(molecule.AtomeBaseSortie[bonus], RessourceManager.QuantiteesMolecules[molecule.Name]))
+
+
+#Récupère le bonus des molécules sur un atome.
+func GetMoleculeBonus(atomName):
+	return CurrentBonusesMolecules[atomName]
 
 
 #Récupère le prix de l'Hydrogène avec les bonus

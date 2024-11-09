@@ -264,14 +264,15 @@ func CalculateQuantityAtomes(timeInSeconde:int = 1):
 		if ListeAtomes[atome].isUnlocked:
 			var quantityAtomeWithTime = Big.multiply(ListeAtomes[atome].GetAtomePerSec(), Big.new(timeInSeconde))
 			QuantiteesAtomes[atome] = Big.add(QuantiteesAtomes[atome], quantityAtomeWithTime)
+			if InfosPartie.AtomesObtenuInThisReset.has(atome):
+				InfosPartie.AtomesObtenuInThisReset[atome] = Big.add(InfosPartie.AtomesObtenuInThisReset[atome], quantityAtomeWithTime)
 	
 	#Calcul des molécules.
 	for molecule in ListeMolecules:
 		if molecule.IsUnlocked:
-			var baseQuantiteeMoleculesDictionnary = molecule.GetMoleculeProductionPerSeconde()
-			for atomeConsomation in baseQuantiteeMoleculesDictionnary:
-				QuantiteesMolecules[molecule.Name] = baseQuantiteeMoleculesDictionnary[atomeConsomation]
-				var coin = "coin"
+			QuantiteesMolecules[molecule.Name] = molecule.GetMoleculeProductionPerSeconde()
+	BonusManager.MajBonusMolecules()
+
 
 #Calcul et ajoute la quantité d'un atome par rapport au temps indiqué
 func CalculateQuantityOneAtome(atomName, timeInSeconde:int = 1):
@@ -481,9 +482,10 @@ func DefineRechercheMatiereNoireListInitializingGame():
 
 #Permet d'initialiser la liste des molécules dans le jeu.
 func DefineMoleculesListInitializingGame():
-	var moleculeDihydrogene = Molecule.new(0, "DIHYDROGENE", Big.new(0.0), [""], Big.new(0.0), true)
-	moleculeDihydrogene.DefineUnlockingPrice({"DarkMatter" : Big.new(1.0)})
+	var moleculeDihydrogene = Molecule.new(0, "DIHYDROGENE")
+	moleculeDihydrogene.DefineUnlockingPrice({"DarkMatter" : Big.new(1.0, 5)})
 	moleculeDihydrogene.DefineAtomeBaseComation({"Hydrogene" : 2})
+	moleculeDihydrogene.DefineAtomeSortieBonus({"Hydrogene" : Big.new(0.1)})
 	ListeMoleculesInitializeGame.append(moleculeDihydrogene)
 
 

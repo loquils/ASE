@@ -48,7 +48,7 @@ func GetDeltaDarkMatterOld():
 
 #Nouveau test sur le calcul de la matière noire
 func GetDeltaDarkMatter():
-	var quantiteeMatiereNoire = Big.divide(InfosPartie.HydrogeneObtenuInThisReset, CoefficientDivisionMatiereNoire)
+	var quantiteeMatiereNoire = Big.divide(InfosPartie.AtomesObtenuInThisReset["Hydrogene"], CoefficientDivisionMatiereNoire)
 	var deltaMatiereNoireAvecBonuses = Big.multiply(quantiteeMatiereNoire, Big.add(Big.new(1.0), BonusManager.GetDeltaDarkMatterBonus()))
 	var deltaMatiereNoireFinal = Big.multiply(deltaMatiereNoireAvecBonuses, Big.add(Big.new(1.0), BonusManager.GetDeltaDarkMatterBonusDarkMatterResearch()))
 	return deltaMatiereNoireFinal
