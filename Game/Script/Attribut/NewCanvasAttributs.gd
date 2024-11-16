@@ -6,9 +6,9 @@ var AttributBoutton = preload("res://Design/Scenes/Attribut/NewButtonAttribut.ts
 @onready var AttributButtonsC = $PresentationPanel/PresentationVBoxC/ButtonsMarginC/HBoxC
 
 @onready var UnlockPanel = $PanelForUnlock
-@onready var UnlockPanelAtomeLabel = $PanelForUnlock/FondPanel/VBoxC/AtomeLabel
-@onready var UnlockPanelPrixLabel = $PanelForUnlock/FondPanel/VBoxC/PrixLabel
-@onready var UnlockPanelButton = $PanelForUnlock/FondPanel/VBoxC/UnlockButton
+#@onready var UnlockPanelAtomeLabel = $PanelForUnlock/FondPanel/VBoxC/AtomeLabel
+#@onready var UnlockPanelPrixLabel = $PanelForUnlock/FondPanel/VBoxC/PrixLabel
+#@onready var UnlockPanelButton = $PanelForUnlock/FondPanel/VBoxC/UnlockButton
 
 @onready var NomAtome = $PresentationPanel/PresentationVBoxC/NomAtomeMarginC/NomLabel
 
@@ -17,6 +17,7 @@ func _set_var(atome):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	UnlockPanel._set_objects(Atome, OnUnlockButtonPressed)
 	for attribut in Atome.ListeAttribs:
 		var newBouton = AttributBoutton.instantiate()
 		newBouton._set_var(attribut)
@@ -24,11 +25,10 @@ func _ready():
 		
 	if Atome.isUnlocked:
 		UnlockPanel.visible = false
-	else:
-		for atome in Atome.AtomePriceForUnlocking:
-			UnlockPanelAtomeLabel.text = tr(atome)
-			UnlockPanelPrixLabel.text = str(Atome.AtomePriceForUnlocking[atome])
-
+	#else:
+		#for atome in Atome.AtomePriceForUnlocking:
+			#UnlockPanelAtomeLabel.text = tr(atome)
+			#UnlockPanelPrixLabel.text = str(Atome.AtomePriceForUnlocking[atome])
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -37,10 +37,10 @@ func _process(_delta):
 	if UnlockPanel.visible:
 		if Atome.isUnlocked:
 			UnlockPanel.visible = false
-		else:
-			for atome in Atome.AtomePriceForUnlocking:
-				UnlockPanelAtomeLabel.text = tr(atome)
-				UnlockPanelPrixLabel.text = str(Atome.AtomePriceForUnlocking[atome])
+		#else:
+			#for atome in Atome.AtomePriceForUnlocking:
+				#UnlockPanelAtomeLabel.text = tr(atome)
+				#UnlockPanelPrixLabel.text = str(Atome.AtomePriceForUnlocking[atome])
 		
 		#On test si le bouton est disabled ou pas : donc si on a assez de tous les atomes qu'on a besoin
 		var testForOk = true
@@ -48,7 +48,7 @@ func _process(_delta):
 			if RessourceManager.QuantiteesAtomes[priceAtomeName].isLessThan(Atome.AtomePriceForUnlocking[priceAtomeName]):
 				testForOk = false
 		
-		UnlockPanelButton.disabled = not testForOk
+		#UnlockPanelButton.disabled = not testForOk
 	
 	else:
 		if not Atome.isUnlocked:
@@ -68,5 +68,3 @@ func OnUnlockButtonPressed():
 		RessourceManager.QuantiteesAtomes[priceAtomeName] = Big.subtractAbove0(RessourceManager.QuantiteesAtomes[priceAtomeName], Atome.AtomePriceForUnlocking[priceAtomeName])
 	
 	Atome.isUnlocked = true
-	
-	print("Bouton achat atome :" + Atome.Name)

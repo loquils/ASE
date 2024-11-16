@@ -2,6 +2,7 @@ class_name Atome
 
 var isUnlocked = false
 var AtomePriceForUnlocking
+var UnlockingClass:Unlocking
 
 var Name
 var Symbole
@@ -33,6 +34,7 @@ func DefineAtomeAttributs(attributsListe):
 #Permet de definir le prix pour débloquer un atome.
 func DefineAtomeUnlockingPrice(atomePriceForUnlocking):
 	AtomePriceForUnlocking = atomePriceForUnlocking
+	UnlockingClass = Unlocking.new(atomePriceForUnlocking)
 
 
 #Retourne le prix de l'amélioration de l'attribut.
