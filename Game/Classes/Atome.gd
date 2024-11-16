@@ -4,6 +4,7 @@ var isUnlocked = false
 var AtomePriceForUnlocking
 
 var Name
+var Symbole
 
 var PrixBaseVenteAtome: Big
 
@@ -14,9 +15,10 @@ var ListeAttribs = []
 
 var GlobalMultiplicator = Big.new()
 
-func _init(name, apportAtomeBase:Big, prixBaseVenteAtome:Big = Big.new(0.0)):
+func _init(name, symbole, apportAtomeBase:Big, prixBaseVenteAtome:Big = Big.new(0.0)):
 	Name = name
-		
+	Symbole = symbole
+	
 	ApportAtomeBase = apportAtomeBase
 	ApportAtome = ApportAtomeBase
 	

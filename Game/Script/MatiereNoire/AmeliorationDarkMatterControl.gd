@@ -12,9 +12,8 @@ var BoutonRechercheDarkMatter = preload("res://Design/Scenes/Recherches/NewButto
 @onready var RecherchesMarginC = $PresentationVBoxC/MarginC/VBoxC/RecherchesMarginC
 @onready var ButtonsMarginC = $PresentationVBoxC/MarginC/VBoxC/PrestigeButtonsMarginC
 @onready var MoleculesControl = $PresentationVBoxC/MoleculesControl
+@onready var MoleculesButton = $PresentationVBoxC/MarginC/VBoxC/PrestigeButtonsMarginC/InterneButtonsMarginC/PrestigeButtonsGridC/MoleculesMarginC2/MoleculesButton
 
-#Coefficient de calcul pour la matière noire
-var CoefficientDivisionMatiereNoire = Big.new(4.6, 6)
 
 #Initialize la vue de la matière noire
 func _ready():
@@ -30,28 +29,19 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	if GetDeltaDarkMatter().isLessThan(Big.new(1.0)):
+	if BonusManager.GetDeltaDarkMatter().isLessThan(Big.new(1.0)):
 		PrestigeButton.disabled = true
 	else:
 		PrestigeButton.disabled = false
 	
 	if visible:
 		MatiereNoireQuantiteeLabel.text = str(RessourceManager.DarkMatter)
-		MatierNoireApresPrestige.text = str(GetDeltaDarkMatter())
-
-
-#Nouveau test sur le calcul de la matière noire
-func GetDeltaDarkMatterOld():
-	var quantiteeMatiereNoire = Big.divide(InfosPartie.HydrogeneObtenuInThisReset, CoefficientDivisionMatiereNoire)
-	return quantiteeMatiereNoire
-
-
-#Nouveau test sur le calcul de la matière noire
-func GetDeltaDarkMatter():
-	var quantiteeMatiereNoire = Big.divide(InfosPartie.AtomesObtenuInThisReset["Hydrogene"], CoefficientDivisionMatiereNoire)
-	var deltaMatiereNoireAvecBonuses = Big.multiply(quantiteeMatiereNoire, Big.add(Big.new(1.0), BonusManager.GetDeltaDarkMatterBonus()))
-	var deltaMatiereNoireFinal = Big.multiply(deltaMatiereNoireAvecBonuses, Big.add(Big.new(1.0), BonusManager.GetDeltaDarkMatterBonusDarkMatterResearch()))
-	return deltaMatiereNoireFinal
+		MatierNoireApresPrestige.text = str(BonusManager.GetDeltaDarkMatter())
+	
+	if InfosPartie.DarkMatterObtenuTotal.isLessThan(Big.new(1.0, 5)):
+		MoleculesButton.disabled = true
+	else:
+		MoleculesButton.disabled = false
 
 
 #Methode appellee par le signal lors de l'appuie sur un des boutons de recherches
@@ -76,11 +66,12 @@ func AchatRehercheMatiereNoireButtonPressed(recherche):
 
 #Reset prestige, remet tout à zero, et ajoute la matière noire
 func DarkMatterReset():
-	RessourceManager.DarkMatter = Big.add(RessourceManager.DarkMatter, GetDeltaDarkMatter())
+	var darkMatterObtenu = Big.add(RessourceManager.DarkMatter, BonusManager.GetDeltaDarkMatter())
+	RessourceManager.DarkMatter = darkMatterObtenu
 	RessourceManager.ResetAtomes()
 	RessourceManager.ResetToutesAmeliorations()
 	RessourceManager.ResetRecherches()
-	InfosPartie.ResetInformationsOnPrestige()
+	InfosPartie.ResetInformationsOnPrestige(darkMatterObtenu)
 	RessourceManager.ResetRessources()
 	
 	BonusManager.MajBonusRecherchesMatiereNoire()

@@ -34,6 +34,15 @@ func DefineAtomeSortieBonus(atomeBaseSortie):
 	AtomeBaseSortie = atomeBaseSortie
 
 
+#Permet de récupérer la liste des symbole des différents atomes de sortie d'une molécule.
+func GetStringNomsSymboles():
+	var listeSymboles = ""
+	for atomeSortie in AtomeBaseSortie:
+		if RessourceManager.ListeAtomes.has(atomeSortie):
+			listeSymboles += RessourceManager.ListeAtomes[atomeSortie].Symbole + ", "
+	return listeSymboles.left(listeSymboles.length() - 2) + " :"
+
+
 #Permet de récupérer le dictionnaire de la consomation pour le calcul de la quantitée des molécules
 func GetMoleculeProductionPerSeconde():
 	var calculDictionnary = {}

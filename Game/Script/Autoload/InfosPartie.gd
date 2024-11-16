@@ -3,6 +3,8 @@ extends Node
 var CoinsObtenusInThisReset = Big.new(0.0)
 var CoinsObtenusTotal = Big.new(0.0)
 
+var DarkMatterObtenuTotal = Big.new(0.0)
+
 var AtomesObtenuInThisReset = {}
 
 var HydrogeneMaximum = Big.new(0.0)
@@ -47,14 +49,14 @@ func GetNombreRecherchesMatiereNoireAchetees():
 
 
 #Permet de faire un reset de prestige sur les informations de la partie
-func ResetInformationsOnPrestige():
-	AtomesObtenuInThisReset
+func ResetInformationsOnPrestige(darkMatterObtenu):
 	HydrogeneMaximum = Big.new(0.0)
 	for atome in AtomesObtenuInThisReset:
 		AtomesObtenuInThisReset[atome] = Big.new(0.0)
 	
 	CoinsObtenusInThisReset = Big.new(0.0)
 	CoinsObtenusTotal = Big.add(CoinsObtenusTotal, CoinsObtenusInThisReset)
+	DarkMatterObtenuTotal = Big.add(DarkMatterObtenuTotal, darkMatterObtenu)
 	NombrePrestige += 1
 
 
@@ -65,14 +67,15 @@ func Save():
 	for atomName in AtomesObtenuInThisReset:
 		atomesQuantiteeObtenuDictionnary[atomName] = AtomesObtenuInThisReset[atomName].ToJsonFormat()
 	
-	var infosPartieDict = {
+	var infosPartieDictionnary = {
 		"NombrePrestige" : NombrePrestige,
 		"HydrogeneMaximum" : HydrogeneMaximum.ToJsonFormat(),
 		"CoinsObtenusInThisReset" : CoinsObtenusInThisReset.ToJsonFormat(),
 		"CoinsObtenusTotal" : CoinsObtenusTotal.ToJsonFormat(),
+		"DarkMatterObtenuTotal" : DarkMatterObtenuTotal.ToJsonFormat(),
 		"AtomesObtenuInThisReset" : atomesQuantiteeObtenuDictionnary
 	}
-	return infosPartieDict
+	return infosPartieDictionnary
 
 
 #Chargement des informations de la partie dans la save.
@@ -85,6 +88,8 @@ func Load(infos):
 		CoinsObtenusInThisReset = Big.ToCustomFormat(infos["CoinsObtenusInThisReset"])
 	if infos.has("CoinsObtenusTotal"):
 		CoinsObtenusTotal = Big.ToCustomFormat(infos["CoinsObtenusTotal"])
+	if infos.has("DarkMatterObtenuTotal"):
+		DarkMatterObtenuTotal = Big.ToCustomFormat(infos["DarkMatterObtenuTotal"])
 	if infos.has("AtomesObtenuInThisReset"):
 		var atomesObtenusDictionnary = infos["AtomesObtenuInThisReset"]
 		for atomeName in atomesObtenusDictionnary:

@@ -29,7 +29,7 @@ border_width_right = 1
 border_width_bottom = 1
 
 [node name="CanvasMoleculeControl" type="Control"]
-custom_minimum_size = Vector2(500, 300)
+custom_minimum_size = Vector2(650, 300)
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -66,7 +66,7 @@ theme_override_constants/margin_bottom = 5
 
 [node name="NomLabel" type="Label" parent="PanelC/MainVBoxC/NomMarginC"]
 layout_mode = 2
-text = "Dihydrogène"
+text = "NAME"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -84,25 +84,44 @@ size_flags_horizontal = 3
 [node name="VBoxC" type="VBoxContainer" parent="PanelC/MainVBoxC/MainMarginC/MainHBoxC/MoleculeViewPanelC"]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelC/MainVBoxC/MainMarginC/MainHBoxC/MoleculeViewPanelC/VBoxC"]
+[node name="QuantiteeMarginC" type="MarginContainer" parent="PanelC/MainVBoxC/MainMarginC/MainHBoxC/MoleculeViewPanelC/VBoxC"]
 layout_mode = 2
 
-[node name="HBoxC" type="HBoxContainer" parent="PanelC/MainVBoxC/MainMarginC/MainHBoxC/MoleculeViewPanelC/VBoxC/MarginContainer"]
+[node name="HBoxC" type="HBoxContainer" parent="PanelC/MainVBoxC/MainMarginC/MainHBoxC/MoleculeViewPanelC/VBoxC/QuantiteeMarginC"]
 layout_mode = 2
 
-[node name="Quantity" type="Label" parent="PanelC/MainVBoxC/MainMarginC/MainHBoxC/MoleculeViewPanelC/VBoxC/MarginContainer/HBoxC"]
+[node name="Quantity" type="Label" parent="PanelC/MainVBoxC/MainMarginC/MainHBoxC/MoleculeViewPanelC/VBoxC/QuantiteeMarginC/HBoxC"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "QUANTITY"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="QuantityLabel" type="Label" parent="PanelC/MainVBoxC/MainMarginC/MainHBoxC/MoleculeViewPanelC/VBoxC/MarginContainer/HBoxC"]
+[node name="QuantityLabel" type="Label" parent="PanelC/MainVBoxC/MainMarginC/MainHBoxC/MoleculeViewPanelC/VBoxC/QuantiteeMarginC/HBoxC"]
+layout_mode = 2
+size_flags_horizontal = 3
+vertical_alignment = 1
+
+[node name="BonusMarginC" type="MarginContainer" parent="PanelC/MainVBoxC/MainMarginC/MainHBoxC/MoleculeViewPanelC/VBoxC"]
+layout_mode = 2
+
+[node name="HBoxC" type="HBoxContainer" parent="PanelC/MainVBoxC/MainMarginC/MainHBoxC/MoleculeViewPanelC/VBoxC/BonusMarginC"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelC/MainVBoxC/MainMarginC/MainHBoxC/MoleculeViewPanelC/VBoxC/BonusMarginC/HBoxC"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "BONUS"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="BonusLabel" type="Label" parent="PanelC/MainVBoxC/MainMarginC/MainHBoxC/MoleculeViewPanelC/VBoxC/BonusMarginC/HBoxC"]
 layout_mode = 2
 size_flags_horizontal = 3
 vertical_alignment = 1
 
 [node name="RightVBoxC" type="VBoxContainer" parent="PanelC/MainVBoxC/MainMarginC/MainHBoxC"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 
 [node name="DescriptionMarginC" type="MarginContainer" parent="PanelC/MainVBoxC/MainMarginC/MainHBoxC/RightVBoxC"]

@@ -546,8 +546,7 @@ theme_override_constants/margin_bottom = 5
 
 [node name="MoleculesButton" type="Button" parent="PresentationVBoxC/MarginC/VBoxC/PrestigeButtonsMarginC/InterneButtonsMarginC/PrestigeButtonsGridC/MoleculesMarginC2"]
 layout_mode = 2
-disabled = true
-text = "COMINGSOON"
+text = "MOLECULES"
 
 [node name="MoleculesControl" parent="PresentationVBoxC" instance=ExtResource("8_kg0w4")]
 visible = false

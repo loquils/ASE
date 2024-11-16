@@ -30,6 +30,9 @@ var CurrentBonusesRecherchesMatiereNoire = {}
 #Bonus molécules
 var CurrentBonusesMolecules = {}
 
+#Coefficient de calcul pour la matière noire
+var CoefficientDivisionMatiereNoire = Big.new(4.6, 6)
+
 func _ready():
 	BonusTypesRecherches = InitializeRecherchesBonusTypes()
 	
@@ -246,6 +249,14 @@ func GetDeltaDarkMatterBonus():
 #Permet de récupérer le bonus sur le delta de matière noire des recherches matière noire.
 func GetDeltaDarkMatterBonusDarkMatterResearch():
 	return CurrentBonusesRecherchesMatiereNoire["MatiereNoireOutputMultiply"]
+
+
+#Nouveau test sur le calcul de la matière noire
+func GetDeltaDarkMatter():
+	var quantiteeMatiereNoire = Big.divide(InfosPartie.AtomesObtenuInThisReset["Hydrogene"], CoefficientDivisionMatiereNoire)
+	var deltaMatiereNoireAvecBonuses = Big.multiply(quantiteeMatiereNoire, Big.add(Big.new(1.0), GetDeltaDarkMatterBonus()))
+	var deltaMatiereNoireFinal = Big.multiply(deltaMatiereNoireAvecBonuses, Big.add(Big.new(1.0), GetDeltaDarkMatterBonusDarkMatterResearch()))
+	return deltaMatiereNoireFinal
 
 
 #Permet de récupérer le diviseur du prix des attributs des atomes
