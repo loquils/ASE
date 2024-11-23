@@ -13,9 +13,9 @@ var RecherchesAchetees = 0
 var RecherchesMatiereNoireAchetees = 0
 var NombrePrestige:int = 0
 
-func _ready():
-	for atome in RessourceManager.AtomsListInitializingGame:
-		AtomesObtenuInThisReset[atome.Name] = Big.new(0.0)
+
+
+
 
 #Permet de mettre à jour toutes les informations sur la partie
 func MajInformationsPartie():
@@ -80,6 +80,8 @@ func Save():
 
 #Chargement des informations de la partie dans la save.
 func Load(infos):
+	InitializeAtomesObtenusInThisReset()
+	
 	if infos.has("NombrePrestige"):
 		NombrePrestige = int(infos["NombrePrestige"])
 	if infos.has("HydrogeneMaximum"):
@@ -90,8 +92,15 @@ func Load(infos):
 		CoinsObtenusTotal = Big.ToCustomFormat(infos["CoinsObtenusTotal"])
 	if infos.has("DarkMatterObtenuTotal"):
 		DarkMatterObtenuTotal = Big.ToCustomFormat(infos["DarkMatterObtenuTotal"])
+		if DarkMatterObtenuTotal.isEqualTo(Big.new(0.0)) and not RessourceManager.DarkMatter.isEqualTo(Big.new(0.0)):
+			DarkMatterObtenuTotal = RessourceManager.DarkMatter
 	if infos.has("AtomesObtenuInThisReset"):
 		var atomesObtenusDictionnary = infos["AtomesObtenuInThisReset"]
 		for atomeName in atomesObtenusDictionnary:
 			if AtomesObtenuInThisReset.has(atomeName):
 				AtomesObtenuInThisReset[atomeName] = Big.ToCustomFormat(atomesObtenusDictionnary[atomeName])
+
+#Permet d'initialiser le dictionnaire des atomes obtenus dans ce reset.
+func InitializeAtomesObtenusInThisReset():
+	for atome in RessourceManager.AtomsListInitializingGame:
+		AtomesObtenuInThisReset[atome.Name] = Big.new(0.0)

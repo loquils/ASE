@@ -90,8 +90,6 @@ func _ready():
 			listeRecherchesMatiereNoireInSaving = ressourceLoadingGame["RecherchesMatiereNoire"]
 		if ressourceLoadingGame.has("ListeMolecules"):
 			listeMolecules = ressourceLoadingGame["ListeMolecules"]
-		if ressourceLoadingGame.has("InformationsPartie"):
-			InfosPartie.Load(ressourceLoadingGame["InformationsPartie"])
 		if ressourceLoadingGame.has("TutorialCompleted"):
 			IsTutorialCompleted = ressourceLoadingGame["TutorialCompleted"]
 	
@@ -103,6 +101,10 @@ func _ready():
 	LoadAmeliorationBore(listeAmeliorationsBoreInSaving)
 	LoadDarkMatter(listeRecherchesMatiereNoireInSaving)
 	LoadMolecule(listeMolecules)
+	
+	#Après les load car il fait référence à des éléments qui doivent être initialisés avant le load.
+	if ressourceLoadingGame.has("InformationsPartie"):
+		InfosPartie.Load(ressourceLoadingGame["InformationsPartie"])
 
 
 #Permet de charger la liste des atomes, et des quantitees possedees

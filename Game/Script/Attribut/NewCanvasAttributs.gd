@@ -54,7 +54,7 @@ func _process(_delta):
 		if not Atome.isUnlocked:
 			UnlockPanel.visible = true
 
-
+#########MOOOVE THAT IN THE PANEL SO IT DEPENDS ON THE SCENE AND NOTHING ELSE
 func OnUnlockButtonPressed():
 	print("Bouton achat atome :" + Atome.Name)
 	if Atome.isUnlocked:
