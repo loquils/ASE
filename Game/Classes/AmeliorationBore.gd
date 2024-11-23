@@ -5,6 +5,7 @@ var Name
 var Description
 
 var AtomePriceForUnlocking = {"Bore" : Big.new(1.0, 2)}
+var UnlockingClass:Unlocking
 var IsUnlocked = false
 var IsBasedUnlocked = false
 
@@ -38,6 +39,7 @@ func _init(id, name, description, prixBase:Big, coefficientAchat, typeAmeliorati
 #Permet de definir le prix pour débloquer un atome.
 func DefineAtomeUnlockingPrice(atomePriceForUnlocking):
 	AtomePriceForUnlocking = atomePriceForUnlocking
+	UnlockingClass = Unlocking.new(atomePriceForUnlocking)
 
 
 #Récupère le prix d'une amélioration, pour l'instant c'est x10 puissance niveau

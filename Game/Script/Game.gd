@@ -29,12 +29,12 @@ func _ready():
 
 
 func _process(_delta):
-		#var prix = round(coin.PrixBaseAmelioAttributs["Force"] * pow(coin.CoefficientsAchatAttributs["Force"], coin.NiveauxAttributs["Force"]))
-	CoinsQuantityLabel.text = str(RessourceManager.Coins)
-	ButtonMenuAmeliorationHelium.disabled = not RessourceManager.ListeAtomes["Helium"].isUnlocked
-	ButtonMenuAmeliorationLithium.disabled = not RessourceManager.ListeAtomes["Lithium"].isUnlocked
-	ButtonMenuAmeliorationBeryllium.disabled = not RessourceManager.ListeAtomes["Beryllium"].isUnlocked
-	ButtonMenuAmeliorationBore.disabled = not RessourceManager.ListeAtomes["Bore"].isUnlocked
+	if len(RessourceManager.ListeAtomes) > 0:
+		CoinsQuantityLabel.text = str(RessourceManager.Coins)
+		ButtonMenuAmeliorationHelium.disabled = not RessourceManager.ListeAtomes["Helium"].IsUnlocked
+		ButtonMenuAmeliorationLithium.disabled = not RessourceManager.ListeAtomes["Lithium"].IsUnlocked
+		ButtonMenuAmeliorationBeryllium.disabled = not RessourceManager.ListeAtomes["Beryllium"].IsUnlocked
+		ButtonMenuAmeliorationBore.disabled = not RessourceManager.ListeAtomes["Bore"].IsUnlocked
 
 #func GetPrixVenteHydrogene():
 #	var newPrix = Big.multiply(RessourceManager.AtomsList["Hydrogene"].PrixBaseVenteAtome, RessourceManager.CurrentBonusesAmeliorationHelium["HydrogeneRendementMultiply"])

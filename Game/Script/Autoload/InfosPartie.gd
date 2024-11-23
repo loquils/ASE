@@ -14,13 +14,11 @@ var RecherchesMatiereNoireAchetees = 0
 var NombrePrestige:int = 0
 
 
-
-
-
 #Permet de mettre à jour toutes les informations sur la partie
 func MajInformationsPartie():
-	if HydrogeneMaximum.isLessThan(RessourceManager.QuantiteesAtomes["Hydrogene"]):
-		HydrogeneMaximum = RessourceManager.QuantiteesAtomes["Hydrogene"]
+	if RessourceManager.QuantiteesAtomes.has("Hydrogene"):
+		if HydrogeneMaximum.isLessThan(RessourceManager.QuantiteesAtomes["Hydrogene"]):
+			HydrogeneMaximum = RessourceManager.QuantiteesAtomes["Hydrogene"]
 
 	RecherchesAchetees = GetNombreRecherchesAchetees()
 	RecherchesMatiereNoireAchetees = GetNombreRecherchesMatiereNoireAchetees()
@@ -99,6 +97,7 @@ func Load(infos):
 		for atomeName in atomesObtenusDictionnary:
 			if AtomesObtenuInThisReset.has(atomeName):
 				AtomesObtenuInThisReset[atomeName] = Big.ToCustomFormat(atomesObtenusDictionnary[atomeName])
+
 
 #Permet d'initialiser le dictionnaire des atomes obtenus dans ce reset.
 func InitializeAtomesObtenusInThisReset():

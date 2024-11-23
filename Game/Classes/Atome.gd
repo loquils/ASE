@@ -1,6 +1,6 @@
 class_name Atome
 
-var isUnlocked = false
+var IsUnlocked = false
 var AtomePriceForUnlocking
 var UnlockingClass:Unlocking
 
@@ -63,7 +63,7 @@ func GetAugmentationsAttributs():
 
 #Retourne la quantité d'atome par seconde par rapport aux attribut 
 func GetAtomePerSec():
-	if isUnlocked:
+	if IsUnlocked:
 		var calculApportAttributs = Big.multiply(ApportAtome, GetAugmentationsAttributs())
 		var calculGlobalMultiplicateur = Big.multiply(calculApportAttributs, Big.add(Big.new(1.0), BonusManager.GetGlobalMultiplicator(Name)))
 		var calculDarkMatter = Big.multiply(calculGlobalMultiplicateur, Big.add(Big.new(1.0), BonusManager.GetDarkMaterMultiplicator(Name)))

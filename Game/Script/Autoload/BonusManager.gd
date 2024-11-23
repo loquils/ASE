@@ -63,6 +63,20 @@ func _ready():
 	for atome in RessourceManager.AtomsListInitializingGame:
 		CurrentBonusesMolecules[atome.Name] = Big.new(0.0)
 
+
+#Permet de lancer la mise a jour depuis le Unlock panel.
+#On passe l'objet et on trigger la Maj correspondante.
+func MajObject(unlockingObject):
+	if unlockingObject is AmeliorationHelium:
+		MajBonusAmeliorationHelium()
+	if unlockingObject is AmeliorationLithium:
+		MajBonusAmeliorationLithium()
+	if unlockingObject is AmeliorationBeryllium:
+		MajBonusAmeliorationBeryllium()
+	if unlockingObject is AmeliorationBore:
+		MajBonusAmeliorationBore()
+
+
 #Permet de mettre à jour le dictionnaire des ressources
 #On parcour la liste des ressources, et on ajoute les bonus
 func MajBonusRecherches():
@@ -253,10 +267,13 @@ func GetDeltaDarkMatterBonusDarkMatterResearch():
 
 #Nouveau test sur le calcul de la matière noire
 func GetDeltaDarkMatter():
-	var quantiteeMatiereNoire = Big.divide(InfosPartie.AtomesObtenuInThisReset["Hydrogene"], CoefficientDivisionMatiereNoire)
-	var deltaMatiereNoireAvecBonuses = Big.multiply(quantiteeMatiereNoire, Big.add(Big.new(1.0), GetDeltaDarkMatterBonus()))
-	var deltaMatiereNoireFinal = Big.multiply(deltaMatiereNoireAvecBonuses, Big.add(Big.new(1.0), GetDeltaDarkMatterBonusDarkMatterResearch()))
-	return deltaMatiereNoireFinal
+	if InfosPartie.AtomesObtenuInThisReset.has("Hydrogene"):
+		var quantiteeMatiereNoire = Big.divide(InfosPartie.AtomesObtenuInThisReset["Hydrogene"], CoefficientDivisionMatiereNoire)
+		var deltaMatiereNoireAvecBonuses = Big.multiply(quantiteeMatiereNoire, Big.add(Big.new(1.0), GetDeltaDarkMatterBonus()))
+		var deltaMatiereNoireFinal = Big.multiply(deltaMatiereNoireAvecBonuses, Big.add(Big.new(1.0), GetDeltaDarkMatterBonusDarkMatterResearch()))
+		return deltaMatiereNoireFinal
+	else:
+		return Big.new(0.0)
 
 
 #Permet de récupérer le diviseur du prix des attributs des atomes
