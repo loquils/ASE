@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://71s8qqtby4qf" path="res://Design/Themes/AmeliorationBore/AmeliorationBoreTheme.tres" id="1_8ywco"]
 [ext_resource type="Script" path="res://Script/AmeliorationBore/ButtonClassicAmeliorationBore.gd" id="1_b3nrj"]
-[ext_resource type="PackedScene" uid="uid://cllsbf0661v07" path="res://Design/UnlockControl.tscn" id="3_mfrsl"]
+[ext_resource type="PackedScene" uid="uid://cllsbf0661v07" path="res://Design/Scenes/UnlockControl.tscn" id="3_mfrsl"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ivxgt"]
 bg_color = Color(0.317647, 0.317647, 0.317647, 1)

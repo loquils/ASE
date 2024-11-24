@@ -6,6 +6,7 @@ var UnlockingObject
 @onready var PrixLabel = $MainPanelC/DescriptionPanelC/MarginC/VBoxC/PrixPanelC/PrixHBoxC/PrixMarginC/PrixLabel
 @onready var UnlockButton = $MainPanelC/DescriptionPanelC/MarginC/VBoxC/ButtonMarginCer/UnlockButton
 
+@onready var NonDisponiblePanel = $MainPanelC/NonDisponiblePanel
 
 #Set l'object a unlock, ça peut être un atome, une upgrade etc ...
 func _set_objects(unlockingObject):
@@ -15,6 +16,11 @@ func _set_objects(unlockingObject):
 #Faut mettre à jour le text
 func _process(_delta):
 	if UnlockingObject.UnlockingClass != null:
+		if not UnlockingObject.UnlockingClass.IsDisponible:
+			if not NonDisponiblePanel.visible:
+				NonDisponiblePanel.show()
+				return
+		
 		PrixLabel.text = UnlockingObject.UnlockingClass.ToNamesAndPricesString()
 		UnlockButton.disabled = not AreAllRessourcesUnlockingAvailable()
 		var titre = tr("DEVEROUILLAGE") + " "

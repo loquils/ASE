@@ -74,6 +74,9 @@ HORSLIGNE, "Hors ligne (Max 4H): ", "Offline (Max 4H): "
 DEVEROUILLAGE, "Dévérouillage", "Unlocking"
 DEVEROUILLER, "Dévérouiller", "Unlock"
 AMELIORATION, "Amélioration", "Upgrade"
+NONDISPONIBLE, "Non disponible\nArrive bientôt !", "Not available\nComming soon !"
+
+
 
 DEBUT, "Début", "Begin"
 EASY, "Facile", "Easy"

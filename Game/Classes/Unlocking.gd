@@ -1,9 +1,14 @@
 class_name Unlocking
 
 var PriceForUnlocking = {}
+var IsDisponible = true
 
 func _init(priceForUnlocking):
 	PriceForUnlocking = priceForUnlocking
+
+#Permet de set la disponnibilité de cet éléménent a false.
+func SetNonDisponnible():
+	IsDisponible = false
 
 
 #Permet d'écrire en string les noms et la quantitée de ressources nécéssaires pour déverouiller l'élément.

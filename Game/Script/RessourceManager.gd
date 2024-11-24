@@ -335,6 +335,16 @@ func DefineAtomsListInitializingGame():
 	boreAtom.DefineAtomeAttributs(boreAttributsList)
 	boreAtom.DefineAtomeUnlockingPrice({"Beryllium" : Big.new(2.38, 9)})
 	AtomsListInitializingGame.append(boreAtom)
+	
+	var carbonAtom = Atome.new("Carbon", "C", Big.new(0.02, 0))
+	var attribut1Carbon = AttributAtome.new(carbonAtom, "Tension", Big.new(0.0), Big.new(1.25), Big.new(0.19), Big.new(5.4, 3))
+	var attribut2Carbon = AttributAtome.new(carbonAtom, "Vibration", Big.new(0.0), Big.new(1.17), Big.new(0.15), Big.new(3.2, 3))
+	var carbonAttributsList = [attribut1Carbon, attribut2Carbon]
+
+	carbonAtom.DefineAtomeAttributs(carbonAttributsList)
+	carbonAtom.DefineAtomeUnlockingPrice({"Bore" : Big.new(8.47, 11)})
+	carbonAtom.UnlockingClass.SetNonDisponnible()
+	AtomsListInitializingGame.append(carbonAtom)
 
 
 #Permet d'initialiser la liste des recherches dans le jeu
