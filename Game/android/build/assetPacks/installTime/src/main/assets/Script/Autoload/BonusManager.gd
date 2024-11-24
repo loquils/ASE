@@ -27,6 +27,12 @@ var CurrentBonusesAmeliorationBore = {}
 #Bonus recherches matière noire
 var CurrentBonusesRecherchesMatiereNoire = {}
 
+#Bonus molécules
+var CurrentBonusesMolecules = {}
+
+#Coefficient de calcul pour la matière noire
+var CoefficientDivisionMatiereNoire = Big.new(4.6, 6)
+
 func _ready():
 	BonusTypesRecherches = InitializeRecherchesBonusTypes()
 	
@@ -53,6 +59,23 @@ func _ready():
 	if len(CurrentBonusesRecherchesMatiereNoire) == 0:
 		for bonusTypeRecherchesMatiereNoire in BonusTypesRecherches:
 			CurrentBonusesRecherchesMatiereNoire[bonusTypeRecherchesMatiereNoire] = Big.new(0.0)
+	
+	for atome in RessourceManager.AtomsListInitializingGame:
+		CurrentBonusesMolecules[atome.Name] = Big.new(0.0)
+
+
+#Permet de lancer la mise a jour depuis le Unlock panel.
+#On passe l'objet et on trigger la Maj correspondante.
+func MajObject(unlockingObject):
+	if unlockingObject is AmeliorationHelium:
+		MajBonusAmeliorationHelium()
+	if unlockingObject is AmeliorationLithium:
+		MajBonusAmeliorationLithium()
+	if unlockingObject is AmeliorationBeryllium:
+		MajBonusAmeliorationBeryllium()
+	if unlockingObject is AmeliorationBore:
+		MajBonusAmeliorationBore()
+
 
 #Permet de mettre à jour le dictionnaire des ressources
 #On parcour la liste des ressources, et on ajoute les bonus
@@ -145,6 +168,24 @@ func MajBonusRecherchesMatiereNoire():
 					CurrentBonusesRecherchesMatiereNoire[ameliorationRechercheMatiereNoire] = Big.add(CurrentBonusesRecherchesMatiereNoire[ameliorationRechercheMatiereNoire], rechercheMatiereNoire.AugmentationPercent)
 
 
+#Permet de mettre à jour les bonus des molécules
+func MajBonusMolecules():
+	InfosPartie.MajInformationsPartie()
+	
+	for bonus in CurrentBonusesMolecules:
+		CurrentBonusesMolecules[bonus] = Big.new(0.0)
+	
+	for molecule in RessourceManager.ListeMolecules:
+		if molecule.IsUnlocked:
+			for bonus in molecule.AtomeBaseSortie:
+				CurrentBonusesMolecules[bonus] = Big.add(CurrentBonusesMolecules[bonus], Big.multiply(molecule.AtomeBaseSortie[bonus], RessourceManager.QuantiteesMolecules[molecule.Name]))
+
+
+#Récupère le bonus des molécules sur un atome.
+func GetMoleculeBonus(atomName):
+	return CurrentBonusesMolecules[atomName]
+
+
 #Récupère le prix de l'Hydrogène avec les bonus
 func GetPrixHydrogene():
 	var recherchesPrice = Big.new(0.0)
@@ -222,6 +263,17 @@ func GetDeltaDarkMatterBonus():
 #Permet de récupérer le bonus sur le delta de matière noire des recherches matière noire.
 func GetDeltaDarkMatterBonusDarkMatterResearch():
 	return CurrentBonusesRecherchesMatiereNoire["MatiereNoireOutputMultiply"]
+
+
+#Nouveau test sur le calcul de la matière noire
+func GetDeltaDarkMatter():
+	if InfosPartie.AtomesObtenuInThisReset.has("Hydrogene"):
+		var quantiteeMatiereNoire = Big.divide(InfosPartie.AtomesObtenuInThisReset["Hydrogene"], CoefficientDivisionMatiereNoire)
+		var deltaMatiereNoireAvecBonuses = Big.multiply(quantiteeMatiereNoire, Big.add(Big.new(1.0), GetDeltaDarkMatterBonus()))
+		var deltaMatiereNoireFinal = Big.multiply(deltaMatiereNoireAvecBonuses, Big.add(Big.new(1.0), GetDeltaDarkMatterBonusDarkMatterResearch()))
+		return deltaMatiereNoireFinal
+	else:
+		return Big.new(0.0)
 
 
 #Permet de récupérer le diviseur du prix des attributs des atomes

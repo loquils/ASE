@@ -3,7 +3,6 @@ class_name Molecule
 var Id
 var Name
 var Description
-var Prix
 
 var AtomePriceForUnlocking = {"Beryllium" : Big.new(1.0, 2)}
 var IsUnlocked = false
@@ -11,15 +10,12 @@ var IsUnlocked = false
 #Sur quoi on base la production de la molécule
 var AtomeBaseConsomation
 
-var Augmentation:Array
-var AugmentationPercent
+#Sur quels atomes on met un bonus en fonction de la molécule
+var AtomeBaseSortie
 
-func _init(id, name, prix: Big, augmentation, augmentationPercent: Big, isUnlocked:bool = false):
+func _init(id, name, isUnlocked:bool = false):
 	Id = id
 	Name = name
-	Prix = prix
-	Augmentation = augmentation
-	AugmentationPercent = augmentationPercent
 	IsUnlocked = isUnlocked
 
 
@@ -33,10 +29,32 @@ func DefineAtomeBaseComation(atomeBaseConsomation):
 	AtomeBaseConsomation = atomeBaseConsomation
 
 
+#Permet de définir sur quels atomes on met les bonus.
+func DefineAtomeSortieBonus(atomeBaseSortie):
+	AtomeBaseSortie = atomeBaseSortie
+
+
+#Permet de récupérer la liste des symbole des différents atomes de sortie d'une molécule.
+func GetStringNomsSymboles():
+	var listeSymboles = ""
+	for atomeSortie in AtomeBaseSortie:
+		if RessourceManager.ListeAtomes.has(atomeSortie):
+			listeSymboles += RessourceManager.ListeAtomes[atomeSortie].Symbole + ", "
+	return listeSymboles.left(listeSymboles.length() - 2) + " :"
+
+
 #Permet de récupérer le dictionnaire de la consomation pour le calcul de la quantitée des molécules
 func GetMoleculeProductionPerSeconde():
-	var resultDictionnary = {}
+	var calculDictionnary = {}
+	var quantiteeAtomesInCreation = 0
 	for consomation in AtomeBaseConsomation:
-		var atomeQuantity = RessourceManager.QuantiteesAtomes[consomation]
-		resultDictionnary[consomation] = Big.power(atomeQuantity, 1.0 / (2 * AtomeBaseConsomation[consomation]))
-	return resultDictionnary
+		var maxAtomeQuantity = InfosPartie.AtomesObtenuInThisReset[consomation]
+		calculDictionnary[consomation] = Big.power(maxAtomeQuantity, 1.0 / (1.5 * AtomeBaseConsomation[consomation]))
+		quantiteeAtomesInCreation += AtomeBaseConsomation[consomation]
+	
+	var partialProduction = Big.new(1.0)
+	for atomConsomation in calculDictionnary:
+		partialProduction = Big.multiply(partialProduction, calculDictionnary[atomConsomation])
+	
+	var totalProduction = Big.power(partialProduction, 1.0 / quantiteeAtomesInCreation)
+	return totalProduction

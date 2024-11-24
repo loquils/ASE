@@ -13,7 +13,7 @@ func _set_var(ressourceName:String, ressourceQuantity):
 # On met à jour l'UI + on affiche la ressource si elle est bloquée
 func _process(_delta):
 	if visible == true:
-		if (not RessourceManager.QuantiteesAtomes.has(RessourceName)) or not RessourceManager.ListeAtomes[RessourceName].isUnlocked:
+		if (not RessourceManager.QuantiteesAtomes.has(RessourceName)) or not RessourceManager.ListeAtomes[RessourceName].IsUnlocked:
 			hide()
 			return
 		
@@ -22,5 +22,5 @@ func _process(_delta):
 		$BackGround/MarginC/HBoxC/QuantityLabel.text = str(RessourceQuantity)
 		$BackGround/MarginC/HBoxC/PerSecLabel.text = str(RessourceManager.ListeAtomes[RessourceName].GetAtomePerSec()) + "/s"
 	else:
-		if RessourceManager.ListeAtomes[RessourceName].isUnlocked:
+		if RessourceManager.ListeAtomes[RessourceName].IsUnlocked:
 			show()

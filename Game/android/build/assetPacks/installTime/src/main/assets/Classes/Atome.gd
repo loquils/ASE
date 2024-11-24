@@ -1,9 +1,11 @@
 class_name Atome
 
-var isUnlocked = false
+var IsUnlocked = false
 var AtomePriceForUnlocking
+var UnlockingClass:Unlocking
 
 var Name
+var Symbole
 
 var PrixBaseVenteAtome: Big
 
@@ -14,9 +16,10 @@ var ListeAttribs = []
 
 var GlobalMultiplicator = Big.new()
 
-func _init(name, apportAtomeBase:Big, prixBaseVenteAtome:Big = Big.new(0.0)):
+func _init(name, symbole, apportAtomeBase:Big, prixBaseVenteAtome:Big = Big.new(0.0)):
 	Name = name
-		
+	Symbole = symbole
+	
 	ApportAtomeBase = apportAtomeBase
 	ApportAtome = ApportAtomeBase
 	
@@ -31,6 +34,7 @@ func DefineAtomeAttributs(attributsListe):
 #Permet de definir le prix pour débloquer un atome.
 func DefineAtomeUnlockingPrice(atomePriceForUnlocking):
 	AtomePriceForUnlocking = atomePriceForUnlocking
+	UnlockingClass = Unlocking.new(atomePriceForUnlocking)
 
 
 #Retourne le prix de l'amélioration de l'attribut.
@@ -59,12 +63,11 @@ func GetAugmentationsAttributs():
 
 #Retourne la quantité d'atome par seconde par rapport aux attribut 
 func GetAtomePerSec():
-	if isUnlocked:
-		#return ApportAtome.multiply((CustomNumber.new(1.0).add(GetAugmentationsAttributs()))).multiply(GlobalMultiplicator)
+	if IsUnlocked:
 		var calculApportAttributs = Big.multiply(ApportAtome, GetAugmentationsAttributs())
 		var calculGlobalMultiplicateur = Big.multiply(calculApportAttributs, Big.add(Big.new(1.0), BonusManager.GetGlobalMultiplicator(Name)))
 		var calculDarkMatter = Big.multiply(calculGlobalMultiplicateur, Big.add(Big.new(1.0), BonusManager.GetDarkMaterMultiplicator(Name)))
-		return calculDarkMatter
-		#return Big.multiply(ApportAtome, GetAugmentationsAttributs())
+		var calculMolecules = Big.multiply(calculDarkMatter, Big.add(Big.new(1.0), BonusManager.GetMoleculeBonus(Name)))
+		return calculMolecules
 	else:
 		return Big.new(0.0)

@@ -29,12 +29,12 @@ func _ready():
 
 
 func _process(_delta):
-		#var prix = round(coin.PrixBaseAmelioAttributs["Force"] * pow(coin.CoefficientsAchatAttributs["Force"], coin.NiveauxAttributs["Force"]))
-	CoinsQuantityLabel.text = str(RessourceManager.Coins)
-	ButtonMenuAmeliorationHelium.disabled = not RessourceManager.ListeAtomes["Helium"].isUnlocked
-	ButtonMenuAmeliorationLithium.disabled = not RessourceManager.ListeAtomes["Lithium"].isUnlocked
-	ButtonMenuAmeliorationBeryllium.disabled = not RessourceManager.ListeAtomes["Beryllium"].isUnlocked
-	ButtonMenuAmeliorationBore.disabled = not RessourceManager.ListeAtomes["Bore"].isUnlocked
+	if len(RessourceManager.ListeAtomes) > 0:
+		CoinsQuantityLabel.text = str(RessourceManager.Coins)
+		ButtonMenuAmeliorationHelium.disabled = not RessourceManager.ListeAtomes["Helium"].IsUnlocked
+		ButtonMenuAmeliorationLithium.disabled = not RessourceManager.ListeAtomes["Lithium"].IsUnlocked
+		ButtonMenuAmeliorationBeryllium.disabled = not RessourceManager.ListeAtomes["Beryllium"].IsUnlocked
+		ButtonMenuAmeliorationBore.disabled = not RessourceManager.ListeAtomes["Bore"].IsUnlocked
 
 #func GetPrixVenteHydrogene():
 #	var newPrix = Big.multiply(RessourceManager.AtomsList["Hydrogene"].PrixBaseVenteAtome, RessourceManager.CurrentBonusesAmeliorationHelium["HydrogeneRendementMultiply"])
@@ -43,7 +43,7 @@ func _process(_delta):
 #Main Timer, 1s, permet de calculer la quantité d'atome que l'on gagne
 func _on_main_timer_timeout():
 	RessourceManager.CalculateQuantityAtomes(1)
-	InfosPartie.HydrogeneObtenuInThisReset = Big.add(InfosPartie.HydrogeneObtenuInThisReset, RessourceManager.CalculateQuantityOneAtome("Hydrogene", 1))
+	#InfosPartie.HydrogeneObtenuInThisReset = Big.add(InfosPartie.HydrogeneObtenuInThisReset, RessourceManager.CalculateQuantityOneAtome("Hydrogene", 1))
 
 
 #Trigger lors de l'appuie sur le bouton pour ouvrir la page d'améliorations de l'helium 
@@ -61,9 +61,13 @@ func _on_button_amelioration_beryllium_pressed():
 	AmeliorationBerylliumControl.visible = true
 
 
-#Trigger lors de l'appuie sur le bouton pour ouvrir la page d'améliorations du beryllium
+#Trigger lors de l'appuie sur le bouton pour ouvrir la page d'améliorations du Bore.
 func _on_button_amelioration_bore_pressed():
 	AmeliorationBoreControl.visible = true
+
+#Trigger lors de l'appuie sur le bouton pour ouvrir la page d'améliorations du Carbon.
+func _on_button_amelioration_carbon_pressed():
+	pass # Replace with function body.
 
 
 #Trigger lors de l'appuie sur le bouton pour ouvrir la page de prestige 
@@ -124,3 +128,6 @@ func _on_francais_button_pressed():
 #Permet de changer la langue en anglais depuis la fenetre d'accueil
 func _on_anglais_button_pressed():
 	LangueManager.maj_langue("en")
+
+
+

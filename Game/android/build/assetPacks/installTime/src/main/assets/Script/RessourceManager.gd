@@ -90,8 +90,6 @@ func _ready():
 			listeRecherchesMatiereNoireInSaving = ressourceLoadingGame["RecherchesMatiereNoire"]
 		if ressourceLoadingGame.has("ListeMolecules"):
 			listeMolecules = ressourceLoadingGame["ListeMolecules"]
-		if ressourceLoadingGame.has("InformationsPartie"):
-			InfosPartie.Load(ressourceLoadingGame["InformationsPartie"])
 		if ressourceLoadingGame.has("TutorialCompleted"):
 			IsTutorialCompleted = ressourceLoadingGame["TutorialCompleted"]
 	
@@ -103,6 +101,11 @@ func _ready():
 	LoadAmeliorationBore(listeAmeliorationsBoreInSaving)
 	LoadDarkMatter(listeRecherchesMatiereNoireInSaving)
 	LoadMolecule(listeMolecules)
+	
+	#Après les load car il fait référence à des éléments qui doivent être initialisés avant le load.
+	if ressourceLoadingGame != null:
+		if ressourceLoadingGame.has("InformationsPartie"):
+			InfosPartie.Load(ressourceLoadingGame["InformationsPartie"])
 
 
 #Permet de charger la liste des atomes, et des quantitees possedees
@@ -128,7 +131,7 @@ func AtomsLoading(quantiteesAtomesInSaving, atomsListInSaving):
 			var isAtomeUnlockedInSave = atomsListInSaving[initializedAtom.Name]["Unlock"]
 			if isAtomeUnlockedInSave != null:
 				if isAtomeUnlockedInSave:
-					initializedAtom.isUnlocked = true
+					initializedAtom.IsUnlocked = true
 		
 		#On récupère la quantité de l'atome aussi
 		if quantiteesAtomesInSaving != null and quantiteesAtomesInSaving.has(initializedAtom.Name) and quantiteesAtomesInSaving[initializedAtom.Name] != null:
@@ -261,21 +264,22 @@ func LoadMolecule(listeMoleculeInSaving):
 func CalculateQuantityAtomes(timeInSeconde:int = 1):
 	#Calcul des atomes.
 	for atome in ListeAtomes:
-		if ListeAtomes[atome].isUnlocked:
+		if ListeAtomes[atome].IsUnlocked:
 			var quantityAtomeWithTime = Big.multiply(ListeAtomes[atome].GetAtomePerSec(), Big.new(timeInSeconde))
 			QuantiteesAtomes[atome] = Big.add(QuantiteesAtomes[atome], quantityAtomeWithTime)
+			if InfosPartie.AtomesObtenuInThisReset.has(atome):
+				InfosPartie.AtomesObtenuInThisReset[atome] = Big.add(InfosPartie.AtomesObtenuInThisReset[atome], quantityAtomeWithTime)
 	
 	#Calcul des molécules.
 	for molecule in ListeMolecules:
 		if molecule.IsUnlocked:
-			var baseQuantiteeMoleculesDictionnary = molecule.GetMoleculeProductionPerSeconde()
-			for atomeConsomation in baseQuantiteeMoleculesDictionnary:
-				QuantiteesMolecules[molecule.Name] = baseQuantiteeMoleculesDictionnary[atomeConsomation]
-				var coin = "coin"
+			QuantiteesMolecules[molecule.Name] = molecule.GetMoleculeProductionPerSeconde()
+	BonusManager.MajBonusMolecules()
+
 
 #Calcul et ajoute la quantité d'un atome par rapport au temps indiqué
 func CalculateQuantityOneAtome(atomName, timeInSeconde:int = 1):
-	if ListeAtomes[atomName].isUnlocked:
+	if ListeAtomes[atomName].IsUnlocked:
 		var quantityAtomeWithTime = Big.multiply(ListeAtomes[atomName].GetAtomePerSec(), Big.new(timeInSeconde))
 		return quantityAtomeWithTime
 
@@ -285,15 +289,15 @@ func CalculateQuantityOneAtome(atomName, timeInSeconde:int = 1):
 #Permet d'initialiser la liste des atomes dans le jeu
 func DefineAtomsListInitializingGame():
 	#On définit les atomes auxquels on a accès :)
-	var hydrogeneAtom = Atome.new("Hydrogene", Big.new(1.0, 0), Big.new(1.0, 0))
+	var hydrogeneAtom = Atome.new("Hydrogene", "H", Big.new(1.0, 0), Big.new(1.0, 0))
 	var attribut1Hydrogene = AttributAtome.new(hydrogeneAtom, "Force", Big.new(0.0), Big.new(1.11), Big.new(0.12), Big.new(5))
 	var attribut2Hydrogene = AttributAtome.new(hydrogeneAtom, "Vitesse", Big.new(0.0), Big.new(1.34), Big.new(0.25), Big.new(10))
 	var hydrogenAttributsList = [attribut1Hydrogene, attribut2Hydrogene]
 	hydrogeneAtom.DefineAtomeAttributs(hydrogenAttributsList)
-	hydrogeneAtom.isUnlocked = true
+	hydrogeneAtom.IsUnlocked = true
 	AtomsListInitializingGame.append(hydrogeneAtom)
 	
-	var heliumAtom = Atome.new("Helium", Big.new(0.7, 0))
+	var heliumAtom = Atome.new("Helium", "He", Big.new(0.7, 0))
 	var attribut1Helium = AttributAtome.new(heliumAtom, "Force", Big.new(0.0), Big.new(1.24), Big.new(0.10), Big.new(25))
 	var attribut2Helium = AttributAtome.new(heliumAtom, "Rotation", Big.new(0.0), Big.new(1.36), Big.new(0.2), Big.new(60))
 	var attribut3Helium = AttributAtome.new(heliumAtom, "Complexitee", Big.new(0.0), Big.new(1.82), Big.new(0.42), Big.new(100))
@@ -303,7 +307,7 @@ func DefineAtomsListInitializingGame():
 	heliumAtom.DefineAtomeUnlockingPrice({"Hydrogene" : Big.new(7.85, 3)})
 	AtomsListInitializingGame.append(heliumAtom)
 	
-	var lithiumAtom = Atome.new("Lithium", Big.new(0.25, 0))
+	var lithiumAtom = Atome.new("Lithium", "Li", Big.new(0.25, 0))
 	var attribut1Lithium = AttributAtome.new(lithiumAtom, "Lien", Big.new(0.0), Big.new(1.56), Big.new(0.25), Big.new(3.25, 2))
 	var attribut2Lithium = AttributAtome.new(lithiumAtom, "Vitesse", Big.new(0.0), Big.new(1.1), Big.new(0.1), Big.new(5.0, 2))
 	var attribut3Lithium = AttributAtome.new(lithiumAtom, "Vibration", Big.new(0.0), Big.new(1.34), Big.new(0.17), Big.new(1.0, 3))
@@ -313,7 +317,7 @@ func DefineAtomsListInitializingGame():
 	lithiumAtom.DefineAtomeUnlockingPrice({"Helium" : Big.new(2.64, 4)})
 	AtomsListInitializingGame.append(lithiumAtom)
 	
-	var berylliumAtom = Atome.new("Beryllium", Big.new(0.10, 0))
+	var berylliumAtom = Atome.new("Beryllium", "Be", Big.new(0.10, 0))
 	var attribut1Beryllium = AttributAtome.new(berylliumAtom, "Force", Big.new(0.0), Big.new(1.45), Big.new(0.18), Big.new(1.75, 3))
 	var attribut2Beryllium = AttributAtome.new(berylliumAtom, "Tension", Big.new(0.0), Big.new(2.25), Big.new(0.75), Big.new(4.0, 3))
 	var attribut3Beryllium = AttributAtome.new(berylliumAtom, "Complexitee", Big.new(0.0), Big.new(1.68), Big.new(0.2), Big.new(1.0, 3))
@@ -323,14 +327,24 @@ func DefineAtomsListInitializingGame():
 	berylliumAtom.DefineAtomeUnlockingPrice({"Lithium" : Big.new(7.4, 4)})
 	AtomsListInitializingGame.append(berylliumAtom)
 	
-	var boreAtom = Atome.new("Bore", Big.new(0.05, 0))
+	var boreAtom = Atome.new("Bore", "B", Big.new(0.05, 0))
 	var attribut1Bore = AttributAtome.new(boreAtom, "Tension", Big.new(0.0), Big.new(1.25), Big.new(0.19), Big.new(5.4, 3))
 	var attribut2Bore = AttributAtome.new(boreAtom, "Vibration", Big.new(0.0), Big.new(1.17), Big.new(0.15), Big.new(3.2, 3))
 	var boreAttributsList = [attribut1Bore, attribut2Bore]
 
 	boreAtom.DefineAtomeAttributs(boreAttributsList)
-	boreAtom.DefineAtomeUnlockingPrice({"Beryllium" : Big.new(2.38, 5)})
+	boreAtom.DefineAtomeUnlockingPrice({"Beryllium" : Big.new(2.38, 9)})
 	AtomsListInitializingGame.append(boreAtom)
+	
+	var carbonAtom = Atome.new("Carbon", "C", Big.new(0.02, 0))
+	var attribut1Carbon = AttributAtome.new(carbonAtom, "Tension", Big.new(0.0), Big.new(1.25), Big.new(0.19), Big.new(5.4, 3))
+	var attribut2Carbon = AttributAtome.new(carbonAtom, "Vibration", Big.new(0.0), Big.new(1.17), Big.new(0.15), Big.new(3.2, 3))
+	var carbonAttributsList = [attribut1Carbon, attribut2Carbon]
+
+	carbonAtom.DefineAtomeAttributs(carbonAttributsList)
+	carbonAtom.DefineAtomeUnlockingPrice({"Bore" : Big.new(8.47, 11)})
+	carbonAtom.UnlockingClass.SetNonDisponnible()
+	AtomsListInitializingGame.append(carbonAtom)
 
 
 #Permet d'initialiser la liste des recherches dans le jeu
@@ -481,11 +495,17 @@ func DefineRechercheMatiereNoireListInitializingGame():
 
 #Permet d'initialiser la liste des molécules dans le jeu.
 func DefineMoleculesListInitializingGame():
-	var moleculeDihydrogene = Molecule.new(0, "DIHYDROGENE", Big.new(0.0), [""], Big.new(0.0), true)
-	moleculeDihydrogene.DefineUnlockingPrice({"DarkMatter" : Big.new(1.0)})
+	var moleculeDihydrogene = Molecule.new(0, "DIHYDROGENE")
+	moleculeDihydrogene.DefineUnlockingPrice({"DarkMatter" : Big.new(1.0, 5)})
 	moleculeDihydrogene.DefineAtomeBaseComation({"Hydrogene" : 2})
+	moleculeDihydrogene.DefineAtomeSortieBonus({"Hydrogene" : Big.new(0.1)})
 	ListeMoleculesInitializeGame.append(moleculeDihydrogene)
-
+	
+	#var moleculeMethane = Molecule.new(1, "METHANE")
+	#moleculeMethane.DefineUnlockingPrice({"DarkMatter" : Big.new(1.0, 8)})
+	#moleculeMethane.DefineAtomeBaseComation({"Hydrogene" : 4, "Carbone" : 1})
+	#moleculeMethane.DefineAtomeSortieBonus({"Hydrogene" : Big.new(0.1), "Carbone" : Big.new(0.1)})
+	#ListeMoleculesInitializeGame.append(moleculeMethane)
 
 #----------------------------------------------Réinitialisation--------------------------------------------------------#
 
@@ -580,7 +600,7 @@ func save():
 		var attributsDictionnary = {}
 		for attributs in ListeAtomes[atomeName].ListeAttribs:
 			attributsDictionnary[attributs.Name] = attributs.Niveau.ToJsonFormat()
-		atomsDictionnary[atomeName] = {"Attributs" : attributsDictionnary, "Unlock" : ListeAtomes[atomeName].isUnlocked}
+		atomsDictionnary[atomeName] = {"Attributs" : attributsDictionnary, "Unlock" : ListeAtomes[atomeName].IsUnlocked}
 		
 	#Pour les recherches
 	var recherchesListe = []

@@ -61,6 +61,9 @@ func VerifyCurrentTime():
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if not RessourceManager.IsTutorialCompleted:
+		SuppressionFenetre()
+	
 	$HTTPRequest.request_completed.connect(_on_request_completed)
 	$HTTPRequest.request("https://google.com")
 	
@@ -77,7 +80,7 @@ func _ready():
 		SuppressionFenetre()
 	
 	for atome in RessourceManager.ListeAtomes:
-		if RessourceManager.ListeAtomes[atome].isUnlocked:
+		if RessourceManager.ListeAtomes[atome].IsUnlocked:
 			ListBonusOffLine[atome] = RessourceManager.CalculateQuantityOneAtome(atome, TempsOffline)
 	
 	DescriptionLabel.text = str(TempsOffline/3600) + " " + tr("HEURES") + " " + str((TempsOffline%3600)/60) + " " + tr("MINUTES")

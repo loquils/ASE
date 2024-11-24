@@ -3,7 +3,9 @@ extends Control
 var Molecule:Molecule
 
 @onready var NomLabel = $PanelC/MainVBoxC/NomMarginC/NomLabel
-@onready var QuantityLabel = $PanelC/MainVBoxC/MainMarginC/MainHBoxC/MoleculeViewPanelC/VBoxC/MarginContainer/HBoxC/QuantityLabel
+@onready var QuantityLabel = $PanelC/MainVBoxC/MainMarginC/MainHBoxC/MoleculeViewPanelC/VBoxC/QuantiteeMarginC/HBoxC/QuantityLabel
+@onready var BonusLabel = $PanelC/MainVBoxC/MainMarginC/MainHBoxC/MoleculeViewPanelC/VBoxC/BonusMarginC/HBoxC/BonusLabel
+@onready var AtomesBonus = $PanelC/MainVBoxC/MainMarginC/MainHBoxC/MoleculeViewPanelC/VBoxC/BonusMarginC/HBoxC/Label
 
 @onready var UnlockPanel = $PanelForUnlock
 @onready var UnlockButton = $PanelForUnlock/FondPanel/VBoxContainer/MoleculeUnlockButton
@@ -18,7 +20,7 @@ func _set_var(molecule:Molecule):
 func _ready():
 	UnlockAtomeNomLabel.text = str(Molecule.AtomePriceForUnlocking.keys()[0])
 	UnlockAtomePrixLabel.text = str(Molecule.AtomePriceForUnlocking.values()[0])
-
+	AtomesBonus.text = Molecule.GetStringNomsSymboles()
 
 func _process(_delta):
 	NomLabel.text = tr(Molecule.Name)
@@ -33,6 +35,9 @@ func _process(_delta):
 			UnlockButton.disabled = false
 	else:
 		QuantityLabel.text = str(RessourceManager.QuantiteesMolecules[Molecule.Name])
+		var coin = BonusManager.GetMoleculeBonus("Hydrogene")
+		BonusLabel.text = "+" + str(Big.multiply(BonusManager.GetMoleculeBonus("Hydrogene"), Big.new(1.0, 2))) + "%"
+	
 	
 	if not Molecule.IsUnlocked:
 		UnlockPanel.visible = true

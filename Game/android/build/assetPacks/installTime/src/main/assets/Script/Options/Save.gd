@@ -23,6 +23,7 @@ func load_game():
 
 	# Récupère l'obj json
 	var save_game = FileAccess.open(SaveFilePath, FileAccess.READ)
+	
 	while save_game.get_position() < save_game.get_length():
 		var json_string = save_game.get_line()
 
