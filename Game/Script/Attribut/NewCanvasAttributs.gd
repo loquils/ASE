@@ -35,10 +35,10 @@ func _process(_delta):
 			UnlockPanel.visible = false
 
 		#On test si le bouton est disabled ou pas : donc si on a assez de tous les atomes qu'on a besoin
-		var testForOk = true
-		for priceAtomeName in Atome.AtomePriceForUnlocking:
-			if RessourceManager.QuantiteesAtomes[priceAtomeName].isLessThan(Atome.AtomePriceForUnlocking[priceAtomeName]):
-				testForOk = false
+		#var testForOk = true
+		#for priceAtomeName in Atome.AtomePriceForUnlocking:
+		#	if RessourceManager.QuantiteesAtomes[priceAtomeName].isLessThan(Atome.AtomePriceForUnlocking[priceAtomeName]):
+		#		testForOk = false
 	
 	else:
 		if not Atome.IsUnlocked:

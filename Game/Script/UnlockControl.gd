@@ -2,9 +2,9 @@ extends Control
 
 var UnlockingObject
 
-@onready var UnlockButton = $Panel/FondPanel/VBoxC/UnlockButton
-@onready var UnlockPanelAtomeLabel = $Panel/FondPanel/VBoxC/AtomeLabel
-@onready var UnlockPanelPrixLabel = $Panel/FondPanel/VBoxC/PrixLabel
+@onready var TitreLabel = $MainPanelC/DescriptionPanelC/MarginC/VBoxC/TitrePanelC/TitreMarginC/TitreLabel
+@onready var PrixLabel = $MainPanelC/DescriptionPanelC/MarginC/VBoxC/PrixPanelC/PrixHBoxC/PrixMarginC/PrixLabel
+@onready var UnlockButton = $MainPanelC/DescriptionPanelC/MarginC/VBoxC/ButtonMarginCer/UnlockButton
 
 
 #Set l'object a unlock, ça peut être un atome, une upgrade etc ...
@@ -15,21 +15,34 @@ func _set_objects(unlockingObject):
 #Faut mettre à jour le text
 func _process(_delta):
 	if UnlockingObject.UnlockingClass != null:
-		#TODO: Il faut faire en sorte que s'il y a plusieurs élément pour unlock bah ça les prennent en compte xD
-		for nomUnlock in UnlockingObject.UnlockingClass.PriceForUnlocking:
-			UnlockPanelAtomeLabel.text = tr(nomUnlock)
-			UnlockPanelPrixLabel.text = str(UnlockingObject.UnlockingClass.PriceForUnlocking[nomUnlock])
-			match nomUnlock:
-				"Coins": 
-					UnlockButton.disabled = RessourceManager.Coins.isLessThan(UnlockingObject.UnlockingClass.PriceForUnlocking[nomUnlock])
-				"DarkMatter": 
-					UnlockButton.disabled = RessourceManager.DarkMatter.isLessThan(UnlockingObject.UnlockingClass.PriceForUnlocking[nomUnlock])
-				_:
-					if RessourceManager.QuantiteesAtomes.has(nomUnlock):
-						UnlockButton.disabled = RessourceManager.QuantiteesAtomes[nomUnlock].isLessThan(UnlockingObject.UnlockingClass.PriceForUnlocking[nomUnlock])
-					else:
-						UnlockButton.disabled = true
+		PrixLabel.text = UnlockingObject.UnlockingClass.ToNamesAndPricesString()
+		UnlockButton.disabled = not AreAllRessourcesUnlockingAvailable()
+		var titre = tr("DEVEROUILLAGE") + " "
+		if UnlockingObject is Atome:
+			titre += tr(UnlockingObject.Name)
+		else:
+			titre += tr("AMELIORATION")
+		TitreLabel.text = titre
 
+
+#Permet de savoir si toutes les ressources sont disponnibles pour unlock un élément.
+func AreAllRessourcesUnlockingAvailable():
+	for nomUnlock in UnlockingObject.UnlockingClass.PriceForUnlocking:
+		match nomUnlock:
+			"Coins": 
+				if RessourceManager.Coins.isLessThan(UnlockingObject.UnlockingClass.PriceForUnlocking[nomUnlock]):
+					return false
+			"DarkMatter": 
+				if RessourceManager.DarkMatter.isLessThan(UnlockingObject.UnlockingClass.PriceForUnlocking[nomUnlock]):
+					return false
+			_:
+				if RessourceManager.QuantiteesAtomes.has(nomUnlock):
+					if RessourceManager.QuantiteesAtomes[nomUnlock].isLessThan(UnlockingObject.UnlockingClass.PriceForUnlocking[nomUnlock]):
+						return false
+				else:
+					return false
+	#Si toutes les ressources sont disponibles, on arrive ici :)
+	return true
 
 #Permet de Unlock l'objet attribuer au panel unlock en fonction de ce qu'il coute
 func OnUnlockButtonPressed():

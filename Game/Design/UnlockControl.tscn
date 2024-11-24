@@ -1,0 +1,126 @@
+[gd_scene load_steps=5 format=3 uid="uid://cllsbf0661v07"]
+
+[ext_resource type="Theme" uid="uid://dmvsldk12nqch" path="res://Design/Themes/Utils/UnlockControlTheme.tres" id="1_q55v7"]
+[ext_resource type="Script" path="res://Script/UnlockControl.gd" id="2_u12vk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mjfa2"]
+bg_color = Color(0.192157, 0.192157, 0.192157, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.0666667, 0.0666667, 0.0666667, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7jt3x"]
+bg_color = Color(0.192157, 0.192157, 0.192157, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.129412, 0.129412, 0.129412, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="UnlockControl" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_q55v7")
+script = ExtResource("2_u12vk")
+
+[node name="MainPanelC" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DescriptionPanelC" type="PanelContainer" parent="MainPanelC"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_mjfa2")
+
+[node name="MarginC" type="MarginContainer" parent="MainPanelC/DescriptionPanelC"]
+layout_mode = 2
+
+[node name="VBoxC" type="VBoxContainer" parent="MainPanelC/DescriptionPanelC/MarginC"]
+layout_mode = 2
+
+[node name="TitrePanelC" type="PanelContainer" parent="MainPanelC/DescriptionPanelC/MarginC/VBoxC"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="TitreMarginC" type="MarginContainer" parent="MainPanelC/DescriptionPanelC/MarginC/VBoxC/TitrePanelC"]
+layout_mode = 2
+
+[node name="TitreLabel" type="Label" parent="MainPanelC/DescriptionPanelC/MarginC/VBoxC/TitrePanelC/TitreMarginC"]
+layout_mode = 2
+text = "DEVEROUILLAGE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PrixPanelC" type="PanelContainer" parent="MainPanelC/DescriptionPanelC/MarginC/VBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_7jt3x")
+
+[node name="PrixHBoxC" type="HBoxContainer" parent="MainPanelC/DescriptionPanelC/MarginC/VBoxC/PrixPanelC"]
+layout_mode = 2
+
+[node name="TitreMarginC" type="MarginContainer" parent="MainPanelC/DescriptionPanelC/MarginC/VBoxC/PrixPanelC/PrixHBoxC"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="TitreLabel" type="Label" parent="MainPanelC/DescriptionPanelC/MarginC/VBoxC/PrixPanelC/PrixHBoxC/TitreMarginC"]
+layout_mode = 2
+text = "PRIX"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel" type="Panel" parent="MainPanelC/DescriptionPanelC/MarginC/VBoxC/PrixPanelC/PrixHBoxC"]
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+
+[node name="PrixMarginC" type="MarginContainer" parent="MainPanelC/DescriptionPanelC/MarginC/VBoxC/PrixPanelC/PrixHBoxC"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="PrixLabel" type="Label" parent="MainPanelC/DescriptionPanelC/MarginC/VBoxC/PrixPanelC/PrixHBoxC/PrixMarginC"]
+layout_mode = 2
+text = "Prix
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonMarginCer" type="MarginContainer" parent="MainPanelC/DescriptionPanelC/MarginC/VBoxC"]
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="UnlockButton" type="Button" parent="MainPanelC/DescriptionPanelC/MarginC/VBoxC/ButtonMarginCer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 10
+disabled = true
+text = "DEVEROUILLER"
+
+[connection signal="pressed" from="MainPanelC/DescriptionPanelC/MarginC/VBoxC/ButtonMarginCer/UnlockButton" to="." method="OnUnlockButtonPressed"]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cswogvfee3fn8"]
 
 [ext_resource type="Script" path="res://Script/AmeliorationLithium/ButtonAmeliorationLithium.gd" id="1_o5dqv"]
-[ext_resource type="PackedScene" uid="uid://cllsbf0661v07" path="res://Design/PanelForUnlock.tscn" id="2_rl80y"]
+[ext_resource type="PackedScene" uid="uid://cllsbf0661v07" path="res://Design/UnlockControl.tscn" id="2_rl80y"]
 
 [node name="ButtonMarginC" type="MarginContainer"]
 anchors_preset = 15

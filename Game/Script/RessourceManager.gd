@@ -333,7 +333,7 @@ func DefineAtomsListInitializingGame():
 	var boreAttributsList = [attribut1Bore, attribut2Bore]
 
 	boreAtom.DefineAtomeAttributs(boreAttributsList)
-	boreAtom.DefineAtomeUnlockingPrice({"Beryllium" : Big.new(2.38, 5)})
+	boreAtom.DefineAtomeUnlockingPrice({"Beryllium" : Big.new(2.38, 9)})
 	AtomsListInitializingGame.append(boreAtom)
 
 

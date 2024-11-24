@@ -71,6 +71,10 @@ MINUTES, "Minute(s)", "Minute(s)"
 HORSLIGNE, "Hors ligne (Max 4H): ", "Offline (Max 4H): "
 
 
+DEVEROUILLAGE, "Dévérouillage", "Unlocking"
+DEVEROUILLER, "Dévérouiller", "Unlock"
+AMELIORATION, "Amélioration", "Upgrade"
+
 DEBUT, "Début", "Begin"
 EASY, "Facile", "Easy"
 LESSEASY, "Moins\nFacile", "Less\nEasy"

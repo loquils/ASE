@@ -1,0 +1,50 @@
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://dmvsldk12nqch"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_myxeh"]
+bg_color = Color(0.192157, 0.192157, 0.192157, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.129412, 0.129412, 0.129412, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 3.0
+expand_margin_top = 3.0
+expand_margin_right = 3.0
+expand_margin_bottom = 3.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gf2bt"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dkngb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1nn2h"]
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 3.0
+expand_margin_top = 3.0
+expand_margin_right = 3.0
+expand_margin_bottom = 3.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uu8qr"]
+
+[resource]
+Button/font_sizes/font_size = 20
+Button/styles/disabled = SubResource("StyleBoxFlat_myxeh")
+Button/styles/focus = SubResource("StyleBoxEmpty_gf2bt")
+Button/styles/hover = SubResource("StyleBoxEmpty_dkngb")
+Button/styles/normal = SubResource("StyleBoxFlat_1nn2h")
+Button/styles/pressed = SubResource("StyleBoxEmpty_uu8qr")
+Label/font_sizes/font_size = 20
+MarginContainer/constants/margin_bottom = 4
+MarginContainer/constants/margin_left = 4
+MarginContainer/constants/margin_right = 4
+MarginContainer/constants/margin_top = 4

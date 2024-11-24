@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://bq2qplg73uyiq"]
 
 [ext_resource type="Script" path="res://Script/AmeliorationBeryllium/ButtonAmeliorationBeryllium.gd" id="1_g6x8d"]
-[ext_resource type="PackedScene" uid="uid://cllsbf0661v07" path="res://Design/PanelForUnlock.tscn" id="2_ea1lr"]
+[ext_resource type="PackedScene" uid="uid://cllsbf0661v07" path="res://Design/UnlockControl.tscn" id="2_ea1lr"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mvem7"]
 bg_color = Color(0.317647, 0.317647, 0.317647, 1)
