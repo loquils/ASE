@@ -61,9 +61,13 @@ func _on_button_amelioration_beryllium_pressed():
 	AmeliorationBerylliumControl.visible = true
 
 
-#Trigger lors de l'appuie sur le bouton pour ouvrir la page d'améliorations du beryllium
+#Trigger lors de l'appuie sur le bouton pour ouvrir la page d'améliorations du Bore.
 func _on_button_amelioration_bore_pressed():
 	AmeliorationBoreControl.visible = true
+
+#Trigger lors de l'appuie sur le bouton pour ouvrir la page d'améliorations du Carbon.
+func _on_button_amelioration_carbon_pressed():
+	pass # Replace with function body.
 
 
 #Trigger lors de l'appuie sur le bouton pour ouvrir la page de prestige 
@@ -124,3 +128,6 @@ func _on_francais_button_pressed():
 #Permet de changer la langue en anglais depuis la fenetre d'accueil
 func _on_anglais_button_pressed():
 	LangueManager.maj_langue("en")
+
+
+

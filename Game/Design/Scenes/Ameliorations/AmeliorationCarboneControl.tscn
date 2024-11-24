@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bdg3p846bhmy1"]
+
+[ext_resource type="Script" path="res://Script/AmeliorationCarbone/AmeliorationCarboneControl.gd" id="1_ly3rr"]
+
+[node name="AmeliorationCarboneControl" type="Control"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_ly3rr")

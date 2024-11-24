@@ -14,12 +14,14 @@ var BoutonRechercheDarkMatter = preload("res://Design/Scenes/Recherches/NewButto
 @onready var MoleculesControl = $PresentationVBoxC/MoleculesControl
 @onready var MoleculesButton = $PresentationVBoxC/MarginC/VBoxC/PrestigeButtonsMarginC/InterneButtonsMarginC/PrestigeButtonsGridC/MoleculesMarginC2/MoleculesButton
 
+@onready var MaitriseControl = $PresentationVBoxC/MaitriseControl
 
 #Initialize la vue de la matière noire
 func _ready():
 	#On connecte ici l'appuie du bouton lors de l'achat d'une recherche
 	RechercheClick.connect("Research_button_pressed", AchatRehercheMatiereNoireButtonPressed)
 	RechercheClick.connect("ReturnToDarkMatter_button_pressed", ReturnToDarkMatterButtonPressed)
+	
 	
 	for rechercheDarkMatterInList in RessourceManager.ListeRecherchesMatiereNoire:
 		var newButtonAmeliorationDarkMatter = BoutonRechercheDarkMatter.instantiate()
@@ -99,17 +101,26 @@ func _on_annuler_prestige_button_pressed():
 	PanelValidationPrestige.hide()
 
 
+#Permet d'afficher le pannel avec les recherche de matière noire.
 func _on_recherches_button_pressed():
 	ButtonsMarginC.hide()
 	RecherchesMarginC.show()
 
 
+#Permet d'afficher le pannel avec les molécules.
 func _on_molecules_button_pressed():
 	MainMarginC.hide()
 	MoleculesControl.show()
 
+
+#Permet de quitter les menus de molécule ou de recherche pour retourner sur la première page de la matière noire.
 func ReturnToDarkMatterButtonPressed():
 	MoleculesControl.hide()
 	RecherchesMarginC.hide()
 	MainMarginC.show()
 	ButtonsMarginC.show()
+
+
+func _on_maitrise_button_pressed():
+	ButtonsMarginC.hide()
+	MaitriseControl.show()

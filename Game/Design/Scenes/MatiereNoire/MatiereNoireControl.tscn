@@ -548,9 +548,27 @@ theme_override_constants/margin_bottom = 5
 layout_mode = 2
 text = "MOLECULES"
 
+[node name="MaitriseMarginC" type="MarginContainer" parent="PresentationVBoxC/MarginC/VBoxC/PrestigeButtonsMarginC/InterneButtonsMarginC/PrestigeButtonsGridC"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="MaitriseButton" type="Button" parent="PresentationVBoxC/MarginC/VBoxC/PrestigeButtonsMarginC/InterneButtonsMarginC/PrestigeButtonsGridC/MaitriseMarginC"]
+layout_mode = 2
+disabled = true
+text = "NONDISPONIBLE"
+
 [node name="MoleculesControl" parent="PresentationVBoxC" instance=ExtResource("8_kg0w4")]
 visible = false
 layout_mode = 2
+
+[node name="MaitriseControl" type="Control" parent="PresentationVBoxC"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
 
 [node name="FondValidationPrestigePanel" type="Panel" parent="."]
 visible = false
@@ -630,5 +648,6 @@ text = "ANNULER"
 [connection signal="pressed" from="PresentationVBoxC/MarginC/VBoxC/RecherchesMarginC/InterneRecherchesMarginC/VBoxC/ReturnRecherchesButton" to="." method="ReturnToDarkMatterButtonPressed"]
 [connection signal="pressed" from="PresentationVBoxC/MarginC/VBoxC/PrestigeButtonsMarginC/InterneButtonsMarginC/PrestigeButtonsGridC/RecherchesMarginC/RecherchesButton" to="." method="_on_recherches_button_pressed"]
 [connection signal="pressed" from="PresentationVBoxC/MarginC/VBoxC/PrestigeButtonsMarginC/InterneButtonsMarginC/PrestigeButtonsGridC/MoleculesMarginC2/MoleculesButton" to="." method="_on_molecules_button_pressed"]
+[connection signal="pressed" from="PresentationVBoxC/MarginC/VBoxC/PrestigeButtonsMarginC/InterneButtonsMarginC/PrestigeButtonsGridC/MaitriseMarginC/MaitriseButton" to="." method="_on_maitrise_button_pressed"]
 [connection signal="pressed" from="FondValidationPrestigePanel/BoxValidationPrestigePanel/MarginContainer/PresentationVBoxC/ButonsHBoxC/OuiButton" to="." method="_on_validation_prestige_button_pressed"]
 [connection signal="pressed" from="FondValidationPrestigePanel/BoxValidationPrestigePanel/MarginContainer/PresentationVBoxC/ButonsHBoxC/AnnulerButton" to="." method="_on_annuler_prestige_button_pressed"]
