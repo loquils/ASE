@@ -275,6 +275,8 @@ func CalculateQuantityAtomes(timeInSeconde:int = 1):
 		if molecule.IsUnlocked:
 			QuantiteesMolecules[molecule.Name] = molecule.GetMoleculeProductionPerSeconde()
 	BonusManager.MajBonusMolecules()
+	
+	InfosPartie.MajInformationsPartie()
 
 
 #Calcul et ajoute la quantité d'un atome par rapport au temps indiqué
@@ -289,9 +291,8 @@ func AtomesGains(quantiteeAtomesGagneeDictionnary):
 	for atome in quantiteeAtomesGagneeDictionnary:
 		if RessourceManager.QuantiteesAtomes.has(atome):
 			RessourceManager.QuantiteesAtomes[atome] = Big.add(RessourceManager.QuantiteesAtomes[atome], quantiteeAtomesGagneeDictionnary[atome])
-		if InfosPartie.AtomesObtenuInThisReset.has(atome):
-			InfosPartie.AtomesObtenuInThisReset[atome] = Big.add(InfosPartie.AtomesObtenuInThisReset[atome], quantiteeAtomesGagneeDictionnary[atome])
-
+		if InfosPartie.AtomesObtenusInThisReset.has(atome):
+			InfosPartie.AtomesObtenusInThisReset[atome] = Big.add(InfosPartie.AtomesObtenusInThisReset[atome], quantiteeAtomesGagneeDictionnary[atome])
 
 
 #---------------------------------Define all elements of the game !----------------------------------#
