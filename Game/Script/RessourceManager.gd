@@ -648,7 +648,7 @@ func save():
 		moleculesListe.append({"Id" : molecule.Id, "IsUnlocked" : molecule.IsUnlocked})
 	
 	var save_dict = {
-		"Langue" : LangueManager.languageCourrant,
+		"Langue" : LangueManager.LanguageCourrant,
 		"Coins" : Coins.ToJsonFormat(),
 		"AtomsQuantity" : atomsQuantityDictionnary,
 		"ListeAtomes" : atomsDictionnary,

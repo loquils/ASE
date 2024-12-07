@@ -50,15 +50,21 @@ PRIX, "Prix ", "Price "
 Prix, "Prix ", "Price "
 Coefficient : , "Coefficient : ", "Coefficient : "
 
+
 UNIQUE, "(Unique)", "(Single)"
 TOTAL, "(Total)", "(Total)"
 
+
 OPTIONSLABEL, "Options", "Settings"
-CHANGERLANGUEBUTTON, "Changer langue", "Change language"
+LANGUAGESELECTION, "Sélection de la langue", "Language selection"
+GESTIONSAUVEGARDE, "Gestion Sauvegarde", "Saving gestion"
 SAUVEGARDELABEL, "Sauvegarder", "Save"
 FORCERESETLABEL, "Totale remise à zéro", "Full force reset"
 NOMVALIDATIONRESETLABEL, "Êtes vous sûr que voulez réinitialiser le jeu ?", "Are you sure you want to reset the game ?"
 INFORMATIONVALIDATIONRESETLABEL, "Toutes votre avancée sera remise à zero ! Rien ne pourra être sauvé ! Etes-vous sur de vouloir réinitialiser ?\nLe jeu se fermera.", "Everything will be gone ! Nothing will be saved ! Are you sure you want to reset ?\nThe game will close."
+QUITTER, "Quitter", "Exit"
+
+
 
 TITREFENETREHORSLIGNE, "Récompense Hors Ligne", "Offline reward"
 RECUPERER, "Récupérer la récompense", "Get reward"
@@ -69,6 +75,7 @@ ERRORLOADING, "Le temps hors ligne n'a pas pu être vérifié, vérifier que vou
 HEURES, "Heure(s)", "Hour(s)"
 MINUTES, "Minute(s)", "Minute(s)"
 HORSLIGNE, "Hors ligne (Max 4H): ", "Offline (Max 4H): "
+
 
 
 DEVEROUILLAGE, "Dévérouillage", "Unlocking"
@@ -101,6 +108,7 @@ AMELIOHELIUM, "Améliorations He", "He Upgrades"
 AMELIOLITHIUM, "Améliorations Li", "Li Upgrades"
 
 
+
 DESCRIPTIONMENUAMELIORATIONHELIUM, "", ""
 BONUSPRESSION, "Sortie Hydrogène ", "Hydrogen Output "
 BONUSTEMPERATURE, "Coefficient attributs ", "Attributes coefficient "
@@ -122,6 +130,7 @@ AMELIORATIONHELIUM6, "Puissance de rotation", "Rotation power"
 AMELIORATIONHELIUMTEMPERATUREDESCRIPTION3, "Augmente de {calc} la taille de centrifuge.", "Increase Centrifuge size by {calc}."
 
 
+
 DESCRIPTIONMENUAMELIORATIONLITHIUM, "", ""
 BONUSPROTON, "Sortie Helium ", "Helium Output "
 BONUSNEUTRON, "Prix attribut Helium ", "Helium attribut price "
@@ -139,6 +148,8 @@ AMELIORATIONLITHIUMELECTRONLDESCRIPTION, "Améliore le coefficient des Electrons
 BONUSACTUEL, "Bonus actuel", "Current bonus"
 BONUSSUIVANT, "Bonus suivant", "Next bonus"
 
+
+
 TITREBERYLLIUMMENU, "Améliorations Beryllium", "Beryllium Upgrades"
 AMELIORATIONBERYLLIUMHYDROGENEDESCRIPTION, "", ""
 AMELIORATIONBERYLLIUMHELIUMDESCRIPTION, "", ""
@@ -149,6 +160,8 @@ BONUSHYDROGENE, "Sortie Hydrogène", "Hydrogene output"
 BONUSHELIUM, "Sortie Helium", "Helium output"
 BONUSLITHIUM, "Sortie Lithium", "Lithium output"
 BONUSBERYLLIUM, "Sortie Béryllium", "Beryllium output"
+
+
 
 TITRECLASSICPANEL, "Améliorations Bore classiques", "Boron classicals Upgrades"
 TITREADVANCEDPANEL, "Améliorations Bore avancées", "Boron advanced Upgrades"
@@ -186,6 +199,7 @@ PRESTIGEBOUTON, "Prestige !\n Retours vers un nouveau commencement !", "Prestige
 NOMVALIDATIONPRESTIGELABEL, "Êtes vous sûr que voulez lancer un prestige ?", "Are you sure you want to prestige ?"
 INFORMATIONVALIDATIONPRESTIGELABEL, "Tous vos atomes, vos coins, vos recherches et vos améliorations seront remis à zeros. Seul les amélioration de la matière noire seront gardées !", "All of your atoms, coins, researches and upgrades will be lost. Only dark matter upgrades will be kept."
 TEXTEQUANTITEEMATIERENOIRE, "Matière Noire gagnée aprés prestige : ", "Dark Mater won after prestige :"
+
 
 
 MOLECULES, "Molécules", "Molecules"

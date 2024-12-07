@@ -128,6 +128,3 @@ func _on_francais_button_pressed():
 #Permet de changer la langue en anglais depuis la fenetre d'accueil
 func _on_anglais_button_pressed():
 	LangueManager.maj_langue("en")
-
-
-
