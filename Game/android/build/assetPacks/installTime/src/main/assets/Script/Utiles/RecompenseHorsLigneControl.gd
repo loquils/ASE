@@ -102,8 +102,7 @@ func SuppressionFenetre():
 
 #Trigger lors de l'appuie pour la récupération de la récompense.
 func _on_recuperer_button_pressed():
-	for atome in ListBonusOffLine:
-		RessourceManager.QuantiteesAtomes[atome] = Big.add(RessourceManager.QuantiteesAtomes[atome], ListBonusOffLine[atome])
+	RessourceManager.AtomesGains(ListBonusOffLine)
 	SuppressionFenetre()
 
 

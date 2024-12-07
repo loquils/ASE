@@ -5,20 +5,22 @@ var CoinsObtenusTotal = Big.new(0.0)
 
 var DarkMatterObtenuTotal = Big.new(0.0)
 
-var AtomesObtenuInThisReset = {}
+var AtomesObtenusInThisReset = {}
 
-var HydrogeneMaximum = Big.new(0.0)
+var AtomesObtenusMaximum = {}
 
 var RecherchesAchetees = 0
 var RecherchesMatiereNoireAchetees = 0
 var NombrePrestige:int = 0
 
 
+
 #Permet de mettre à jour toutes les informations sur la partie
 func MajInformationsPartie():
-	if RessourceManager.QuantiteesAtomes.has("Hydrogene"):
-		if HydrogeneMaximum.isLessThan(RessourceManager.QuantiteesAtomes["Hydrogene"]):
-			HydrogeneMaximum = RessourceManager.QuantiteesAtomes["Hydrogene"]
+	for atome in RessourceManager.QuantiteesAtomes:
+		if AtomesObtenusMaximum.has(atome):
+			if AtomesObtenusMaximum[atome].isLessThan(RessourceManager.QuantiteesAtomes[atome]):
+				AtomesObtenusMaximum[atome] = RessourceManager.QuantiteesAtomes[atome]
 
 	RecherchesAchetees = GetNombreRecherchesAchetees()
 	RecherchesMatiereNoireAchetees = GetNombreRecherchesMatiereNoireAchetees()
@@ -48,9 +50,11 @@ func GetNombreRecherchesMatiereNoireAchetees():
 
 #Permet de faire un reset de prestige sur les informations de la partie
 func ResetInformationsOnPrestige(darkMatterObtenu):
-	HydrogeneMaximum = Big.new(0.0)
-	for atome in AtomesObtenuInThisReset:
-		AtomesObtenuInThisReset[atome] = Big.new(0.0)
+	for atome in AtomesObtenusMaximum:
+		AtomesObtenusMaximum[atome] = Big.new(0.0)
+		
+	for atome in AtomesObtenusInThisReset:
+		AtomesObtenusInThisReset[atome] = Big.new(0.0)
 	
 	CoinsObtenusInThisReset = Big.new(0.0)
 	CoinsObtenusTotal = Big.add(CoinsObtenusTotal, CoinsObtenusInThisReset)
@@ -61,29 +65,36 @@ func ResetInformationsOnPrestige(darkMatterObtenu):
 #Sauvegarde des informations de la partie dans la save.
 func Save():
 	#Pour les quantitées
-	var atomesQuantiteeObtenuDictionnary = {}
-	for atomName in AtomesObtenuInThisReset:
-		atomesQuantiteeObtenuDictionnary[atomName] = AtomesObtenuInThisReset[atomName].ToJsonFormat()
+	var atomesQuantiteeObtenuInResetDictionnary = {}
+	for atomName in AtomesObtenusInThisReset:
+		atomesQuantiteeObtenuInResetDictionnary[atomName] = AtomesObtenusInThisReset[atomName].ToJsonFormat()
+	
+	var atomesQuantiteeMaximumDictionnary = {}
+	for atome in AtomesObtenusMaximum:
+		atomesQuantiteeMaximumDictionnary[atome] = AtomesObtenusMaximum[atome].ToJsonFormat()
 	
 	var infosPartieDictionnary = {
 		"NombrePrestige" : NombrePrestige,
-		"HydrogeneMaximum" : HydrogeneMaximum.ToJsonFormat(),
+		"AtomesObtenusMaximum" : atomesQuantiteeMaximumDictionnary,
 		"CoinsObtenusInThisReset" : CoinsObtenusInThisReset.ToJsonFormat(),
 		"CoinsObtenusTotal" : CoinsObtenusTotal.ToJsonFormat(),
 		"DarkMatterObtenuTotal" : DarkMatterObtenuTotal.ToJsonFormat(),
-		"AtomesObtenuInThisReset" : atomesQuantiteeObtenuDictionnary
+		"AtomesObtenusInThisReset" : atomesQuantiteeObtenuInResetDictionnary
 	}
 	return infosPartieDictionnary
 
 
 #Chargement des informations de la partie dans la save.
 func Load(infos):
-	InitializeAtomesObtenusInThisReset()
+	InitializeAll()
 	
 	if infos.has("NombrePrestige"):
 		NombrePrestige = int(infos["NombrePrestige"])
-	if infos.has("HydrogeneMaximum"):
-		HydrogeneMaximum = Big.ToCustomFormat(infos["HydrogeneMaximum"])
+	if infos.has("AtomesObtenusMaximum"):
+		var atomesObtenusMaximumDictionnary = infos["AtomesObtenusMaximum"]
+		for atomeName in atomesObtenusMaximumDictionnary:
+			if AtomesObtenusMaximum.has(atomeName):
+				AtomesObtenusMaximum[atomeName] = Big.ToCustomFormat(atomesObtenusMaximumDictionnary[atomeName])
 	if infos.has("CoinsObtenusInThisReset"):
 		CoinsObtenusInThisReset = Big.ToCustomFormat(infos["CoinsObtenusInThisReset"])
 	if infos.has("CoinsObtenusTotal"):
@@ -92,14 +103,15 @@ func Load(infos):
 		DarkMatterObtenuTotal = Big.ToCustomFormat(infos["DarkMatterObtenuTotal"])
 		if DarkMatterObtenuTotal.isEqualTo(Big.new(0.0)) and not RessourceManager.DarkMatter.isEqualTo(Big.new(0.0)):
 			DarkMatterObtenuTotal = RessourceManager.DarkMatter
-	if infos.has("AtomesObtenuInThisReset"):
-		var atomesObtenusDictionnary = infos["AtomesObtenuInThisReset"]
+	if infos.has("AtomesObtenusInThisReset"):
+		var atomesObtenusDictionnary = infos["AtomesObtenusInThisReset"]
 		for atomeName in atomesObtenusDictionnary:
-			if AtomesObtenuInThisReset.has(atomeName):
-				AtomesObtenuInThisReset[atomeName] = Big.ToCustomFormat(atomesObtenusDictionnary[atomeName])
+			if AtomesObtenusInThisReset.has(atomeName):
+				AtomesObtenusInThisReset[atomeName] = Big.ToCustomFormat(atomesObtenusDictionnary[atomeName])
 
 
 #Permet d'initialiser le dictionnaire des atomes obtenus dans ce reset.
-func InitializeAtomesObtenusInThisReset():
+func InitializeAll():
 	for atome in RessourceManager.AtomsListInitializingGame:
-		AtomesObtenuInThisReset[atome.Name] = Big.new(0.0)
+		AtomesObtenusInThisReset[atome.Name] = Big.new(0.0)
+		AtomesObtenusMaximum[atome.Name] = Big.new(0.0)

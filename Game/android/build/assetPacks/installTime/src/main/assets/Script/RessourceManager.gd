@@ -263,18 +263,20 @@ func LoadMolecule(listeMoleculeInSaving):
 #Calcul et ajoute la quantité d'atome par rapport au temps indiqué
 func CalculateQuantityAtomes(timeInSeconde:int = 1):
 	#Calcul des atomes.
+	var quantiteeAtomesGagneeDictionnary = {}
 	for atome in ListeAtomes:
 		if ListeAtomes[atome].IsUnlocked:
-			var quantityAtomeWithTime = Big.multiply(ListeAtomes[atome].GetAtomePerSec(), Big.new(timeInSeconde))
-			QuantiteesAtomes[atome] = Big.add(QuantiteesAtomes[atome], quantityAtomeWithTime)
-			if InfosPartie.AtomesObtenuInThisReset.has(atome):
-				InfosPartie.AtomesObtenuInThisReset[atome] = Big.add(InfosPartie.AtomesObtenuInThisReset[atome], quantityAtomeWithTime)
+			quantiteeAtomesGagneeDictionnary[atome] = Big.multiply(ListeAtomes[atome].GetAtomePerSec(), Big.new(timeInSeconde))
+	
+	AtomesGains(quantiteeAtomesGagneeDictionnary)
 	
 	#Calcul des molécules.
 	for molecule in ListeMolecules:
 		if molecule.IsUnlocked:
 			QuantiteesMolecules[molecule.Name] = molecule.GetMoleculeProductionPerSeconde()
 	BonusManager.MajBonusMolecules()
+	
+	InfosPartie.MajInformationsPartie()
 
 
 #Calcul et ajoute la quantité d'un atome par rapport au temps indiqué
@@ -282,6 +284,15 @@ func CalculateQuantityOneAtome(atomName, timeInSeconde:int = 1):
 	if ListeAtomes[atomName].IsUnlocked:
 		var quantityAtomeWithTime = Big.multiply(ListeAtomes[atomName].GetAtomePerSec(), Big.new(timeInSeconde))
 		return quantityAtomeWithTime
+
+
+#Permet d'ajouter une quantité d'atome à la quantité du jeu, et dans les infos partie aussi.
+func AtomesGains(quantiteeAtomesGagneeDictionnary):
+	for atome in quantiteeAtomesGagneeDictionnary:
+		if RessourceManager.QuantiteesAtomes.has(atome):
+			RessourceManager.QuantiteesAtomes[atome] = Big.add(RessourceManager.QuantiteesAtomes[atome], quantiteeAtomesGagneeDictionnary[atome])
+		if InfosPartie.AtomesObtenusInThisReset.has(atome):
+			InfosPartie.AtomesObtenusInThisReset[atome] = Big.add(InfosPartie.AtomesObtenusInThisReset[atome], quantiteeAtomesGagneeDictionnary[atome])
 
 
 #---------------------------------Define all elements of the game !----------------------------------#
@@ -339,7 +350,9 @@ func DefineAtomsListInitializingGame():
 	var carbonAtom = Atome.new("Carbon", "C", Big.new(0.02, 0))
 	var attribut1Carbon = AttributAtome.new(carbonAtom, "Tension", Big.new(0.0), Big.new(1.25), Big.new(0.19), Big.new(5.4, 3))
 	var attribut2Carbon = AttributAtome.new(carbonAtom, "Vibration", Big.new(0.0), Big.new(1.17), Big.new(0.15), Big.new(3.2, 3))
-	var carbonAttributsList = [attribut1Carbon, attribut2Carbon]
+	var attribut3Carbon = AttributAtome.new(carbonAtom, "Vibration", Big.new(0.0), Big.new(1.17), Big.new(0.15), Big.new(3.2, 3))
+	var attribut4Carbon = AttributAtome.new(carbonAtom, "Vibration", Big.new(0.0), Big.new(1.17), Big.new(0.15), Big.new(3.2, 3))
+	var carbonAttributsList = [attribut1Carbon, attribut2Carbon, attribut3Carbon, attribut4Carbon]
 
 	carbonAtom.DefineAtomeAttributs(carbonAttributsList)
 	carbonAtom.DefineAtomeUnlockingPrice({"Bore" : Big.new(8.47, 11)})
@@ -638,7 +651,7 @@ func save():
 		moleculesListe.append({"Id" : molecule.Id, "IsUnlocked" : molecule.IsUnlocked})
 	
 	var save_dict = {
-		"Langue" : LangueManager.languageCourrant,
+		"Langue" : LangueManager.LanguageCourrant,
 		"Coins" : Coins.ToJsonFormat(),
 		"AtomsQuantity" : atomsQuantityDictionnary,
 		"ListeAtomes" : atomsDictionnary,
