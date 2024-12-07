@@ -75,7 +75,7 @@ func Save():
 	
 	var infosPartieDictionnary = {
 		"NombrePrestige" : NombrePrestige,
-		"AtomesObtenuMaximum" : atomesQuantiteeMaximumDictionnary,
+		"AtomesObtenusMaximum" : atomesQuantiteeMaximumDictionnary,
 		"CoinsObtenusInThisReset" : CoinsObtenusInThisReset.ToJsonFormat(),
 		"CoinsObtenusTotal" : CoinsObtenusTotal.ToJsonFormat(),
 		"DarkMatterObtenuTotal" : DarkMatterObtenuTotal.ToJsonFormat(),
@@ -90,8 +90,8 @@ func Load(infos):
 	
 	if infos.has("NombrePrestige"):
 		NombrePrestige = int(infos["NombrePrestige"])
-	if infos.has("AtomesObtenuMaximum"):
-		var atomesObtenusMaximumDictionnary = infos["AtomesObtenuMaximum"]
+	if infos.has("AtomesObtenusMaximum"):
+		var atomesObtenusMaximumDictionnary = infos["AtomesObtenusMaximum"]
 		for atomeName in atomesObtenusMaximumDictionnary:
 			if AtomesObtenusMaximum.has(atomeName):
 				AtomesObtenusMaximum[atomeName] = Big.ToCustomFormat(atomesObtenusMaximumDictionnary[atomeName])

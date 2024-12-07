@@ -48,7 +48,7 @@ func GetMoleculeProductionPerSeconde():
 	var calculDictionnary = {}
 	var quantiteeAtomesInCreation = 0
 	for consomation in AtomeBaseConsomation:
-		var maxAtomeQuantity = InfosPartie.AtomesObtenuInThisReset[consomation]
+		var maxAtomeQuantity = InfosPartie.AtomesObtenusInThisReset[consomation]
 		calculDictionnary[consomation] = Big.power(maxAtomeQuantity, 1.0 / (1.5 * AtomeBaseConsomation[consomation]))
 		quantiteeAtomesInCreation += AtomeBaseConsomation[consomation]
 	
