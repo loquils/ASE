@@ -263,12 +263,12 @@ func LoadMolecule(listeMoleculeInSaving):
 #Calcul et ajoute la quantité d'atome par rapport au temps indiqué
 func CalculateQuantityAtomes(timeInSeconde:int = 1):
 	#Calcul des atomes.
+	var quantiteeAtomesGagneeDictionnary = {}
 	for atome in ListeAtomes:
 		if ListeAtomes[atome].IsUnlocked:
-			var quantityAtomeWithTime = Big.multiply(ListeAtomes[atome].GetAtomePerSec(), Big.new(timeInSeconde))
-			QuantiteesAtomes[atome] = Big.add(QuantiteesAtomes[atome], quantityAtomeWithTime)
-			if InfosPartie.AtomesObtenuInThisReset.has(atome):
-				InfosPartie.AtomesObtenuInThisReset[atome] = Big.add(InfosPartie.AtomesObtenuInThisReset[atome], quantityAtomeWithTime)
+			quantiteeAtomesGagneeDictionnary[atome] = Big.multiply(ListeAtomes[atome].GetAtomePerSec(), Big.new(timeInSeconde))
+	
+	AtomesGains(quantiteeAtomesGagneeDictionnary)
 	
 	#Calcul des molécules.
 	for molecule in ListeMolecules:
@@ -282,6 +282,16 @@ func CalculateQuantityOneAtome(atomName, timeInSeconde:int = 1):
 	if ListeAtomes[atomName].IsUnlocked:
 		var quantityAtomeWithTime = Big.multiply(ListeAtomes[atomName].GetAtomePerSec(), Big.new(timeInSeconde))
 		return quantityAtomeWithTime
+
+
+#Permet d'ajouter une quantité d'atome à la quantité du jeu, et dans les infos partie aussi.
+func AtomesGains(quantiteeAtomesGagneeDictionnary):
+	for atome in quantiteeAtomesGagneeDictionnary:
+		if RessourceManager.QuantiteesAtomes.has(atome):
+			RessourceManager.QuantiteesAtomes[atome] = Big.add(RessourceManager.QuantiteesAtomes[atome], quantiteeAtomesGagneeDictionnary[atome])
+		if InfosPartie.AtomesObtenuInThisReset.has(atome):
+			InfosPartie.AtomesObtenuInThisReset[atome] = Big.add(InfosPartie.AtomesObtenuInThisReset[atome], quantiteeAtomesGagneeDictionnary[atome])
+
 
 
 #---------------------------------Define all elements of the game !----------------------------------#
