@@ -350,7 +350,9 @@ func DefineAtomsListInitializingGame():
 	var carbonAtom = Atome.new("Carbon", "C", Big.new(0.02, 0))
 	var attribut1Carbon = AttributAtome.new(carbonAtom, "Tension", Big.new(0.0), Big.new(1.25), Big.new(0.19), Big.new(5.4, 3))
 	var attribut2Carbon = AttributAtome.new(carbonAtom, "Vibration", Big.new(0.0), Big.new(1.17), Big.new(0.15), Big.new(3.2, 3))
-	var carbonAttributsList = [attribut1Carbon, attribut2Carbon]
+	var attribut3Carbon = AttributAtome.new(carbonAtom, "Vibration", Big.new(0.0), Big.new(1.17), Big.new(0.15), Big.new(3.2, 3))
+	var attribut4Carbon = AttributAtome.new(carbonAtom, "Vibration", Big.new(0.0), Big.new(1.17), Big.new(0.15), Big.new(3.2, 3))
+	var carbonAttributsList = [attribut1Carbon, attribut2Carbon, attribut3Carbon, attribut4Carbon]
 
 	carbonAtom.DefineAtomeAttributs(carbonAttributsList)
 	carbonAtom.DefineAtomeUnlockingPrice({"Bore" : Big.new(8.47, 11)})
