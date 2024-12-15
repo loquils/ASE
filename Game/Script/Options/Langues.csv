@@ -35,6 +35,9 @@ LITHIUM, "Lithium", "Lithium"
 BERYLLIUM, "Béryllium", "Beryllium"
 BORE, "Bore", "Boron"
 Bore, "Bore", "Boron"
+Carbone, "Carbone", "Carbon"
+CARBONE, "Carbone", "Carbon"
+
 
 
 Force, "Force", "Strength"
@@ -181,7 +184,12 @@ AMELIORATIONBORE3DESCRIPTION, "Améliore l'efficacitée du transformateur de Mat
 
 
 
-ARGENTPRESTIGE, "Matière Noire", "Dark Mater"
+ALCANESTITLE, "Les Alcanes", ""
+CARBONDARKMATTERUPGRADE, "Augmente la quantité de Carbone dans la molécule.", ""
+
+
+
+DARKMATTER, "Matière Noire", "Dark Mater"
 RECHERCHEMATIERENOIRE1, "Découverte H²", "H² discovery"
 RECHERCHEMATIERENOIRE2, "Divise H", "H Divide"
 RECHERCHEMATIERENOIRE3, "Hélium +", "Helium +"

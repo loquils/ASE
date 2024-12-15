@@ -43,6 +43,11 @@ var ListeAmeliorationsBoreInitializeGame = []
 #Liste de toutes les améliorations du Bore 
 var ListeAmeliorationsBore = []
 
+#Liste des améliorations du Carbone en initialisation
+var ListeAmeliorationsCarboneInitializeGame = []
+#Liste de toutes les améliorations du Carbone 
+var ListeAmeliorationsCarbone = []
+
 #Liste des molécules en initialisation
 var ListeMoleculesInitializeGame = []
 #Liste de toutes les molécules
@@ -62,6 +67,7 @@ func _ready():
 	var listeAmeliorationsLithiumInSaving
 	var listeAmeliorationsBerylliumInSaving
 	var listeAmeliorationsBoreInSaving
+	var listeAmeliorationsCarboneInSaving
 	var listeRecherchesMatiereNoireInSaving
 	var listeMolecules
 
@@ -84,6 +90,8 @@ func _ready():
 			listeAmeliorationsBerylliumInSaving = ressourceLoadingGame["BerylliumUpgradesList"]
 		if ressourceLoadingGame.has("BoreUpgradesList"):
 			listeAmeliorationsBoreInSaving = ressourceLoadingGame["BoreUpgradesList"]
+		if ressourceLoadingGame.has("CarboneUpgradesList"):
+			listeAmeliorationsCarboneInSaving = ressourceLoadingGame["CarboneUpgradesList"]
 		if ressourceLoadingGame.has("DarkMatter"):
 			DarkMatter = Big.ToCustomFormat(ressourceLoadingGame["DarkMatter"])
 		if ressourceLoadingGame.has("RecherchesMatiereNoire"):
@@ -99,6 +107,7 @@ func _ready():
 	LoadAmeliorationLithium(listeAmeliorationsLithiumInSaving)
 	LoadAmeliorationBeryllium(listeAmeliorationsBerylliumInSaving)
 	LoadAmeliorationBore(listeAmeliorationsBoreInSaving)
+	LoadAmeliorationCarbone(listeAmeliorationsCarboneInSaving)
 	LoadDarkMatter(listeRecherchesMatiereNoireInSaving)
 	LoadMolecule(listeMolecules)
 	
@@ -230,6 +239,24 @@ func LoadAmeliorationBore(listeAmeliorationsBoreInSaving):
 	BonusManager.MajBonusAmeliorationBore()
 
 
+#Permet de charger la liste des amélioration de Lithium
+func LoadAmeliorationCarbone(listeAmeliorationsCarboneInSaving):
+	DefineAmeliorationCarboneListInitializingGame()
+	
+	if not listeAmeliorationsCarboneInSaving == null:
+		for initializedAmeliorationCarbone in ListeAmeliorationsCarboneInitializeGame:
+			if initializedAmeliorationCarbone.Id < len(listeAmeliorationsCarboneInSaving) and not listeAmeliorationsCarboneInSaving[initializedAmeliorationCarbone.Id] == null:
+				if listeAmeliorationsCarboneInSaving[initializedAmeliorationCarbone.Id]["IsUnlocked"]:
+					initializedAmeliorationCarbone.IsUnlocked = true
+					initializedAmeliorationCarbone.Level = Big.ToCustomFormat(listeAmeliorationsCarboneInSaving[initializedAmeliorationCarbone.Id]["Level"])
+					initializedAmeliorationCarbone.EtatMolecule = listeAmeliorationsCarboneInSaving[initializedAmeliorationCarbone.Id]["EtatMolecule"]
+	
+	for ameliorationCarbone in ListeAmeliorationsCarboneInitializeGame:
+		ListeAmeliorationsCarbone.append(ameliorationCarbone)
+	
+	#BonusManager.MajBonusAmeliorationCarbone()
+
+
 #Permet de charger la liste des recherches de matière noire
 func LoadDarkMatter(listeRecherchesMatiereNoireInSaving):
 	DefineRechercheMatiereNoireListInitializingGame()
@@ -347,16 +374,15 @@ func DefineAtomsListInitializingGame():
 	boreAtom.DefineAtomeUnlockingPrice({"Beryllium" : Big.new(2.38, 9)})
 	AtomsListInitializingGame.append(boreAtom)
 	
-	var carbonAtom = Atome.new("Carbon", "C", Big.new(0.02, 0))
+	var carbonAtom = Atome.new("Carbone", "C", Big.new(0.02, 0))
 	var attribut1Carbon = AttributAtome.new(carbonAtom, "Tension", Big.new(0.0), Big.new(1.25), Big.new(0.19), Big.new(5.4, 3))
 	var attribut2Carbon = AttributAtome.new(carbonAtom, "Vibration", Big.new(0.0), Big.new(1.17), Big.new(0.15), Big.new(3.2, 3))
-	var attribut3Carbon = AttributAtome.new(carbonAtom, "Vibration", Big.new(0.0), Big.new(1.17), Big.new(0.15), Big.new(3.2, 3))
 	var attribut4Carbon = AttributAtome.new(carbonAtom, "Vibration", Big.new(0.0), Big.new(1.17), Big.new(0.15), Big.new(3.2, 3))
-	var carbonAttributsList = [attribut1Carbon, attribut2Carbon, attribut3Carbon, attribut4Carbon]
+	var carbonAttributsList = [attribut1Carbon, attribut2Carbon, attribut4Carbon]
 
 	carbonAtom.DefineAtomeAttributs(carbonAttributsList)
 	carbonAtom.DefineAtomeUnlockingPrice({"Bore" : Big.new(8.47, 11)})
-	carbonAtom.UnlockingClass.SetNonDisponnible()
+	#carbonAtom.UnlockingClass.SetNonDisponnible()
 	AtomsListInitializingGame.append(carbonAtom)
 
 
@@ -491,6 +517,21 @@ func DefineAmeliorationBoreListInitializingGame():
 	var ameliorationBoreDMBaseBonus = AmeliorationBore.new(3, "AMELIORATIONBORE3NOM", "AMELIORATIONBORE3DESCRIPTION", Big.new(8.85, 4), Big.new(2.8), AmeliorationBore.TypeAmeliorationBoreEnum.Advanced, "AmeliorationBoreBonusDarkMatter", Big.new(1))
 	ameliorationBoreDMBaseBonus.DefineAtomeUnlockingPrice( {"Bore" : Big.new(2.245, 6)})
 	ListeAmeliorationsBoreInitializeGame.append(ameliorationBoreDMBaseBonus)
+
+
+#Permet d'initialiser la liste des amélioration du carbone dans le jeu
+func DefineAmeliorationCarboneListInitializingGame():
+	var ameliorationCarboneAlcane = AmeliorationCarbone.new(0, "AMELIORATIONCARBONE0NOM", "AMELIORATIONCARBONE0DESCRIPTION", Big.new(1.5, 2), Big.new(1.6), AmeliorationCarbone.TypeAmeliorationCarboneEnum.Alcane, "QuantiteeMatiere", Big.new(1), true)
+	ameliorationCarboneAlcane.DefineAtomeUnlockingPrice( {"Bore" : Big.new(1.0, 0)})
+	ListeAmeliorationsCarboneInitializeGame.append(ameliorationCarboneAlcane)
+	
+	var ameliorationCarboneAlcene = AmeliorationCarbone.new(1, "AMELIORATIONCARBONE1NOM", "AMELIORATIONCARBONE0DESCRIPTION", Big.new(1.5, 2), Big.new(1.6), AmeliorationCarbone.TypeAmeliorationCarboneEnum.Alcene, "QuantiteeMatiere", Big.new(1))
+	ameliorationCarboneAlcene.DefineAtomeUnlockingPrice( {"Bore" : Big.new(1.0, 0)})
+	ListeAmeliorationsCarboneInitializeGame.append(ameliorationCarboneAlcene)
+	
+	var ameliorationCarboneAlcyne = AmeliorationCarbone.new(2, "AMELIORATIONCARBONE2NOM", "AMELIORATIONCARBONE0DESCRIPTION", Big.new(1.5, 2), Big.new(1.6), AmeliorationCarbone.TypeAmeliorationCarboneEnum.Alcyne, "QuantiteeMatiere", Big.new(1))
+	ameliorationCarboneAlcyne.DefineAtomeUnlockingPrice( {"Bore" : Big.new(1.0, 0)})
+	ListeAmeliorationsCarboneInitializeGame.append(ameliorationCarboneAlcyne)
 
 
 #Permet d'initialiser la liste des recherches de matière noire dans le jeu.
@@ -640,6 +681,10 @@ func save():
 	for ameliorationBore in ListeAmeliorationsBore:
 		ameliorationBoreList.append({"Id" : ameliorationBore.Id, "IsUnlocked" : ameliorationBore.IsUnlocked, "Level" : ameliorationBore.Level.ToJsonFormat()})
 
+	var ameliorationCarboneList = []
+	for ameliorationCarbone in ListeAmeliorationsCarbone:
+		ameliorationCarboneList.append({"Id" : ameliorationCarbone.Id, "IsUnlocked" : ameliorationCarbone.IsUnlocked, "Level" : ameliorationCarbone.Level.ToJsonFormat(), "EtatMolecule" : ameliorationCarbone.EtatMolecule})
+
 	#Pour les recherches de matière noire
 	var recherchesMatiereNoireListe = []
 	for rechercheMatiereNoire in ListeRecherchesMatiereNoire:
@@ -660,6 +705,7 @@ func save():
 		"LithiumUpgradesList" : ameliorationLithiumList,
 		"BerylliumUpgradesList" : ameliorationBerylliumList,
 		"BoreUpgradesList" : ameliorationBoreList,
+		"CarboneUpgradesList" : ameliorationCarboneList,
 		"DarkMatter" : DarkMatter.ToJsonFormat(),
 		"RecherchesMatiereNoire" : recherchesMatiereNoireListe,
 		"ListeMolecules" : moleculesListe,

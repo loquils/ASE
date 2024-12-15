@@ -150,7 +150,7 @@ layout_mode = 2
 [node name="NameLabel" type="Label" parent="PresentationVBoxC/TopMarginC/TopHBoxC/BackGroundDarkMatter/MarginC/HBoxC"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "ARGENTPRESTIGE"
+text = "DARKMATTER"
 label_settings = SubResource("LabelSettings_kmpp2")
 vertical_alignment = 1
 

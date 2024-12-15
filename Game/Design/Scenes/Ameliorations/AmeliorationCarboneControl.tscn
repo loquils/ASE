@@ -1,9 +1,151 @@
-[gd_scene load_steps=2 format=3 uid="uid://bdg3p846bhmy1"]
+[gd_scene load_steps=7 format=3 uid="uid://bdg3p846bhmy1"]
 
+[ext_resource type="Theme" uid="uid://px4i8onhanb6" path="res://Design/Themes/Carbone/CarboneControl.tres" id="1_e8l07"]
 [ext_resource type="Script" path="res://Script/AmeliorationCarbone/AmeliorationCarboneControl.gd" id="1_ly3rr"]
+[ext_resource type="PackedScene" uid="uid://cg8ujfkwr68r6" path="res://Design/Scenes/PresentationQuantiteesAtomes.tscn" id="2_4mxpg"]
+[ext_resource type="SystemFont" uid="uid://d2tc25vdki2hk" path="res://Design/Themes/SystemFontForQantities.tres" id="3_5dddk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kr4km"]
+bg_color = Color(0.192157, 0.192157, 0.192157, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ds4et"]
+bg_color = Color(0.192157, 0.192157, 0.192157, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [node name="AmeliorationCarboneControl" type="Control"]
-visible = false
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_e8l07")
 script = ExtResource("1_ly3rr")
+
+[node name="MainPanelC" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_kr4km")
+
+[node name="PresentationVBoxC" type="VBoxContainer" parent="MainPanelC"]
+layout_mode = 2
+
+[node name="TopMarginC" type="MarginContainer" parent="MainPanelC/PresentationVBoxC"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxC" type="VBoxContainer" parent="MainPanelC/PresentationVBoxC/TopMarginC"]
+layout_mode = 2
+
+[node name="TopHBoxC" type="HBoxContainer" parent="MainPanelC/PresentationVBoxC/TopMarginC/VBoxC"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="HydrogeneGUIMarginC" parent="MainPanelC/PresentationVBoxC/TopMarginC/VBoxC/TopHBoxC" instance=ExtResource("2_4mxpg")]
+layout_mode = 2
+
+[node name="CarboneGUIMarginC" parent="MainPanelC/PresentationVBoxC/TopMarginC/VBoxC/TopHBoxC" instance=ExtResource("2_4mxpg")]
+layout_mode = 2
+
+[node name="ButtonExit" type="Button" parent="MainPanelC/PresentationVBoxC/TopMarginC/VBoxC/TopHBoxC"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_fonts/font = ExtResource("3_5dddk")
+theme_override_font_sizes/font_size = 24
+text = "Exit >"
+
+[node name="ScrollC" type="ScrollContainer" parent="MainPanelC/PresentationVBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxC" type="VBoxContainer" parent="MainPanelC/PresentationVBoxC/ScrollC"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="AlcanesMarginC" type="MarginContainer" parent="MainPanelC/PresentationVBoxC/ScrollC/VBoxC"]
+custom_minimum_size = Vector2(0, 400)
+layout_mode = 2
+
+[node name="AlcanesPanelC" type="PanelContainer" parent="MainPanelC/PresentationVBoxC/ScrollC/VBoxC/AlcanesMarginC"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ds4et")
+
+[node name="VBoxC" type="VBoxContainer" parent="MainPanelC/PresentationVBoxC/ScrollC/VBoxC/AlcanesMarginC/AlcanesPanelC"]
+layout_mode = 2
+
+[node name="NameMarginC" type="MarginContainer" parent="MainPanelC/PresentationVBoxC/ScrollC/VBoxC/AlcanesMarginC/AlcanesPanelC/VBoxC"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MainPanelC/PresentationVBoxC/ScrollC/VBoxC/AlcanesMarginC/AlcanesPanelC/VBoxC/NameMarginC"]
+layout_mode = 2
+text = "ALCANESTITLE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ContentMarginC" type="MarginContainer" parent="MainPanelC/PresentationVBoxC/ScrollC/VBoxC/AlcanesMarginC/AlcanesPanelC/VBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="AlcenesMarginC" type="MarginContainer" parent="MainPanelC/PresentationVBoxC/ScrollC/VBoxC"]
+custom_minimum_size = Vector2(0, 400)
+layout_mode = 2
+
+[node name="AlcenesPanelC" type="PanelContainer" parent="MainPanelC/PresentationVBoxC/ScrollC/VBoxC/AlcenesMarginC"]
+layout_mode = 2
+
+[node name="VBoxC" type="VBoxContainer" parent="MainPanelC/PresentationVBoxC/ScrollC/VBoxC/AlcenesMarginC/AlcenesPanelC"]
+layout_mode = 2
+
+[node name="NameMarginC" type="MarginContainer" parent="MainPanelC/PresentationVBoxC/ScrollC/VBoxC/AlcenesMarginC/AlcenesPanelC/VBoxC"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MainPanelC/PresentationVBoxC/ScrollC/VBoxC/AlcenesMarginC/AlcenesPanelC/VBoxC/NameMarginC"]
+layout_mode = 2
+text = "ALCANESTITLE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ContentMarginC" type="MarginContainer" parent="MainPanelC/PresentationVBoxC/ScrollC/VBoxC/AlcenesMarginC/AlcenesPanelC/VBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="AlcynesMarginC" type="MarginContainer" parent="MainPanelC/PresentationVBoxC/ScrollC/VBoxC"]
+custom_minimum_size = Vector2(0, 400)
+layout_mode = 2
+
+[node name="AlcynesPanelC" type="PanelContainer" parent="MainPanelC/PresentationVBoxC/ScrollC/VBoxC/AlcynesMarginC"]
+layout_mode = 2
+
+[node name="VBoxC" type="VBoxContainer" parent="MainPanelC/PresentationVBoxC/ScrollC/VBoxC/AlcynesMarginC/AlcynesPanelC"]
+layout_mode = 2
+
+[node name="NameMarginC" type="MarginContainer" parent="MainPanelC/PresentationVBoxC/ScrollC/VBoxC/AlcynesMarginC/AlcynesPanelC/VBoxC"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MainPanelC/PresentationVBoxC/ScrollC/VBoxC/AlcynesMarginC/AlcynesPanelC/VBoxC/NameMarginC"]
+layout_mode = 2
+text = "ALCANESTITLE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ContentMarginC" type="MarginContainer" parent="MainPanelC/PresentationVBoxC/ScrollC/VBoxC/AlcynesMarginC/AlcynesPanelC/VBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[connection signal="pressed" from="MainPanelC/PresentationVBoxC/TopMarginC/VBoxC/TopHBoxC/ButtonExit" to="." method="_on_button_exit_pressed"]

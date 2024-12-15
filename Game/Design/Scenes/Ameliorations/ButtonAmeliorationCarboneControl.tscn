@@ -1,0 +1,207 @@
+[gd_scene load_steps=6 format=3 uid="uid://dw3mtw4i2kfov"]
+
+[ext_resource type="Script" path="res://Script/AmeliorationCarbone/ButtonAmeliorationCarboneControl.gd" id="1_6eydp"]
+[ext_resource type="Texture2D" uid="uid://c31eyto1jlpql" path="res://Gimped/TestElectron.png" id="2_o6t0c"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5p0c2"]
+bg_color = Color(0.192157, 0.192157, 0.192157, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.0666667, 0.0666667, 0.0666667, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_twpku"]
+bg_color = Color(0.192157, 0.192157, 0.192157, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.0666667, 0.0666667, 0.0666667, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5xjhg"]
+bg_color = Color(0.192157, 0.192157, 0.192157, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.0666667, 0.0666667, 0.0666667, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="ButtonAmeliorationCarboneControl" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -780.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6eydp")
+
+[node name="MainPanelC" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MainMarginC" type="MarginContainer" parent="MainPanelC"]
+layout_mode = 2
+
+[node name="MainVBoxC" type="VBoxContainer" parent="MainPanelC/MainMarginC"]
+layout_mode = 2
+
+[node name="TopHBoxC" type="HBoxContainer" parent="MainPanelC/MainMarginC/MainVBoxC"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="LeftMarginC" type="MarginContainer" parent="MainPanelC/MainMarginC/MainVBoxC/TopHBoxC"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="AlcaneVBoxC" type="VBoxContainer" parent="MainPanelC/MainMarginC/MainVBoxC/TopHBoxC/LeftMarginC"]
+layout_mode = 2
+
+[node name="NomAlcaneLabel" type="Label" parent="MainPanelC/MainMarginC/MainVBoxC/TopHBoxC/LeftMarginC/AlcaneVBoxC"]
+layout_mode = 2
+text = "NomAlcane"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SymboleLabel" type="Label" parent="MainPanelC/MainMarginC/MainVBoxC/TopHBoxC/LeftMarginC/AlcaneVBoxC"]
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NiveauHBoxC" type="HBoxContainer" parent="MainPanelC/MainMarginC/MainVBoxC/TopHBoxC/LeftMarginC/AlcaneVBoxC"]
+layout_mode = 2
+
+[node name="NiveauTitleLabel" type="Label" parent="MainPanelC/MainMarginC/MainVBoxC/TopHBoxC/LeftMarginC/AlcaneVBoxC/NiveauHBoxC"]
+layout_mode = 2
+size_flags_horizontal = 3
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NiveauLabel" type="Label" parent="MainPanelC/MainMarginC/MainVBoxC/TopHBoxC/LeftMarginC/AlcaneVBoxC/NiveauHBoxC"]
+layout_mode = 2
+size_flags_horizontal = 3
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QuantiteeHBoxC" type="HBoxContainer" parent="MainPanelC/MainMarginC/MainVBoxC/TopHBoxC/LeftMarginC/AlcaneVBoxC"]
+layout_mode = 2
+
+[node name="QuantiteeTitleLabel" type="Label" parent="MainPanelC/MainMarginC/MainVBoxC/TopHBoxC/LeftMarginC/AlcaneVBoxC/QuantiteeHBoxC"]
+layout_mode = 2
+size_flags_horizontal = 3
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QuantiteLabel" type="Label" parent="MainPanelC/MainMarginC/MainVBoxC/TopHBoxC/LeftMarginC/AlcaneVBoxC/QuantiteeHBoxC"]
+layout_mode = 2
+size_flags_horizontal = 3
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RightMarginC" type="MarginContainer" parent="MainPanelC/MainMarginC/MainVBoxC/TopHBoxC"]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="MainPanelC/MainMarginC/MainVBoxC/TopHBoxC/RightMarginC"]
+clip_contents = true
+layout_mode = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="MainPanelC/MainMarginC/MainVBoxC/TopHBoxC/RightMarginC/SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(358, 360)
+render_target_update_mode = 4
+
+[node name="Node2D" type="Node2D" parent="MainPanelC/MainMarginC/MainVBoxC/TopHBoxC/RightMarginC/SubViewportContainer/SubViewport"]
+position = Vector2(150, 100)
+
+[node name="Sprite2D" type="Sprite2D" parent="MainPanelC/MainMarginC/MainVBoxC/TopHBoxC/RightMarginC/SubViewportContainer/SubViewport/Node2D"]
+texture = ExtResource("2_o6t0c")
+centered = false
+
+[node name="BottomVBoxC" type="VBoxContainer" parent="MainPanelC/MainMarginC/MainVBoxC"]
+layout_mode = 2
+
+[node name="TopRowMarginC" type="MarginContainer" parent="MainPanelC/MainMarginC/MainVBoxC/BottomVBoxC"]
+layout_mode = 2
+
+[node name="ButtonsHBoxC" type="HBoxContainer" parent="MainPanelC/MainMarginC/MainVBoxC/BottomVBoxC/TopRowMarginC"]
+layout_mode = 2
+alignment = 1
+
+[node name="HydrogenePanelC" type="PanelContainer" parent="MainPanelC/MainMarginC/MainVBoxC/BottomVBoxC/TopRowMarginC/ButtonsHBoxC"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_5p0c2")
+
+[node name="HydrogeneMarginC" type="MarginContainer" parent="MainPanelC/MainMarginC/MainVBoxC/BottomVBoxC/TopRowMarginC/ButtonsHBoxC/HydrogenePanelC"]
+layout_mode = 2
+
+[node name="PresentationVBoxC" type="VBoxContainer" parent="MainPanelC/MainMarginC/MainVBoxC/BottomVBoxC/TopRowMarginC/ButtonsHBoxC/HydrogenePanelC/HydrogeneMarginC"]
+layout_mode = 2
+
+[node name="DescriptionHydrogeneLabel" type="Label" parent="MainPanelC/MainMarginC/MainVBoxC/BottomVBoxC/TopRowMarginC/ButtonsHBoxC/HydrogenePanelC/HydrogeneMarginC/PresentationVBoxC"]
+layout_mode = 2
+
+[node name="HydrogeneUpgradeButton" type="Button" parent="MainPanelC/MainMarginC/MainVBoxC/BottomVBoxC/TopRowMarginC/ButtonsHBoxC/HydrogenePanelC/HydrogeneMarginC/PresentationVBoxC"]
+layout_mode = 2
+text = "HYDROGENE"
+
+[node name="CarbonePanelC" type="PanelContainer" parent="MainPanelC/MainMarginC/MainVBoxC/BottomVBoxC/TopRowMarginC/ButtonsHBoxC"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_twpku")
+
+[node name="CarboneMarginC" type="MarginContainer" parent="MainPanelC/MainMarginC/MainVBoxC/BottomVBoxC/TopRowMarginC/ButtonsHBoxC/CarbonePanelC"]
+layout_mode = 2
+
+[node name="PresentationVBoxC" type="VBoxContainer" parent="MainPanelC/MainMarginC/MainVBoxC/BottomVBoxC/TopRowMarginC/ButtonsHBoxC/CarbonePanelC/CarboneMarginC"]
+layout_mode = 2
+
+[node name="DescriptionCarboneLabel" type="Label" parent="MainPanelC/MainMarginC/MainVBoxC/BottomVBoxC/TopRowMarginC/ButtonsHBoxC/CarbonePanelC/CarboneMarginC/PresentationVBoxC"]
+layout_mode = 2
+
+[node name="CarbonUpgradeButton" type="Button" parent="MainPanelC/MainMarginC/MainVBoxC/BottomVBoxC/TopRowMarginC/ButtonsHBoxC/CarbonePanelC/CarboneMarginC/PresentationVBoxC"]
+layout_mode = 2
+text = "CARBONE"
+
+[node name="BottomRowMarginC" type="MarginContainer" parent="MainPanelC/MainMarginC/MainVBoxC/BottomVBoxC"]
+layout_mode = 2
+
+[node name="DarkMatterPanelC" type="PanelContainer" parent="MainPanelC/MainMarginC/MainVBoxC/BottomVBoxC/BottomRowMarginC"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5xjhg")
+
+[node name="DarkMatterMarginC" type="MarginContainer" parent="MainPanelC/MainMarginC/MainVBoxC/BottomVBoxC/BottomRowMarginC/DarkMatterPanelC"]
+layout_mode = 2
+
+[node name="PresentationVBoxC" type="VBoxContainer" parent="MainPanelC/MainMarginC/MainVBoxC/BottomVBoxC/BottomRowMarginC/DarkMatterPanelC/DarkMatterMarginC"]
+layout_mode = 2
+
+[node name="DescriptionDarkMatterLabel" type="Label" parent="MainPanelC/MainMarginC/MainVBoxC/BottomVBoxC/BottomRowMarginC/DarkMatterPanelC/DarkMatterMarginC/PresentationVBoxC"]
+layout_mode = 2
+text = "CARBONDARKMATTERUPGRADE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DarkMatterUpgradeButton" type="Button" parent="MainPanelC/MainMarginC/MainVBoxC/BottomVBoxC/BottomRowMarginC/DarkMatterPanelC/DarkMatterMarginC/PresentationVBoxC"]
+layout_mode = 2
+text = "DARKMATTER"

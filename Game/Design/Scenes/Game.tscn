@@ -717,6 +717,7 @@ visible = false
 layout_mode = 2
 
 [node name="AmeliorationCarboneControl" parent="WindowTopBlackVBoxC/MainMarginC" instance=ExtResource("19_l1m1p")]
+visible = false
 layout_mode = 2
 
 [node name="MatiereNoireControl" parent="WindowTopBlackVBoxC/MainMarginC" instance=ExtResource("15_ngy2j")]
