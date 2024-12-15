@@ -12,6 +12,7 @@ extends Control
 @onready var AmeliorationLithiumControl = $WindowTopBlackVBoxC/MainMarginC/AmeliorationLithiumControl
 @onready var AmeliorationBerylliumControl = $WindowTopBlackVBoxC/MainMarginC/AmeliorationBerylliumControl
 @onready var AmeliorationBoreControl = $WindowTopBlackVBoxC/MainMarginC/AmeliorationBoreControl
+@onready var AmeliorationCarboneControl = $WindowTopBlackVBoxC/MainMarginC/AmeliorationCarboneControl
 @onready var MatiereNoireControl = $WindowTopBlackVBoxC/MainMarginC/MatiereNoireControl
 
 @onready var OptionsControl = $WindowTopBlackVBoxC/MainMarginC/OptionsControl
@@ -67,7 +68,7 @@ func _on_button_amelioration_bore_pressed():
 
 #Trigger lors de l'appuie sur le bouton pour ouvrir la page d'améliorations du Carbon.
 func _on_button_amelioration_carbon_pressed():
-	pass # Replace with function body.
+	AmeliorationCarboneControl.visible = true
 
 
 #Trigger lors de l'appuie sur le bouton pour ouvrir la page de prestige 
