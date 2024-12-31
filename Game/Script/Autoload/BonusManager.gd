@@ -24,6 +24,11 @@ var BonusAmeliorationsBore = {"BerylliumOutputMultiply" : Big.new(0.05), "DarkMa
 var BonusTypesAmeliorationBore = ["QuantiteeMatiere", "BonusQuantiteeMatiere", "AmeliorationBoreBonusBeryllium", "AmeliorationBoreBonusDarkMatter"]
 var CurrentBonusesAmeliorationBore = {}
 
+
+#Amélioration du Carbone
+var BonusTypesAmeliorationCarbone = ["Upgrade0BaseLevel"]
+
+
 #Bonus recherches matière noire
 var CurrentBonusesRecherchesMatiereNoire = {}
 
@@ -178,7 +183,10 @@ func MajBonusMolecules():
 	for molecule in RessourceManager.ListeMolecules:
 		if molecule.IsUnlocked:
 			for bonus in molecule.AtomeBaseSortie:
-				CurrentBonusesMolecules[bonus] = Big.add(CurrentBonusesMolecules[bonus], Big.multiply(molecule.AtomeBaseSortie[bonus], RessourceManager.QuantiteesMolecules[molecule.Name]))
+				if molecule.TypeMolecule == Molecule.TypeMoleculeEnum.Base:
+					CurrentBonusesMolecules[bonus] = Big.add(CurrentBonusesMolecules[bonus], Big.multiply(molecule.AtomeBaseSortie[bonus], RessourceManager.QuantiteesMolecules[molecule.Name]))
+				elif molecule.TypeMolecule == Molecule.TypeMoleculeEnum.Carbone:
+					CurrentBonusesMolecules[bonus] = Big.add(CurrentBonusesMolecules[bonus], Big.multiply(molecule.AtomeBaseSortie[bonus], RessourceManager.QuantiteesMolecules[molecule.Name]))
 
 
 #Récupère le bonus des molécules sur un atome.

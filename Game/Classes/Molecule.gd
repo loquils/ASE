@@ -11,12 +11,17 @@ var IsUnlocked = false
 var AtomeBaseConsomation
 
 #Sur quels atomes on met un bonus en fonction de la molécule
-var AtomeBaseSortie
+var AtomeBaseSortie = {}
 
-func _init(id, name, isUnlocked:bool = false):
+#Type de molécule celon quel endroit elle provient.
+enum TypeMoleculeEnum { Base, Carbone}
+var TypeMolecule:TypeMoleculeEnum
+
+func _init(id, name, typeMolecule:TypeMoleculeEnum = TypeMoleculeEnum.Base, isUnlocked:bool = false):
 	Id = id
 	Name = name
 	IsUnlocked = isUnlocked
+	TypeMolecule = typeMolecule
 
 
 #Permet de definir le prix pour débloquer la molécule.

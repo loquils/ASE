@@ -178,6 +178,9 @@ layout_mode = 2
 
 [node name="DescriptionCarboneLabel" type="Label" parent="MainPanelC/MainMarginC/MainVBoxC/BottomVBoxC/TopRowMarginC/ButtonsHBoxC/CarbonePanelC/CarboneMarginC/PresentationVBoxC"]
 layout_mode = 2
+text = "CARBONCARBONUPGRADE"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="CarbonUpgradeButton" type="Button" parent="MainPanelC/MainMarginC/MainVBoxC/BottomVBoxC/TopRowMarginC/ButtonsHBoxC/CarbonePanelC/CarboneMarginC/PresentationVBoxC"]
 layout_mode = 2
@@ -205,3 +208,5 @@ vertical_alignment = 1
 [node name="DarkMatterUpgradeButton" type="Button" parent="MainPanelC/MainMarginC/MainVBoxC/BottomVBoxC/BottomRowMarginC/DarkMatterPanelC/DarkMatterMarginC/PresentationVBoxC"]
 layout_mode = 2
 text = "DARKMATTER"
+
+[connection signal="pressed" from="MainPanelC/MainMarginC/MainVBoxC/BottomVBoxC/BottomRowMarginC/DarkMatterPanelC/DarkMatterMarginC/PresentationVBoxC/DarkMatterUpgradeButton" to="." method="_on_dark_matter_upgrade_button_pressed"]

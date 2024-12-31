@@ -107,9 +107,10 @@ func _ready():
 	LoadAmeliorationLithium(listeAmeliorationsLithiumInSaving)
 	LoadAmeliorationBeryllium(listeAmeliorationsBerylliumInSaving)
 	LoadAmeliorationBore(listeAmeliorationsBoreInSaving)
-	LoadAmeliorationCarbone(listeAmeliorationsCarboneInSaving)
+
 	LoadDarkMatter(listeRecherchesMatiereNoireInSaving)
 	LoadMolecule(listeMolecules)
+	LoadAmeliorationCarbone(listeAmeliorationsCarboneInSaving)
 	
 	#Après les load car il fait référence à des éléments qui doivent être initialisés avant le load.
 	if ressourceLoadingGame != null:
@@ -159,7 +160,6 @@ func LoadResearch(listeRecherchesInSaving):
 	
 	if not listeRecherchesInSaving == null:
 		for initializedRecherche in ListeRechercheInitializeGame:
-			#var IdRecherche = listeRecherchesInSaving.find(initializedRecherche)
 			var recherchesTrouveeInSaving = listeRecherchesInSaving.filter(func(rechercheSave): return rechercheSave.Id == initializedRecherche.Id)
 			if recherchesTrouveeInSaving.size() == 1:
 				if recherchesTrouveeInSaving[0]["IsUnlocked"]:
@@ -250,6 +250,7 @@ func LoadAmeliorationCarbone(listeAmeliorationsCarboneInSaving):
 					initializedAmeliorationCarbone.IsUnlocked = true
 					initializedAmeliorationCarbone.Level = Big.ToCustomFormat(listeAmeliorationsCarboneInSaving[initializedAmeliorationCarbone.Id]["Level"])
 					initializedAmeliorationCarbone.EtatMolecule = listeAmeliorationsCarboneInSaving[initializedAmeliorationCarbone.Id]["EtatMolecule"]
+					initializedAmeliorationCarbone.DefineCurrentWorkingMolecule()
 	
 	for ameliorationCarbone in ListeAmeliorationsCarboneInitializeGame:
 		ListeAmeliorationsCarbone.append(ameliorationCarbone)
@@ -278,8 +279,9 @@ func LoadMolecule(listeMoleculeInSaving):
 	
 	if not listeMoleculeInSaving == null:
 		for initializedMolecule in ListeMoleculesInitializeGame:
-			if initializedMolecule.Id < len(listeMoleculeInSaving) and not listeMoleculeInSaving[initializedMolecule.Id] == null:
-				if listeMoleculeInSaving[initializedMolecule.Id]["IsUnlocked"]:
+			var moleculesTrouveeInSaving = listeMoleculeInSaving.filter(func(moleculeSave): return moleculeSave.Id == initializedMolecule.Id)
+			if moleculesTrouveeInSaving.size() == 1:
+				if moleculesTrouveeInSaving[0]["IsUnlocked"]:
 					initializedMolecule.IsUnlocked = true
 	
 	for molecule in ListeMoleculesInitializeGame:
@@ -523,15 +525,18 @@ func DefineAmeliorationBoreListInitializingGame():
 func DefineAmeliorationCarboneListInitializingGame():
 	var ameliorationCarboneAlcane = AmeliorationCarbone.new(0, "AMELIORATIONCARBONE0NOM", "AMELIORATIONCARBONE0DESCRIPTION", Big.new(1.5, 2), Big.new(1.6), AmeliorationCarbone.TypeAmeliorationCarboneEnum.Alcane, "QuantiteeMatiere", Big.new(1), true)
 	ameliorationCarboneAlcane.DefineAtomeUnlockingPrice( {"Bore" : Big.new(1.0, 0)})
+	ameliorationCarboneAlcane.EtatMolecule = 0
 	ListeAmeliorationsCarboneInitializeGame.append(ameliorationCarboneAlcane)
 	
 	var ameliorationCarboneAlcene = AmeliorationCarbone.new(1, "AMELIORATIONCARBONE1NOM", "AMELIORATIONCARBONE0DESCRIPTION", Big.new(1.5, 2), Big.new(1.6), AmeliorationCarbone.TypeAmeliorationCarboneEnum.Alcene, "QuantiteeMatiere", Big.new(1))
 	ameliorationCarboneAlcene.DefineAtomeUnlockingPrice( {"Bore" : Big.new(1.0, 0)})
-	ListeAmeliorationsCarboneInitializeGame.append(ameliorationCarboneAlcene)
+	ameliorationCarboneAlcene.EtatMolecule = 1
+	#ListeAmeliorationsCarboneInitializeGame.append(ameliorationCarboneAlcene)
 	
 	var ameliorationCarboneAlcyne = AmeliorationCarbone.new(2, "AMELIORATIONCARBONE2NOM", "AMELIORATIONCARBONE0DESCRIPTION", Big.new(1.5, 2), Big.new(1.6), AmeliorationCarbone.TypeAmeliorationCarboneEnum.Alcyne, "QuantiteeMatiere", Big.new(1))
 	ameliorationCarboneAlcyne.DefineAtomeUnlockingPrice( {"Bore" : Big.new(1.0, 0)})
-	ListeAmeliorationsCarboneInitializeGame.append(ameliorationCarboneAlcyne)
+	ameliorationCarboneAlcene.EtatMolecule = 1
+	#ListeAmeliorationsCarboneInitializeGame.append(ameliorationCarboneAlcyne)
 
 
 #Permet d'initialiser la liste des recherches de matière noire dans le jeu.
@@ -555,11 +560,30 @@ func DefineMoleculesListInitializingGame():
 	moleculeDihydrogene.DefineAtomeSortieBonus({"Hydrogene" : Big.new(0.1)})
 	ListeMoleculesInitializeGame.append(moleculeDihydrogene)
 	
+	DefineAllCarbonMolecules()
 	#var moleculeMethane = Molecule.new(1, "METHANE")
 	#moleculeMethane.DefineUnlockingPrice({"DarkMatter" : Big.new(1.0, 8)})
 	#moleculeMethane.DefineAtomeBaseComation({"Hydrogene" : 4, "Carbone" : 1})
 	#moleculeMethane.DefineAtomeSortieBonus({"Hydrogene" : Big.new(0.1), "Carbone" : Big.new(0.1)})
 	#ListeMoleculesInitializeGame.append(moleculeMethane)
+
+
+#Permet de définir toutes les molécules liées aux amélioration carbonne.
+func DefineAllCarbonMolecules():
+	var idCarbonMolecule = 1000
+	
+	var dictionnaryPrefixesNomsEtatsMolecules = ["Meth", "Eth", "Prop", "But", "Pent", "Hex", "Hept", "Oct", "Non", "Dec"]
+	var dictionnarySuffixesNomsEtatsMolecules = ["ane", "ene", "yne"]
+	
+	for suffixePosition in len(dictionnarySuffixesNomsEtatsMolecules):
+		for prefixePosition in len(dictionnaryPrefixesNomsEtatsMolecules):
+			#Si on est dans les familles ene et yne, on ne doit pas créer le premier
+			if (suffixePosition == 0) or (suffixePosition > 0 and prefixePosition > 0):
+				var newCarbonMolecule = Molecule.new(idCarbonMolecule, (dictionnaryPrefixesNomsEtatsMolecules[prefixePosition] + dictionnarySuffixesNomsEtatsMolecules[suffixePosition]).to_upper(), Molecule.TypeMoleculeEnum.Carbone)
+				newCarbonMolecule.DefineAtomeBaseComation({"Hydrogene" : 2 * (prefixePosition + 2), "Carbone" : 1 * (prefixePosition + 1)})
+				#newCarbonMolecule.DefineAtomeSortieBonus({"Hydrogene" : Big.new(0.1), "Carbone" : Big.new(0.1)})
+				ListeMoleculesInitializeGame.append(newCarbonMolecule)
+				idCarbonMolecule += 1
 
 #----------------------------------------------Réinitialisation--------------------------------------------------------#
 
