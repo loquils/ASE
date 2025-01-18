@@ -63,9 +63,9 @@ func DefineCurrentWorkingMolecule():
 		MoleculeUpgrade.IsUnlocked = false
 		RessourceManager.QuantiteesMolecules[MoleculeUpgrade.Name] = Big.new(0)
 	
-	var moleculesTrouveeInSaving = RessourceManager.ListeMolecules.filter(func(moleculeSave): return moleculeSave.Name == GetNomMolecule().to_upper())
-	if moleculesTrouveeInSaving.size() == 1:
-		moleculesTrouveeInSaving[0].IsUnlocked = true
+	var moleculesTrouveeDansListe = RessourceManager.ListeMolecules.filter(func(moleculeSave): return moleculeSave.Name == GetNomMolecule().to_upper())
+	if moleculesTrouveeDansListe.size() == 1:
+		moleculesTrouveeDansListe[0].IsUnlocked = true
 		
 		#On définit un coeff pour les différent type d'améliorations
 		var coeffType = 0
@@ -75,9 +75,15 @@ func DefineCurrentWorkingMolecule():
 			coeffType = 2
 		
 		#On définit quel est le bonus en sortie, en fonction du type et de l'état de la molécule
-		var hydrogeneSortie = Big.subtractAbove0(Big.power(Big.add(Big.new(1.05), Big.new(coeffType * 0.3)), Big.new(EtatMolecule + 1)), Big.new(1))
-		moleculesTrouveeInSaving[0].DefineAtomeSortieBonus({"Hydrogene" : hydrogeneSortie, "Carbone" : Big.power(Big.new(EtatMolecule + 1), Big.add(Big.new(1.0), Big.new(coeffType * 0.1)))})
-		MoleculeUpgrade = moleculesTrouveeInSaving[0]
+		var coefMultiplicateurHydrogene = Big.add(Big.new(1.45), Big.new(coeffType * 0.3))
+		var etatMolecule = Big.new(EtatMolecule + 1)
+		
+		var hydrogeneSortie = Big.subtractAbove0(Big.power(coefMultiplicateurHydrogene, etatMolecule), Big.new(1))
+		
+		var coefMultiplicateurCarbone = Big.add(Big.new(1.0), Big.new(coeffType * 0.1))
+		
+		moleculesTrouveeDansListe[0].DefineAtomeSortieBonus({"Hydrogene" : coefMultiplicateurHydrogene, "Carbone" : coefMultiplicateurCarbone})
+		MoleculeUpgrade = moleculesTrouveeDansListe[0]
 
 
 #Récupère le prix d'une amélioration, pour l'instant c'est x10 puissance niveau

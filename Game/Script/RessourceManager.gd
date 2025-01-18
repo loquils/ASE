@@ -523,7 +523,7 @@ func DefineAmeliorationBoreListInitializingGame():
 
 #Permet d'initialiser la liste des amélioration du carbone dans le jeu
 func DefineAmeliorationCarboneListInitializingGame():
-	var ameliorationCarboneAlcane = AmeliorationCarbone.new(0, "AMELIORATIONCARBONE0NOM", "AMELIORATIONCARBONE0DESCRIPTION", Big.new(1.5, 2), Big.new(1.6), AmeliorationCarbone.TypeAmeliorationCarboneEnum.Alcane, "QuantiteeMatiere", Big.new(1), true)
+	var ameliorationCarboneAlcane = AmeliorationCarbone.new(0, "AMELIORATIONCARBONE0NOM", "AMELIORATIONCARBONE0DESCRIPTION", Big.new(1.5, 2), Big.new(1.6), AmeliorationCarbone.TypeAmeliorationCarboneEnum.Alcane, "QuantiteeMatiere", Big.new(1))
 	ameliorationCarboneAlcane.DefineAtomeUnlockingPrice( {"Bore" : Big.new(1.0, 0)})
 	ameliorationCarboneAlcane.EtatMolecule = 0
 	ListeAmeliorationsCarboneInitializeGame.append(ameliorationCarboneAlcane)

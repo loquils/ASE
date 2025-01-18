@@ -48,7 +48,7 @@ func GetStringNomsSymboles():
 	return listeSymboles.left(listeSymboles.length() - 2) + " :"
 
 
-#Permet de récupérer le dictionnaire de la consomation pour le calcul de la quantitée des molécules
+#Permet de récupérer le dictionnaire de la consomation pour le calcul de la quantitée des molécules.
 func GetMoleculeProductionPerSeconde():
 	var calculDictionnary = {}
 	var quantiteeAtomesInCreation = 0
@@ -62,4 +62,21 @@ func GetMoleculeProductionPerSeconde():
 		partialProduction = Big.multiply(partialProduction, calculDictionnary[atomConsomation])
 	
 	var totalProduction = Big.power(partialProduction, 1.0 / quantiteeAtomesInCreation)
+	if TypeMolecule == TypeMoleculeEnum.Carbone:
+		var ameliorationCarboneTrouveeDansListe = RessourceManager.ListeAmeliorationsCarbone.filter(func(ameliorationCarbone): return ameliorationCarbone.MoleculeUpgrade.Name == Name)
+		if ameliorationCarboneTrouveeDansListe.size() == 1:
+			if ameliorationCarboneTrouveeDansListe[0].EtatMolecule == 0:
+				totalProduction = Big.divide(totalProduction, 20)
+			if ameliorationCarboneTrouveeDansListe[0].EtatMolecule == 1:
+				totalProduction = Big.divide(totalProduction, 10)
+			if ameliorationCarboneTrouveeDansListe[0].EtatMolecule == 2:
+				totalProduction = Big.divide(totalProduction, 5)
 	return totalProduction
+
+
+#Permet de récupérer le bonus total d'une molécule en fonction de sa quantité.
+func GetMoleculeBonus(atomeName):
+	if AtomeBaseSortie.has(atomeName):
+		return Big.multiply(AtomeBaseSortie[atomeName], RessourceManager.QuantiteesMolecules[Name])
+	
+	return Big.new(0)

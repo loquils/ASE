@@ -184,9 +184,9 @@ func MajBonusMolecules():
 		if molecule.IsUnlocked:
 			for bonus in molecule.AtomeBaseSortie:
 				if molecule.TypeMolecule == Molecule.TypeMoleculeEnum.Base:
-					CurrentBonusesMolecules[bonus] = Big.add(CurrentBonusesMolecules[bonus], Big.multiply(molecule.AtomeBaseSortie[bonus], RessourceManager.QuantiteesMolecules[molecule.Name]))
+					CurrentBonusesMolecules[bonus] = Big.add(CurrentBonusesMolecules[bonus], molecule.GetMoleculeBonus(bonus))
 				elif molecule.TypeMolecule == Molecule.TypeMoleculeEnum.Carbone:
-					CurrentBonusesMolecules[bonus] = Big.add(CurrentBonusesMolecules[bonus], Big.multiply(molecule.AtomeBaseSortie[bonus], RessourceManager.QuantiteesMolecules[molecule.Name]))
+					CurrentBonusesMolecules[bonus] = Big.add(CurrentBonusesMolecules[bonus], molecule.GetMoleculeBonus(bonus))
 
 
 #Récupère le bonus des molécules sur un atome.
