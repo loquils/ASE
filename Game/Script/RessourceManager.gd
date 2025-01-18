@@ -581,7 +581,6 @@ func DefineAllCarbonMolecules():
 			if (suffixePosition == 0) or (suffixePosition > 0 and prefixePosition > 0):
 				var newCarbonMolecule = Molecule.new(idCarbonMolecule, (dictionnaryPrefixesNomsEtatsMolecules[prefixePosition] + dictionnarySuffixesNomsEtatsMolecules[suffixePosition]).to_upper(), Molecule.TypeMoleculeEnum.Carbone)
 				newCarbonMolecule.DefineAtomeBaseComation({"Hydrogene" : 2 * (prefixePosition + 2), "Carbone" : 1 * (prefixePosition + 1)})
-				#newCarbonMolecule.DefineAtomeSortieBonus({"Hydrogene" : Big.new(0.1), "Carbone" : Big.new(0.1)})
 				ListeMoleculesInitializeGame.append(newCarbonMolecule)
 				idCarbonMolecule += 1
 
